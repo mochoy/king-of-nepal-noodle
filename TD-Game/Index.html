@@ -1,0 +1,34 @@
+<!DOCTYPE html>
+<html>
+    <head>
+        <title>TD Game</title>
+    </head>
+    
+    <body>  
+        <div width = 100% align = center>
+            <b> <font size = 32> TD Game </font> </b>
+    
+            <div id="phaser-example" class="phaser-example"></div>
+            <div id="gameDiv" class="game-area"></div>
+            
+            <script src = "JS/phaser.min.js"> </script>
+            <script src = "JS/enemyStuff.js"> </script>
+            <script src = "JS/mainGame.js"> </script>
+            <script src="JS/menu.js"> </script> 
+            <script src="JS/main.js"> </script>
+            
+            <script>
+                startMenu();
+            </script>
+           
+<!--
+            <script>
+                var game = new Phaser.Game(800, 600, Phaser.AUTO, 'phaser-example');
+                game.state.add("game", gameVar);
+                game.state.start("game");
+            </script> 
+-->   
+            
+        </div>
+    </body>
+</html>
