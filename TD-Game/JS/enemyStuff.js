@@ -19,6 +19,8 @@ var EnemyBasic = function () {
     this.enable = function(game, spawnX, spawnY){
         this.sprite = game.add.sprite(spawnX, spawnY, this.imgName);
         game.physics.arcade.enable(this.sprite);
+        
+        console.log(this.sprite.body);
     
         this.addToSpecificArray();
         enemyHelper.allEnemyArray.push(this);
@@ -26,6 +28,7 @@ var EnemyBasic = function () {
     this.addToSpecificArray= function(){
         enemyHelper.enemyBasicArray.push(this);  //specific    
     }
+    
 }
 
 //keep track of all enemySpecials in a game
@@ -53,9 +56,9 @@ enemyHelper.spawnNewEnemy = function () {
 }
 
 enemyHelper.moveEnemyAlongPath = function (enemy, nextPoint){
-    console.log(enemy.movingToPoint)
-    var nextPointStuff = helper.pathStuff.pathPointArray[enemy.movingToPoint];
-//    game.physics.arcade.moveToObject (enemy, helper.pathStuff.pathPointArray[enemy.movingToPoint], 500);
+    // var nextPointStuff = helper.pathStuff.pathPointArray[enemy.movingToPoint];
+    
+    game.physics.arcade.moveToObject(enemy.sprite, mainGameVar.book, 200);
     game.physics.arcade.overlap (enemy, nextPoint, enemyHelper.moveToNextPoint, null, this);
 }
 

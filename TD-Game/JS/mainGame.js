@@ -24,11 +24,6 @@ var mainGameVar = {
         this.createPath("pathIMG");
         
         var enemySpawnTimer = game.time.events.loop(Phaser.Timer.SECOND, enemyHelper.spawnNewEnemy, this);
-
-        for (var i = 0; i < 3; i ++) {
-            EnemyBasic();
-        }
-        
     },
     
     update: function (){
