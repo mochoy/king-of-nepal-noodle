@@ -1,7 +1,12 @@
 //enemyStuff.js 1-24-2016 broken code for now
 
+
+console.log(enemyHelper);
+
 enemyHelper.allEnemyArray = new Array();
 enemyHelper.enemyBasicArray = new Array();
+enemyHelper.enemySpecialArray = new Array();
+
 
 var EnemyBasic = function () {
     this.movingToPoint = 0;
@@ -24,7 +29,6 @@ var EnemyBasic = function () {
 }
 
 //keep track of all enemySpecials in a game
-enemyHelper.enemySpecialArray = new Array();
 
 var EnemySpecial = function () {
     this.constructor= EnemyBasic;
@@ -37,7 +41,7 @@ var EnemySpecial = function () {
     }
 }
 
-function spawnNewEnemy () {
+enemyHelper.spawnNewEnemy = function () {
     //makes a new enemy which shows up in THE game
     //must be useable to be called without any parameters
     var randomNum = Math.random();
@@ -48,14 +52,14 @@ function spawnNewEnemy () {
     }
 }
 
-function moveEnemyAlongPath (enemy, nextPoint){
+enemyHelper.moveEnemyAlongPath = function (enemy, nextPoint){
     console.log(enemy.movingToPoint)
     var nextPointStuff = helper.pathStuff.pathPointArray[enemy.movingToPoint];
 //    game.physics.arcade.moveToObject (enemy, helper.pathStuff.pathPointArray[enemy.movingToPoint], 500);
     game.physics.arcade.overlap (enemy, nextPoint, moveToNextPoint, null, this);
 }
 
-function moveToNextPoint (enemy, currentPoint){
+enemyHelper.moveToNextPoint = function (enemy, currentPoint){
     for (var i = 0; i < helper.pathStuff.pathPointArray.length; i ++){
         if ((currentPoint.x == helper.pathStuff.setValues(2, 1, i)) && (currentPoint.y == helper.pathStuff.setValues (2, 2, i))){
             console.log("hi");  
