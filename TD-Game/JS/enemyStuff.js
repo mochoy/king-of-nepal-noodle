@@ -20,8 +20,6 @@ var EnemyBasic = function () {
         this.sprite = game.add.sprite(spawnX, spawnY, this.imgName);
         game.physics.arcade.enable(this.sprite);
         
-        console.log(this.sprite.body);
-    
         this.addToSpecificArray();
         enemyHelper.allEnemyArray.push(this);
     }
@@ -58,7 +56,8 @@ enemyHelper.spawnNewEnemy = function () {
 enemyHelper.moveEnemyAlongPath = function (enemy, nextPoint){
     // var nextPointStuff = helper.pathStuff.pathPointArray[enemy.movingToPoint];
     
-    game.physics.arcade.moveToObject(enemy.sprite, mainGameVar.book, 200);
+
+    game.physics.arcade.moveToObject(enemy.sprite, nextPoint, 200);
     game.physics.arcade.overlap (enemy, nextPoint, enemyHelper.moveToNextPoint, null, this);
 }
 
