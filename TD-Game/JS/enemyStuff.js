@@ -56,15 +56,14 @@ enemyHelper.spawnNewEnemy = function () {
 enemyHelper.moveEnemyAlongPath = function (enemy, nextPoint){
     // var nextPointStuff = helper.pathStuff.pathPointArray[enemy.movingToPoint];
     
-
     game.physics.arcade.moveToObject(enemy.sprite, nextPoint, 200);
-    game.physics.arcade.overlap (enemy, nextPoint, enemyHelper.moveToNextPoint, null, this);
+    game.physics.arcade.overlap (enemy.sprite, nextPoint, enemyHelper.moveToNextPoint, null, this);
 }
 
 enemyHelper.moveToNextPoint = function (enemy, currentPoint){
     for (var i = 0; i < helper.pathStuff.pathPointArray.length; i ++){
+        // console.log(currentPoint.x + "," + currentPoint.y);
         if ((currentPoint.x == helper.pathStuff.setValues(2, 1, i)) && (currentPoint.y == helper.pathStuff.setValues (2, 2, i))){
-            console.log("hi");
             enemy.movingToPoint = (i + 1);
         }   // if
     }   //for
