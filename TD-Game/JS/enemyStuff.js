@@ -38,7 +38,7 @@ var EnemySpecial = function () {
     this.constructor();
     this.moveSpeed = 250;
     this.imgName = "dudeIMG";
-
+    
     this.addToSpecificArray= function(){  //override
         enemyHelper.enemySpecialArray.push(this);  //specific    
     }
@@ -57,22 +57,23 @@ enemyHelper.spawnNewEnemy = function () {
 
 enemyHelper.moveEnemyAlongPath = function (enemy, nextPoint){
     // var nextPointStuff = helper.pathStuff.pathPointArray[enemy.movingToPoint];
-    // console.log(enemy.movingToPoint);
-    
-    if (enemy.sprite.movingToPoint > 1 ){
-        console.log(enemy.sprite.movingToPoint)
-    }
+    // console.log(enemy.movingToPoint)
     
     game.physics.arcade.moveToObject(enemy.sprite, helper.pathStuff.pathArray[enemy.sprite.movingToPoint], 200);
     game.physics.arcade.overlap (enemy.sprite, helper.pathStuff.pathArray[enemy.sprite.movingToPoint], enemyHelper.moveToNextPoint, null, this);
+    
 }
 
 enemyHelper.moveToNextPoint = function (enemySprite, currentPoint){
     for (var i = 0; i < helper.pathStuff.pathPointArray.length; i ++){
         // console.log(currentPoint.x + "," + currentPoint.y);
         if (nextPoint == 4) {
-                enemySprite.kill();
-            }  
+            var enemyArray = helper.enemyBasicArray;
+            if (enemySprite.type == 2){
+                enemyArray = helper.enemySpecialArray;
+            }
+            helper.removeFromArray(enemyHelper.allEnemyArray, enemyArray, enemySprite);   
+        }  
         
         if ((currentPoint.x == helper.pathStuff.setValues(2, 1, i)) && (currentPoint.y == helper.pathStuff.setValues (2, 2, i))){
             var nextPoint = (i + 1);

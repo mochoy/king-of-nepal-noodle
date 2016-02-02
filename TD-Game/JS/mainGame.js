@@ -109,5 +109,11 @@ var helper = {
                 }
             }
         }   //function set values
-    }   //pathStuff
+    },   //pathStuff
+    
+    removeFromArray: function (array1, array2, object) {
+        
+    }
+    
+    
 }   // helper
