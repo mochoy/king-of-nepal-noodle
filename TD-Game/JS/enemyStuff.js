@@ -61,7 +61,6 @@ enemyHelper.moveEnemyAlongPath = function (enemy, nextPoint){
     
     if (enemy.sprite.movingToPoint > 1 ){
         console.log(enemy.sprite.movingToPoint)
-        console.log(helper.pathStuff.pathArray[enemy.sprite.movingToPoint])
     }
     
     game.physics.arcade.moveToObject(enemy.sprite, helper.pathStuff.pathArray[enemy.sprite.movingToPoint], 200);
@@ -71,13 +70,13 @@ enemyHelper.moveEnemyAlongPath = function (enemy, nextPoint){
 enemyHelper.moveToNextPoint = function (enemySprite, currentPoint){
     for (var i = 0; i < helper.pathStuff.pathPointArray.length; i ++){
         // console.log(currentPoint.x + "," + currentPoint.y);
+        if (nextPoint == 4) {
+                enemySprite.kill();
+            }  
+        
         if ((currentPoint.x == helper.pathStuff.setValues(2, 1, i)) && (currentPoint.y == helper.pathStuff.setValues (2, 2, i))){
             var nextPoint = (i + 1);
             enemySprite.movingToPoint = nextPoint;
-            
-            if (nextPoint == 4) {
-                enemySprite.kill();
-            }   // 
         }   // if
     }   //for
 }   //function

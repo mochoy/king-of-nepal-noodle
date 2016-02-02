@@ -49,7 +49,7 @@ var mainGameVar = {
     },
     
     createPath: function(name) {
-        for (var i = 0; i < 4; i++){
+        for (var i = 0; i < 5; i++){
             var path = game.add.sprite (helper.pathStuff.setValues(2, 1, i), helper.pathStuff.setValues(2, 2, i), name);
             path.scale.x = helper.pathStuff.setValues(1, 1, i);
             path.scale.y = helper.pathStuff.setValues(1, 2, i);
@@ -86,11 +86,11 @@ var helper = {
         pathArray: new Array(),
         pathPointArray: new Array(),
         
-        pathCoordsX: [100, 99, 480, 480],
-        pathCoordsY: [0, 297, 297, 600 ],
+        pathCoordsX: [100, 99, 480, 480, 1000],
+        pathCoordsY: [0, 297, 297, 600 , 1000],
         
-        pathScaleX: [0.03, 0.3, 0.03, 0.003],
-        pathScaleY: [0.3, 0.03, 0.3, 0.003],
+        pathScaleX: [0.03, 0.3, 0.03, 0.003, 0.003],
+        pathScaleY: [0.3, 0.03, 0.3, 0.003, 0.003],
         
         setValues: function (scaleOrCoords, xorY, numToSet){    // scale = 1, coords = 2    x = 1, y = 2  
             if (scaleOrCoords == 1){
