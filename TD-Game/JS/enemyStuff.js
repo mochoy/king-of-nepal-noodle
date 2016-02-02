@@ -15,10 +15,12 @@ var EnemyBasic = function () {
     this.moveSpeed = 200;
     this.sprite = null;
     this.imgName = "bookIMG";
-        
+
     this.enable = function(game, spawnX, spawnY){
         this.sprite = game.add.sprite(spawnX, spawnY, this.imgName);
         game.physics.arcade.enable(this.sprite);
+        
+        this.sprite.movingToPoint = 1;
         
         this.addToSpecificArray();
         enemyHelper.allEnemyArray.push(this);
@@ -55,16 +57,17 @@ enemyHelper.spawnNewEnemy = function () {
 
 enemyHelper.moveEnemyAlongPath = function (enemy, nextPoint){
     // var nextPointStuff = helper.pathStuff.pathPointArray[enemy.movingToPoint];
-    
-    game.physics.arcade.moveToObject(enemy.sprite, nextPoint, 200);
-    game.physics.arcade.overlap (enemy.sprite, nextPoint, enemyHelper.moveToNextPoint, null, this);
+    // console.log(enemy.movingToPoint);
+    game.physics.arcade.moveToObject(enemy.sprite, helper.pathStuff.pathArray[enemy.sprite.movingToPoint], 200);
+    game.physics.arcade.overlap (enemy.sprite, helper.pathStuff.pathArray[enemy.sprite.movingToPoint], enemyHelper.moveToNextPoint, null, this);
 }
 
-enemyHelper.moveToNextPoint = function (enemy, currentPoint){
+enemyHelper.moveToNextPoint = function (enemySprite, currentPoint){
     for (var i = 0; i < helper.pathStuff.pathPointArray.length; i ++){
         // console.log(currentPoint.x + "," + currentPoint.y);
         if ((currentPoint.x == helper.pathStuff.setValues(2, 1, i)) && (currentPoint.y == helper.pathStuff.setValues (2, 2, i))){
-            enemy.movingToPoint = (i + 1);
+            var nextPoint = (i + 1);
+            enemySprite.movingToPoint = nextPoint;
         }   // if
     }   //for
 }   //function
