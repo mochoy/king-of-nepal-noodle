@@ -15,16 +15,20 @@ var EnemyBasic = function () {
     this.moveSpeed = 200;
     this.sprite = null;
     this.imgName = "bookIMG";
+    this.parentArray = enemyHelper.enemyBasicArray;
+    this.id = 1;
 
     this.enable = function(game, spawnX, spawnY){
         this.sprite = game.add.sprite(spawnX, spawnY, this.imgName);
         game.physics.arcade.enable(this.sprite);
         
         this.sprite.movingToPoint = 1;
+        this.object = this;
         
         this.addToSpecificArray();
         enemyHelper.allEnemyArray.push(this);
     }
+    
     this.addToSpecificArray= function(){
         enemyHelper.enemyBasicArray.push(this);  //specific    
     }
@@ -34,11 +38,16 @@ var EnemyBasic = function () {
 //keep track of all enemySpecials in a game
 
 var EnemySpecial = function () {
-    this.constructor= EnemyBasic;
+    this.constructor = EnemyBasic;
     this.constructor();
     this.moveSpeed = 250;
     this.imgName = "dudeIMG";
+    this.parentArray = enemyHelper.enemySpecialArray;
+    this.id = 2;
     
+    console.log (this.sprite);
+    
+
     this.addToSpecificArray= function(){  //override
         enemyHelper.enemySpecialArray.push(this);  //specific    
     }
@@ -68,10 +77,8 @@ enemyHelper.moveToNextPoint = function (enemySprite, currentPoint){
     for (var i = 0; i < helper.pathStuff.pathPointArray.length; i ++){
         // console.log(currentPoint.x + "," + currentPoint.y);
         if (nextPoint == 4) {
-            var enemyArray = helper.enemyBasicArray;
-            if (enemySprite.type == 2){
-                enemyArray = helper.enemySpecialArray;
-            }
+            enemyArray = this.object.parentArray;
+            console.log(enemyArray)
             helper.removeFromArray(enemyHelper.allEnemyArray, enemyArray, enemySprite);   
         }  
         
