@@ -1,8 +1,5 @@
 //enemyStuff.js 1-24-2016 broken code for now
 
-
-console.log(enemyHelper);
-
 enemyHelper.allEnemyArray = new Array();
 enemyHelper.enemyBasicArray = new Array();
 enemyHelper.enemySpecialArray = new Array();
@@ -44,9 +41,6 @@ var EnemySpecial = function () {
     this.imgName = "dudeIMG";
     this.parentArray = enemyHelper.enemySpecialArray;
     this.id = 2;
-    
-    console.log (this.sprite);
-    
 
     this.addToSpecificArray= function(){  //override
         enemyHelper.enemySpecialArray.push(this);  //specific    
@@ -76,9 +70,14 @@ enemyHelper.moveEnemyAlongPath = function (enemy, nextPoint){
 enemyHelper.moveToNextPoint = function (enemySprite, currentPoint){
     for (var i = 0; i < helper.pathStuff.pathPointArray.length; i ++){
         // console.log(currentPoint.x + "," + currentPoint.y);
+        var enemyArray = null; 
+        if (enemySprite.id == 1){
+            enemyArray = enemyHelper.enemyBasicArray;
+        } else if (enemySprite.id == 2) {
+            enemyArray = enemyHelper.enemyBasicArray;
+        }
+        
         if (nextPoint == 4) {
-            enemyArray = this.object.parentArray;
-            console.log(enemyArray)
             helper.removeFromArray(enemyHelper.allEnemyArray, enemyArray, enemySprite);   
         }  
         

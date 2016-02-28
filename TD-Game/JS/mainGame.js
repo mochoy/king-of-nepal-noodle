@@ -112,7 +112,7 @@ var helper = {
     },   //pathStuff
     
     removeFromArray: function (array1, array2, object) {
-        
+        console.log("removing from array");
     }
     
     
