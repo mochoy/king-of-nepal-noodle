@@ -26,6 +26,8 @@ var EnemyBasic = function () {
         enemyHelper.allEnemyArray.push(this);
     }
     
+    console.log(this.enable.sprite);
+    
     this.addToSpecificArray= function(){
         enemyHelper.enemyBasicArray.push(this);  //specific    
     }
@@ -65,14 +67,19 @@ enemyHelper.moveEnemyAlongPath = function (enemy, nextPoint){
     game.physics.arcade.moveToObject(enemy.sprite, helper.pathStuff.pathArray[enemy.sprite.movingToPoint], 200);
     game.physics.arcade.overlap (enemy.sprite, helper.pathStuff.pathArray[enemy.sprite.movingToPoint], enemyHelper.moveToNextPoint, null, this);
     
-}
+};
 
 enemyHelper.moveToNextPoint = function (enemySprite, currentPoint){
     for (var i = 0; i < helper.pathStuff.pathPointArray.length; i ++){
         // console.log(currentPoint.x + "," + currentPoint.y);
-        var enemyArray = null; 
-        if (enemySprite.id == 1){
+        
+        var enemyArray;
+        
+        console.log(enemySprite.object);
+
+        if (enemySprite.object.id == 1){
             enemyArray = enemyHelper.enemyBasicArray;
+            console.log(enemyArray);
         } else if (enemySprite.id == 2) {
             enemyArray = enemyHelper.enemyBasicArray;
         }
@@ -86,4 +93,4 @@ enemyHelper.moveToNextPoint = function (enemySprite, currentPoint){
             enemySprite.movingToPoint = nextPoint;
         }   // if
     }   //for
-}   //function
+};   //function
