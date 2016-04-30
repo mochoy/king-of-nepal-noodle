@@ -23,14 +23,37 @@ var mainGameVar = {
         
         this.createPath("pathIMG");
         
+<<<<<<< .mine
+        var enemySpawnTimer = game.time.events.loop(Phaser.Timer.SECOND, spawnNewEnemy, this);
+
+        for (var i = 0; i < 3; i ++) {
+            EnemyBasic(game, helper.pathStuff.setValues(2, 1, 0), helper.pathStuff.setValues(2, 2, 0));
+        }
+||||||| .r4
+        var enemySpawnTimer = game.time.events.loop(Phaser.Timer.SECOND, spawnNewEnemy, this);
+
+        for (var i = 0; i < 3; i ++) {
+            enemyBasic(game, helper.pathStuff.setValues(2, 1, 0), helper.pathStuff.setValues(2, 2, 0));
+        }
+        
+=======
         var enemySpawnTimer = game.time.events.loop(Phaser.Timer.SECOND, enemyHelper.spawnNewEnemy, this);
+>>>>>>> .r17
     },
     
     update: function (){
         this.book.events.onInputDown.add(this.showList, this);
         
+<<<<<<< .mine
+        for (var i = 0; i < enemyHelper.allEnemyArray.length; i ++){
+            moveEnemyAlongPath (enemyHelper.allEnemyArray[i], helper.pathStuff.pathArray[1])
+||||||| .r4
+        for (var i = 0; i < allEnemyArray.length; i ++){
+            moveEnemyAlongPath (allEnemyArray[i], helper.pathStuff.pathArray[1])
+=======
         for (var i = 0; i < enemyHelper.allEnemyArray.length; i ++){
             enemyHelper.moveEnemyAlongPath (enemyHelper.allEnemyArray[i], helper.pathStuff.pathArray[1])
+>>>>>>> .r17
         }
                         
 //        for (var i = 0; i < helper.pathStuff.pathArray.length; i ++){
@@ -80,7 +103,14 @@ var mainGameVar = {
     
 }   //object main game var
 
+<<<<<<< .mine
+||||||| .r4
 
+var enemyHelper= {};
+
+=======
+
+>>>>>>> .r17
 var helper = {
     pathStuff: {
         pathArray: new Array(),

@@ -1,4 +1,5 @@
 //enemyStuff.js 1-24-2016 broken code for now
+var enemyHelper = {};
 
 enemyHelper.allEnemyArray = new Array();
 enemyHelper.enemyBasicArray = new Array();
@@ -60,6 +61,26 @@ enemyHelper.spawnNewEnemy = function () {
     }
 }
 
+<<<<<<< .mine
+function moveEnemyAlongPath (enemy, nextPoint){
+    var nextPointStuff = helper.pathStuff.pathPointArray[enemy.movingToPoint];
+    
+    game.physics.arcade.moveToObject (enemy.sprite, helper.pathStuff.pathPointArray[enemy.movingToPoint], 500);
+    game.physics.arcade.overlap (enemy.sprite, nextPoint, moveToNextPoint, null, this);
+    
+    if (game.physics.arcade.collide (enemy.sprite, nextPoint, null, null, null, this) ){
+        console.log("overlapped")
+    }
+    
+}
+||||||| .r4
+function moveEnemyAlongPath (enemy, nextPoint){
+    console.log(enemy.movingToPoint)
+    var nextPointStuff = helper.pathStuff.pathPointArray[enemy.movingToPoint];
+//    game.physics.arcade.moveToObject (enemy, helper.pathStuff.pathPointArray[enemy.movingToPoint], 500);
+    game.physics.arcade.overlap (enemy, nextPoint, moveToNextPoint, null, this);
+}
+=======
 enemyHelper.moveEnemyAlongPath = function (enemy, nextPoint){
     // var nextPointStuff = helper.pathStuff.pathPointArray[enemy.movingToPoint];
     // console.log(enemy.movingToPoint)
@@ -68,6 +89,7 @@ enemyHelper.moveEnemyAlongPath = function (enemy, nextPoint){
     game.physics.arcade.overlap (enemy.sprite, helper.pathStuff.pathArray[enemy.sprite.movingToPoint], enemyHelper.moveToNextPoint, null, this);
     
 };
+>>>>>>> .r17
 
 enemyHelper.moveToNextPoint = function (enemySprite, currentPoint){
     for (var i = 0; i < helper.pathStuff.pathPointArray.length; i ++){
