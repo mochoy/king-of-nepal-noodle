@@ -25,35 +25,30 @@ var mainGameVar = {
         for (var i = 0; i < 3; i ++) {
             EnemyBasic(game, helper.pathStuff.setValues(2, 1, 0), helper.pathStuff.setValues(2, 2, 0));
         }
-        var enemySpawnTimer = game.time.events.loop(Phaser.Timer.SECOND, enemyHelper.spawnNewEnemy, this);
-
         for (var i = 0; i < 3; i ++) {
             EnemyBasic(game, helper.pathStuff.setValues(2, 1, 0), helper.pathStuff.setValues(2, 2, 0));
         }
         
-        var enemySpawnTimer = game.time.events.loop(Phaser.Timer.SECOND, enemyHelper.spawnNewEnemy, this);
     },  //function create
     
     update: function (){
         this.book.events.onInputDown.add(this.showList, this);
-        
+                
         for (var i = 0; i < enemyHelper.allEnemyArray.length; i ++){
             moveEnemyAlongPath (enemyHelper.allEnemyArray[i], helper.pathStuff.pathArray[1]);
-        }
-        for (var i = 0; i < enemyHelper.allEnemyArray.length; i ++){
             moveEnemyAlongPath (enemyHelper.allEnemyArray[i], helper.pathStuff.pathArray[1])
-        }
-        for (var i = 0; i < enemyHelper.allEnemyArray.length; i ++){
             enemyHelper.moveEnemyAlongPath (enemyHelper.allEnemyArray[i], helper.pathStuff.pathArray[1])
+
         }
-                        
+         
+        /*
 //        for (var i = 0; i < helper.pathStuff.pathArray.length; i ++){
 //            var pointToMoveTo = 0;
 //            for (var k = 0; k < helper.pathStuff.pathPointArray.length; k ++){
 //                game.physics.arcade.overlap(this.book, helper.pathStuff.pathArray[pointToMoveTo], this.moveToNextPoint, null, this);
 //            }   // for 
 //            game.physics.arcade.moveToObject(this.book, helper.pathStuff.pathArray[pointToMoveTo], 200);
-//        }   // for
+//        }   // for    */
 
         
     },  //function update

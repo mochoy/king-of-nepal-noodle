@@ -11,7 +11,6 @@ var MenuVar = {
                                            
     
     startGame: function (){
-        game.state.add('MainGame', mainGameVar);
         game.state.start('MainGame');    
     }
 
