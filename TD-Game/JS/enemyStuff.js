@@ -53,10 +53,12 @@ enemyHelper.spawnNewEnemy = function () {
     //must be useable to be called without any parameters
     var randomNum = Math.random();
     if (randomNum < 0.5){
-        new EnemyBasic().enable(game, helper.pathStuff.setValues(2, 1, 0), helper.pathStuff.setValues(2, 2, 0));
+        new EnemyBasic().enable(game, helper.pathStuff.getSpawnCoords(1), helper.pathStuff.getSpawnCoords(2));
     } else {    
-        new EnemySpecial().enable(game, helper.pathStuff.setValues(2, 1, 0), helper.pathStuff.setValues(2, 2, 0));
+        new EnemySpecial().enable(game, helper.pathStuff.getSpawnCoords(1), helper.pathStuff.getSpawnCoords(2));
     }
+    
+    
 }
 
 function moveEnemyAlongPath (enemy, nextPoint){

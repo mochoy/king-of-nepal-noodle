@@ -59,9 +59,9 @@ var helper = {
         
         getSpawnCoords: function (xOrY){   //1 = x, 2 = y
             if (xOrY == 1){
-                helper.pathStuff.setValues(2, 1, 0);
+                return helper.pathStuff.setValues(2, 1, 0);
             } else if (xOrY == 2){
-                helper.pathStuff.setValues(2, 2, 0);
+                return helper.pathStuff.setValues(2, 2, 0);
             }
         },
         
