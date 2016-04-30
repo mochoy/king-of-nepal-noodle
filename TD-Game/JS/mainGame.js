@@ -18,25 +18,16 @@ var mainGameVar = {
         game.physics.arcade.enable(this.book);
         this.book.inputEnabled = true;
         
-        this.createPath("pathIMG");
+        helper.createPath("pathIMG");
         
         var enemySpawnTimer = game.time.events.loop(Phaser.Timer.SECOND, enemyHelper.spawnNewEnemy, this);
-
-        for (var i = 0; i < 3; i ++) {
-            EnemyBasic(game, helper.pathStuff.setValues(2, 1, 0), helper.pathStuff.setValues(2, 2, 0));
-        }
-        for (var i = 0; i < 3; i ++) {
-            EnemyBasic(game, helper.pathStuff.setValues(2, 1, 0), helper.pathStuff.setValues(2, 2, 0));
-        }
         
     },  //function create
     
     update: function (){
-        this.book.events.onInputDown.add(this.showList, this);
+        this.book.events.onInputDown.add(helper.showList, this);
                 
         for (var i = 0; i < enemyHelper.allEnemyArray.length; i ++){
-            moveEnemyAlongPath (enemyHelper.allEnemyArray[i], helper.pathStuff.pathArray[1]);
-            moveEnemyAlongPath (enemyHelper.allEnemyArray[i], helper.pathStuff.pathArray[1])
             enemyHelper.moveEnemyAlongPath (enemyHelper.allEnemyArray[i], helper.pathStuff.pathArray[1])
 
         }
@@ -51,7 +42,51 @@ var mainGameVar = {
 //        }   // for    */
 
         
-    },  //function update
+    }  //function update
+    
+}   //object main game var
+
+var helper = {
+    pathStuff: {
+        pathArray: new Array(),
+        pathPointArray: new Array(),
+        
+        pathCoordsX: [100, 99, 480, 480, 1000],
+        pathCoordsY: [0, 297, 297, 600 , 1000],
+        
+        pathScaleX: [0.03, 0.3, 0.03, 0.003, 0.003],
+        pathScaleY: [0.3, 0.03, 0.3, 0.003, 0.003],
+        
+        getSpawnCoords: function (xOrY){   //1 = x, 2 = y
+            if (xOrY == 1){
+                helper.pathStuff.setValues(2, 1, 0);
+            } else if (xOrY == 2){
+                helper.pathStuff.setValues(2, 2, 0);
+            }
+        },
+        
+        setValues: function (scaleOrCoords, xorY, numToSet){    // scale = 1, coords = 2    x = 1, y = 2  
+            if (scaleOrCoords == 1){
+                if (xorY == 1){
+                    return this.pathScaleX [numToSet];
+                }
+                if (xorY == 2){      
+                    return this.pathScaleY [numToSet];
+                }
+            } else if (scaleOrCoords == 2) {
+                if (xorY == 1){
+                    return this.pathCoordsX [numToSet];
+                }
+                if (xorY == 2){
+                    return this.pathCoordsY [numToSet];
+                }
+            }
+        }   //function set values
+    },   //pathStuff
+    
+    removeFromArray: function (allEnemyArray, specificEnemyArray, spriteToBeRemoved) {
+        console.log(specificEnemyArray.length);
+    },
     
     showList: function () {
         console.log("clicked");
@@ -86,46 +121,5 @@ var mainGameVar = {
         return "hi";
 
     }   // function move to next object
-    
-}   //object main game var
-
-
-var enemyHelper= {};
-
-
-var helper = {
-    pathStuff: {
-        pathArray: new Array(),
-        pathPointArray: new Array(),
-        
-        pathCoordsX: [100, 99, 480, 480, 1000],
-        pathCoordsY: [0, 297, 297, 600 , 1000],
-        
-        pathScaleX: [0.03, 0.3, 0.03, 0.003, 0.003],
-        pathScaleY: [0.3, 0.03, 0.3, 0.003, 0.003],
-        
-        setValues: function (scaleOrCoords, xorY, numToSet){    // scale = 1, coords = 2    x = 1, y = 2  
-            if (scaleOrCoords == 1){
-                if (xorY == 1){
-                    return this.pathScaleX [numToSet];
-                }
-                if (xorY == 2){      
-                    return this.pathScaleY [numToSet];
-                }
-            } else if (scaleOrCoords == 2) {
-                if (xorY == 1){
-                    return this.pathCoordsX [numToSet];
-                }
-                if (xorY == 2){
-                    return this.pathCoordsY [numToSet];
-                }
-            }
-        }   //function set values
-    },   //pathStuff
-    
-    removeFromArray: function (allEnemyArray, specificEnemyArray, spriteToBeRemoved) {
-        console.log(specificEnemyArray.length);
-    }
-    
     
 }   // helper
