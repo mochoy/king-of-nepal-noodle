@@ -28,8 +28,7 @@ var mainGameVar = {
         this.book.events.onInputDown.add(helper.showList, this);
                 
         for (var i = 0; i < enemyHelper.allEnemyArray.length; i ++){
-            enemyHelper.moveEnemyAlongPath (enemyHelper.allEnemyArray[i], helper.pathStuff.pathArray[1])
-
+            enemyHelper.moveEnemyAlongPath (enemyHelper.allEnemyArray[i], helper.pathStuff.pathArray[1]);
         }
          
         /*

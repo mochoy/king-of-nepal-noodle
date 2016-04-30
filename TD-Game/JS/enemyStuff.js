@@ -38,6 +38,7 @@ var EnemyBasic = function () {
 var EnemySpecial = function () {
     this.constructor = EnemyBasic;
     this.constructor();
+    
     this.moveSpeed = 250;
     this.imgName = "dudeIMG";
     this.parentArray = enemyHelper.enemySpecialArray;
@@ -91,17 +92,14 @@ enemyHelper.moveToNextPoint = function (enemySprite, currentPoint){
         // console.log(currentPoint.x + "," + currentPoint.y);
         
         var enemyArray;
-        
-        console.log(enemySprite.object);
-
-        if (enemySprite.object.id == 1){
-            enemyArray = enemyHelper.enemyBasicArray;
-            console.log(enemyArray);
-        } else if (enemySprite.id == 2) {
-            enemyArray = enemyHelper.enemyBasicArray;
-        }
-        
+                
         if (nextPoint == 4) {
+            if (enemySprite.object.id == 1){
+                enemyArray = enemyHelper.enemyBasicArray;
+                console.log(enemyArray);
+            } else if (enemySprite.id == 2) {
+                enemyArray = enemyHelper.enemyBasicArray;
+            }
             helper.removeFromArray(enemyHelper.allEnemyArray, enemyArray, enemySprite);   
         }  
         
