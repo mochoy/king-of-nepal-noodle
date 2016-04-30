@@ -1,8 +1,5 @@
 //mainGame.js 1-24-2016 broken code for now
 
-var enemyHelper= {};
-
-
 var mainGameVar = {
     book: null,
     point: null,
@@ -12,7 +9,7 @@ var mainGameVar = {
         game.load.image ("pathIMG", "Assets/Images/Test/greyBlock.jpg");            //test asset
         game.load.image ("pathPointIMG", "Assets/Images/Test/storyOfSeeds.png");    //test asset
         game.load.image ("dudeIMG", "Assets/Images/Test/dude.png")                  //test asset
-    },
+    },  //function preload
     
     create: function (){
         game.physics.startSystem(Phaser.Physics.ARCADE);
@@ -23,37 +20,31 @@ var mainGameVar = {
         
         this.createPath("pathIMG");
         
-<<<<<<< .mine
-        var enemySpawnTimer = game.time.events.loop(Phaser.Timer.SECOND, spawnNewEnemy, this);
+        var enemySpawnTimer = game.time.events.loop(Phaser.Timer.SECOND, enemyHelper.spawnNewEnemy, this);
 
         for (var i = 0; i < 3; i ++) {
             EnemyBasic(game, helper.pathStuff.setValues(2, 1, 0), helper.pathStuff.setValues(2, 2, 0));
         }
-||||||| .r4
-        var enemySpawnTimer = game.time.events.loop(Phaser.Timer.SECOND, spawnNewEnemy, this);
+        var enemySpawnTimer = game.time.events.loop(Phaser.Timer.SECOND, enemyHelper.spawnNewEnemy, this);
 
         for (var i = 0; i < 3; i ++) {
-            enemyBasic(game, helper.pathStuff.setValues(2, 1, 0), helper.pathStuff.setValues(2, 2, 0));
+            EnemyBasic(game, helper.pathStuff.setValues(2, 1, 0), helper.pathStuff.setValues(2, 2, 0));
         }
         
-=======
         var enemySpawnTimer = game.time.events.loop(Phaser.Timer.SECOND, enemyHelper.spawnNewEnemy, this);
->>>>>>> .r17
-    },
+    },  //function create
     
     update: function (){
         this.book.events.onInputDown.add(this.showList, this);
         
-<<<<<<< .mine
+        for (var i = 0; i < enemyHelper.allEnemyArray.length; i ++){
+            moveEnemyAlongPath (enemyHelper.allEnemyArray[i], helper.pathStuff.pathArray[1]);
+        }
         for (var i = 0; i < enemyHelper.allEnemyArray.length; i ++){
             moveEnemyAlongPath (enemyHelper.allEnemyArray[i], helper.pathStuff.pathArray[1])
-||||||| .r4
-        for (var i = 0; i < allEnemyArray.length; i ++){
-            moveEnemyAlongPath (allEnemyArray[i], helper.pathStuff.pathArray[1])
-=======
+        }
         for (var i = 0; i < enemyHelper.allEnemyArray.length; i ++){
             enemyHelper.moveEnemyAlongPath (enemyHelper.allEnemyArray[i], helper.pathStuff.pathArray[1])
->>>>>>> .r17
         }
                         
 //        for (var i = 0; i < helper.pathStuff.pathArray.length; i ++){
@@ -63,13 +54,13 @@ var mainGameVar = {
 //            }   // for 
 //            game.physics.arcade.moveToObject(this.book, helper.pathStuff.pathArray[pointToMoveTo], 200);
 //        }   // for
+
         
-    },
-    
+    },  //function update
     
     showList: function () {
         console.log("clicked");
-    },
+    },  //function showlist
     
     createPath: function(name) {
         for (var i = 0; i < 5; i++){
@@ -103,14 +94,10 @@ var mainGameVar = {
     
 }   //object main game var
 
-<<<<<<< .mine
-||||||| .r4
 
 var enemyHelper= {};
 
-=======
 
->>>>>>> .r17
 var helper = {
     pathStuff: {
         pathArray: new Array(),
