@@ -93,14 +93,14 @@ enemyHelper.moveToNextPoint = function (enemySprite, currentPoint){
         
         var enemyArray;
                 
-        if (nextPoint == 4) {
-            if (enemySprite.object.id == 1){
+        if (nextPoint == 4) {            
+            if (enemyArray = enemyHelper.findSprite.id == 1){
                 enemyArray = enemyHelper.enemyBasicArray;
                 console.log(enemyArray);
             } else if (enemySprite.id == 2) {
                 enemyArray = enemyHelper.enemyBasicArray;
             }
-            helper.removeFromArray(enemyHelper.allEnemyArray, enemyArray, enemySprite);   
+//            helper.removeFromArray(enemyHelper.allEnemyArray, enemyArray, enemySprite);   
         }  
         
         if ((currentPoint.x == helper.pathStuff.setValues(2, 1, i)) && (currentPoint.y == helper.pathStuff.setValues (2, 2, i))){
@@ -109,3 +109,17 @@ enemyHelper.moveToNextPoint = function (enemySprite, currentPoint){
         }   // if
     }   //for
 };   //function
+
+enemyHelper.findSprite = function (enemySprite) {
+    var array = enemyHelper.enemyBasicArray;
+    var array2 = enemyHelper.enemySpecialArray;
+    
+    for (var i = 1; i < array.length; i++){
+        return array[i];
+    }
+    
+    for (var i = 1; i < array2.length; i++){
+        return array2[i];
+    }
+    
+};  //function findSprite
