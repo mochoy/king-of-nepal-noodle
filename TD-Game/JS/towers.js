@@ -4,10 +4,13 @@ towerStuff.allTowerArray = new Array();
 towerStuff.tower1Array = new Array();
 
 towerStuff.Tower1 = function () {
-    this.range = 100;
+    this.range = 0.5;
     this.damage = 10;
     this.fireRate = 10,
     this.image = 'tower1IMG';
+    this.rangeInteriorIMG = "rangeExteriorIMG";
+    this.rangeInterior2IMG = "rangeExterior2IMG";
+    this.rangeExteriorIMG = "rangeInterior2IMG";
     
     //coords of sprite 
     this.coordsX = null; 
@@ -55,9 +58,9 @@ towerStuff.placeTower = function (tower, x, y) {
 
 towerStuff.getCoords = function (towerObject, xOrY) {
     if (xOrY == 1){
-        return towerObject.body.x;
+        return towerObject.sprite.body.x;
     } else if (xOrY == 2) {
-        return towerObject.body.y;
+        return towerObject.sprite.body.y;
     }
 }
 
@@ -75,9 +78,44 @@ towerStuff.createRange = function (towerObject) {
 towerStuff.drawRange = function (towerObject) {
     var sprite = towerObject.sprite;
     
+    var x = towerStuff.getCoords(towerObject, 1);
+    var y = towerStuff.getCoords(towerObject, 2);
+    
     //get range to draw circle
     var d = towerObject.range;
     
-    //draw circle
+    //draw inner circle
+    var outerRange = game.add.sprite(x, y, towerObject.rangeExteriorIMG);
+    outerRange.alpha = 0.5;
+    game.physics.arcade.enable(outerRange);
 
+    //draw outer circle
+    var innerRange = game.add.sprite(x, y, towerObject.rangeInterior2IMG);
+    innerRange.alpha = 0.5
+    game.physics.arcade.enable(innerRange);
+    
+    //scale circles to match ranges
+    outerRange.scale.x = towerObject.range;
+    outerRange.scale.y = towerObject.range;
+
+    innerRange.scale.x = towerObject.range;
+    innerRange.scale.y = towerObject.range;
+    
+    //ger width and height of the circle
+    var outerRangeWidth = outerRange.width;
+    var outerRangeHight = outerRange.height;
+    
+    var innerRangeWidth = innerRange.width;
+    var innerRangeHight = innerRange.height;
+    
+    //change position so the middle is on the sprite
+    outerRange.position.x = ((x - outerRangeWidth/2) + (sprite.width/2));
+    outerRange.position.y = (y - outerRangeHight/2);
+    
+    innerRange.position.x = ((x - innerRangeWidth/2) + (sprite.width/2));
+    innerRange.position.y = (y - innerRangeHight/2);
+    
+    
+    //bring sprite to top so it will appear above the ranges
+    game.world.bringToTop(sprite);
 }
