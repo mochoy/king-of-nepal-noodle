@@ -14,11 +14,6 @@ towerStuff.Tower1 = function () {
     this.coordsY = null;
     
     this.sprite = null;
-    
-    this.setCoords = function () {
-        this.coordsX = this.sprite.body.x;
-        this.coordsY = this.sprite.body.y;
-    }
 
     this.createRange = function () {
         towerStuff.createRange(this);
@@ -55,31 +50,30 @@ towerStuff.placeTower = function (tower, x, y) {
     towerStuff.allTowerArray.push(tower);
     towerStuff.tower1Array.push(tower);
     
-    tower.setCoords();
     tower.createRange();
+}
+
+towerStuff.getCoords = function (towerObject, xOrY) {
+    if (xOrY == 1){
+        return towerObject.body.x;
+    } else if (xOrY == 2) {
+        return towerObject.body.y;
+    }
 }
 
 towerStuff.createRange = function (towerObject) {
     var sprite = towerObject.sprite;
-        
-    //get coords to draw range
-    var xCoords = sprite.body.x;
-    var yCoords = sprite.body.y;
-    
+
     //get range to draw circle
     var d = towerObject.range;
     
-    var circle = new Phaser.Circle(xCoords, yCoords, d);    //circle for range detection only
+    var circle = new Phaser.Circle(towerStuff.getCoords(towerObject, 1), towerStuff.getCoords(towerObject, 2), d);    //circle for range detection only
     
     towerStuff.drawRange(towerObject);
 }
 
 towerStuff.drawRange = function (towerObject) {
     var sprite = towerObject.sprite;
-    
-    //get coords to draw range
-    var xCoords = sprite.body.x;
-    var yCoords = sprite.body.y;
     
     //get range to draw circle
     var d = towerObject.range;
