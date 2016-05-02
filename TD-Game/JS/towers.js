@@ -9,11 +9,25 @@ towerStuff.Tower1 = function () {
     this.fireRate = 10,
     this.image = 'tower1IMG';
     
+    //coords of sprite 
+    this.coordsX = null; 
+    this.coordsY = null;
+    
     this.sprite = null;
     
-    this.drawRange = function (){
-        towerStuff.drawRange(this)
+    this.setCoords = function () {
+        this.coordsX = this.sprite.body.x;
+        this.coordsY = this.sprite.body.y;
     }
+
+    this.createRange = function () {
+        towerStuff.createRange(this);
+    }
+    
+    this.drawRange = function (){
+        towerStuff.drawRange(this);
+    }
+
 }
 
 towerStuff.buyTower = function (towerToBuy, towerSlot) {
@@ -38,7 +52,26 @@ towerStuff.placeTower = function (tower, x, y) {
     tower.sprite = game.add.sprite(x, y, tower.image);
     game.physics.arcade.enable(tower.sprite);
     
-    tower.drawRange();
+    towerStuff.allTowerArray.push(tower);
+    towerStuff.tower1Array.push(tower);
+    
+    tower.setCoords();
+    tower.createRange();
+}
+
+towerStuff.createRange = function (towerObject) {
+    var sprite = towerObject.sprite;
+        
+    //get coords to draw range
+    var xCoords = sprite.body.x;
+    var yCoords = sprite.body.y;
+    
+    //get range to draw circle
+    var d = towerObject.range;
+    
+    var circle = new Phaser.Circle(xCoords, yCoords, d);    //circle for range detection only
+    
+    towerStuff.drawRange(towerObject);
 }
 
 towerStuff.drawRange = function (towerObject) {
@@ -51,5 +84,6 @@ towerStuff.drawRange = function (towerObject) {
     //get range to draw circle
     var d = towerObject.range;
     
-    console.log("drawing range")
+    //draw circle
+
 }
