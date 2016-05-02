@@ -102,11 +102,8 @@ enemyHelper.moveToNextPoint = function (enemySprite, currentPoint){
                 
         //check if enemy is at the last point
         if (nextPoint == 4) { 
-            //find sprite to kill and get the coresspind array
-            
-            enemyHelper.findSprite(enemySprite);
-            
-            
+            //find sprite to kill and get the coresponding array
+                                    
 //            if (enemyHelper.findSprite(enemySprite).id == 1){
 //                enemyArray = enemyHelper.enemyBasicArray;
 //            } 
@@ -115,7 +112,7 @@ enemyHelper.moveToNextPoint = function (enemySprite, currentPoint){
 //            }   //else if
             
             //remove enemy from array and kill
-//            helper.removeFromArray(enemyHelper.allEnemyArray, enemyArray, enemySprite);   
+            helper.removeFromArray(enemyHelper.allEnemyArray, enemyHelper.findSprite(enemySprite), enemySprite);   
         }   //if c
         
         
@@ -126,17 +123,22 @@ enemyHelper.findSprite = function (enemySprite) {
     var array = enemyHelper.enemyBasicArray;
     var array2 = enemyHelper.enemySpecialArray;
     
-    //check which sprite the passed in sprite is 
-    for (var i = 1; i < array.length; i++){        
-        if (enemySprite == array[1].sprite){
-            return array[i];
+    //check if sprite is basic
+    for (var i = 1; i < array.length; i++){
+        //search for passed in sprite in array
+        if (enemySprite == array[i].sprite){
+//            console.log(array[i])
+//            return array[i];
+            return array;
         }
     }
-    
+    //check if sprite is special
     for (var i = 1; i < array2.length; i++){
+        //seach for passed in sprite in array
         if (enemySprite == array2[i].sprite){
-            return array2[i];
+//            console.log(array2[i])
+//            return array2[i];
+            return  array2;
         }
     }
-    
 };  //function findSprite

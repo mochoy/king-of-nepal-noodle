@@ -9,6 +9,7 @@ var mainGameVar = {
         game.load.image ("pathIMG", "Assets/Images/Test/greyBlock.jpg");            //test asset
         game.load.image ("pathPointIMG", "Assets/Images/Test/storyOfSeeds.png");    //test asset
         game.load.image ("dudeIMG", "Assets/Images/Test/dude.png")                  //test asset
+        game.load.image ("tower1IMG", "Assets/Images/Test/baddie.png")              //test asset
     },  //function preload
     
     create: function (){
@@ -84,11 +85,12 @@ var helper = {
     },   //pathStuff
     
     removeFromArray: function (allEnemyArray, specificEnemyArray, spriteToBeRemoved) {
-        console.log(specificEnemyArray.length);
+        spriteToBeRemoved.kill();
+        console.log(specificEnemyArray);
     },
     
-    showList: function () {
-        console.log("clicked");
+    showList: function (sprite) {
+        towerStuff.buyTower(1, sprite);
     },  //function showlist
     
     createPath: function(name) {
