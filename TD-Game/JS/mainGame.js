@@ -12,8 +12,10 @@ var mainGameVar = {
         game.load.image ("tower1IMG", "Assets/Images/Test/baddie.png")              //test asset
         
         game.load.image ("rangeExteriorIMG", "Assets/Images/greyCircle_interior.png");     //range circle
-        game.load.image ("rangeExterior2IMG", "Assets/Images/greyCircle_interior2.png");    //range circle
+        game.load.image ("rangeExterior2IMG", "Assets/Images/greyCircle_interior2.png");   //range circle
         game.load.image ("rangeInteriorIMG", "Assets/Images/whiteCircle_exterior.png");    //range circle
+        game.load.image ("rangeInterior2IMG", "Assets/Images/whiteCircle_exterior2.png");    //range circle
+
 
     },  //function preload
     
