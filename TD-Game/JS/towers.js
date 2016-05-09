@@ -7,19 +7,25 @@ towerStuff.tower1Array = new Array();
 towerStuff.Tower1 = function () {
     this.range = 0.5;
     this.damage = 10;
-    this.fireRate = 10,
+    this.fireRate = 10;
+        
     this.image = 'tower1IMG';
     this.rangeInteriorIMG = "rangeExteriorIMG";
     this.rangeInterior2IMG = "rangeExterior2IMG";
     this.rangeExteriorIMG = "rangeInterior2IMG";
+    
     this.showingRange = false;
     
     //coords of sprite 
     this.coordsX = null; 
     this.coordsY = null;
     
-    this.sprite = null;
-
+    this.sprite = null; 
+    this.innerRange = null;
+    this.outerRange = null;
+    
+    var $t = this;
+    
     this.createRange = function () {
         towerStuff.createRange(this);
     }
@@ -29,9 +35,10 @@ towerStuff.Tower1 = function () {
     }
     
     //if tower selected, show: range
-    this.selected = function () {
-        this.showingRange != this.showingRange;
-        this.drawRange();
+    this.clicked = function () { 
+        console.log()
+        $t.showingRange != $t.showingRange;
+        $t.drawRange();
     }
 
 }
@@ -66,11 +73,7 @@ towerStuff.placeTower = function (tower, x, y) {
     tower.createRange();
     
     tower.sprite.inputEnabled = true
-    tower.sprite.events.onInputDown.add(towerStuff.towerClicked, this);
-}
-
-towerStuff.towerClicked = function () {
-    console.log("tower clicked")
+    tower.sprite.events.onInputDown.add(tower.clicked, this);
 }
 
 //get coordinates of tower sprite
@@ -98,6 +101,8 @@ towerStuff.createRange = function (towerObject) {
 towerStuff.drawRange = function (towerObject) {
     if (towerObject.showingRange == false) {
         towerObject.showingRange = true;
+        
+        console.log("show ranges")
 
         var sprite = towerObject.sprite;
 
@@ -108,12 +113,14 @@ towerStuff.drawRange = function (towerObject) {
         var d = towerObject.range;
 
         //draw inner circle
-        var outerRange = game.add.sprite(x, y, towerObject.rangeExteriorIMG);
+        towerObject.outerRange = game.add.sprite(x, y, towerObject.rangeExteriorIMG);
+        outerRange = towerObject.outerRange;
         outerRange.alpha = 0.5;
         game.physics.arcade.enable(outerRange);
 
         //draw outer circle
-        var innerRange = game.add.sprite(x, y, towerObject.rangeInterior2IMG);
+        towerObject.innerRange = game.add.sprite(x, y, towerObject.rangeInterior2IMG);
+        innerRange = towerObject.innerRange;
         innerRange.alpha = 0.5
         game.physics.arcade.enable(innerRange);
 
@@ -142,8 +149,10 @@ towerStuff.drawRange = function (towerObject) {
         //bring sprite to top so it will appear above the ranges
         game.world.bringToTop(sprite);
     } else if (towerObject.showingRange == true){
+        towerObject.showingRange = false;
         console.log("remove ranges")
-        innerRange.kill();
-        outerRange.kill();
+        
+        towerObject.innerRange.kill();
+        towerObject.outerRange.kill();
     }
 }

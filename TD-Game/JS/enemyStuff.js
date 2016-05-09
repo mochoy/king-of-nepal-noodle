@@ -112,7 +112,8 @@ enemyHelper.moveToNextPoint = function (enemySprite, currentPoint){
 //            }   //else if
             
             //remove enemy from array and kill
-            helper.removeFromArray(enemyHelper.allEnemyArray, enemyHelper.findSprite(enemySprite), enemySprite);   
+            console.log(enemyHelper.findSprite(enemySprite))
+//            helper.removeFromArray(enemyHelper.allEnemyArray, enemyHelper.findSprite(enemySprite), enemySprite);   
         }   //if c
         
         
@@ -127,7 +128,7 @@ enemyHelper.findSprite = function (enemySprite) {
     for (var i = 1; i < array.length; i++){
         //search for passed in sprite in array
         if (enemySprite == array[i].sprite){
-//            console.log(array[i])
+            console.log(array);
 //            return array[i];
             return array;
         }
@@ -136,9 +137,9 @@ enemyHelper.findSprite = function (enemySprite) {
     for (var i = 1; i < array2.length; i++){
         //seach for passed in sprite in array
         if (enemySprite == array2[i].sprite){
-//            console.log(array2[i])
+            console.log(array2)
 //            return array2[i];
-            return  array2;
+            return array2;
         }
     }
 };  //function findSprite
