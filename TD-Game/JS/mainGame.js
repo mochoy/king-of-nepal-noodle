@@ -38,6 +38,20 @@ var mainGameVar = {
         for (var i = 0; i < enemyHelper.allEnemyArray.length; i ++){
             enemyHelper.moveEnemyAlongPath (enemyHelper.allEnemyArray[i], helper.pathStuff.pathArray[1]);
         }
+        
+        for (var i = 0; i < towerStuff.allTowerArray.length; i ++){
+            var towerOBJ = towerStuff.allTowerArray[i];
+            var towerSprite = towerOBJ.sprite;
+            
+            
+            for (var o = 0; o < enemyHelper.allEnemyArray.length; o++){
+                var enemyObject = enemyHelper.allEnemyArray[o];
+                var enemySprite = enemyObject.sprite;
+                
+                game.physics.arcade.overlap(towerOBJ.innerRange, enemySprite, towerStuff.findEnemy, null, this);
+                
+            }            
+        }
          
         /*
 //        for (var i = 0; i < helper.pathStuff.pathArray.length; i ++){

@@ -5,7 +5,7 @@ towerStuff.tower1Array = new Array();
 
 //tower 1 class
 towerStuff.Tower1 = function () {
-    this.range = 0.5;
+    this.range = 0.8;
     this.damage = 10;
     this.fireRate = 10;
         
@@ -150,9 +150,14 @@ towerStuff.drawRange = function (towerObject) {
         game.world.bringToTop(sprite);
     } else if (towerObject.showingRange == true){
         towerObject.showingRange = false;
-        console.log("remove ranges")
+        console.log("remove ranges");
         
         towerObject.innerRange.kill();
         towerObject.outerRange.kill();
     }
+};
+
+//find the enemy to shoot at
+towerStuff.findEnemy = function () {
+    console.log("collides")
 }
