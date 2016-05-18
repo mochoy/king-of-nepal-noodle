@@ -3,6 +3,8 @@ var towerStuff = {};
 towerStuff.allTowerArray = new Array();
 towerStuff.tower1Array = new Array();
 
+
+
 //tower 1 class
 towerStuff.Tower1 = function () {
     this.range = 0.8;
