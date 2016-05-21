@@ -2,7 +2,7 @@ var towerStuff = {};
 
 towerStuff.allTowerArray = new Array();
 towerStuff.tower1Array = new Array();
-//second change
+//ghetto change
 
 
 //tower 1 class
