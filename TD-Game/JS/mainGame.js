@@ -30,6 +30,10 @@ var mainGameVar = {
         
         var enemySpawnTimer = game.time.events.loop(Phaser.Timer.SECOND, enemyHelper.spawnNewEnemy, this);
         
+        game.input.onDown.add(function () {
+            console.log(game.input.x, game.input.y);
+        }, this);
+        
     },  //function create
     
     update: function (){
@@ -51,7 +55,8 @@ var mainGameVar = {
                 game.physics.arcade.overlap(towerOBJ.innerRange, enemySprite, towerStuff.findEnemy, null, this);
                 
             }            
-        }
+        }   //for
+
          
         /*
 //        for (var i = 0; i < helper.pathStuff.pathArray.length; i ++){
