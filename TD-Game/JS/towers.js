@@ -1,6 +1,7 @@
 var towerStuff = {};
 
 towerStuff.allTowerArray = new Array();
+<<<<<<< HEAD
 
 towerStuff.moveToPoint;
 
@@ -48,6 +49,11 @@ towerStuff.MainTower = function () {
 
 
 /*
+=======
+towerStuff.tower1Array = new Array();
+//ghetto change
+
+>>>>>>> 276655dad9d2a941dc13d179fdc394a483fd530b
 
 //tower 1 class
 towerStuff.Tower1 = function () {
@@ -61,6 +67,8 @@ towerStuff.Tower1 = function () {
     this.rangeExteriorIMG = "rangeInterior2IMG";
     
     this.showingRange = false;
+  
+    this.shootableEnemies = [];
     
     //coords of sprite 
     this.coordsX = null; 
@@ -159,13 +167,13 @@ towerStuff.drawRange = function (towerObject) {
         var d = towerObject.range;
 
         //draw inner circle
-        towerObject.outerRange = game.add.sprite(x, y, towerObject.rangeExteriorIMG);
+        towerObject.outerRange = sprite.addChild(game.make.sprite(x, y, towerObject.rangeExteriorIMG));
         outerRange = towerObject.outerRange;
         outerRange.alpha = 0.5;
         game.physics.arcade.enable(outerRange);
 
         //draw outer circle
-        towerObject.innerRange = game.add.sprite(x, y, towerObject.rangeInterior2IMG);
+        towerObject.innerRange = sprite.addChild(game.make.sprite(x, y, towerObject.rangeInterior2IMG));
         innerRange = towerObject.innerRange;
         innerRange.alpha = 0.5
         game.physics.arcade.enable(innerRange);
@@ -204,8 +212,10 @@ towerStuff.drawRange = function (towerObject) {
 };
 
 //find the enemy to shoot at
+<<<<<<< HEAD
 towerStuff.findEnemy = function () {
     console.log("collides")
 }
 
 */
+

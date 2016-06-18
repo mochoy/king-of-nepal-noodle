@@ -19,6 +19,15 @@ var mainGameVar = {
     
     create: function (){
         game.physics.startSystem(Phaser.Physics.ARCADE);
+<<<<<<< HEAD
+=======
+        
+        game.stage.backgroundColor = '#ffffff'
+
+        this.book = game.add.sprite(250, 100, "bookIMG");
+        game.physics.arcade.enable(this.book);
+        this.book.inputEnabled = true;
+>>>>>>> 276655dad9d2a941dc13d179fdc394a483fd530b
         
         helper.createPath("pathIMG");
         
