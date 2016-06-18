@@ -19,10 +19,6 @@ var mainGameVar = {
     
     create: function (){
         game.physics.startSystem(Phaser.Physics.ARCADE);
-
-        this.book = game.add.sprite(250, 100, "bookIMG");
-        game.physics.arcade.enable(this.book);
-        this.book.inputEnabled = true;
         
         helper.createPath("pathIMG");
         
@@ -33,8 +29,6 @@ var mainGameVar = {
     },  //function create
     
     update: function (){
-        this.book.events.onInputDown.add(helper.showList, this);
-                
         for (var i = 0; i < enemyHelper.allEnemyArray.length; i ++){
             enemyHelper.moveEnemyAlongPath (enemyHelper.allEnemyArray[i], helper.pathStuff.pathArray[1]);
         }   //for move enemies along path
