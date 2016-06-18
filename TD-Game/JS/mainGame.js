@@ -26,7 +26,8 @@ var mainGameVar = {
         
         helper.createPath("pathIMG");
         
-        // var enemySpawnTimer = game.time.events.loop(Phaser.Timer.SECOND, enemyHelper.spawnNewEnemy, this);\
+        // var enemySpawnTimer = game.time.events.loop(Phaser.Timer.SECOND, enemyHelper.spawnNewEnemy, this);
+        
         towerStuff.MainTower();
     },  //function create
     
@@ -41,7 +42,6 @@ var mainGameVar = {
             var towerOBJ = towerStuff.allTowerArray[i];
             var towerSprite = towerOBJ.sprite;
             
-            
             for (var o = 0; o < enemyHelper.allEnemyArray.length; o++){
                 var enemyObject = enemyHelper.allEnemyArray[o];
                 var enemySprite = enemyObject.sprite;
@@ -55,7 +55,6 @@ var mainGameVar = {
             for (var i = 0; i < towerStuff.allTowerArray.length; i ++) {
                 var towerSprite = towerStuff.allTowerArray[i];
                 towerSprite.rotation = (game.physics.arcade.angleToPointer(towerSprite));
-                console.log(towerSprite.rotation);
             }
             // console.log(game.input.x, game.input.y);
         }, this);

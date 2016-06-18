@@ -5,13 +5,18 @@ towerStuff.allTowerArray = new Array();
 towerStuff.MainTower = function () {
     this.image = 'tower1IMG';
     
-    //add a sprite to the new tower object
-    var towerSprite = game.add.sprite(500, 500, this.image);
-    game.physics.arcade.enable(towerSprite);
-    towerSprite.anchor.set(0.5);
-    towerSprite.inputEnabled = true;
+    this.towerSprite = game.add.sprite(500, 500, this.image);
+    game.physics.arcade.enable(this.towerSprite);
+    this.towerSprite.anchor.set(0.5);
+    this.towerSprite.inputEnabled = true;
     
-    towerStuff.allTowerArray.push(towerSprite);
+    towerStuff.allTowerArray.push(this.towerSprite);
+    
+    this.towerSprite.fireRate = 500;
+
+    this.towerSprite.timer = game.time.events.loop(this.towerSprite.fireRate, function () {
+            console.log("timer");
+        }, this);;
 };   //class
 
 
