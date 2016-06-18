@@ -16,11 +16,16 @@ towerStuff.MainTower = function () {
     towerStuff.allTowerArray.push(this.towerSprite);
     
     this.towerSprite.fireRate = 500;
-    this.towerSprite.bulletSpeed = 500;
-    this.towerSprite.weaponAccuracy = 100;
+    this.towerSprite.bulletSpeed = 1000;
+    this.towerSprite.weaponAccuracy = 500;
     this.towerSprite.bulletArray = [];
     
     this.towerSprite.shoot = function (towerSpritel) {
+        if (towerSpritel.bulletArray.length > 20){
+            towerSpritel.bulletArray.shift().kill();
+            console.log("bullet removed")
+        }
+        
         var bullet = game.add.sprite(100, 100, this.img);
         bullet.x = towerSpritel.x;
         bullet.y = towerSpritel.y;
@@ -34,8 +39,6 @@ towerStuff.MainTower = function () {
         game.physics.arcade.moveToObject(bullet, towerStuff.moveToPoint, towerSpritel.bulletSpeed);
         bullet.body.velocity.x += towerSpritel.weaponAccuracy*(Math.random() - 0.5);
         bullet.body.velocity.y += towerSpritel.weaponAccuracy*(Math.random() - 0.5);
-
-
     };
     
     this.towerSprite.timer = game.time.events.loop(this.towerSprite.fireRate, function () {
