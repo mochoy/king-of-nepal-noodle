@@ -16,6 +16,7 @@ towerStuff.MainTower = function () {
     towerStuff.allTowerArray.push(this.towerSprite);
     
     this.towerSprite.fireRate = 500;
+    this.towerSprite.bulletSpeed = 500;
     this.towerSprite.bulletArray = [];
     
     this.towerSprite.shoot = function (towerSpritel) {
@@ -28,7 +29,8 @@ towerStuff.MainTower = function () {
     
         towerSpritel.bulletArray.push(bullet);
         
-        game.physics.arcade.moveToObject(bullet, towerStuff.moveToPoint, 200);
+        bullet.rotation = game.physics.arcade.angleBetween(bullet, towerStuff.moveToPoint);
+        game.physics.arcade.moveToObject(bullet, towerStuff.moveToPoint, towerSpritel.bulletSpeed);
     };
     
     this.towerSprite.timer = game.time.events.loop(this.towerSprite.fireRate, function () {
