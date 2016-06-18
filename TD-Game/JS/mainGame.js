@@ -29,6 +29,7 @@ var mainGameVar = {
         // var enemySpawnTimer = game.time.events.loop(Phaser.Timer.SECOND, enemyHelper.spawnNewEnemy, this);
         
         towerStuff.MainTower();
+        towerStuff.moveToPoint = game.add.sprite(0, 0, null);
     },  //function create
     
     update: function (){
@@ -52,6 +53,9 @@ var mainGameVar = {
         }   //for 
         
         game.input.onDown.add(function () {
+            towerStuff.moveToPoint.x = game.input.x;
+            towerStuff.moveToPoint.y = game.input.y;
+
             for (var i = 0; i < towerStuff.allTowerArray.length; i ++) {
                 var towerSprite = towerStuff.allTowerArray[i];
                 towerSprite.rotation = (game.physics.arcade.angleToPointer(towerSprite));

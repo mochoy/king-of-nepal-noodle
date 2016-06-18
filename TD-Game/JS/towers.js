@@ -2,6 +2,9 @@ var towerStuff = {};
 
 towerStuff.allTowerArray = new Array();
 
+towerStuff.moveToPoint;
+
+
 towerStuff.MainTower = function () {
     this.image = 'tower1IMG';
     
@@ -13,9 +16,23 @@ towerStuff.MainTower = function () {
     towerStuff.allTowerArray.push(this.towerSprite);
     
     this.towerSprite.fireRate = 500;
-
+    this.towerSprite.bulletArray = [];
+    
+    this.towerSprite.shoot = function (towerSpritel) {
+        var bullet = game.add.sprite(100, 100, this.img);
+        bullet.x = towerSpritel.x;
+        bullet.y = towerSpritel.y;
+        game.physics.arcade.enable(bullet);
+        bullet.anchor.set(0.5);
+        bullet.inputEnabled = true;
+    
+        towerSpritel.bulletArray.push(bullet);
+        
+        game.physics.arcade.moveToObject(bullet, towerStuff.moveToPoint, 200);
+    };
+    
     this.towerSprite.timer = game.time.events.loop(this.towerSprite.fireRate, function () {
-            console.log("timer");
+            this.towerSprite.shoot(this.towerSprite);
         }, this);;
 };   //class
 
