@@ -1,7 +1,21 @@
 var towerStuff = {};
 
 towerStuff.allTowerArray = new Array();
-towerStuff.tower1Array = new Array();
+
+towerStuff.MainTower = function () {
+    this.image = 'tower1IMG';
+    
+    //add a sprite to the new tower object
+    var towerSprite = game.add.sprite(500, 500, this.image);
+    game.physics.arcade.enable(towerSprite);
+    towerSprite.anchor.set(0.5);
+    towerSprite.inputEnabled = true;
+    
+    towerStuff.allTowerArray.push(towerSprite);
+};   //class
+
+
+/*
 
 //tower 1 class
 towerStuff.Tower1 = function () {
@@ -161,3 +175,5 @@ towerStuff.drawRange = function (towerObject) {
 towerStuff.findEnemy = function () {
     console.log("collides")
 }
+
+*/

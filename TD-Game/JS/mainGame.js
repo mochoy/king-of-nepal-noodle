@@ -13,8 +13,6 @@ var mainGameVar = {
         
         game.load.image ("rangeExteriorIMG", "Assets/Images/greyCircle_interior.png");     //range circle
         game.load.image ("rangeExterior2IMG", "Assets/Images/greyCircle_interior2.png");   //range circle
-        game.load.image ("rangeInteriorIMG", "Assets/Images/whiteCircle_exterior.png");    //range circle
-        game.load.image ("rangeInterior2IMG", "Assets/Images/whiteCircle_exterior2.png");    //range circle
 
 
     },  //function preload
@@ -28,12 +26,8 @@ var mainGameVar = {
         
         helper.createPath("pathIMG");
         
-        var enemySpawnTimer = game.time.events.loop(Phaser.Timer.SECOND, enemyHelper.spawnNewEnemy, this);
-        
-        game.input.onDown.add(function () {
-            console.log(game.input.x, game.input.y);
-        }, this);
-        
+        // var enemySpawnTimer = game.time.events.loop(Phaser.Timer.SECOND, enemyHelper.spawnNewEnemy, this);\
+        towerStuff.MainTower();
     },  //function create
     
     update: function (){
@@ -41,7 +35,7 @@ var mainGameVar = {
                 
         for (var i = 0; i < enemyHelper.allEnemyArray.length; i ++){
             enemyHelper.moveEnemyAlongPath (enemyHelper.allEnemyArray[i], helper.pathStuff.pathArray[1]);
-        }
+        }   //for move enemies along path
         
         for (var i = 0; i < towerStuff.allTowerArray.length; i ++){
             var towerOBJ = towerStuff.allTowerArray[i];
@@ -55,7 +49,16 @@ var mainGameVar = {
                 game.physics.arcade.overlap(towerOBJ.innerRange, enemySprite, towerStuff.findEnemy, null, this);
                 
             }            
-        }   //for
+        }   //for 
+        
+        game.input.onDown.add(function () {
+            for (var i = 0; i < towerStuff.allTowerArray.length; i ++) {
+                var towerSprite = towerStuff.allTowerArray[i];
+                towerSprite.rotation = (game.physics.arcade.angleToPointer(towerSprite));
+                console.log(towerSprite.rotation);
+            }
+            // console.log(game.input.x, game.input.y);
+        }, this);
 
          
         /*
