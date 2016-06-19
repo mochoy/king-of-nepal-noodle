@@ -6,12 +6,12 @@ enemyHelper.allEnemyArray = new Array();
 var EnemyBasic = function () {
     this.imgName = "bookIMG";
 
-    this.create = function () {
-        this.enemySprite = game.add.sprite(100, 100, this.imgName);
+    this.create = function (x, y) {
+        this.enemySprite = game.add.sprite(x, y, this.imgName);
         this.enemySprite.anchor.set(0.5);
         game.physics.arcade.enable(this.enemySprite);
         
-        enemyHelper.allEnemyArray.push(this.enemySprite)
+        enemyHelper.allEnemyArray.push(this.enemySprite);
         
         this.enemySprite.health = 5;
         this.enemySprite.moveSpeed = 200;
@@ -50,8 +50,14 @@ enemyHelper.spawnEnemy = function () {
         new EnemySpecial().enable(game, helper.pathStuff.getSpawnCoords(1), helper.pathStuff.getSpawnCoords(2));
     }
     */
-    
-    new EnemyBasic().create();
+    var num = Math.random();
+    if (num < 0.33) {
+        new EnemyBasic().create((game.width/3), 10);
+        console.log("1");
+    } else if (num < 0.66) {
+        new EnemyBasic().create(((game.width/3)*2), 10);
+        console.log("2");
+    }
 }
 
 /*
