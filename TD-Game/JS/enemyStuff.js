@@ -20,15 +20,16 @@ var EnemyBasic = function () {
         
         this.enemySprite.rotation = game.physics.arcade.angleBetween(this.enemySprite, enemyHelper.moveToPoint);
         game.physics.arcade.moveToObject(this.enemySprite, enemyHelper.moveToPoint, this.enemySprite.bulletSpeed);
+        
+        this.enemySprite.hit = function (bulletSpritec, enemySpritec) {
+            console.log("hit")
+        }
     }
         
     this.addToSpecificArray= function(){
         enemyHelper.enemyBasicArray.push(this);  //specific    
     }
-    
-    this.hit = function () {
-        
-    }
+
 }
 
 /*

@@ -64,7 +64,8 @@ var mainGameVar = {
                 
                 for (var bullet = 0; bullet < towerSprite.bulletArray.length; bullet++) {
                     var bulletSprite = towerSprite.bulletArray[bullet];
-                    
+                    game.physics.arcade.overlap(bulletSprite, enemySprite, enemySprite.hit, null, this);
+
                 }   //for iterate bulletArray
             }   //for iterate towerStuff.allTowerArray
         }   //for iterate enemyHelper.allEnemyArray

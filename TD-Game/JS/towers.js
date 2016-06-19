@@ -18,6 +18,7 @@ towerStuff.MainTower = function () {
     this.towerSprite.fireRate = 500;
     this.towerSprite.bulletSpeed = 1000;
     this.towerSprite.weaponAccuracy = 500;
+    this.towerSprite.hit = 0;
     this.towerSprite.bulletArray = [];
     
     this.towerSprite.shoot = function (towerSpritel) {
