@@ -31,7 +31,8 @@ var EnemyBasic = function () {
             } else {
                 enemySpritec.health --;
                 
-                bulletSpritec.towerSprite.hit ++;      
+                bulletSpritec.towerSprite.hit ++;
+                helper.removeFromArray(bulletSpritec.towerSprite.bulletArray, null, null, bulletSpritec);
             }   //else enemySprite health
         }   //function enemy hit
         

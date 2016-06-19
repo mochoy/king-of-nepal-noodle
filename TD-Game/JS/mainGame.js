@@ -113,11 +113,6 @@ var helper = {
         }   //function set values
     },   //pathStuff
     
-    removeFromArray: function (allEnemyArray, specificEnemyArray, spriteToBeRemoved) {
-        spriteToBeRemoved.kill();
-        console.log(specificEnemyArray);
-    },
-    
     showList: function (sprite) {
         towerStuff.buyTower(1, sprite);
     },  //function showlist
@@ -153,3 +148,16 @@ var helper = {
     }   // function move to next object
     
 }   // helper
+
+helper.removeFromArray = function (array1, array2, array3, sprite) {
+    var newArray1 = [], newArray2 = [], newArray2 = [];
+    if (array1 != null){
+        for (var i = 0; i < array1.length; i++){
+            if (sprite != array1[i]){
+                newArray1.push(array1[i]);
+            }
+        }   //for
+        array1 = newArray1;
+    }   //if array1
+    sprite.kill();
+}
