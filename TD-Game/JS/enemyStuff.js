@@ -1,4 +1,3 @@
-//enemyStuff.js 1-24-2016 broken code for now
 var enemyHelper = {};
 
 enemyHelper.allEnemyArray = new Array();
@@ -7,25 +6,16 @@ enemyHelper.enemySpecialArray = new Array();
 
 
 var EnemyBasic = function () {
-    this.movingToPoint = 0;
-        
+    this.imgName = "bookIMG";
+
+    this.enemySprite = game.add.sprite(0, 0, this.imgName);
+    this.enemySprite.anchor.set(0.5);
+    game.physics.arcade.enable(this.enemySprite);
+    
+    enemyHelper.allEnemyArray.push(this.enemySprite)
+    
     this.health = 5;
     this.moveSpeed = 200;
-    this.sprite = null;
-    this.imgName = "bookIMG";
-    this.parentArray = enemyHelper.enemyBasicArray;
-    this.id = 1;
-
-    this.enable = function(game, spawnX, spawnY){
-        this.sprite = game.add.sprite(spawnX, spawnY, this.imgName);
-        game.physics.arcade.enable(this.sprite);
-        
-        this.sprite.movingToPoint = 1;
-        this.object = this;
-        
-        this.addToSpecificArray();
-        enemyHelper.allEnemyArray.push(this);
-    }
         
     this.addToSpecificArray= function(){
         enemyHelper.enemyBasicArray.push(this);  //specific    
@@ -33,8 +23,7 @@ var EnemyBasic = function () {
     
 }
 
-//keep track of all enemySpecials in a game
-
+/*
 var EnemySpecial = function () {
     this.constructor = EnemyBasic;
     this.constructor();
@@ -48,20 +37,24 @@ var EnemySpecial = function () {
         enemyHelper.enemySpecialArray.push(this);  //specific    
     }
 }
+*/
 
 enemyHelper.spawnNewEnemy = function () {
     //makes a new enemy which shows up in THE game
     //must be useable to be called without any parameters
+    /*
     var randomNum = Math.random();
     if (randomNum < 0.5){
         new EnemyBasic().enable(game, helper.pathStuff.getSpawnCoords(1), helper.pathStuff.getSpawnCoords(2));
     } else {    
         new EnemySpecial().enable(game, helper.pathStuff.getSpawnCoords(1), helper.pathStuff.getSpawnCoords(2));
     }
+    */
     
     
 }
 
+/*
 function moveEnemyAlongPath (enemy, nextPoint){
     var nextPointStuff = helper.pathStuff.pathPointArray[enemy.movingToPoint];
     
@@ -73,11 +66,7 @@ function moveEnemyAlongPath (enemy, nextPoint){
     }
     
 }
-function moveEnemyAlongPath (enemy, nextPoint){
-    var nextPointStuff = helper.pathStuff.pathPointArray[enemy.movingToPoint];
-//    game.physics.arcade.moveToObject (enemy, helper.pathStuff.pathPointArray[enemy.movingToPoint], 500);
-    game.physics.arcade.overlap (enemy.sprite, nextPoint, nextPoint, null, this);
-}
+
 enemyHelper.moveEnemyAlongPath = function (enemy, nextPoint){
      var nextPointStuff = helper.pathStuff.pathPointArray[enemy.movingToPoint];
     
@@ -143,3 +132,5 @@ enemyHelper.findSprite = function (enemySprite) {
         }
     }
 };  //function findSprite
+
+*/

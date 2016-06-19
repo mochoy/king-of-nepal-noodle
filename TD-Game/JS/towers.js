@@ -1,7 +1,6 @@
 var towerStuff = {};
 
 towerStuff.allTowerArray = new Array();
-<<<<<<< HEAD
 
 towerStuff.moveToPoint;
 
@@ -9,7 +8,7 @@ towerStuff.moveToPoint;
 towerStuff.MainTower = function () {
     this.image = 'tower1IMG';
     
-    this.towerSprite = game.add.sprite(500, 500, this.image);
+    this.towerSprite = game.add.sprite(game.world.width/2, 500, this.image);
     game.physics.arcade.enable(this.towerSprite);
     this.towerSprite.anchor.set(0.5);
     this.towerSprite.inputEnabled = true;
@@ -24,7 +23,6 @@ towerStuff.MainTower = function () {
     this.towerSprite.shoot = function (towerSpritel) {
         if (towerSpritel.bulletArray.length > 20){
             towerSpritel.bulletArray.shift().kill();
-            console.log("bullet removed")
         }
         
         var bullet = game.add.sprite(100, 100, this.img);
@@ -53,7 +51,6 @@ towerStuff.MainTower = function () {
 towerStuff.tower1Array = new Array();
 //ghetto change
 
->>>>>>> 276655dad9d2a941dc13d179fdc394a483fd530b
 
 //tower 1 class
 towerStuff.Tower1 = function () {
@@ -210,12 +207,5 @@ towerStuff.drawRange = function (towerObject) {
         towerObject.outerRange.kill();
     }
 };
-
-//find the enemy to shoot at
-<<<<<<< HEAD
-towerStuff.findEnemy = function () {
-    console.log("collides")
-}
-
 */
 
