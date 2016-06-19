@@ -22,19 +22,22 @@ towerStuff.MainTower = function () {
     this.towerSprite.bulletArray = [];
     
     this.towerSprite.shoot = function (towerSpritel) {
+        //keep max amount of bullets for tower at 20
         if (towerSpritel.bulletArray.length > 20){
             towerSpritel.bulletArray.shift().kill();
         }
-        
+        //bullet creating stuff
         var bullet = game.add.sprite(100, 100, this.img);
         bullet.x = towerSpritel.x;
         bullet.y = towerSpritel.y;
         game.physics.arcade.enable(bullet);
         bullet.anchor.set(0.5);
         bullet.inputEnabled = true;
-    
+        
+        bullet.towerSprite = this;
         towerSpritel.bulletArray.push(bullet);
         
+        //bullet shooting stuff
         bullet.rotation = game.physics.arcade.angleBetween(bullet, towerStuff.moveToPoint);
         game.physics.arcade.moveToObject(bullet, towerStuff.moveToPoint, towerSpritel.bulletSpeed);
         bullet.body.velocity.x += towerSpritel.weaponAccuracy*(Math.random() - 0.5);

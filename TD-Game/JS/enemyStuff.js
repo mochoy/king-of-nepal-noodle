@@ -8,6 +8,7 @@ enemyHelper.moveToPoint;
 var EnemyBasic = function () {
     this.imgName = "bookIMG";
 
+    //when class instantiated:
     this.create = function (x, y) {
         this.enemySprite = game.add.sprite(x, y, this.imgName);
         this.enemySprite.anchor.set(0.5);
@@ -21,16 +22,26 @@ var EnemyBasic = function () {
         this.enemySprite.rotation = game.physics.arcade.angleBetween(this.enemySprite, enemyHelper.moveToPoint);
         game.physics.arcade.moveToObject(this.enemySprite, enemyHelper.moveToPoint, this.enemySprite.bulletSpeed);
         
+        // when enemySprite hit
         this.enemySprite.hit = function (bulletSpritec, enemySpritec) {
-            console.log("hit")
-        }
-    }
+            //decrease enemy health, kill and remove bullet, add to tower's hit score
+            if (enemySpritec.health == 0) {
+                //kill sprite stuff
+                console.log("kill enemy sprite")
+            } else {
+                enemySpritec.health --;
+                
+                bulletSpritec.towerSprite.hit ++;      
+            }   //else enemySprite health
+        }   //function enemy hit
+        
+    }   //function create
         
     this.addToSpecificArray= function(){
         enemyHelper.enemyBasicArray.push(this);  //specific    
-    }
+    }   //function addToSpecificArray
 
-}
+}   // class EnemyBasic
 
 /*
 var EnemySpecial = function () {
