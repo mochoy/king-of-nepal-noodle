@@ -1,8 +1,8 @@
-var enemyHelper = {};
+var enemyStuff = {};
 
-enemyHelper.allEnemyArray = new Array();
+enemyStuff.allEnemyArray = new Array();
 
-enemyHelper.moveToPoint;
+enemyStuff.moveToPoint;
 
 
 var EnemyBasic = function () {
@@ -14,20 +14,20 @@ var EnemyBasic = function () {
         this.enemySprite.anchor.set(0.5);
         game.physics.arcade.enable(this.enemySprite);
         
-        enemyHelper.allEnemyArray.push(this.enemySprite);
+        enemyStuff.allEnemyArray.push(this.enemySprite);
         
         this.enemySprite.health = 5;
         this.enemySprite.moveSpeed = 200;
         
-        this.enemySprite.rotation = game.physics.arcade.angleBetween(this.enemySprite, enemyHelper.moveToPoint);
-        game.physics.arcade.moveToObject(this.enemySprite, enemyHelper.moveToPoint, this.enemySprite.bulletSpeed);
+        this.enemySprite.rotation = game.physics.arcade.angleBetween(this.enemySprite, enemyStuff.moveToPoint);
+        game.physics.arcade.moveToObject(this.enemySprite, enemyStuff.moveToPoint, this.enemySprite.bulletSpeed);
         
         // when enemySprite hit
         this.enemySprite.hit = function (bulletSpritec, enemySpritec) {
             //decrease enemy health, kill and remove bullet, add to tower's hit score
             if (enemySpritec.health == 0) {
                 //kill sprite stuff
-                helper.removeFromArray(enemyHelper.allEnemyArray, null, null, enemySpritec);
+                helper.removeFromArray(enemyStuff.allEnemyArray, null, null, enemySpritec);
             } else {
                 enemySpritec.health --;
                 
@@ -39,7 +39,7 @@ var EnemyBasic = function () {
     }   //function create
         
     this.addToSpecificArray= function(){
-        enemyHelper.enemyBasicArray.push(this);  //specific    
+        enemyStuff.enemyBasicArray.push(this);  //specific    
     }   //function addToSpecificArray
 
 }   // class EnemyBasic
@@ -51,16 +51,16 @@ var EnemySpecial = function () {
     
     this.moveSpeed = 250;
     this.imgName = "dudeIMG";
-    this.parentArray = enemyHelper.enemySpecialArray;
+    this.parentArray = enemyStuff.enemySpecialArray;
     this.id = 2;
 
     this.addToSpecificArray= function(){  //override
-        enemyHelper.enemySpecialArray.push(this);  //specific    
+        enemyStuff.enemySpecialArray.push(this);  //specific    
     }
 }
 */
 
-enemyHelper.spawnEnemy = function () {
+enemyStuff.spawnEnemy = function () {
     //makes a new enemy which shows up in THE game
     //must be useable to be called without any parameters
     /*
@@ -92,16 +92,16 @@ function moveEnemyAlongPath (enemy, nextPoint){
     
 }
 
-enemyHelper.moveEnemyAlongPath = function (enemy, nextPoint){
+enemyStuff.moveEnemyAlongPath = function (enemy, nextPoint){
      var nextPointStuff = helper.pathStuff.pathPointArray[enemy.movingToPoint];
     
     game.physics.arcade.moveToObject(enemy.sprite, helper.pathStuff.pathArray[enemy.sprite.movingToPoint], 200);
     
-    game.physics.arcade.overlap (enemy.sprite, helper.pathStuff.pathArray[enemy.sprite.movingToPoint], enemyHelper.moveToNextPoint, null, this);
+    game.physics.arcade.overlap (enemy.sprite, helper.pathStuff.pathArray[enemy.sprite.movingToPoint], enemyStuff.moveToNextPoint, null, this);
     
 };
 
-enemyHelper.moveToNextPoint = function (enemySprite, currentPoint){
+enemyStuff.moveToNextPoint = function (enemySprite, currentPoint){
     //go through pathStuff array 
     for (var i = 0; i < helper.pathStuff.pathPointArray.length; i ++){
         // console.log(currentPoint.x + "," + currentPoint.y);
@@ -118,25 +118,25 @@ enemyHelper.moveToNextPoint = function (enemySprite, currentPoint){
         if (nextPoint == 4) { 
             //find sprite to kill and get the coresponding array
                                     
-//            if (enemyHelper.findSprite(enemySprite).id == 1){
-//                enemyArray = enemyHelper.enemyBasicArray;
+//            if (enemyStuff.findSprite(enemySprite).id == 1){
+//                enemyArray = enemyStuff.enemyBasicArray;
 //            } 
 //            else if (enemySprite.id == 2) {
-//                enemyArray = enemyHelper.enemySpecialArray;
+//                enemyArray = enemyStuff.enemySpecialArray;
 //            }   //else if
             
             //remove enemy from array and kill
-            console.log(enemyHelper.findSprite(enemySprite))
-//            helper.removeFromArray(enemyHelper.allEnemyArray, enemyHelper.findSprite(enemySprite), enemySprite);   
+            console.log(enemyStuff.findSprite(enemySprite))
+//            helper.removeFromArray(enemyStuff.allEnemyArray, enemyStuff.findSprite(enemySprite), enemySprite);   
         }   //if c
         
         
     }   //for
 };   //function
 
-enemyHelper.findSprite = function (enemySprite) {
-    var array = enemyHelper.enemyBasicArray;
-    var array2 = enemyHelper.enemySpecialArray;
+enemyStuff.findSprite = function (enemySprite) {
+    var array = enemyStuff.enemyBasicArray;
+    var array2 = enemyStuff.enemySpecialArray;
     
     //check if sprite is basic
     for (var i = 1; i < array.length; i++){

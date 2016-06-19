@@ -1,9 +1,7 @@
 //mainGame.js 1-24-2016 broken code for now
+var gameManagerStuff = {};
 
 var mainGameVar = {
-    book: null,
-    point: null,
-    
     preload: function (){
         game.load.image ("bookIMG", "Assets/Images/Test/book.jpg");                 //test asset
         game.load.image ("pathIMG", "Assets/Images/Test/greyBlock.jpg");            //test asset
@@ -23,13 +21,13 @@ var mainGameVar = {
 
         // helper.createPath("pathIMG");
         
-        var enemySpawnTimer = game.time.events.loop(Phaser.Timer.SECOND, enemyHelper.spawnEnemy, this);
+        var enemySpawnTimer = game.time.events.loop(Phaser.Timer.SECOND, enemyStuff.spawnEnemy, this);
         
         towerStuff.MainTower();
         towerStuff.moveToPoint = game.add.sprite(0, 0, null);
         
-        enemyHelper.moveToPoint = game.add.sprite(0, game.height - 10, "bookIMG");
-        enemyHelper.moveToPoint.width = game.width;
+        enemyStuff.moveToPoint = game.add.sprite(0, game.height - 10, "bookIMG");
+        enemyStuff.moveToPoint.width = game.width;
     },  //function create
     
     update: function (){
@@ -56,8 +54,8 @@ var mainGameVar = {
         }, this);
         
         //collision for bullets and enemies
-        for (var enemy = 0; enemy < enemyHelper.allEnemyArray.length; enemy++) {
-            var enemySprite = enemyHelper.allEnemyArray[enemy];
+        for (var enemy = 0; enemy < enemyStuff.allEnemyArray.length; enemy++) {
+            var enemySprite = enemyStuff.allEnemyArray[enemy];
             
             for (var tower = 0; tower < towerStuff.allTowerArray.length; tower++ ){
                 var towerSprite = towerStuff.allTowerArray[tower];
@@ -68,7 +66,7 @@ var mainGameVar = {
 
                 }   //for iterate bulletArray
             }   //for iterate towerStuff.allTowerArray
-        }   //for iterate enemyHelper.allEnemyArray
+        }   //for iterate enemyStuff.allEnemyArray
 
 
     }  //function update
