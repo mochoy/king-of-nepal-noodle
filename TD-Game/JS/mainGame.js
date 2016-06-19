@@ -42,6 +42,8 @@ var mainGameVar = {
 //        }   // for
         */
 
+        towerStuff.moveToPoint.bringToTop();
+
         // Aim tower to mouse click
         game.input.onDown.add(function () {
             towerStuff.moveToPoint.x = game.input.x;
