@@ -27,7 +27,7 @@ var EnemyBasic = function () {
             //decrease enemy health, kill and remove bullet, add to tower's hit score
             if (enemySpritec.health == 0) {
                 //kill sprite stuff
-                console.log("kill enemy sprite")
+                helper.removeFromArray(enemyHelper.allEnemyArray, null, null, enemySpritec);
             } else {
                 enemySpritec.health --;
                 
