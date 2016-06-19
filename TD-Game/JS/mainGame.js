@@ -33,27 +33,7 @@ var mainGameVar = {
     },  //function create
     
     update: function (){
-        /*
-        for (var i = 0; i < enemyHelper.allEnemyArray.length; i ++){
-            enemyHelper.moveEnemyAlongPath (enemyHelper.allEnemyArray[i], helper.pathStuff.pathArray[1]);
-        }   //for move enemies along path
-        */
-        
-        /*
-        for (var i = 0; i < towerStuff.allTowerArray.length; i ++){
-            var towerOBJ = towerStuff.allTowerArray[i];
-            var towerSprite = towerOBJ.sprite;
-            
-            for (var o = 0; o < enemyHelper.allEnemyArray.length; o++){
-                var enemyObject = enemyHelper.allEnemyArray[o];
-                var enemySprite = enemyObject.sprite;
-                
-                game.physics.arcade.overlap(towerOBJ.innerRange, enemySprite, towerStuff.findEnemy, null, this);
-                
-            }            
-        }   //for 
-        */
-         
+         //move enemy along path
         /*
 //        for (var i = 0; i < helper.pathStuff.pathArray.length; i ++){
 //            var pointToMoveTo = 0;
@@ -61,8 +41,10 @@ var mainGameVar = {
 //                game.physics.arcade.overlap(this.book, helper.pathStuff.pathArray[pointToMoveTo], this.moveToNextPoint, null, this);
 //            }   // for 
 //            game.physics.arcade.moveToObject(this.book, helper.pathStuff.pathArray[pointToMoveTo], 200);
-//        }   // for    */
+//        }   // for
+        */
 
+        // Aim tower to mouse click
         game.input.onDown.add(function () {
             towerStuff.moveToPoint.x = game.input.x;
             towerStuff.moveToPoint.y = game.input.y;
@@ -73,6 +55,21 @@ var mainGameVar = {
             }
         }, this);
         
+        //collision for bullets and enemies
+        for (var enemy = 0; enemy < enemyHelper.allEnemyArray.length; enemy++) {
+            var enemySprite = enemyHelper.allEnemyArray[enemy];
+            
+            for (var tower = 0; tower < towerStuff.allTowerArray.length; tower++ ){
+                var towerSprite = towerStuff.allTowerArray[tower];
+                
+                for (var bullet = 0; bullet < towerSprite.bulletArray.length; bullet++) {
+                    var bulletSprite = towerSprite.bulletArray[bullet];
+                    
+                }   //for iterate bulletArray
+            }   //for iterate towerStuff.allTowerArray
+        }   //for iterate enemyHelper.allEnemyArray
+
+
     }  //function update
     
 }   //object main game var

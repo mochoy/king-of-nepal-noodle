@@ -26,6 +26,9 @@ var EnemyBasic = function () {
         enemyHelper.enemyBasicArray.push(this);  //specific    
     }
     
+    this.hit = function () {
+        
+    }
 }
 
 /*
@@ -56,9 +59,9 @@ enemyHelper.spawnEnemy = function () {
     }
     */
     var num = Math.random();
-    if (num < 0.33) {
+    if (num < 0.5) {
         new EnemyBasic().create((game.width/3), 10);
-    } else if (num < 0.66) {
+    } else {
         new EnemyBasic().create(((game.width/3)*2), 10);
     }
 }
