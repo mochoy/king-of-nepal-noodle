@@ -19,23 +19,24 @@ var mainGameVar = {
     
     create: function (){
         game.physics.startSystem(Phaser.Physics.ARCADE);
-
-        
         game.stage.backgroundColor = '#ffffff'
 
         // helper.createPath("pathIMG");
         
-        // var enemySpawnTimer = game.time.events.loop(Phaser.Timer.SECOND, enemyHelper.spawnNewEnemy, this);
+        var enemySpawnTimer = game.time.events.loop(Phaser.Timer.SECOND, enemyHelper.spawnEnemy, this);
         
         towerStuff.MainTower();
         towerStuff.moveToPoint = game.add.sprite(0, 0, null);
     },  //function create
     
     update: function (){
+        /*
         for (var i = 0; i < enemyHelper.allEnemyArray.length; i ++){
             enemyHelper.moveEnemyAlongPath (enemyHelper.allEnemyArray[i], helper.pathStuff.pathArray[1]);
         }   //for move enemies along path
+        */
         
+        /*
         for (var i = 0; i < towerStuff.allTowerArray.length; i ++){
             var towerOBJ = towerStuff.allTowerArray[i];
             var towerSprite = towerOBJ.sprite;
@@ -48,18 +49,7 @@ var mainGameVar = {
                 
             }            
         }   //for 
-        
-        game.input.onDown.add(function () {
-            towerStuff.moveToPoint.x = game.input.x;
-            towerStuff.moveToPoint.y = game.input.y;
-
-            for (var i = 0; i < towerStuff.allTowerArray.length; i ++) {
-                var towerSprite = towerStuff.allTowerArray[i];
-                towerSprite.rotation = (game.physics.arcade.angleToPointer(towerSprite));
-            }
-            // console.log(game.input.x, game.input.y);
-        }, this);
-
+        */
          
         /*
 //        for (var i = 0; i < helper.pathStuff.pathArray.length; i ++){
@@ -70,6 +60,15 @@ var mainGameVar = {
 //            game.physics.arcade.moveToObject(this.book, helper.pathStuff.pathArray[pointToMoveTo], 200);
 //        }   // for    */
 
+        game.input.onDown.add(function () {
+            towerStuff.moveToPoint.x = game.input.x;
+            towerStuff.moveToPoint.y = game.input.y;
+
+            for (var i = 0; i < towerStuff.allTowerArray.length; i ++) {
+                var towerSprite = towerStuff.allTowerArray[i];
+                towerSprite.rotation = (game.physics.arcade.angleToPointer(towerSprite));
+            }
+        }, this);
         
     }  //function update
     

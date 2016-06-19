@@ -1,21 +1,21 @@
 var enemyHelper = {};
 
 enemyHelper.allEnemyArray = new Array();
-enemyHelper.enemyBasicArray = new Array();
-enemyHelper.enemySpecialArray = new Array();
 
 
 var EnemyBasic = function () {
     this.imgName = "bookIMG";
 
-    this.enemySprite = game.add.sprite(0, 0, this.imgName);
-    this.enemySprite.anchor.set(0.5);
-    game.physics.arcade.enable(this.enemySprite);
-    
-    enemyHelper.allEnemyArray.push(this.enemySprite)
-    
-    this.health = 5;
-    this.moveSpeed = 200;
+    this.create = function () {
+        this.enemySprite = game.add.sprite(100, 100, this.imgName);
+        this.enemySprite.anchor.set(0.5);
+        game.physics.arcade.enable(this.enemySprite);
+        
+        enemyHelper.allEnemyArray.push(this.enemySprite)
+        
+        this.enemySprite.health = 5;
+        this.enemySprite.moveSpeed = 200;
+    }
         
     this.addToSpecificArray= function(){
         enemyHelper.enemyBasicArray.push(this);  //specific    
@@ -39,7 +39,7 @@ var EnemySpecial = function () {
 }
 */
 
-enemyHelper.spawnNewEnemy = function () {
+enemyHelper.spawnEnemy = function () {
     //makes a new enemy which shows up in THE game
     //must be useable to be called without any parameters
     /*
@@ -51,7 +51,7 @@ enemyHelper.spawnNewEnemy = function () {
     }
     */
     
-    
+    new EnemyBasic().create();
 }
 
 /*
