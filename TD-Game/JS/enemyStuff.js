@@ -17,6 +17,9 @@ var EnemyBasic = function () {
         
         this.enemySprite.health = 5;
         this.enemySprite.moveSpeed = 200;
+        
+        this.enemySprite.rotation = game.physics.arcade.angleBetween(this.enemySprite, enemyHelper.moveToPoint);
+        game.physics.arcade.moveToObject(this.enemySprite, enemyHelper.moveToPoint, this.enemySprite.bulletSpeed);
     }
         
     this.addToSpecificArray= function(){
