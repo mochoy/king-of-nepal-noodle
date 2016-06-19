@@ -2,6 +2,8 @@ var enemyHelper = {};
 
 enemyHelper.allEnemyArray = new Array();
 
+enemyHelper.moveToPoint;
+
 
 var EnemyBasic = function () {
     this.imgName = "bookIMG";
@@ -53,10 +55,8 @@ enemyHelper.spawnEnemy = function () {
     var num = Math.random();
     if (num < 0.33) {
         new EnemyBasic().create((game.width/3), 10);
-        console.log("1");
     } else if (num < 0.66) {
         new EnemyBasic().create(((game.width/3)*2), 10);
-        console.log("2");
     }
 }
 
