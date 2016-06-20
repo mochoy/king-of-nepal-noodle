@@ -45,7 +45,9 @@ towerStuff.TowerPrototype.prototype.create = function tpfn2 (game, x, y) {
     this.towerSprite.target = towerStuff.moveToPoint;
     this.towerSprite.canShoot = true;
     
-    this.towerSprite.shoot = this.shoot;    //this.shoot is a function
+    //towerSprite's functions
+    this.towerSprite.shoot = this.shoot;    
+    this.towerSprite.findEnemy = this.findEnemy;
     
     this.addStats();
     this.createRange();
@@ -65,7 +67,7 @@ towerStuff.TowerPrototype.prototype.addStats = function tpfn3 () {
     this.towerSprite.bulletSpeed = 1000;
     this.towerSprite.weaponAccuracy = 500;
     this.towerSprite.hit = 0;
-    this.towerSprite.range = 100;
+    this.towerSprite.rangeVal = 100;
 };
 
 //add tower to different arrays
@@ -81,14 +83,19 @@ towerStuff.TowerPrototype.prototype.addToArray = function tpfn4 (doesNeedSearch)
 //create range
 towerStuff.TowerPrototype.prototype.createRange = function tpfn5 () {
     if (this.towerSprite.range != 0) {
-        this.towerSprite.range = new Phaser.Circle(this.towerSprite.x, this.towerSprite.y, this.towerSprite.range)
+        towerSprite = this.towerSprite;
+        towerSprite.range = new Phaser.Circle(towerSprite.x+(towerSprite.width/2), towerSprite.y+(towerSprite.height/2), towerSprite.rangeVal)
     }
 };
 
 //find enemy
+//this == sprite, not the class
 towerStuff.TowerPrototype.prototype.findEnemy = function tpfn6 (enemyArray) {
     for (var i = 0; i < enemyArray.length; i ++){
-        
+        enemySprite = enemyArray[i];
+        if (this.range.contains(enemySprite.x, enemySprite.y)) {
+            console.log("in range")
+        }
     }
 };
 

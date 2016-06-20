@@ -69,8 +69,12 @@ var mainGameVar = {
                 }   //for iterate bulletArray
             }   //for iterate towerStuff.allTowerArray
         }   //for iterate enemyStuff.allEnemyArray
-
-
+    
+        //tower find enemy
+        for (var tower = 0; tower < towerStuff.towerNeedSearchArray.length; tower++) {
+            towerStuff.towerNeedSearchArray[tower].findEnemy(enemyStuff.allEnemyArray);
+        }   //for tower find enemy
+        
     }  //function update
     
 }   //object mainGameVar
