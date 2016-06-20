@@ -1,6 +1,7 @@
 var towerStuff = {};
 
 towerStuff.allTowerArray = new Array();
+towerStuff.towerNeedSearchArray = new Array();
 
 towerStuff.moveToPoint;
 
@@ -34,40 +35,48 @@ towerStuff.TowerPrototype.prototype.shoot = function tpfn1 (towerSpritel, target
 };
 
 //create sprite
-towerStuff.TowerPrototype.prototype.create = function tpfn2 (game, x, y) {x
+towerStuff.TowerPrototype.prototype.create = function tpfn2 (game, x, y) {
     this.towerSprite = game.add.sprite(x, y, this.image);
     game.physics.arcade.enable(this.towerSprite);
     this.towerSprite.anchor.set(0.5);
     this.towerSprite.inputEnabled = true;
     
-    towerStuff.allTowerArray.push(this.towerSprite);
-    
     this.towerSprite.bulletArray = [];
     this.towerSprite.target = towerStuff.moveToPoint;
-    this.towerSprite.shoot = this.shoot;
-
+    
+    this.towerSprite.shoot = this.shoot;    //this.shoot is a function
     
     this.addStats();
     
-    
     this.towerSprite.timer = game.time.events.loop(this.towerSprite.fireRate, function () {
         this.towerSprite.shoot(this.towerSprite, this.towerSprite.target);
-    }, this);;
-}
+    }, this);
+    
+    return this;
+};
 
 //add stats
-towerStuff.TowerPrototype.prototype.addStats = function tpfn3() {
+towerStuff.TowerPrototype.prototype.addStats = function tpfn3 () {
     this.towerSprite.fireRate = 500;
     this.towerSprite.bulletSpeed = 1000;
     this.towerSprite.weaponAccuracy = 500;
     this.towerSprite.hit = 0;
+};
+
+//add tower to different arrays
+towerStuff.TowerPrototype.prototype.addToArray = function tpfn4 (doesNeedSearch) {
+    towerStuff.allTowerArray.push(this.towerSprite);
+    if (doesNeedSearch == true){
+        towerStuff.towerNeedSearchArray.push(this.towerSprite);
+    }
+
 }
 
 towerStuff.createTower = function (towerNum) {
     if (towerNum == 0){
-        towerStuff.MainTower = new towerStuff.TowerPrototype().create(game, game.world.width/2, 500);
+        towerStuff.MainTower = new towerStuff.TowerPrototype().create(game, game.world.width/2, 500).addToArray(false);
     } else {
-
+        towerStuff.NewTower = new towerStuff.TowerPrototype().create(game, 100, 500).addToArray(true);
     }
 }
 
