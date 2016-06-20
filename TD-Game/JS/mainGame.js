@@ -27,6 +27,8 @@ var mainGameVar = {
         
         enemyStuff.moveToPoint = game.add.sprite(0, game.height - 10, "bookIMG");
         enemyStuff.moveToPoint.width = game.width;
+        
+        towerStuff.createTower();
     },  //function create
     
     update: function (){
