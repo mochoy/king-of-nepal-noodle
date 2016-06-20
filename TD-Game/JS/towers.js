@@ -12,26 +12,26 @@ towerStuff.TowerPrototype = function () {
 
 //shoot
 towerStuff.TowerPrototype.prototype.shoot = function tpfn1 (towerSpritel, target) {
-            //keep max amount of bullets for tower at 20
-        if (towerSpritel.bulletArray.length > 20){
-            towerSpritel.bulletArray.shift().kill();
-        }
-        //bullet creating stuff
-        var bullet = game.add.sprite(100, 100, this.img);
-        bullet.x = towerSpritel.x;
-        bullet.y = towerSpritel.y;
-        game.physics.arcade.enable(bullet);
-        bullet.anchor.set(0.5);
-        bullet.inputEnabled = true;
-        
-        bullet.towerSprite = this;
-        towerSpritel.bulletArray.push(bullet);
-        
-        //bullet shooting stuff
-        bullet.rotation = game.physics.arcade.angleBetween(bullet, target);
-        game.physics.arcade.moveToObject(bullet, target, towerSpritel.bulletSpeed);
-        bullet.body.velocity.x += towerSpritel.weaponAccuracy*(Math.random() - 0.5);
-        bullet.body.velocity.y += towerSpritel.weaponAccuracy*(Math.random() - 0.5);
+    //keep max amount of bullets for tower at 20
+    if (towerSpritel.bulletArray.length > 20){
+        towerSpritel.bulletArray.shift().kill();
+    }
+    //bullet creating stuff
+    var bullet = game.add.sprite(100, 100, this.img);
+    bullet.x = towerSpritel.x;
+    bullet.y = towerSpritel.y;
+    game.physics.arcade.enable(bullet);
+    bullet.anchor.set(0.5);
+    bullet.inputEnabled = true;
+    
+    bullet.towerSprite = this;
+    towerSpritel.bulletArray.push(bullet);
+    
+    //bullet shooting stuff
+    bullet.rotation = game.physics.arcade.angleBetween(bullet, target);
+    game.physics.arcade.moveToObject(bullet, target, towerSpritel.bulletSpeed);
+    bullet.body.velocity.x += towerSpritel.weaponAccuracy*(Math.random() - 0.5);
+    bullet.body.velocity.y += towerSpritel.weaponAccuracy*(Math.random() - 0.5);
 };
 
 //create sprite
@@ -94,7 +94,8 @@ towerStuff.TowerPrototype.prototype.findEnemy = function tpfn6 (enemyArray) {
     for (var i = 0; i < enemyArray.length; i ++){
         enemySprite = enemyArray[i];
         if (this.range.contains(enemySprite.x, enemySprite.y)) {
-            console.log("in range")
+            console.log(enemyArray.length)
+            this.shoot(this, enemySprite);
         }
     }
 };
