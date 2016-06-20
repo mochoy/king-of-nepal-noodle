@@ -43,13 +43,16 @@ towerStuff.TowerPrototype.prototype.create = function tpfn2 (game, x, y) {
     
     this.towerSprite.bulletArray = [];
     this.towerSprite.target = towerStuff.moveToPoint;
+    this.towerSprite.canShoot = true;
     
     this.towerSprite.shoot = this.shoot;    //this.shoot is a function
     
     this.addStats();
     
     this.towerSprite.timer = game.time.events.loop(this.towerSprite.fireRate, function () {
-        this.towerSprite.shoot(this.towerSprite, this.towerSprite.target);
+        if (this.towerSprite.canShoot == true){
+            this.towerSprite.shoot(this.towerSprite, this.towerSprite.target);
+        }
     }, this);
     
     return this;
@@ -68,9 +71,10 @@ towerStuff.TowerPrototype.prototype.addToArray = function tpfn4 (doesNeedSearch)
     towerStuff.allTowerArray.push(this.towerSprite);
     if (doesNeedSearch == true){
         towerStuff.towerNeedSearchArray.push(this.towerSprite);
+        this.towerSprite.canShoot = false;
     }
 
-}
+};
 
 towerStuff.createTower = function (towerNum, x, y) {
     if (towerNum == 0){

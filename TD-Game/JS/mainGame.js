@@ -29,6 +29,8 @@ var mainGameVar = {
         enemyStuff.moveToPoint.width = game.width;
         
         towerStuff.createTower(0, game.world.width/2, 500);
+        towerStuff.createTower(1, 100, 100);
+
     },  //function create
     
     update: function (){
