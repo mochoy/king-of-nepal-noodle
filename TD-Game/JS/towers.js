@@ -48,6 +48,7 @@ towerStuff.TowerPrototype.prototype.create = function tpfn2 (game, x, y) {
     this.towerSprite.shoot = this.shoot;    //this.shoot is a function
     
     this.addStats();
+    this.createRange();
     
     this.towerSprite.timer = game.time.events.loop(this.towerSprite.fireRate, function () {
         if (this.towerSprite.canShoot == true){
@@ -64,6 +65,7 @@ towerStuff.TowerPrototype.prototype.addStats = function tpfn3 () {
     this.towerSprite.bulletSpeed = 1000;
     this.towerSprite.weaponAccuracy = 500;
     this.towerSprite.hit = 0;
+    this.towerSprite.range = 100;
 };
 
 //add tower to different arrays
@@ -74,6 +76,20 @@ towerStuff.TowerPrototype.prototype.addToArray = function tpfn4 (doesNeedSearch)
         this.towerSprite.canShoot = false;
     }
 
+};
+
+//create range
+towerStuff.TowerPrototype.prototype.createRange = function tpfn5 () {
+    if (this.towerSprite.range != 0) {
+        this.towerSprite.range = new Phaser.Circle(this.towerSprite.x, this.towerSprite.y, this.towerSprite.range)
+    }
+};
+
+//find enemy
+towerStuff.TowerPrototype.prototype.findEnemy = function tpfn6 (enemyArray) {
+    for (var i = 0; i < enemyArray.length; i ++){
+        
+    }
 };
 
 towerStuff.createTower = function (towerNum, x, y) {
