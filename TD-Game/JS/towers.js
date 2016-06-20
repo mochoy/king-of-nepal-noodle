@@ -47,8 +47,11 @@ towerStuff.MainTower = function () {
     this.towerSprite.timer = game.time.events.loop(this.towerSprite.fireRate, function () {
             this.towerSprite.shoot(this.towerSprite);
         }, this);;
-};   //class
+};   //class MainTower
 
+towerStuff.Tower1 = function () {
+
+}   // class Tower1
 
 /*
 =======

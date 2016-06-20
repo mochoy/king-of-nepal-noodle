@@ -5,7 +5,7 @@ enemyStuff.allEnemyArray = new Array();
 enemyStuff.moveToPoint;
 
 
-var EnemyBasic = function () {
+enemyStuff.EnemyBasic = function () {
     this.imgName = "bookIMG";
 
     //when class instantiated:
@@ -61,8 +61,6 @@ var EnemySpecial = function () {
 */
 
 enemyStuff.spawnEnemy = function () {
-    //makes a new enemy which shows up in THE game
-    //must be useable to be called without any parameters
     /*
     var randomNum = Math.random();
     if (randomNum < 0.5){
@@ -73,9 +71,9 @@ enemyStuff.spawnEnemy = function () {
     */
     var num = Math.random();
     if (num < 0.5) {
-        new EnemyBasic().create((game.width/3), 10);
+        new enemyStuff.EnemyBasic().create((game.width/3), 10);
     } else {
-        new EnemyBasic().create(((game.width/3)*2), 10);
+        new enemyStuff.EnemyBasic().create(((game.width/3)*2), 10);
     }
 }
 
