@@ -2,6 +2,7 @@ var towerStuff = {};
 
 towerStuff.allTowerArray = new Array();
 towerStuff.towerNeedSearchArray = new Array();
+towerStuff.towerFollowMouseArray = new Array();
 
 towerStuff.moveToPoint;
 
@@ -67,7 +68,7 @@ towerStuff.TowerPrototype.prototype.addStats = function tpfn3 () {
     this.towerSprite.bulletSpeed = 1000;
     this.towerSprite.weaponAccuracy = 500;
     this.towerSprite.hit = 0;
-    this.towerSprite.rangeVal = 100;
+    this.towerSprite.rangeVal = 500;
 };
 
 //add tower to different arrays
@@ -76,6 +77,8 @@ towerStuff.TowerPrototype.prototype.addToArray = function tpfn4 (doesNeedSearch)
     if (doesNeedSearch == true){
         towerStuff.towerNeedSearchArray.push(this.towerSprite);
         this.towerSprite.canShoot = false;
+    } else {
+        towerStuff.towerFollowMouseArray.push(this.towerSprite);
     }
 
 };

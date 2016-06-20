@@ -52,8 +52,8 @@ var mainGameVar = {
             towerStuff.moveToPoint.x = game.input.x;
             towerStuff.moveToPoint.y = game.input.y;
 
-            for (var i = 0; i < towerStuff.allTowerArray.length; i ++) {
-                var towerSprite = towerStuff.allTowerArray[i];
+            for (var i = 0; i < towerStuff.towerFollowMouseArray.length; i ++) {
+                var towerSprite = towerStuff.towerFollowMouseArray[i];
                 towerSprite.rotation = (game.physics.arcade.angleToPointer(towerSprite));
             }
         }, this);
@@ -154,8 +154,6 @@ var helper = {
 }   // helper
 
 helper.removeFromArray = function (array1, array2, array3, sprite) {
-                    console.log(array1.length)
-
     var newArray1 = [], newArray2 = [], newArray2 = [];
     if (array1 != null){
         for (var i = 0; i < array1.length; i++){
@@ -166,6 +164,5 @@ helper.removeFromArray = function (array1, array2, array3, sprite) {
         array1 = newArray1;
     }   //if array1
     sprite.kill();
-                    console.log(array1.length)
 
 }
