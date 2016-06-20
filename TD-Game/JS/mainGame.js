@@ -23,7 +23,6 @@ var mainGameVar = {
         
         var enemySpawnTimer = game.time.events.loop(Phaser.Timer.SECOND, enemyStuff.spawnEnemy, this);
         
-        towerStuff.MainTower();
         towerStuff.moveToPoint = game.add.sprite(0, 0, null);
         
         enemyStuff.moveToPoint = game.add.sprite(0, game.height - 10, "bookIMG");

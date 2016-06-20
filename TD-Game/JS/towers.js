@@ -5,7 +5,7 @@ towerStuff.allTowerArray = new Array();
 towerStuff.moveToPoint;
 
 
-towerStuff.MainTower = function () {
+towerStuff.TowerPrototype = function (game) {
     this.image = 'tower1IMG';
     
     this.towerSprite = game.add.sprite(game.world.width/2, 500, this.image);
@@ -21,8 +21,13 @@ towerStuff.MainTower = function () {
     this.towerSprite.hit = 0;
     this.towerSprite.bulletArray = [];
     
-    this.towerSprite.shoot = function (towerSpritel) {
-        //keep max amount of bullets for tower at 20
+    this.towerSprite.timer = game.time.events.loop(this.towerSprite.fireRate, function () {
+            this.towerSprite.shoot(this.towerSprite);
+        }, this);;
+};   //class MainTower
+
+towerStuff.TowerPrototype.prototype.shoot = function tpfn1 (towerSpritel) {
+            //keep max amount of bullets for tower at 20
         if (towerSpritel.bulletArray.length > 20){
             towerSpritel.bulletArray.shift().kill();
         }
@@ -42,16 +47,10 @@ towerStuff.MainTower = function () {
         game.physics.arcade.moveToObject(bullet, towerStuff.moveToPoint, towerSpritel.bulletSpeed);
         bullet.body.velocity.x += towerSpritel.weaponAccuracy*(Math.random() - 0.5);
         bullet.body.velocity.y += towerSpritel.weaponAccuracy*(Math.random() - 0.5);
-    };
-    
-    this.towerSprite.timer = game.time.events.loop(this.towerSprite.fireRate, function () {
-            this.towerSprite.shoot(this.towerSprite);
-        }, this);;
-};   //class MainTower
+};
 
-towerStuff.Tower1 = function () {
+towerStuff.MainTower = new towerStuff.TowerPrototype(game);
 
-}   // class Tower1
 
 /*
 =======
