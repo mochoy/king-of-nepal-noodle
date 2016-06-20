@@ -45,6 +45,8 @@ towerStuff.TowerPrototype.prototype.create = function tpfn2 (game, x, y) {
     
     this.addStats();
     
+    this.towerSprite.shoot = this.shoot;
+    
     this.towerSprite.timer = game.time.events.loop(this.towerSprite.fireRate, function () {
         this.towerSprite.shoot(this.towerSprite);
     }, this);;
@@ -60,7 +62,6 @@ towerStuff.TowerPrototype.prototype.addStats = function tpfn3() {
 }
 
 towerStuff.createTower = function () {
-    console.log(game)
     towerStuff.MainTower = new towerStuff.TowerPrototype().create(game, 100, 100);
 }
 
