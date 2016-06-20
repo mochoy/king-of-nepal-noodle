@@ -4,28 +4,12 @@ towerStuff.allTowerArray = new Array();
 
 towerStuff.moveToPoint;
 
-
-towerStuff.TowerPrototype = function (game) {
+towerStuff.TowerPrototype = function () {
     this.image = 'tower1IMG';
-    
-    this.towerSprite = game.add.sprite(game.world.width/2, 500, this.image);
-    game.physics.arcade.enable(this.towerSprite);
-    this.towerSprite.anchor.set(0.5);
-    this.towerSprite.inputEnabled = true;
-    
-    towerStuff.allTowerArray.push(this.towerSprite);
-    
-    this.towerSprite.fireRate = 500;
-    this.towerSprite.bulletSpeed = 1000;
-    this.towerSprite.weaponAccuracy = 500;
-    this.towerSprite.hit = 0;
-    this.towerSprite.bulletArray = [];
-    
-    this.towerSprite.timer = game.time.events.loop(this.towerSprite.fireRate, function () {
-            this.towerSprite.shoot(this.towerSprite);
-        }, this);;
+    this.towerSprite = null;
 };   //class MainTower
 
+//shoot
 towerStuff.TowerPrototype.prototype.shoot = function tpfn1 (towerSpritel) {
             //keep max amount of bullets for tower at 20
         if (towerSpritel.bulletArray.length > 20){
@@ -49,7 +33,36 @@ towerStuff.TowerPrototype.prototype.shoot = function tpfn1 (towerSpritel) {
         bullet.body.velocity.y += towerSpritel.weaponAccuracy*(Math.random() - 0.5);
 };
 
-towerStuff.MainTower = new towerStuff.TowerPrototype(game);
+//create sprite
+towerStuff.TowerPrototype.prototype.create = function tpfn2 (game, x, y) {
+    this.towerSprite = game.add.sprite(game.world.width/2, 500, this.image);
+    game.physics.arcade.enable(this.towerSprite);
+    this.towerSprite.anchor.set(0.5);
+    this.towerSprite.inputEnabled = true;
+    
+    towerStuff.allTowerArray.push(this.towerSprite);
+
+    
+    this.addStats();
+    
+    this.towerSprite.timer = game.time.events.loop(this.towerSprite.fireRate, function () {
+        this.towerSprite.shoot(this.towerSprite);
+    }, this);;
+}
+
+//add stats
+towerStuff.TowerPrototype.prototype.addStats = function tpfn3() {
+    this.towerSprite.fireRate = 500;
+    this.towerSprite.bulletSpeed = 1000;
+    this.towerSprite.weaponAccuracy = 500;
+    this.towerSprite.hit = 0;
+    this.towerSprite.bulletArray = [];
+}
+
+towerStuff.createTower = function () {
+    console.log(game)
+    towerStuff.MainTower = new towerStuff.TowerPrototype().create(game, 100, 100);
+}
 
 
 /*
