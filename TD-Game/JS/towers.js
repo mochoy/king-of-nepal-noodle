@@ -94,8 +94,8 @@ towerStuff.TowerPrototype.prototype.findEnemy = function tpfn6 (enemyArray) {
     for (var i = 0; i < enemyArray.length; i ++){
         enemySprite = enemyArray[i];
         if (this.range.contains(enemySprite.x, enemySprite.y)) {
-            console.log(enemyArray.length)
-            this.shoot(this, enemySprite);
+            this.canShoot = true;
+            this.target = enemySprite;
         }
     }
 };

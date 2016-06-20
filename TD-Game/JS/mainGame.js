@@ -154,6 +154,8 @@ var helper = {
 }   // helper
 
 helper.removeFromArray = function (array1, array2, array3, sprite) {
+                    console.log(array1.length)
+
     var newArray1 = [], newArray2 = [], newArray2 = [];
     if (array1 != null){
         for (var i = 0; i < array1.length; i++){
@@ -164,4 +166,6 @@ helper.removeFromArray = function (array1, array2, array3, sprite) {
         array1 = newArray1;
     }   //if array1
     sprite.kill();
+                    console.log(array1.length)
+
 }
