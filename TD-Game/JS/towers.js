@@ -31,6 +31,7 @@ towerStuff.TowerPrototype.prototype.shoot = function tpfn1 (towerSpritel, target
     //bullet shooting stuff
     bullet.rotation = game.physics.arcade.angleBetween(bullet, target);
     game.physics.arcade.moveToObject(bullet, target, towerSpritel.bulletSpeed);
+    //weapon inaccuracy
     bullet.body.velocity.x += towerSpritel.weaponAccuracy*(Math.random() - 0.5);
     bullet.body.velocity.y += towerSpritel.weaponAccuracy*(Math.random() - 0.5);
 };
@@ -99,9 +100,11 @@ towerStuff.TowerPrototype.prototype.findEnemy = function tpfn6 (enemyArray) {
         if (this.range.contains(enemySprite.x, enemySprite.y)) {
             this.canShoot = true;
             this.target = enemySprite;
-        }
-    }
-};
+            this.rotation = game.physics.arcade.angleBetween(this, this.target);
+
+        }   //if
+    }   //for
+};  //function find enemy
 
 towerStuff.createTower = function (towerNum, x, y) {
     if (towerNum == 0){
