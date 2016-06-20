@@ -10,7 +10,7 @@ towerStuff.TowerPrototype = function () {
 };   //class MainTower
 
 //shoot
-towerStuff.TowerPrototype.prototype.shoot = function tpfn1 (towerSpritel) {
+towerStuff.TowerPrototype.prototype.shoot = function tpfn1 (towerSpritel, target) {
             //keep max amount of bullets for tower at 20
         if (towerSpritel.bulletArray.length > 20){
             towerSpritel.bulletArray.shift().kill();
@@ -27,28 +27,31 @@ towerStuff.TowerPrototype.prototype.shoot = function tpfn1 (towerSpritel) {
         towerSpritel.bulletArray.push(bullet);
         
         //bullet shooting stuff
-        bullet.rotation = game.physics.arcade.angleBetween(bullet, towerStuff.moveToPoint);
-        game.physics.arcade.moveToObject(bullet, towerStuff.moveToPoint, towerSpritel.bulletSpeed);
+        bullet.rotation = game.physics.arcade.angleBetween(bullet, target);
+        game.physics.arcade.moveToObject(bullet, target, towerSpritel.bulletSpeed);
         bullet.body.velocity.x += towerSpritel.weaponAccuracy*(Math.random() - 0.5);
         bullet.body.velocity.y += towerSpritel.weaponAccuracy*(Math.random() - 0.5);
 };
 
 //create sprite
-towerStuff.TowerPrototype.prototype.create = function tpfn2 (game, x, y) {
-    this.towerSprite = game.add.sprite(game.world.width/2, 500, this.image);
+towerStuff.TowerPrototype.prototype.create = function tpfn2 (game, x, y) {x
+    this.towerSprite = game.add.sprite(x, y, this.image);
     game.physics.arcade.enable(this.towerSprite);
     this.towerSprite.anchor.set(0.5);
     this.towerSprite.inputEnabled = true;
     
     towerStuff.allTowerArray.push(this.towerSprite);
+    
+    this.towerSprite.bulletArray = [];
+    this.towerSprite.target = towerStuff.moveToPoint;
+    this.towerSprite.shoot = this.shoot;
 
     
     this.addStats();
     
-    this.towerSprite.shoot = this.shoot;
     
     this.towerSprite.timer = game.time.events.loop(this.towerSprite.fireRate, function () {
-        this.towerSprite.shoot(this.towerSprite);
+        this.towerSprite.shoot(this.towerSprite, this.towerSprite.target);
     }, this);;
 }
 
@@ -58,11 +61,14 @@ towerStuff.TowerPrototype.prototype.addStats = function tpfn3() {
     this.towerSprite.bulletSpeed = 1000;
     this.towerSprite.weaponAccuracy = 500;
     this.towerSprite.hit = 0;
-    this.towerSprite.bulletArray = [];
 }
 
-towerStuff.createTower = function () {
-    towerStuff.MainTower = new towerStuff.TowerPrototype().create(game, 100, 100);
+towerStuff.createTower = function (towerNum) {
+    if (towerNum == 0){
+        towerStuff.MainTower = new towerStuff.TowerPrototype().create(game, game.world.width/2, 500);
+    } else {
+
+    }
 }
 
 

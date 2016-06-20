@@ -28,7 +28,7 @@ var mainGameVar = {
         enemyStuff.moveToPoint = game.add.sprite(0, game.height - 10, "bookIMG");
         enemyStuff.moveToPoint.width = game.width;
         
-        towerStuff.createTower();
+        towerStuff.createTower(0);
     },  //function create
     
     update: function (){
@@ -59,14 +59,11 @@ var mainGameVar = {
         //collision for bullets and enemies
         for (var enemy = 0; enemy < enemyStuff.allEnemyArray.length; enemy++) {
             var enemySprite = enemyStuff.allEnemyArray[enemy];
-            
             for (var tower = 0; tower < towerStuff.allTowerArray.length; tower++ ){
                 var towerSprite = towerStuff.allTowerArray[tower];
-                
                 for (var bullet = 0; bullet < towerSprite.bulletArray.length; bullet++) {
                     var bulletSprite = towerSprite.bulletArray[bullet];
                     game.physics.arcade.overlap(bulletSprite, enemySprite, enemySprite.hit, null, this);
-
                 }   //for iterate bulletArray
             }   //for iterate towerStuff.allTowerArray
         }   //for iterate enemyStuff.allEnemyArray
@@ -74,7 +71,7 @@ var mainGameVar = {
 
     }  //function update
     
-}   //object main game var
+}   //object mainGameVar
 
 var helper = {
     pathStuff: {
