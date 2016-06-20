@@ -72,11 +72,11 @@ towerStuff.TowerPrototype.prototype.addToArray = function tpfn4 (doesNeedSearch)
 
 }
 
-towerStuff.createTower = function (towerNum) {
+towerStuff.createTower = function (towerNum, x, y) {
     if (towerNum == 0){
-        towerStuff.MainTower = new towerStuff.TowerPrototype().create(game, game.world.width/2, 500).addToArray(false);
+        towerStuff.MainTower = new towerStuff.TowerPrototype().create(game, x, y).addToArray(false);
     } else {
-        towerStuff.NewTower = new towerStuff.TowerPrototype().create(game, 100, 500).addToArray(true);
+        towerStuff.NewTower = new towerStuff.TowerPrototype().create(game, x, y).addToArray(true);
     }
 }
 
