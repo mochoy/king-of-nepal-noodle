@@ -122,19 +122,20 @@ towerStuff.AutoTower.prototype.addToArray = function () {
     this.towerSprite.canShoot = false;
 }
 
+towerStuff.AutoTower.prototype.addStats = function () {
+    //all default AutoTower stats
+    this.towerSprite.fireRate = 1000;    //lower fireRate = shoot faster
+    this.towerSprite.bulletSpeed = 500;
+    this.towerSprite.weaponAccuracy = 0;    //lower accuracy = more accurate
+    this.towerSprite.hit = 0;
+    this.towerSprite.rangeVal = 500;
+};
+
 //BasicTower subclass of AutoTower
 towerStuff.BasicTower = function () {};
 towerStuff.BasicTower.prototype = new towerStuff.AutoTower();
 
-//BasicTower stats
-towerStuff.BasicTower.prototype.addStats = function () {
-    //all default MainTower stats
-    this.towerSprite.fireRate = 1000;    //lower fireRate = shoot faster
-    this.towerSprite.bulletSpeed = 500;
-    this.towerSprite.weaponAccuracy = 500;
-    this.towerSprite.hit = 0;
-    this.towerSprite.rangeVal = 500;
-};
+
 
 towerStuff.createTower = function (towerNum, x, y) {
     if (towerNum == 0){
