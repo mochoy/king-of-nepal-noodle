@@ -18,10 +18,11 @@ enemyStuff.EnemyPrototype.prototype.create = function (game, x, y) {
     game.physics.arcade.enable(this.enemySprite);
     
     this.enemySprite.target = enemyStuff.moveToPoint;
-    //functions
+    //functions attached to enemySprite
     this.enemySprite.hit = this.hit;    
-    this.enemySprite.homeReached = this.homeReached;
     this.enemySprite.moveToEnd = this.moveToEnd;
+    this.enemySprite.endReached = this.endReached;
+    this.enemySprite.homeReached = this.homeReached;
     
     this.addToArray();
     this.addStats();
@@ -45,7 +46,7 @@ enemyStuff.EnemyPrototype.prototype.moveToTarget = function () {
 enemyStuff.EnemyPrototype.prototype.moveToEnd = function () {
     this.rotation = game.physics.arcade.angleBetween(this, this.target);
     game.physics.arcade.moveToObject(this, this.target, this.bulletSpeed);
-}
+};
 
 //add to specific arrays
 enemyStuff.EnemyPrototype.prototype.addToArray = function () {
@@ -70,7 +71,12 @@ enemyStuff.EnemyPrototype.prototype.hit = function (bulletSpritec, enemySpritec)
 enemyStuff.EnemyPrototype.prototype.homeReached = function (enemySprite, point) {
     enemySprite.target = enemyStuff.moveToPoint2;
     enemySprite.moveToEnd();
-}
+};
+
+//enemy reaches end 
+enemyStuff.EnemyPrototype.prototype.endReached = function (enemySprite, end) {
+    helper.removeFromArray(enemyStuff.allEnemyArray, null, null, enemySprite);
+},
 
 
 enemyStuff.EnemyBasic = function () {};
