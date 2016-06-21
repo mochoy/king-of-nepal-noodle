@@ -29,6 +29,8 @@ var mainGameVar = {
         towerStuff.moveToPoint = game.add.sprite(centerX, centerY, null);
         
         enemyStuff.moveToPoint = game.add.sprite(centerX, game.height - 200, "bookIMG");
+        game.physics.arcade.enable(enemyStuff.moveToPoint);
+
 
         towerStuff.createTower(0, game.world.width/2, 500);
         towerStuff.createTower(1, 100, 100);
@@ -81,7 +83,7 @@ var mainGameVar = {
         //when enemy reaches end
         for (var enemy = 0; enemy < enemyStuff.allEnemyArray.length; enemy++){
             var enemySprite = enemyStuff.allEnemyArray[enemy];
-            game.physics.arcade.overlap(enemySprite, enemyStuff.moveToPoint, enemySprite.homeReached, null, this);
+            game.physics.arcade.overlap(enemySprite, enemySprite.target, enemySprite.homeReached, null, this);
         }   //for 
         
     }  //function update

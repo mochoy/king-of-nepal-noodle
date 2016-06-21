@@ -15,8 +15,11 @@ enemyStuff.EnemyPrototype.prototype.create = function (game, x, y) {
     this.enemySprite = game.add.sprite(x, y, this.imgName);
     this.enemySprite.anchor.set(0.5);
     game.physics.arcade.enable(this.enemySprite);
+    
+    this.enemySprite.target = enemyStuff.moveToPoint;
         
     this.enemySprite.hit = this.hit;    
+    this.enemySprite.homeReached = this.homeReached;
     
     this.addToArray();
     this.addStats();
@@ -31,13 +34,13 @@ enemyStuff.EnemyPrototype.prototype.addStats = function () {
 
 //move to target
 enemyStuff.EnemyPrototype.prototype.moveToTarget = function () {
-    this.enemySprite.rotation = game.physics.arcade.angleBetween(this.enemySprite, enemyStuff.moveToPoint);
-    game.physics.arcade.moveToObject(this.enemySprite, enemyStuff.moveToPoint, this.enemySprite.bulletSpeed);
+    this.enemySprite.rotation = game.physics.arcade.angleBetween(this.enemySprite, this.enemySprite.target);
+    game.physics.arcade.moveToObject(this.enemySprite, this.enemySprite.target, this.enemySprite.bulletSpeed);
 };
 
 //add to specific arrays
 enemyStuff.EnemyPrototype.prototype.addToArray = function () {
-    enemyStuff.allEnemyArray.push(this.enemySprite)
+    enemyStuff.allEnemyArray.push(this.enemySprite);
 };
 
 //enemy hit
@@ -52,6 +55,11 @@ enemyStuff.EnemyPrototype.prototype.hit = function (bulletSpritec, enemySpritec)
         bulletSpritec.towerSprite.hit ++;
         helper.removeFromArray(bulletSpritec.towerSprite.bulletArray, null, null, bulletSpritec);
     }   //else enemySprite health
+}
+
+//enemy reaches home
+enemyStuff.EnemyPrototype.prototype.homeReached = function (enemySprite, point) {
+    console.log("home reached!")
 }
 
 
