@@ -139,13 +139,7 @@ towerStuff.BasicTower.prototype = new towerStuff.AutoTower();
 
 
 
-towerStuff.createTower = function (towerNum, x, y) {
-    if (towerNum == 0){
-        towerStuff.MainTower = new towerStuff.MainTower().create(game, x, y).addToArray();
-    } else {
-        towerStuff.NewTower = new towerStuff.BasicTower().create(game, x, y).addToArray();
-    }
-};
+
 
 towerStuff.TowerSlotPrototype = function () {
     this.img = "pathIMG";
@@ -160,8 +154,13 @@ towerStuff.TowerSlotPrototype.prototype.create = function (game, x, y) {
 };
 
 towerStuff.TowerSlotPrototype.prototype.clicked = function () {
-    towerStuff.createTower(1, 300 ,300);  
+    this.buyTower();
 };
+
+towerStuff.TowerSlotPrototype.prototype.buyTower = function () {
+    console.log("buying tower");
+    towerStuff.createTower(1, 300 ,300);  
+}
 
 towerStuff.AutoTowerSlot = function () {};
 towerStuff.AutoTowerSlot.prototype = new towerStuff.TowerSlotPrototype();
@@ -306,3 +305,12 @@ towerStuff.drawRange = function (towerObject) {
     }
 };
 */
+
+
+towerStuff.createTower = function (towerNum, x, y) {
+    if (towerNum == 0){
+        towerStuff.MainTower = new towerStuff.MainTower().create(game, x, y).addToArray();
+    } else {
+        towerStuff.NewTower = new towerStuff.BasicTower().create(game, x, y).addToArray();
+    }
+};
