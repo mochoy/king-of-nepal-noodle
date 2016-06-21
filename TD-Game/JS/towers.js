@@ -4,6 +4,8 @@ towerStuff.allTowerArray = new Array();
 towerStuff.towerNeedSearchArray = new Array();
 towerStuff.towerFollowMouseArray = new Array();
 
+towerStuff.towerSlotArray = new Array();
+
 towerStuff.moveToPoint;
 
 towerStuff.TowerPrototype = function () {
@@ -143,7 +145,17 @@ towerStuff.createTower = function (towerNum, x, y) {
     } else {
         towerStuff.NewTower = new towerStuff.BasicTower().create(game, x, y).addToArray();
     }
-}
+};
+
+towerStuff.TowerSlotPrototype = function () {
+    this.img = "pathIMG";
+    this.sprite = null;
+};
+
+towerStuff.TowerSlotPrototype.prototype.create = function (game, x, y) {
+    this.sprite = game.add.sprite(x, y, this.img);
+    this.sprite.inputEnabled = true;
+};
 
 
 /*
