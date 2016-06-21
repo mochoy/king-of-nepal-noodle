@@ -163,6 +163,8 @@ towerStuff.TowerSlotPrototype.prototype.clicked = function () {
     towerStuff.createTower(1, 300 ,300);  
 };
 
+towerStuff.AutoTowerSlot = function () {};
+towerStuff.AutoTowerSlot.prototype = new towerStuff.TowerSlotPrototype();
 
 /*
 =======
