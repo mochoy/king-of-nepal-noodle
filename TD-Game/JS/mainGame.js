@@ -51,7 +51,6 @@ var mainGameVar = {
         game.input.onDown.add(function () {
             towerStuff.moveToPoint.x = game.input.x;
             towerStuff.moveToPoint.y = game.input.y;
-
             for (var i = 0; i < towerStuff.towerFollowMouseArray.length; i ++) {
                 var towerSprite = towerStuff.towerFollowMouseArray[i];
                 towerSprite.rotation = (game.physics.arcade.angleToPointer(towerSprite));

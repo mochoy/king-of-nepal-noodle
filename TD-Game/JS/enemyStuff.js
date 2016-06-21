@@ -4,6 +4,34 @@ enemyStuff.allEnemyArray = new Array();
 
 enemyStuff.moveToPoint;
 
+enemyStuff.EnemyPrototype = function () {};
+
+//create sprite
+enemyStuff.EnemyPrototype.prototype.create = function (game, x, y) {
+    
+    this.addStats();
+    this.moveToTarget();
+}
+
+//add stats
+enemyStuff.EnemyPrototype.prototype.addStats = function () {
+    
+}
+
+//move to target
+enemyStuff.EnemyPrototype.prototype.moveToTarget = function () {
+    
+}
+
+//add to specific arrays
+enemyStuff.EnemyPrototype.prototype.addToArray = function () {
+    
+}
+
+//enemy hit
+enemyStuff.EnemyPrototype.prototype.hit = function () {
+    
+}
 
 enemyStuff.EnemyBasic = function () {
     this.imgName = "bookIMG";
@@ -14,7 +42,7 @@ enemyStuff.EnemyBasic = function () {
         this.enemySprite.anchor.set(0.5);
         game.physics.arcade.enable(this.enemySprite);
         
-        enemyStuff.allEnemyArray.push(this.enemySprite);
+        enemyStuff.allEnemyArray.push(this.enemySprite)
         
         this.enemySprite.health = 5;
         this.enemySprite.moveSpeed = 200;
@@ -44,21 +72,7 @@ enemyStuff.EnemyBasic = function () {
 
 }   // class EnemyBasic
 
-/*
-var EnemySpecial = function () {
-    this.constructor = EnemyBasic;
-    this.constructor();
-    
-    this.moveSpeed = 250;
-    this.imgName = "dudeIMG";
-    this.parentArray = enemyStuff.enemySpecialArray;
-    this.id = 2;
 
-    this.addToSpecificArray= function(){  //override
-        enemyStuff.enemySpecialArray.push(this);  //specific    
-    }
-}
-*/
 
 enemyStuff.spawnEnemy = function () {
     /*
@@ -76,6 +90,23 @@ enemyStuff.spawnEnemy = function () {
         new enemyStuff.EnemyBasic().create(((game.width/3)*2), 10);
     }
 }
+
+
+/*
+var EnemySpecial = function () {
+    this.constructor = EnemyBasic;
+    this.constructor();
+    
+    this.moveSpeed = 250;
+    this.imgName = "dudeIMG";
+    this.parentArray = enemyStuff.enemySpecialArray;
+    this.id = 2;
+
+    this.addToSpecificArray= function(){  //override
+        enemyStuff.enemySpecialArray.push(this);  //specific    
+    }
+}
+*/
 
 /*
 function moveEnemyAlongPath (enemy, nextPoint){

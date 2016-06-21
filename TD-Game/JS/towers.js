@@ -149,8 +149,6 @@ towerStuff.createTower = function (towerNum, x, y) {
 =======
 towerStuff.tower1Array = new Array();
 //ghetto change
-
-
 //tower 1 class
 towerStuff.Tower1 = function () {
     this.range = 0.8;
@@ -190,9 +188,7 @@ towerStuff.Tower1 = function () {
         $t.showingRange != $t.showingRange;
         $t.drawRange();
     }
-
 }
-
 //buy the tower
 towerStuff.buyTower = function (towerToBuy, towerSlot) {
     //get coords for where to spawn tower
@@ -207,7 +203,6 @@ towerStuff.buyTower = function (towerToBuy, towerSlot) {
     //remove tower slot
     towerSlot.kill();
 }
-
 //place tower on location of tower slot
 towerStuff.placeTower = function (tower, x, y) {
     //create new instance of tower class
@@ -225,7 +220,6 @@ towerStuff.placeTower = function (tower, x, y) {
     tower.sprite.inputEnabled = true
     tower.sprite.events.onInputDown.add(tower.clicked, this);
 }
-
 //get coordinates of tower sprite
 towerStuff.getCoords = function (towerObject, xOrY) {
     if (xOrY == 1){
@@ -234,11 +228,9 @@ towerStuff.getCoords = function (towerObject, xOrY) {
         return towerObject.sprite.body.y;
     }
 }
-
 //create the circle used to see if enemy is in range of tower
 towerStuff.createRange = function (towerObject) {
     var sprite = towerObject.sprite;
-
     //get range to draw circle
     var d = towerObject.range;
     
@@ -246,56 +238,42 @@ towerStuff.createRange = function (towerObject) {
     
     towerStuff.drawRange(towerObject);
 }
-
 //draw circles to represent ranges of tower
 towerStuff.drawRange = function (towerObject) {
     if (towerObject.showingRange == false) {
         towerObject.showingRange = true;
         
         console.log("show ranges")
-
         var sprite = towerObject.sprite;
-
         var x = towerStuff.getCoords(towerObject, 1);
         var y = towerStuff.getCoords(towerObject, 2);
-
         //get range to draw circle
         var d = towerObject.range;
-
         //draw inner circle
         towerObject.outerRange = sprite.addChild(game.make.sprite(x, y, towerObject.rangeExteriorIMG));
         outerRange = towerObject.outerRange;
         outerRange.alpha = 0.5;
         game.physics.arcade.enable(outerRange);
-
         //draw outer circle
         towerObject.innerRange = sprite.addChild(game.make.sprite(x, y, towerObject.rangeInterior2IMG));
         innerRange = towerObject.innerRange;
         innerRange.alpha = 0.5
         game.physics.arcade.enable(innerRange);
-
         //scale circles to match ranges
         outerRange.scale.x = towerObject.range;
         outerRange.scale.y = towerObject.range;
-
         innerRange.scale.x = towerObject.range;
         innerRange.scale.y = towerObject.range;
-
         //ger width and height of the circle
         var outerRangeWidth = outerRange.width;
         var outerRangeHight = outerRange.height;
-
         var innerRangeWidth = innerRange.width;
         var innerRangeHight = innerRange.height;
-
         //change position so the middle is on the sprite
         outerRange.position.x = ((x - outerRangeWidth/2) + (sprite.width/2));
         outerRange.position.y = (y - outerRangeHight/2);
-
         innerRange.position.x = ((x - innerRangeWidth/2) + (sprite.width/2));
         innerRange.position.y = (y - innerRangeHight/2);
-
-
         //bring sprite to top so it will appear above the ranges
         game.world.bringToTop(sprite);
     } else if (towerObject.showingRange == true){
@@ -307,4 +285,3 @@ towerStuff.drawRange = function (towerObject) {
     }
 };
 */
-
