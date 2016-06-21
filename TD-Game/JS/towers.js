@@ -12,7 +12,7 @@ towerStuff.TowerPrototype = function () {
 };   //class MainTower
 
 //shoot
-towerStuff.TowerPrototype.prototype.shoot = function tpfn1 (towerSpritel, target) {
+towerStuff.TowerPrototype.prototype.shoot = function (towerSpritel, target) {
     //keep max amount of bullets for tower at 20
     if (towerSpritel.bulletArray.length > 20){
         towerSpritel.bulletArray.shift().kill();
@@ -37,7 +37,7 @@ towerStuff.TowerPrototype.prototype.shoot = function tpfn1 (towerSpritel, target
 };
 
 //create sprite
-towerStuff.TowerPrototype.prototype.create = function tpfn2 (game, x, y) {
+towerStuff.TowerPrototype.prototype.create = function (game, x, y) {
     this.towerSprite = game.add.sprite(x, y, this.image);
     game.physics.arcade.enable(this.towerSprite);
     this.towerSprite.anchor.set(0.5);
@@ -64,23 +64,22 @@ towerStuff.TowerPrototype.prototype.create = function tpfn2 (game, x, y) {
 };
 
 //add stats
-towerStuff.TowerPrototype.prototype.addStats = function tpfn3 () {
+towerStuff.TowerPrototype.prototype.addStats = function () {
     //all default MainTower stats
     this.towerSprite.fireRate = 500;    //lower fireRate = shoot faster
     this.towerSprite.bulletSpeed = 1000;
     this.towerSprite.weaponAccuracy = 500;
     this.towerSprite.hit = 0;
-    this.towerSprite.rangeVal = 500;
 };
 
 //add tower to different arrays
-towerStuff.TowerPrototype.prototype.addToArray = function tpfn4 (doesNeedSearch) {
+towerStuff.TowerPrototype.prototype.addToArray = function (doesNeedSearch) {
     towerStuff.allTowerArray.push(this.towerSprite);
     towerStuff.towerFollowMouseArray.push(this.towerSprite);
 };
 
 //create range
-towerStuff.TowerPrototype.prototype.createRange = function tpfn5 () {
+towerStuff.TowerPrototype.prototype.createRange = function () {
     if (this.towerSprite.range != 0) {
         towerSprite = this.towerSprite;
         towerSprite.range = new Phaser.Circle(towerSprite.x+(towerSprite.width/2), towerSprite.y+(towerSprite.height/2), towerSprite.rangeVal)
@@ -89,7 +88,7 @@ towerStuff.TowerPrototype.prototype.createRange = function tpfn5 () {
 
 //find enemy
 //this == sprite, not the class
-towerStuff.TowerPrototype.prototype.findEnemy = function tpfn6 (enemyArray) {
+towerStuff.TowerPrototype.prototype.findEnemy = function (enemyArray) {
     for (var i = 0; i < enemyArray.length; i ++){
         enemySprite = enemyArray[i];
         if (this.range.contains(enemySprite.x, enemySprite.y)) {
@@ -118,6 +117,7 @@ towerStuff.AutoTower = function () {};
 towerStuff.AutoTower.prototype = new towerStuff.TowerPrototype();
 
 towerStuff.AutoTower.prototype.addToArray = function () {
+    towerStuff.allTowerArray.push(this.towerSprite);
     towerStuff.towerNeedSearchArray.push(this.towerSprite);
     this.towerSprite.canShoot = false;
 }
@@ -126,6 +126,15 @@ towerStuff.AutoTower.prototype.addToArray = function () {
 towerStuff.BasicTower = function () {};
 towerStuff.BasicTower.prototype = new towerStuff.AutoTower();
 
+//BasicTower stats
+towerStuff.BasicTower.prototype.addStats = function () {
+    //all default MainTower stats
+    this.towerSprite.fireRate = 1000;    //lower fireRate = shoot faster
+    this.towerSprite.bulletSpeed = 500;
+    this.towerSprite.weaponAccuracy = 500;
+    this.towerSprite.hit = 0;
+    this.towerSprite.rangeVal = 500;
+};
 
 towerStuff.createTower = function (towerNum, x, y) {
     if (towerNum == 0){
