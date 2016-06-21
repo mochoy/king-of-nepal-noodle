@@ -1,7 +1,8 @@
-//mainGame.js 1-24-2016 broken code for now
 var gameManagerStuff = {};
+var centerX , centerY;
 
 var mainGameVar = {
+    
     preload: function (){
         game.load.image ("bookIMG", "Assets/Images/Test/book.jpg");                 //test asset
         game.load.image ("pathIMG", "Assets/Images/Test/greyBlock.jpg");            //test asset
@@ -21,9 +22,11 @@ var mainGameVar = {
 
         // helper.createPath("pathIMG");
         
+        centerX = game.width/2; centerY = game.height/2;
+        
         var enemySpawnTimer = game.time.events.loop(Phaser.Timer.SECOND, enemyStuff.spawnEnemy, this);
         
-        towerStuff.moveToPoint = game.add.sprite(0, 0, null);
+        towerStuff.moveToPoint = game.add.sprite(centerX, centerY, null);
         
         enemyStuff.moveToPoint = game.add.sprite(0, game.height - 10, "bookIMG");
         enemyStuff.moveToPoint.width = game.width;
