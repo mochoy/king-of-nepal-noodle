@@ -30,6 +30,9 @@ var mainGameVar = {
         
         enemyStuff.moveToPoint = game.add.sprite(centerX, game.height - 200, "bookIMG");
         game.physics.arcade.enable(enemyStuff.moveToPoint);
+        
+        enemyStuff.moveToPoint2 = game.add.sprite(centerX, 0, "bookIMG");
+        game.physics.arcade.enable(enemyStuff.moveToPoint2);
 
 
         towerStuff.createTower(0, game.world.width/2, 500);

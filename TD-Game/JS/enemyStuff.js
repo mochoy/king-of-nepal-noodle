@@ -3,6 +3,7 @@ var enemyStuff = {};
 enemyStuff.allEnemyArray = new Array();
 
 enemyStuff.moveToPoint;
+enemyStuff.moveToPoint2;
 
 enemyStuff.EnemyPrototype = function () {
     this.imgName = "bookIMG";
