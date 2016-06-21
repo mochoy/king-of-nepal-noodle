@@ -160,7 +160,7 @@ towerStuff.TowerSlotPrototype.prototype.create = function (game, x, y) {
 };
 
 towerStuff.TowerSlotPrototype.prototype.clicked = function () {
-    console.log("clicked")  
+    towerStuff.createTower(1, 300 ,300);  
 };
 
 
