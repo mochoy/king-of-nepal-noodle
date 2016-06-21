@@ -65,6 +65,7 @@ towerStuff.TowerPrototype.prototype.create = function tpfn2 (game, x, y) {
 
 //add stats
 towerStuff.TowerPrototype.prototype.addStats = function tpfn3 () {
+    //all default MainTower stats
     this.towerSprite.fireRate = 500;    //lower fireRate = shoot faster
     this.towerSprite.bulletSpeed = 1000;
     this.towerSprite.weaponAccuracy = 500;
@@ -75,13 +76,7 @@ towerStuff.TowerPrototype.prototype.addStats = function tpfn3 () {
 //add tower to different arrays
 towerStuff.TowerPrototype.prototype.addToArray = function tpfn4 (doesNeedSearch) {
     towerStuff.allTowerArray.push(this.towerSprite);
-    if (doesNeedSearch == true){
-        towerStuff.towerNeedSearchArray.push(this.towerSprite);
-        this.towerSprite.canShoot = false;
-    } else {
-        towerStuff.towerFollowMouseArray.push(this.towerSprite);
-    }
-
+    towerStuff.towerFollowMouseArray.push(this.towerSprite);
 };
 
 //create range
@@ -106,14 +101,37 @@ towerStuff.TowerPrototype.prototype.findEnemy = function tpfn6 (enemyArray) {
     }   //for
 };  //function find enemy
 
-towerStuff.MainTower = function () {}
-towerStuff.MainTower.prototype = new towerStuff.TowerPrototype();
+
+//ManualTower subclass of TowerPrototype
+//Manualtowers aim on click
+towerStuff.ManualTower = function () {};
+towerStuff.ManualTower.prototype = new towerStuff.TowerPrototype();
+
+//MainTower subclass of ManualTower
+towerStuff.MainTower = function () {};
+towerStuff.MainTower.prototype = new towerStuff.ManualTower();
+
+
+//AutoTower subclass of TowerPrototype
+//Autotowers aim automatically
+towerStuff.AutoTower = function () {};
+towerStuff.AutoTower.prototype = new towerStuff.TowerPrototype();
+
+towerStuff.AutoTower.prototype.addToArray = function () {
+    towerStuff.towerNeedSearchArray.push(this.towerSprite);
+    this.towerSprite.canShoot = false;
+}
+
+//BasicTower subclass of AutoTower
+towerStuff.BasicTower = function () {};
+towerStuff.BasicTower.prototype = new towerStuff.AutoTower();
+
 
 towerStuff.createTower = function (towerNum, x, y) {
     if (towerNum == 0){
-        towerStuff.MainTower = new towerStuff.MainTower().create(game, x, y).addToArray(false);
+        towerStuff.MainTower = new towerStuff.MainTower().create(game, x, y).addToArray();
     } else {
-        towerStuff.NewTower = new towerStuff.TowerPrototype().create(game, x, y).addToArray(true);
+        towerStuff.NewTower = new towerStuff.BasicTower().create(game, x, y).addToArray();
     }
 }
 
