@@ -78,6 +78,12 @@ var mainGameVar = {
             towerStuff.towerNeedSearchArray[tower].findEnemy(enemyStuff.allEnemyArray);
         }   //for tower find enemy
         
+        //when enemy reaches end
+        for (var enemy = 0; enemy < enemyStuff.allEnemyArray.length; enemy++){
+            var enemySprite = enemyStuff.allEnemyArray[enemy];
+            game.physics.arcade.overlap(enemySprite, enemyStuff.moveToPoint, enemySprite.homeReached, null, this);
+        }   //for 
+        
     }  //function update
     
 }   //object mainGameVar
