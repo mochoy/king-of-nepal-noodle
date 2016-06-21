@@ -65,7 +65,7 @@ towerStuff.TowerPrototype.prototype.create = function tpfn2 (game, x, y) {
 
 //add stats
 towerStuff.TowerPrototype.prototype.addStats = function tpfn3 () {
-    this.towerSprite.fireRate = 500;
+    this.towerSprite.fireRate = 500;    //lower fireRate = shoot faster
     this.towerSprite.bulletSpeed = 1000;
     this.towerSprite.weaponAccuracy = 500;
     this.towerSprite.hit = 0;
@@ -106,9 +106,12 @@ towerStuff.TowerPrototype.prototype.findEnemy = function tpfn6 (enemyArray) {
     }   //for
 };  //function find enemy
 
+towerStuff.MainTower = function () {}
+towerStuff.MainTower.prototype = new towerStuff.TowerPrototype();
+
 towerStuff.createTower = function (towerNum, x, y) {
     if (towerNum == 0){
-        towerStuff.MainTower = new towerStuff.TowerPrototype().create(game, x, y).addToArray(false);
+        towerStuff.MainTower = new towerStuff.MainTower().create(game, x, y).addToArray(false);
     } else {
         towerStuff.NewTower = new towerStuff.TowerPrototype().create(game, x, y).addToArray(true);
     }
