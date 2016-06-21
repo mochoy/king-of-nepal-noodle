@@ -60,8 +60,10 @@ var mainGameVar = {
         //collision for bullets and enemies
         for (var enemy = 0; enemy < enemyStuff.allEnemyArray.length; enemy++) {
             var enemySprite = enemyStuff.allEnemyArray[enemy];
+            //loop through all towers
             for (var tower = 0; tower < towerStuff.allTowerArray.length; tower++ ){
                 var towerSprite = towerStuff.allTowerArray[tower];
+                //loop through bullets
                 for (var bullet = 0; bullet < towerSprite.bulletArray.length; bullet++) {
                     var bulletSprite = towerSprite.bulletArray[bullet];
                     game.physics.arcade.overlap(bulletSprite, enemySprite, enemySprite.hit, null, this);

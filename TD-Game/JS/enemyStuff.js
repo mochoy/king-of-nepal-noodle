@@ -16,6 +16,8 @@ enemyStuff.EnemyPrototype.prototype.create = function (game, x, y) {
     this.enemySprite.anchor.set(0.5);
     game.physics.arcade.enable(this.enemySprite);
         
+    this.enemySprite.hit = this.hit;    
+    
     this.addToArray();
     this.addStats();
     this.moveToTarget();
