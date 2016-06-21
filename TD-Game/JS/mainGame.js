@@ -28,7 +28,7 @@ var mainGameVar = {
         
         towerStuff.moveToPoint = game.add.sprite(centerX, centerY, null);
         
-        enemyStuff.moveToPoint = game.add.sprite(centerX, game.height - 10, "bookIMG");
+        enemyStuff.moveToPoint = game.add.sprite(centerX, game.height - 200, "bookIMG");
 
         towerStuff.createTower(0, game.world.width/2, 500);
         towerStuff.createTower(1, 100, 100);
