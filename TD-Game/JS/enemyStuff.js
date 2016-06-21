@@ -4,74 +4,57 @@ enemyStuff.allEnemyArray = new Array();
 
 enemyStuff.moveToPoint;
 
-enemyStuff.EnemyPrototype = function () {};
+enemyStuff.EnemyPrototype = function () {
+    this.imgName = "bookIMG";
+    this.enemySprite = null;
+};
 
 //create sprite
 enemyStuff.EnemyPrototype.prototype.create = function (game, x, y) {
-    
+    //create sprite
+    this.enemySprite = game.add.sprite(x, y, this.imgName);
+    this.enemySprite.anchor.set(0.5);
+    game.physics.arcade.enable(this.enemySprite);
+        
+    this.addToArray();
     this.addStats();
     this.moveToTarget();
 }
 
 //add stats
 enemyStuff.EnemyPrototype.prototype.addStats = function () {
-    
-}
+    this.enemySprite.health = 5;
+    this.enemySprite.moveSpeed = 200;
+};
 
 //move to target
 enemyStuff.EnemyPrototype.prototype.moveToTarget = function () {
-    
-}
+    this.enemySprite.rotation = game.physics.arcade.angleBetween(this.enemySprite, enemyStuff.moveToPoint);
+    game.physics.arcade.moveToObject(this.enemySprite, enemyStuff.moveToPoint, this.enemySprite.bulletSpeed);
+};
 
 //add to specific arrays
 enemyStuff.EnemyPrototype.prototype.addToArray = function () {
-    
-}
+    enemyStuff.allEnemyArray.push(this.enemySprite)
+};
 
 //enemy hit
-enemyStuff.EnemyPrototype.prototype.hit = function () {
-    
+enemyStuff.EnemyPrototype.prototype.hit = function (bulletSpritec, enemySpritec) {
+    //decrease enemy health, kill and remove bullet, add to tower's hit score
+    if (enemySpritec.health == 0) {
+        //kill sprite stuff
+        helper.removeFromArray(enemyStuff.allEnemyArray, null, null, enemySpritec);
+    } else {
+        enemySpritec.health --;
+        
+        bulletSpritec.towerSprite.hit ++;
+        helper.removeFromArray(bulletSpritec.towerSprite.bulletArray, null, null, bulletSpritec);
+    }   //else enemySprite health
 }
 
-enemyStuff.EnemyBasic = function () {
-    this.imgName = "bookIMG";
 
-    //when class instantiated:
-    this.create = function (x, y) {
-        this.enemySprite = game.add.sprite(x, y, this.imgName);
-        this.enemySprite.anchor.set(0.5);
-        game.physics.arcade.enable(this.enemySprite);
-        
-        enemyStuff.allEnemyArray.push(this.enemySprite)
-        
-        this.enemySprite.health = 5;
-        this.enemySprite.moveSpeed = 200;
-        
-        this.enemySprite.rotation = game.physics.arcade.angleBetween(this.enemySprite, enemyStuff.moveToPoint);
-        game.physics.arcade.moveToObject(this.enemySprite, enemyStuff.moveToPoint, this.enemySprite.bulletSpeed);
-        
-        // when enemySprite hit
-        this.enemySprite.hit = function (bulletSpritec, enemySpritec) {
-            //decrease enemy health, kill and remove bullet, add to tower's hit score
-            if (enemySpritec.health == 0) {
-                //kill sprite stuff
-                helper.removeFromArray(enemyStuff.allEnemyArray, null, null, enemySpritec);
-            } else {
-                enemySpritec.health --;
-                
-                bulletSpritec.towerSprite.hit ++;
-                helper.removeFromArray(bulletSpritec.towerSprite.bulletArray, null, null, bulletSpritec);
-            }   //else enemySprite health
-        }   //function enemy hit
-        
-    }   //function create
-        
-    this.addToSpecificArray= function(){
-        enemyStuff.enemyBasicArray.push(this);  //specific    
-    }   //function addToSpecificArray
-
-}   // class EnemyBasic
-
+enemyStuff.EnemyBasic = function () {};
+enemyStuff.EnemyBasic.prototype = new enemyStuff.EnemyPrototype();
 
 
 enemyStuff.spawnEnemy = function () {
@@ -85,9 +68,9 @@ enemyStuff.spawnEnemy = function () {
     */
     var num = Math.random();
     if (num < 0.5) {
-        new enemyStuff.EnemyBasic().create((game.width/3), 10);
+        new enemyStuff.EnemyBasic().create(game, (game.width/3), 10);
     } else {
-        new enemyStuff.EnemyBasic().create(((game.width/3)*2), 10);
+        new enemyStuff.EnemyBasic().create(game, ((game.width/3)*2), 10);
     }
 }
 
