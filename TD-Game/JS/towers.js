@@ -52,9 +52,13 @@ towerStuff.TowerPrototype.prototype.create = function (game, x, y) {
     //towerSprite's functions
     this.towerSprite.shoot = this.shoot;    
     this.towerSprite.findEnemy = this.findEnemy;
+    this.towerSprite.clicked = this.clicked;
     
     this.addStats();
     this.createRange();
+    
+    this.towerSprite.events.onInputDown.add(this.towerSprite.clicked, this);
+
     
     this.towerSprite.timer = game.time.events.loop(this.towerSprite.fireRate, function () {
         if (this.towerSprite.canShoot == true){
@@ -104,7 +108,7 @@ towerStuff.TowerPrototype.prototype.findEnemy = function (enemyArray) {
 
 //tower Clicked
 towerStuff.TowerPrototype.prototype.clicked = function () {
-    console.log("towerClicked!");
+    console.log("tower clicked!");
 }
 
 
