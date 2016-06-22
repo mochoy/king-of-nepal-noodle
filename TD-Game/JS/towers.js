@@ -86,38 +86,27 @@ towerStuff.TowerPrototype = function () {
     
 };   //class MainTower
 
-//create range
-towerStuff.TowerPrototype.prototype.createRange = function () {
-    if (this.towerSprite.range != 0) {
-        towerSprite = this.towerSprite;
-        towerSprite.range = new Phaser.Circle(towerSprite.x+(towerSprite.width/2), towerSprite.y+(towerSprite.height/2), towerSprite.rangeVal)
-    }
-};
-
-//find enemy
-//this == sprite, not the class
-towerStuff.TowerPrototype.prototype.findEnemy = function (enemyArray) {
-    for (var i = 0; i < enemyArray.length; i ++){
-        enemySprite = enemyArray[i];
-        if (this.range.contains(enemySprite.x, enemySprite.y)) {
-            this.canShoot = true;
-            this.target = enemySprite;
-            this.rotation = game.physics.arcade.angleBetween(this, this.target);
-
-        }   //if
-    }   //for
-};  //function find enemy
-
-
-
 //ManualTower subclass of TowerPrototype
 //Manualtowers aim on click
-towerStuff.ManualTower = function () {};
-towerStuff.ManualTower.prototype = new towerStuff.TowerPrototype();
+towerStuff.ManualTower = function () {
+    //inherit from parent class
+    this.inherit = function (t, c) {
+        t.c = c;
+        t.c();
+    }    
+    this.inherit(this, towerStuff.TowerPrototype);
+};
 
 //MainTower subclass of ManualTower
-towerStuff.MainTower = function () {};
-towerStuff.MainTower.prototype = new towerStuff.ManualTower();
+towerStuff.MainTower = function () {
+    //inherit from ManualTower
+    this.inherit = function (t, c) {
+        t.c = c;
+        t.c();
+    }    
+    this.inherit(this, towerStuff.TowerPrototype);
+};
+
 
 
 //AutoTower subclass of TowerPrototype
