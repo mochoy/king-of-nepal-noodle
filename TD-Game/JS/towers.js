@@ -156,17 +156,23 @@ towerStuff.TowerSlotPrototype.prototype.create = function (game, x, y) {
     this.sprite = game.add.sprite(x, y, this.img);
     this.sprite.inputEnabled = true;
     
-    this.sprite.events.onInputDown.add(this.clicked, this);
+    this.sprite.hasTower = false;
+    
+    //functions
+    this.sprite.clicked = this.clicked;
+    this.sprite.buyTower = this.buyTower;
+    
+    this.sprite.events.onInputDown.add(this.sprite.clicked, this);
 };
 
 towerStuff.TowerSlotPrototype.prototype.clicked = function () {
-    this.buyTower();
+    this.sprite.buyTower();
 };
 
 towerStuff.TowerSlotPrototype.prototype.buyTower = function () {
-    console.log("buying tower");
-    towerStuff.createTower(1, this.sprite.x ,this.sprite.y);  
-    this.sprite.inputEnabled = false;
+    this.hasTower = true;
+    towerStuff.createTower(1, this.x ,this.y);
+    this.inputEnabled = false;
 }
 
 towerStuff.AutoTowerSlot = function () {};
