@@ -102,6 +102,11 @@ towerStuff.TowerPrototype.prototype.findEnemy = function (enemyArray) {
     }   //for
 };  //function find enemy
 
+//tower Clicked
+towerStuff.TowerPrototype.prototype.clicked = function () {
+    console.log("towerClicked!");
+}
+
 
 //ManualTower subclass of TowerPrototype
 //Manualtowers aim on click
