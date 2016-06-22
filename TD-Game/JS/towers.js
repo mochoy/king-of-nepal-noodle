@@ -46,7 +46,7 @@ towerStuff.TowerPrototype = function () {
         }, this);
         
         return this;
-    }   //function create
+    };   //function create
     
     //shoot
     this.shoot = function (towerSpritel, target) {
@@ -72,18 +72,19 @@ towerStuff.TowerPrototype = function () {
         //weapon inaccuracy
         bullet.body.velocity.x += towerSpritel.weaponAccuracy*(Math.random() - 0.5);
         bullet.body.velocity.y += towerSpritel.weaponAccuracy*(Math.random() - 0.5);
-    }   //function shoot
+    };   //function shoot
     
+    //add tower to specific arrays 
+    this.addToArray = function () {
+        towerStuff.allTowerArray.push(this.towerSprite);
+        towerStuff.towerFollowMouseArray.push(this.towerSprite);
+    };   //function 
+    
+    this.clicked = function () {
+        console.log("tower clicked!");
+    };
     
 };   //class MainTower
-
-
-
-//add tower to different arrays
-towerStuff.TowerPrototype.prototype.addToArray = function (doesNeedSearch) {
-    towerStuff.allTowerArray.push(this.towerSprite);
-    towerStuff.towerFollowMouseArray.push(this.towerSprite);
-};
 
 //create range
 towerStuff.TowerPrototype.prototype.createRange = function () {
