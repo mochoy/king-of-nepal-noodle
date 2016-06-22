@@ -11,6 +11,37 @@ towerStuff.moveToPoint;
 towerStuff.TowerPrototype = function () {
     this.image = 'tower1IMG';
     this.towerSprite = null;
+    
+    //create sprite
+    this.create = function (game, x, y) {
+        this.towerSprite = game.add.sprite(x, y, this.image);
+        game.physics.arcade.enable(this.towerSprite);
+        this.towerSprite.anchor.set(0.5);
+        this.towerSprite.inputEnabled = true;
+        
+        this.towerSprite.bulletArray = [];
+        this.towerSprite.target = towerStuff.moveToPoint;
+        this.towerSprite.canShoot = true;
+        
+        //towerSprite's functions
+        this.towerSprite.shoot = this.shoot;    
+        this.towerSprite.findEnemy = this.findEnemy;
+        this.towerSprite.clicked = this.clicked;
+        
+        this.addStats();
+        this.createRange();
+        
+        this.towerSprite.events.onInputDown.add(this.towerSprite.clicked, this);
+    
+        
+        this.towerSprite.timer = game.time.events.loop(this.towerSprite.fireRate, function () {
+            if (this.towerSprite.canShoot == true){
+                this.towerSprite.shoot(this.towerSprite, this.towerSprite.target);
+            }
+        }, this);
+        
+        return this;
+    } 
 };   //class MainTower
 
 //shoot
@@ -38,36 +69,6 @@ towerStuff.TowerPrototype.prototype.shoot = function (towerSpritel, target) {
     bullet.body.velocity.y += towerSpritel.weaponAccuracy*(Math.random() - 0.5);
 };
 
-//create sprite
-towerStuff.TowerPrototype.prototype.create = function (game, x, y) {
-    this.towerSprite = game.add.sprite(x, y, this.image);
-    game.physics.arcade.enable(this.towerSprite);
-    this.towerSprite.anchor.set(0.5);
-    this.towerSprite.inputEnabled = true;
-    
-    this.towerSprite.bulletArray = [];
-    this.towerSprite.target = towerStuff.moveToPoint;
-    this.towerSprite.canShoot = true;
-    
-    //towerSprite's functions
-    this.towerSprite.shoot = this.shoot;    
-    this.towerSprite.findEnemy = this.findEnemy;
-    this.towerSprite.clicked = this.clicked;
-    
-    this.addStats();
-    this.createRange();
-    
-    this.towerSprite.events.onInputDown.add(this.towerSprite.clicked, this);
-
-    
-    this.towerSprite.timer = game.time.events.loop(this.towerSprite.fireRate, function () {
-        if (this.towerSprite.canShoot == true){
-            this.towerSprite.shoot(this.towerSprite, this.towerSprite.target);
-        }
-    }, this);
-    
-    return this;
-};
 
 //add stats
 towerStuff.TowerPrototype.prototype.addStats = function () {
