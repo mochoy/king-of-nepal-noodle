@@ -150,7 +150,7 @@ towerStuff.TowerSlotPrototype.prototype.create = function (game, x, y) {
     this.sprite = game.add.sprite(x, y, this.img);
     this.sprite.inputEnabled = true;
     
-    this.sprite.events.onInputDown.add(this.clicked ,this);
+    this.sprite.events.onInputDown.add(this.clicked, this);
 };
 
 towerStuff.TowerSlotPrototype.prototype.clicked = function () {
