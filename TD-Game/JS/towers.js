@@ -8,6 +8,7 @@ towerStuff.towerSlotArray = new Array();
 
 towerStuff.moveToPoint;
 
+//tower superclass thingy
 towerStuff.TowerPrototype = function () {
     this.image = 'tower1IMG';
     this.towerSprite = null;
@@ -28,14 +29,13 @@ towerStuff.TowerPrototype = function () {
         this.towerSprite.findEnemy = this.findEnemy;
         this.towerSprite.clicked = this.clicked;
         
-        this.createRange();
-        
         //stats stuff
         //all default MainTower stats
         this.towerSprite.fireRate = 500;    //lower fireRate = shoot faster
         this.towerSprite.bulletSpeed = 1000;
         this.towerSprite.weaponAccuracy = 500;
         this.towerSprite.hit = 0;
+        this.range = 0;
         
         this.towerSprite.events.onInputDown.add(this.towerSprite.clicked, this);
     
@@ -45,8 +45,26 @@ towerStuff.TowerPrototype = function () {
             }
         }, this);
         
+        //call functions
+        this.addToArray();
+        this.createRange(this.towerSprite);
+        
         return this;
     };   //function create
+    
+    //add tower to specific arrays 
+    this.addToArray = function () {
+        towerStuff.allTowerArray.push(this.towerSprite);
+        towerStuff.towerFollowMouseArray.push(this.towerSprite);
+    };   //function 
+    
+    //create tower's range
+    this.createRange = function (towerSprite) {
+        if (this.towerSprite.range != 0) {
+            towerSprite = this.towerSprite;
+            towerSprite.range = new Phaser.Circle(towerSprite.x+(towerSprite.width/2), towerSprite.y+(towerSprite.height/2), towerSprite.rangeVal)
+        }
+    };  //fucntion
     
     //shoot
     this.shoot = function (towerSpritel, target) {
@@ -73,17 +91,13 @@ towerStuff.TowerPrototype = function () {
         bullet.body.velocity.x += towerSpritel.weaponAccuracy*(Math.random() - 0.5);
         bullet.body.velocity.y += towerSpritel.weaponAccuracy*(Math.random() - 0.5);
     };   //function shoot
-    
-    //add tower to specific arrays 
-    this.addToArray = function () {
-        towerStuff.allTowerArray.push(this.towerSprite);
-        towerStuff.towerFollowMouseArray.push(this.towerSprite);
-    };   //function 
-    
+
+    //when tower clicked
     this.clicked = function () {
         console.log("tower clicked!");
     };
     
+
 };   //class MainTower
 
 //ManualTower subclass of TowerPrototype
@@ -125,18 +139,18 @@ towerStuff.AutoTower = function () {
         this.towerSprite.canShoot = false;
     };
     
-    //all default AutoTower stats
-    this.towerSprite.fireRate = 1000;    //lower fireRate = shoot faster
-    this.towerSprite.bulletSpeed = 500;
-    this.towerSprite.weaponAccuracy = 0;    //lower accuracy = more accurate
-    this.towerSprite.hit = 0;
-    this.towerSprite.rangeVal = 500;
-    
 };
 
 //BasicTower subclass of AutoTower
-towerStuff.BasicTower = function () {};
-towerStuff.BasicTower.prototype = new towerStuff.AutoTower();
+towerStuff.BasicTower = function () {
+    //inherit from TowerPrototype
+    this.inherit = function (t, c) {
+        t.c = c;
+        t.c();
+    };  
+    this.inherit(this, towerStuff.AutoTower);
+};
+
 
 
 towerStuff.TowerSlotPrototype = function () {
@@ -314,8 +328,8 @@ towerStuff.drawRange = function (towerObject) {
 
 towerStuff.createTower = function (towerNum, x, y) {
     if (towerNum == 0){
-        towerStuff.MainTower = new towerStuff.MainTower().create(game, x, y).addToArray();
+        towerStuff.MainTower = new towerStuff.MainTower().create(game, x, y);
     } else {
-        towerStuff.NewTower = new towerStuff.BasicTower().create(game, x, y).addToArray();
+        towerStuff.NewTower = new towerStuff.BasicTower().create(game, x, y);
     }
 };
