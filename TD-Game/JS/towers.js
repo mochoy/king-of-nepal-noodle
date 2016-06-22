@@ -165,7 +165,8 @@ towerStuff.TowerSlotPrototype.prototype.clicked = function () {
 
 towerStuff.TowerSlotPrototype.prototype.buyTower = function () {
     console.log("buying tower");
-    towerStuff.createTower(1, 300 ,300);  
+    towerStuff.createTower(1, this.sprite.x ,this.sprite.y);  
+    this.sprite.inputEnabled = false;
 }
 
 towerStuff.AutoTowerSlot = function () {};
