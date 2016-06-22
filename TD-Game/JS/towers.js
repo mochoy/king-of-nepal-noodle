@@ -48,36 +48,36 @@ towerStuff.TowerPrototype = function () {
         return this;
     }   //function create
     
-
+    //shoot
+    this.shoot = function (towerSpritel, target) {
+        //keep max amount of bullets for tower at 20
+        if (towerSpritel.bulletArray.length > 20){
+        towerSpritel.bulletArray.shift().kill();
+        }
+    
+        //bullet creating stuff
+        var bullet = game.add.sprite(100, 100, this.img);
+        bullet.x = towerSpritel.x;
+        bullet.y = towerSpritel.y;
+        game.physics.arcade.enable(bullet);
+        bullet.anchor.set(0.5);
+        bullet.inputEnabled = true;
+        
+        bullet.towerSprite = this;
+        towerSpritel.bulletArray.push(bullet);
+        
+        //bullet shooting stuff
+        bullet.rotation = game.physics.arcade.angleBetween(bullet, target);
+        game.physics.arcade.moveToObject(bullet, target, towerSpritel.bulletSpeed);
+        //weapon inaccuracy
+        bullet.body.velocity.x += towerSpritel.weaponAccuracy*(Math.random() - 0.5);
+        bullet.body.velocity.y += towerSpritel.weaponAccuracy*(Math.random() - 0.5);
+    }   //function shoot
     
     
 };   //class MainTower
 
-//shoot
-towerStuff.TowerPrototype.prototype.shoot = function (towerSpritel, target) {
-    //keep max amount of bullets for tower at 20
-    if (towerSpritel.bulletArray.length > 20){
-        towerSpritel.bulletArray.shift().kill();
-    }
-    
-    //bullet creating stuff
-    var bullet = game.add.sprite(100, 100, this.img);
-    bullet.x = towerSpritel.x;
-    bullet.y = towerSpritel.y;
-    game.physics.arcade.enable(bullet);
-    bullet.anchor.set(0.5);
-    bullet.inputEnabled = true;
-    
-    bullet.towerSprite = this;
-    towerSpritel.bulletArray.push(bullet);
-    
-    //bullet shooting stuff
-    bullet.rotation = game.physics.arcade.angleBetween(bullet, target);
-    game.physics.arcade.moveToObject(bullet, target, towerSpritel.bulletSpeed);
-    //weapon inaccuracy
-    bullet.body.velocity.x += towerSpritel.weaponAccuracy*(Math.random() - 0.5);
-    bullet.body.velocity.y += towerSpritel.weaponAccuracy*(Math.random() - 0.5);
-};
+
 
 //add tower to different arrays
 towerStuff.TowerPrototype.prototype.addToArray = function (doesNeedSearch) {
