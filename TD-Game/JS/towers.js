@@ -138,9 +138,6 @@ towerStuff.BasicTower = function () {};
 towerStuff.BasicTower.prototype = new towerStuff.AutoTower();
 
 
-
-
-
 towerStuff.TowerSlotPrototype = function () {
     this.img = "pathIMG";
     this.sprite = null;
