@@ -28,12 +28,17 @@ towerStuff.TowerPrototype = function () {
         this.towerSprite.findEnemy = this.findEnemy;
         this.towerSprite.clicked = this.clicked;
         
-        this.addStats();
         this.createRange();
+        
+        //stats stuff
+        //all default MainTower stats
+        this.towerSprite.fireRate = 500;    //lower fireRate = shoot faster
+        this.towerSprite.bulletSpeed = 1000;
+        this.towerSprite.weaponAccuracy = 500;
+        this.towerSprite.hit = 0;
         
         this.towerSprite.events.onInputDown.add(this.towerSprite.clicked, this);
     
-        
         this.towerSprite.timer = game.time.events.loop(this.towerSprite.fireRate, function () {
             if (this.towerSprite.canShoot == true){
                 this.towerSprite.shoot(this.towerSprite, this.towerSprite.target);
@@ -41,7 +46,11 @@ towerStuff.TowerPrototype = function () {
         }, this);
         
         return this;
-    } 
+    }   //function create
+    
+
+    
+    
 };   //class MainTower
 
 //shoot
@@ -50,6 +59,7 @@ towerStuff.TowerPrototype.prototype.shoot = function (towerSpritel, target) {
     if (towerSpritel.bulletArray.length > 20){
         towerSpritel.bulletArray.shift().kill();
     }
+    
     //bullet creating stuff
     var bullet = game.add.sprite(100, 100, this.img);
     bullet.x = towerSpritel.x;
@@ -67,16 +77,6 @@ towerStuff.TowerPrototype.prototype.shoot = function (towerSpritel, target) {
     //weapon inaccuracy
     bullet.body.velocity.x += towerSpritel.weaponAccuracy*(Math.random() - 0.5);
     bullet.body.velocity.y += towerSpritel.weaponAccuracy*(Math.random() - 0.5);
-};
-
-
-//add stats
-towerStuff.TowerPrototype.prototype.addStats = function () {
-    //all default MainTower stats
-    this.towerSprite.fireRate = 500;    //lower fireRate = shoot faster
-    this.towerSprite.bulletSpeed = 1000;
-    this.towerSprite.weaponAccuracy = 500;
-    this.towerSprite.hit = 0;
 };
 
 //add tower to different arrays
