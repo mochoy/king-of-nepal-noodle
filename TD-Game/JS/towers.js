@@ -111,22 +111,27 @@ towerStuff.MainTower = function () {
 
 //AutoTower subclass of TowerPrototype
 //Autotowers aim automatically
-towerStuff.AutoTower = function () {};
-towerStuff.AutoTower.prototype = new towerStuff.TowerPrototype();
-
-towerStuff.AutoTower.prototype.addToArray = function () {
-    towerStuff.allTowerArray.push(this.towerSprite);
-    towerStuff.towerNeedSearchArray.push(this.towerSprite);
-    this.towerSprite.canShoot = false;
-}
-
-towerStuff.AutoTower.prototype.addStats = function () {
+towerStuff.AutoTower = function () {
+    //inherit from TowerPrototype
+    this.inherit = function (t, c) {
+        t.c = c;
+        t.c();
+    };  
+    this.inherit(this, towerStuff.TowerPrototype);
+    
+    this.addToArray = function () {
+        towerStuff.allTowerArray.push(this.towerSprite);
+        towerStuff.towerNeedSearchArray.push(this.towerSprite);
+        this.towerSprite.canShoot = false;
+    };
+    
     //all default AutoTower stats
     this.towerSprite.fireRate = 1000;    //lower fireRate = shoot faster
     this.towerSprite.bulletSpeed = 500;
     this.towerSprite.weaponAccuracy = 0;    //lower accuracy = more accurate
     this.towerSprite.hit = 0;
     this.towerSprite.rangeVal = 500;
+    
 };
 
 //BasicTower subclass of AutoTower
