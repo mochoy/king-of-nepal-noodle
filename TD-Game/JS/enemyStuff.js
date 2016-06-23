@@ -1,6 +1,6 @@
 var enemyStuff = {};
 
-enemyStuff.allEnemyArray = new Array();
+enemyStuff.allEnemyArray = [];
 
 enemyStuff.moveToPoint;
 enemyStuff.moveToPoint2;
@@ -8,26 +8,26 @@ enemyStuff.moveToPoint2;
 enemyStuff.EnemyPrototype = function () {
     this.imgName = "bookIMG";
     this.enemySprite = null;
-};
-
-//create sprite
-enemyStuff.EnemyPrototype.prototype.create = function (game, x, y) {
+    
     //create sprite
-    this.enemySprite = game.add.sprite(x, y, this.imgName);
-    this.enemySprite.anchor.set(0.5);
-    game.physics.arcade.enable(this.enemySprite);
-    
-    this.enemySprite.target = enemyStuff.moveToPoint;
-    //functions attached to enemySprite
-    this.enemySprite.hit = this.hit;    
-    this.enemySprite.moveToEnd = this.moveToEnd;
-    this.enemySprite.endReached = this.endReached;
-    this.enemySprite.homeReached = this.homeReached;
-    
-    this.addToArray();
-    this.addStats();
-    this.moveToTarget();
-}
+    this.create = function (game, x, y) {
+        //create sprite
+        this.enemySprite = game.add.sprite(x, y, this.imgName);
+        this.enemySprite.anchor.set(0.5);
+        game.physics.arcade.enable(this.enemySprite);
+        
+        this.enemySprite.target = enemyStuff.moveToPoint;
+        //functions attached to enemySprite
+        this.enemySprite.hit = this.hit;    
+        this.enemySprite.moveToEnd = this.moveToEnd;
+        this.enemySprite.endReached = this.endReached;
+        this.enemySprite.homeReached = this.homeReached;
+        
+        this.addToArray();
+        this.addStats();
+        this.moveToTarget();
+    }
+};
 
 //add stats
 enemyStuff.EnemyPrototype.prototype.addStats = function () {
