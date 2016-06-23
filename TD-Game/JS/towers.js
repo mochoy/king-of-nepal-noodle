@@ -36,7 +36,7 @@ towerStuff.TowerPrototype = function () {
         this.towerSprite.bulletSpeed = 1000;
         this.towerSprite.weaponAccuracy = 500;
         this.towerSprite.hit = 0;
-        this.towerSprite.rangeVal = 500;
+        this.towerSprite.rangeVal = 0;
         
         //towerSprite clickable
         this.towerSprite.events.onInputDown.add(this.towerSprite.clicked, this);
@@ -126,10 +126,16 @@ towerStuff.AutoTower = function () {
     };  
     this.inherit(this, towerStuff.TowerPrototype);
     
+    //add sprite to specific arrays
     this.addToArray = function () {
         towerStuff.allTowerArray.push(this.towerSprite);
         towerStuff.towerNeedSearchArray.push(this.towerSprite);
         this.towerSprite.canShoot = false;
+    };
+    
+    //update or create variables specific to AutoTower
+    this.addStats = function () {
+        this.towerSprite.rangeVal = 500;  
     };
     
     //create tower's range
@@ -154,6 +160,7 @@ towerStuff.AutoTower = function () {
     
     //call functions specific to this tower
     this.callSpecificFunctions = function () {
+        this.addStats();
         this.createRange();
     }   //function
 };
