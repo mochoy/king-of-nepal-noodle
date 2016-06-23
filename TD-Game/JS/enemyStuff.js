@@ -32,16 +32,17 @@ enemyStuff.EnemyPrototype = function () {
         this.moveToTarget();
     };
     
+    //move to target
+    this.moveToTarget = function () {
+        this.enemySprite.rotation = game.physics.arcade.angleBetween(this.enemySprite, this.enemySprite.target);
+        game.physics.arcade.moveToObject(this.enemySprite, this.enemySprite.target, this.enemySprite.bulletSpeed);
+    };
+
     
 };
 
 
 
-//move to target
-enemyStuff.EnemyPrototype.prototype.moveToTarget = function () {
-    this.enemySprite.rotation = game.physics.arcade.angleBetween(this.enemySprite, this.enemySprite.target);
-    game.physics.arcade.moveToObject(this.enemySprite, this.enemySprite.target, this.enemySprite.bulletSpeed);
-};
 
 //move to end
 //this == sprite
