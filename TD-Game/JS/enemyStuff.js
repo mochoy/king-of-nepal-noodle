@@ -60,6 +60,11 @@ enemyStuff.EnemyPrototype = function () {
     this.hit = function (bulletSpritec, enemySpritec) {
         //decrease enemy health, kill and remove bullet, add to tower's hit score
         if (enemySpritec.health == 0) {
+            //drop civilion if holding it
+            if (enemySpritec.isHoldingCivilion){
+                enemySpritec.civilion.dropped(enemySpritec);
+            }
+            
             //kill sprite stuff
             helper.removeFromArray(enemyStuff.allEnemyArray, null, null, enemySpritec);
         } else {
@@ -255,7 +260,7 @@ enemyStuff.Civilion = function () {
     };
     
     //when civilion dropped by enemy
-    this.dropped = function () {
+    this.dropped = function (enemySprite) {
         this.civilionSprite.isPickedUp = false;
         
         enemySprite.isHoldingCivilion = false;
