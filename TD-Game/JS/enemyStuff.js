@@ -220,16 +220,18 @@ enemyStuff.Civilion = function () {
         
         enemyStuff.civilionArray.push(this.civilionSprite);
         
-        this.isPickedUp = false;
+        this.civilionSprite.isPickedUp = false;
     };
     
     //when civilion picked up by enemy
-    this.pickedUp = function () {
-        
+    this.pickedUp = function (enemySprite) {
+        this.civilionSprite.isPickedUp = true;
+        this.civilionSprite.x = enemySprite.x;
+        this.civilionSprite.x = enemySprite.y;
     };
     
     //when civilion dropped by enemy
     this.dropped = function () {
-        
+
     };
 };
