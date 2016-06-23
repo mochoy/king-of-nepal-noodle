@@ -1,10 +1,10 @@
 var towerStuff = {};
 
-towerStuff.allTowerArray = new Array();
-towerStuff.towerNeedSearchArray = new Array();
-towerStuff.towerFollowMouseArray = new Array();
+towerStuff.allTowerArray = [];
+towerStuff.towerNeedSearchArray = [];
+towerStuff.towerFollowMouseArray = [];
 
-towerStuff.towerSlotArray = new Array();
+towerStuff.towerSlotArray = [];
 
 towerStuff.moveToPoint;
 
