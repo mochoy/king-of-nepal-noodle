@@ -194,12 +194,13 @@ towerStuff.TowerSlotPrototype = function () {
         
         this.sprite.events.onInputDown.add(this.sprite.clicked, this);
     };  //function create
+    
+    this.clicked = function () {
+        this.sprite.buyTower();
+
+    }
 };
 
-
-towerStuff.TowerSlotPrototype.prototype.clicked = function () {
-    this.sprite.buyTower();
-};
 
 towerStuff.TowerSlotPrototype.prototype.buyTower = function () {
     this.hasTower = true;
