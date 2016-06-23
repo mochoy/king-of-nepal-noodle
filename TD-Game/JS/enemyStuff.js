@@ -78,8 +78,15 @@ enemyStuff.EnemyPrototype = function () {
 };
 
 
-enemyStuff.EnemyBasic = function () {};
-enemyStuff.EnemyBasic.prototype = new enemyStuff.EnemyPrototype();
+enemyStuff.EnemyBasic = function () {
+    //inherit from parent class
+    this.inherit = function (t, c) {
+        t.c = c;
+        t.c();
+    }    
+    this.inherit(this, enemyStuff.EnemyPrototype);
+};
+
 
 
 enemyStuff.spawnEnemy = function () {
