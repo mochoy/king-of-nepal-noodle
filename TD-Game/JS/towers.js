@@ -115,7 +115,6 @@ towerStuff.MainTower = function () {
 };
 
 
-
 //AutoTower subclass of TowerPrototype
 //Autotowers aim automatically
 towerStuff.AutoTower = function () {
@@ -207,8 +206,16 @@ towerStuff.TowerSlotPrototype = function () {
     }
 };
 
-towerStuff.AutoTowerSlot = function () {};
-towerStuff.AutoTowerSlot.prototype = new towerStuff.TowerSlotPrototype();
+towerStuff.AutoTowerSlot = function () {
+    //inherit from parent class
+    this.inherit = function (t, c) {
+        t.c = c;
+        t.c();
+    }    
+    this.inherit(this, towerStuff.TowerSlotPrototype);
+    
+};
+
 
 /*
 =======
