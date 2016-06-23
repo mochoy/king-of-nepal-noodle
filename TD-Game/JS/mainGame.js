@@ -98,6 +98,14 @@ var mainGameVar = {
             game.physics.arcade.overlap(enemySprite, enemySprite.target, enemySprite.endReached, null, this);
         }   //for
         
+        //civilion follow enemy
+        for (enemy = 0; enemy < enemyStuff.allEnemyArray.length; enemy++){
+            var enemySprite = enemyStuff.allEnemyArray[enemy];
+            if (enemySprite.isHoldingCivilion) {
+                enemySprite.civilion.civilionSprite.followEnemy(enemySprite);
+            }   //if
+        }   //for iterate enemies
+        
     }  //function update
     
 }   //object mainGameVar

@@ -21,6 +21,7 @@ enemyStuff.EnemyPrototype = function () {
         
         this.enemySprite.target = enemyStuff.moveToPoint;
         
+        this.enemySprite.isHoldingCivilion = false;
         this.enemySprite.civilion = null;
         
         //stats
@@ -74,7 +75,8 @@ enemyStuff.EnemyPrototype = function () {
         enemySprite.target = enemyStuff.moveToPoint2;
         enemySprite.moveToEnd();
         
-        this.civilion = new enemyStuff.Civilion().create(game, enemySprite.x, enemySprite.y);
+        enemySprite.civilion = new enemyStuff.Civilion().create(game, enemySprite.x, enemySprite.y);
+        enemySprite.civilion.pickedUp(enemySprite);
     };
     
     //enemy reaches end
@@ -228,7 +230,10 @@ enemyStuff.Civilion = function () {
         
         enemyStuff.civilionArray.push(this.civilionSprite);
         
-        this.civilionSprite.isPickedUp = false;
+        this.civilionSprite.isPickedUp = true;
+
+        //civilionSprite's functions
+        this.civilionSprite.followEnemy = this.followEnemy;
         
         return this;
     };
@@ -238,16 +243,22 @@ enemyStuff.Civilion = function () {
         this.civilionSprite.isPickedUp = true;
         this.civilionSprite.x = enemySprite.x;
         this.civilionSprite.y = enemySprite.y;
+        
+        enemySprite.isHoldingCivilion = true;
     };
     
     //follow enemy holding it
+    //this == sprite
     this.followEnemy = function (enemySprite) {
-        
-    }
+        this.x = enemySprite.x;
+        this.y = enemySprite.y;
+    };
     
     //when civilion dropped by enemy
     this.dropped = function () {
         this.civilionSprite.isPickedUp = false;
+        
+        enemySprite.isHoldingCivilion = false;
     };
     
     //when enemy holding civilion reaches end
