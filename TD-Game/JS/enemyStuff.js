@@ -69,22 +69,13 @@ enemyStuff.EnemyPrototype = function () {
         enemySprite.target = enemyStuff.moveToPoint2;
         enemySprite.moveToEnd();
     };
+    
+    //enemy reaches end
+    this.endReached = function (enemySprite, end){
+        helper.removeFromArray(enemyStuff.allEnemyArray, null, null, enemySprite);
+
+    }
 };
-
-
-
-
-
-
-
-
-
-
-
-//enemy reaches end 
-enemyStuff.EnemyPrototype.prototype.endReached = function (enemySprite, end) {
-    helper.removeFromArray(enemyStuff.allEnemyArray, null, null, enemySprite);
-},
 
 
 enemyStuff.EnemyBasic = function () {};
