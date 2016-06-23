@@ -8,11 +8,12 @@ towerStuff.towerSlotArray = new Array();
 
 towerStuff.moveToPoint;
 
+
 //tower superclass thingy
 towerStuff.TowerPrototype = function () {
     this.image = 'tower1IMG';
-    this.towerSprite = null;
-    
+    this.towerSprite = undefined;
+
     //create sprite
     this.create = function (game, x, y) {
         this.towerSprite = game.add.sprite(x, y, this.image);
@@ -35,8 +36,9 @@ towerStuff.TowerPrototype = function () {
         this.towerSprite.bulletSpeed = 1000;
         this.towerSprite.weaponAccuracy = 500;
         this.towerSprite.hit = 0;
-        this.range = 0;
+        this.towerSprite.rangeVal = 500;
         
+        //towerSprite clickable
         this.towerSprite.events.onInputDown.add(this.towerSprite.clicked, this);
     
         this.towerSprite.timer = game.time.events.loop(this.towerSprite.fireRate, function () {
@@ -47,8 +49,7 @@ towerStuff.TowerPrototype = function () {
         
         //call functions
         this.addToArray();
-        this.createRange(this.towerSprite);
-        
+
         return this;
     };   //function create
     
@@ -57,14 +58,6 @@ towerStuff.TowerPrototype = function () {
         towerStuff.allTowerArray.push(this.towerSprite);
         towerStuff.towerFollowMouseArray.push(this.towerSprite);
     };   //function 
-    
-    //create tower's range
-    this.createRange = function (towerSprite) {
-        if (this.towerSprite.range != 0) {
-            towerSprite = this.towerSprite;
-            towerSprite.range = new Phaser.Circle(towerSprite.x+(towerSprite.width/2), towerSprite.y+(towerSprite.height/2), towerSprite.rangeVal)
-        }
-    };  //fucntion
     
     //shoot
     this.shoot = function (towerSpritel, target) {
@@ -127,7 +120,7 @@ towerStuff.MainTower = function () {
 //Autotowers aim automatically
 towerStuff.AutoTower = function () {
     //inherit from TowerPrototype
-    this.inherit = function (t, c) {
+    this.inherit = function (t, c) {    //t is this, c is constructor
         t.c = c;
         t.c();
     };  
@@ -139,6 +132,30 @@ towerStuff.AutoTower = function () {
         this.towerSprite.canShoot = false;
     };
     
+    //create tower's range
+    this.createRange = function () {
+        if (this.towerSprite.rangeVal != 0) {
+            towerSprite = this.towerSprite;
+            towerSprite.range = new Phaser.Circle(towerSprite.x+(towerSprite.width/2), towerSprite.y+(towerSprite.height/2), towerSprite.rangeVal)
+        }   //if
+    };  //fucntion
+    
+    this.findEnemy = function (enemyArray) {
+        for (var i = 0; i < enemyArray.length; i ++){
+            enemySprite = enemyArray[i];
+            if (this.range.contains(enemySprite.x, enemySprite.y)) {
+                this.canShoot = true;
+                this.target = enemySprite;
+                this.rotation = game.physics.arcade.angleBetween(this, this.target);
+    
+            }   //if
+        }   //for
+    };  //function findEnemy
+    
+    //call functions specific to this tower
+    this.callSpecificFunctions = function () {
+        this.createRange();
+    }   //function
 };
 
 //BasicTower subclass of AutoTower
@@ -328,8 +345,8 @@ towerStuff.drawRange = function (towerObject) {
 
 towerStuff.createTower = function (towerNum, x, y) {
     if (towerNum == 0){
-        towerStuff.MainTower = new towerStuff.MainTower().create(game, x, y);
+        towerStuff.mainTower = new towerStuff.MainTower().create(game, x, y);
     } else {
-        towerStuff.NewTower = new towerStuff.BasicTower().create(game, x, y);
+        towerStuff.newTower = new towerStuff.BasicTower().create(game, x, y).callSpecificFunctions();
     }
 };
