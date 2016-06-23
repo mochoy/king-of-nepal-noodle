@@ -32,6 +32,12 @@ enemyStuff.EnemyPrototype = function () {
         this.moveToTarget();
     };
     
+    
+    //add to specific arrays
+    this.addToArray = function () {
+        enemyStuff.allEnemyArray.push(this.enemySprite);
+    };
+    
     //move to target
     this.moveToTarget = function () {
         this.enemySprite.rotation = game.physics.arcade.angleBetween(this.enemySprite, this.enemySprite.target);
@@ -53,10 +59,6 @@ enemyStuff.EnemyPrototype = function () {
 
 
 
-//add to specific arrays
-enemyStuff.EnemyPrototype.prototype.addToArray = function () {
-    enemyStuff.allEnemyArray.push(this.enemySprite);
-};
 
 //enemy hit
 enemyStuff.EnemyPrototype.prototype.hit = function (bulletSpritec, enemySpritec) {
