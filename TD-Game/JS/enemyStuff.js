@@ -227,11 +227,16 @@ enemyStuff.Civilion = function () {
     this.pickedUp = function (enemySprite) {
         this.civilionSprite.isPickedUp = true;
         this.civilionSprite.x = enemySprite.x;
-        this.civilionSprite.x = enemySprite.y;
+        this.civilionSprite.y = enemySprite.y;
     };
     
     //when civilion dropped by enemy
     this.dropped = function () {
-
+        this.civilionSprite.isPickedUp = false;
+    };
+    
+    //when enemy holding civilion reaches end
+    this.endReached = function () {
+        helper.removeFromArray(enemyStuff.civilionArray, null, null, this.civilionSprite);  
     };
 };
