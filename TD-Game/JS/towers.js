@@ -180,20 +180,22 @@ towerStuff.BasicTower = function () {
 towerStuff.TowerSlotPrototype = function () {
     this.img = "pathIMG";
     this.sprite = null;
+    
+    //create all the TowerSlot stuff
+    this.create = function (game, x, y) {
+        this.sprite = game.add.sprite(x, y, this.img);
+        this.sprite.inputEnabled = true;
+        
+        this.sprite.hasTower = false;
+        
+        //functions
+        this.sprite.clicked = this.clicked;
+        this.sprite.buyTower = this.buyTower;
+        
+        this.sprite.events.onInputDown.add(this.sprite.clicked, this);
+    };  //function create
 };
 
-towerStuff.TowerSlotPrototype.prototype.create = function (game, x, y) {
-    this.sprite = game.add.sprite(x, y, this.img);
-    this.sprite.inputEnabled = true;
-    
-    this.sprite.hasTower = false;
-    
-    //functions
-    this.sprite.clicked = this.clicked;
-    this.sprite.buyTower = this.buyTower;
-    
-    this.sprite.events.onInputDown.add(this.sprite.clicked, this);
-};
 
 towerStuff.TowerSlotPrototype.prototype.clicked = function () {
     this.sprite.buyTower();
