@@ -5,6 +5,7 @@ enemyStuff.allEnemyArray = [];
 enemyStuff.moveToPoint;
 enemyStuff.moveToPoint2;
 
+//Enemy superclass thingy
 enemyStuff.EnemyPrototype = function () {
     this.imgName = "bookIMG";
     this.enemySprite = null;
@@ -77,7 +78,7 @@ enemyStuff.EnemyPrototype = function () {
     }
 };
 
-
+//subclass of EnemyPrototype
 enemyStuff.EnemyBasic = function () {
     //inherit from parent class
     this.inherit = function (t, c) {
@@ -203,3 +204,9 @@ enemyStuff.findSprite = function (enemySprite) {
 };  //function findSprite
 
 */
+
+
+enemyStuff.Civilion = function () {
+    this.imgName = "pathPointIMG";
+    this.civilionSprite = null;
+}
