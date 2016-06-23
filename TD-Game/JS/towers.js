@@ -176,7 +176,7 @@ towerStuff.BasicTower = function () {
 };
 
 
-
+//towerSlot supercalss thingy
 towerStuff.TowerSlotPrototype = function () {
     this.img = "pathIMG";
     this.sprite = null;
@@ -199,14 +199,13 @@ towerStuff.TowerSlotPrototype = function () {
         this.sprite.buyTower();
 
     }
+    
+    this.buyTower = function () {
+        this.hasTower = true;
+        towerStuff.createTower(1, this.x ,this.y);
+        this.inputEnabled = false;
+    }
 };
-
-
-towerStuff.TowerSlotPrototype.prototype.buyTower = function () {
-    this.hasTower = true;
-    towerStuff.createTower(1, this.x ,this.y);
-    this.inputEnabled = false;
-}
 
 towerStuff.AutoTowerSlot = function () {};
 towerStuff.AutoTowerSlot.prototype = new towerStuff.TowerSlotPrototype();
