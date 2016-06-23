@@ -2,6 +2,8 @@ var enemyStuff = {};
 
 enemyStuff.allEnemyArray = [];
 
+enemyStuff.civilionArray = [];
+
 enemyStuff.moveToPoint;
 enemyStuff.moveToPoint2;
 
@@ -209,4 +211,13 @@ enemyStuff.findSprite = function (enemySprite) {
 enemyStuff.Civilion = function () {
     this.imgName = "pathPointIMG";
     this.civilionSprite = null;
-}
+    
+    this.create = function (game, x, y){
+        this.civilionSprite = game.add.sprite (x, y, this.imgName); 
+        game.physics.arcade.enable(this.civilionSprite);
+        this.civilionSprite.anchor.set(0.5);
+        this.civilionSprite.inputEnabled = true;
+        
+        enemyStuff.civilionArray.push(this.civilionSprite);
+    };
+};
