@@ -17,6 +17,11 @@ enemyStuff.EnemyPrototype = function () {
         game.physics.arcade.enable(this.enemySprite);
         
         this.enemySprite.target = enemyStuff.moveToPoint;
+        
+        //stats
+        this.enemySprite.health = 5;
+        this.enemySprite.moveSpeed = 200;
+        
         //functions attached to enemySprite
         this.enemySprite.hit = this.hit;    
         this.enemySprite.moveToEnd = this.moveToEnd;
@@ -24,16 +29,13 @@ enemyStuff.EnemyPrototype = function () {
         this.enemySprite.homeReached = this.homeReached;
         
         this.addToArray();
-        this.addStats();
         this.moveToTarget();
-    }
+    };
+    
+    
 };
 
-//add stats
-enemyStuff.EnemyPrototype.prototype.addStats = function () {
-    this.enemySprite.health = 5;
-    this.enemySprite.moveSpeed = 200;
-};
+
 
 //move to target
 enemyStuff.EnemyPrototype.prototype.moveToTarget = function () {
