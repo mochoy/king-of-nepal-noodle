@@ -32,7 +32,6 @@ enemyStuff.EnemyPrototype = function () {
         this.moveToTarget();
     };
     
-    
     //add to specific arrays
     this.addToArray = function () {
         enemyStuff.allEnemyArray.push(this.enemySprite);
@@ -51,7 +50,19 @@ enemyStuff.EnemyPrototype = function () {
         game.physics.arcade.moveToObject(this, this.target, this.bulletSpeed);
     };
 
-    
+    //enemy hit
+    enemyStuff.EnemyPrototype.prototype.hit = function (bulletSpritec, enemySpritec) {
+        //decrease enemy health, kill and remove bullet, add to tower's hit score
+        if (enemySpritec.health == 0) {
+            //kill sprite stuff
+            helper.removeFromArray(enemyStuff.allEnemyArray, null, null, enemySpritec);
+        } else {
+            enemySpritec.health --;
+            
+            bulletSpritec.towerSprite.hit ++;
+            helper.removeFromArray(bulletSpritec.towerSprite.bulletArray, null, null, bulletSpritec);
+        }   //else enemySprite health
+    }
 };
 
 
@@ -60,19 +71,7 @@ enemyStuff.EnemyPrototype = function () {
 
 
 
-//enemy hit
-enemyStuff.EnemyPrototype.prototype.hit = function (bulletSpritec, enemySpritec) {
-    //decrease enemy health, kill and remove bullet, add to tower's hit score
-    if (enemySpritec.health == 0) {
-        //kill sprite stuff
-        helper.removeFromArray(enemyStuff.allEnemyArray, null, null, enemySpritec);
-    } else {
-        enemySpritec.health --;
-        
-        bulletSpritec.towerSprite.hit ++;
-        helper.removeFromArray(bulletSpritec.towerSprite.bulletArray, null, null, bulletSpritec);
-    }   //else enemySprite health
-}
+
 
 //enemy reaches home
 enemyStuff.EnemyPrototype.prototype.homeReached = function (enemySprite, point) {
