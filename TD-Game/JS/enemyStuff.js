@@ -37,6 +37,13 @@ enemyStuff.EnemyPrototype = function () {
         this.enemySprite.rotation = game.physics.arcade.angleBetween(this.enemySprite, this.enemySprite.target);
         game.physics.arcade.moveToObject(this.enemySprite, this.enemySprite.target, this.enemySprite.bulletSpeed);
     };
+    
+    //move to end
+    //this == sprite
+    this.moveToEnd = function () {
+        this.rotation = game.physics.arcade.angleBetween(this, this.target);
+        game.physics.arcade.moveToObject(this, this.target, this.bulletSpeed);
+    };
 
     
 };
@@ -44,12 +51,7 @@ enemyStuff.EnemyPrototype = function () {
 
 
 
-//move to end
-//this == sprite
-enemyStuff.EnemyPrototype.prototype.moveToEnd = function () {
-    this.rotation = game.physics.arcade.angleBetween(this, this.target);
-    game.physics.arcade.moveToObject(this, this.target, this.bulletSpeed);
-};
+
 
 //add to specific arrays
 enemyStuff.EnemyPrototype.prototype.addToArray = function () {
