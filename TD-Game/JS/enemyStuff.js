@@ -20,7 +20,7 @@ enemyStuff.EnemyPrototype = function () {
         game.physics.arcade.enable(this.enemySprite);
         
         this.enemySprite.home = enemyStuff.moveToPoint;
-        this.enemySprite.target = enemyStuff.moveToPoint2;
+        this.enemySprite.end = enemyStuff.moveToPoint2;
         
         this.enemySprite.isHoldingCivilion = false;
         this.enemySprite.civilion = null;
@@ -53,8 +53,8 @@ enemyStuff.EnemyPrototype = function () {
     //move to end
     //this == sprite
     this.moveToEnd = function () {
-        this.rotation = game.physics.arcade.angleBetween(this, this.target);
-        game.physics.arcade.moveToObject(this, this.target, this.moveSpeed);
+        this.rotation = game.physics.arcade.angleBetween(this, this.end);
+        game.physics.arcade.moveToObject(this, this.end, this.moveSpeed);
     };
 
     //enemy hit
@@ -78,7 +78,7 @@ enemyStuff.EnemyPrototype = function () {
     
     //enemy reaches home
     this.homeReached = function (enemySprite, point) {
-        enemySprite.target = enemyStuff.moveToPoint2;
+        enemySprite.end = enemyStuff.moveToPoint2;
         enemySprite.moveToEnd();
         
         enemySprite.civilion = new enemyStuff.Civilion().create(game, enemySprite.x, enemySprite.y);
@@ -87,7 +87,7 @@ enemyStuff.EnemyPrototype = function () {
     
     //enemy reaches end
     //intended to be used as a stateless function, don't use "this"
-    this.endReached = function (enemySprite, target){
+    this.endReached = function (enemySprite, end){
         enemySprite.civilion.endReached();
         helper.removeFromArray(enemyStuff.allEnemyArray, null, null, enemySprite);
 
