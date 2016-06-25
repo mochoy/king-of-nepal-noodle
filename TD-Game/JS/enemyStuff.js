@@ -19,8 +19,10 @@ enemyStuff.EnemyPrototype = function () {
         this.enemySprite.anchor.set(0.5);
         game.physics.arcade.enable(this.enemySprite);
         
+        //stuff dealing with movement move locations
         this.enemySprite.home = enemyStuff.moveToPoint;
         this.enemySprite.end = enemyStuff.moveToPoint2;
+        this.enemySprite.target = this.enemySprite.home;
         
         this.enemySprite.isHoldingCivilion = false;
         this.enemySprite.civilion = null;
@@ -31,13 +33,13 @@ enemyStuff.EnemyPrototype = function () {
         
         //functions attached to enemySprite
         this.enemySprite.hit = this.hit;    
-        this.enemySprite.moveToHome = this.moveToHome;
+        this.enemySprite.moveToTarget = this.moveToTarget;
         this.enemySprite.moveToEnd = this.moveToEnd;
         this.enemySprite.endReached = this.endReached;
         this.enemySprite.homeReached = this.homeReached;
         
         this.addToArray();
-        this.enemySprite.moveToHome();
+        this.enemySprite.moveToTarget();
     };
     
     //add to specific arrays
@@ -47,17 +49,11 @@ enemyStuff.EnemyPrototype = function () {
     
     //move to target
     //this == sprite
-    this.moveToHome = function () {
-        this.rotation = game.physics.arcade.angleBetween(this, this.home);
-        game.physics.arcade.moveToObject(this, this.home, this.moveSpeed);
+    this.moveToTarget = function () {
+        this.rotation = game.physics.arcade.angleBetween(this, this.target);
+        game.physics.arcade.moveToObject(this, this.target, this.moveSpeed);
     };
     
-    //move to end
-    //this == sprite
-    this.moveToEnd = function () {
-        this.rotation = game.physics.arcade.angleBetween(this, this.end);
-        game.physics.arcade.moveToObject(this, this.end, this.moveSpeed);
-    };
 
     //enemy hit
     this.hit = function (bulletSpritec, enemySpritec) {
@@ -81,10 +77,15 @@ enemyStuff.EnemyPrototype = function () {
     //enemy reaches home
     this.homeReached = function (enemySprite, point) {
         enemySprite.end = enemyStuff.moveToPoint2;
-        enemySprite.moveToEnd();
-        
+
+        //enemySprite now holding civilian
         enemySprite.civilion = new enemyStuff.Civilion().create(game, enemySprite.x, enemySprite.y);
         enemySprite.civilion.pickedUp(enemySprite);
+        
+        //change target
+        enemySprite.target = enemySprite.end;
+        
+        enemySprite.moveToTarget();
     };
     
     //enemy reaches end
