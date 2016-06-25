@@ -106,8 +106,6 @@ enemyStuff.EnemyBasic = function () {
     this.inherit(this, enemyStuff.EnemyPrototype);
 };
 
-var canSpawn = true;
-
 enemyStuff.spawnEnemy = function () {
     /*
     var randomNum = Math.random();
@@ -118,13 +116,11 @@ enemyStuff.spawnEnemy = function () {
     }
     */
     
-    if (canSpawn == true) {
     var num = Math.random();
     if (num < 0.5) {
         new enemyStuff.EnemyBasic().create(game, (game.width/3), 10);
     } else {
         new enemyStuff.EnemyBasic().create(game, ((game.width/3)*2), 10);
-    }
     }
 }
 
