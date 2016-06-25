@@ -31,12 +31,13 @@ enemyStuff.EnemyPrototype = function () {
         
         //functions attached to enemySprite
         this.enemySprite.hit = this.hit;    
+        this.enemySprite.moveToHome = this.moveToHome;
         this.enemySprite.moveToEnd = this.moveToEnd;
         this.enemySprite.endReached = this.endReached;
         this.enemySprite.homeReached = this.homeReached;
         
         this.addToArray();
-        this.moveToHome();
+        this.enemySprite.moveToHome();
     };
     
     //add to specific arrays
@@ -45,9 +46,10 @@ enemyStuff.EnemyPrototype = function () {
     };
     
     //move to target
+    //this == sprite
     this.moveToHome = function () {
-        this.enemySprite.rotation = game.physics.arcade.angleBetween(this.enemySprite, this.enemySprite.home);
-        game.physics.arcade.moveToObject(this.enemySprite, this.enemySprite.home, this.enemySprite.moveSpeed);
+        this.rotation = game.physics.arcade.angleBetween(this, this.home);
+        game.physics.arcade.moveToObject(this, this.home, this.moveSpeed);
     };
     
     //move to end
