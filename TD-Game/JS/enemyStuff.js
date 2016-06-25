@@ -225,17 +225,12 @@ enemyStuff.Civilion = function () {
     this.imgName = "pathPointIMG";
     this.civilionSprite = null;
     
-    this.id = Math.random();
-    
     this.create = function (game, x, y){
         //civilion sprite stuff
         this.civilionSprite = game.add.sprite (x, y, this.imgName); 
         game.physics.arcade.enable(this.civilionSprite);
         this.civilionSprite.anchor.set(0.5);
         this.civilionSprite.inputEnabled = true;
-        
-        this.civilionSprite.id = this.id;
-        console.log("new sprite created. Id " + this.id )
         
         
         this.civilionSprite.width = 100;
