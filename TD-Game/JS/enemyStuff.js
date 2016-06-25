@@ -19,14 +19,15 @@ enemyStuff.EnemyPrototype = function () {
         this.enemySprite.anchor.set(0.5);
         game.physics.arcade.enable(this.enemySprite);
         
-        this.enemySprite.target = enemyStuff.moveToPoint;
+        this.enemySprite.home = enemyStuff.moveToPoint;
+        this.enemySprite.target = enemyStuff.moveToPoint2;
         
         this.enemySprite.isHoldingCivilion = false;
         this.enemySprite.civilion = null;
         
         //stats
         this.enemySprite.health = 5;
-        this.enemySprite.moveSpeed = 200;
+        this.enemySprite.moveSpeed = 250;
         
         //functions attached to enemySprite
         this.enemySprite.hit = this.hit;    
@@ -35,7 +36,7 @@ enemyStuff.EnemyPrototype = function () {
         this.enemySprite.homeReached = this.homeReached;
         
         this.addToArray();
-        this.moveToTarget();
+        this.moveToHome();
     };
     
     //add to specific arrays
@@ -44,16 +45,16 @@ enemyStuff.EnemyPrototype = function () {
     };
     
     //move to target
-    this.moveToTarget = function () {
-        this.enemySprite.rotation = game.physics.arcade.angleBetween(this.enemySprite, this.enemySprite.target);
-        game.physics.arcade.moveToObject(this.enemySprite, this.enemySprite.target, this.enemySprite.bulletSpeed);
+    this.moveToHome = function () {
+        this.enemySprite.rotation = game.physics.arcade.angleBetween(this.enemySprite, this.enemySprite.home);
+        game.physics.arcade.moveToObject(this.enemySprite, this.enemySprite.home, this.enemySprite.moveSpeed);
     };
     
     //move to end
     //this == sprite
     this.moveToEnd = function () {
         this.rotation = game.physics.arcade.angleBetween(this, this.target);
-        game.physics.arcade.moveToObject(this, this.target, this.bulletSpeed);
+        game.physics.arcade.moveToObject(this, this.target, this.moveSpeed);
     };
 
     //enemy hit
@@ -85,7 +86,11 @@ enemyStuff.EnemyPrototype = function () {
     };
     
     //enemy reaches end
-    this.endReached = function (enemySprite, end){
+    //intended to be used as a stateless function, don't use "this"
+    this.endReached = function (enemySprite, target){
+        console.log(enemySprite.civilion)
+        
+        enemySprite.civilion.endReached();
         helper.removeFromArray(enemyStuff.allEnemyArray, null, null, enemySprite);
 
     }
@@ -101,7 +106,7 @@ enemyStuff.EnemyBasic = function () {
     this.inherit(this, enemyStuff.EnemyPrototype);
 };
 
-
+var canSpawn = true;
 
 enemyStuff.spawnEnemy = function () {
     /*
@@ -112,11 +117,14 @@ enemyStuff.spawnEnemy = function () {
         new EnemySpecial().enable(game, helper.pathStuff.getSpawnCoords(1), helper.pathStuff.getSpawnCoords(2));
     }
     */
+    
+    if (canSpawn == true) {
     var num = Math.random();
     if (num < 0.5) {
         new enemyStuff.EnemyBasic().create(game, (game.width/3), 10);
     } else {
         new enemyStuff.EnemyBasic().create(game, ((game.width/3)*2), 10);
+    }
     }
 }
 
@@ -223,12 +231,18 @@ enemyStuff.Civilion = function () {
     this.imgName = "pathPointIMG";
     this.civilionSprite = null;
     
+    this.id = Math.random();
+    
     this.create = function (game, x, y){
         //civilion sprite stuff
         this.civilionSprite = game.add.sprite (x, y, this.imgName); 
         game.physics.arcade.enable(this.civilionSprite);
         this.civilionSprite.anchor.set(0.5);
         this.civilionSprite.inputEnabled = true;
+        
+        this.civilionSprite.id = this.id;
+        console.log("new sprite created. Id " + this.id )
+        
         
         this.civilionSprite.width = 100;
         this.civilionSprite.height = 100;
@@ -267,7 +281,10 @@ enemyStuff.Civilion = function () {
     };
     
     //when enemy holding civilion reaches end
+    //this points to instance of Civlion class
     this.endReached = function () {
+        //destroy and remove civilionSprite from its arrays
         helper.removeFromArray(enemyStuff.civilionArray, null, null, this.civilionSprite);  
-    };
+    };  //function
+    
 };

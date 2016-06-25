@@ -89,7 +89,7 @@ var mainGameVar = {
         //when enemy reaches home
         for (var enemy = 0; enemy < enemyStuff.allEnemyArray.length; enemy++){
             var enemySprite = enemyStuff.allEnemyArray[enemy];
-            game.physics.arcade.overlap(enemySprite, enemySprite.target, enemySprite.homeReached, null, this);
+            game.physics.arcade.overlap(enemySprite, enemySprite.home, enemySprite.homeReached, null, this);
         }   //for 
         
         //when enemy reaches end
@@ -188,12 +188,20 @@ helper.removeFromArray = function (array1, array2, array3, sprite) {
     var newArray1 = [], newArray2 = [], newArray2 = [];
     if (array1 != null){
         for (var i = 0; i < array1.length; i++){
-            if (sprite != array1[i]){
-                newArray1.push(array1[i]);
+            if (sprite == array1[i]){
+
+                if (i == array1.length - 1) {
+                    array1.pop();
+                } else {
+                    array1[i] = array1.pop();
+                }
+                sprite.destroy();
+    
             }
         }   //for
-        array1 = newArray1;
     }   //if array1
-    sprite.kill();
-
-}
+    
+    if (!sprite) {
+    }
+    sprite.destroy();
+};
