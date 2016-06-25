@@ -20,6 +20,7 @@ enemyStuff.EnemyPrototype = function () {
         game.physics.arcade.enable(this.enemySprite);
         
         //stuff dealing with movement move locations
+        this.enemySprite.civilionTarget = null;
         this.enemySprite.home = enemyStuff.moveToPoint;
         this.enemySprite.end = enemyStuff.moveToPoint2;
         this.enemySprite.target = this.enemySprite.home;
@@ -29,7 +30,7 @@ enemyStuff.EnemyPrototype = function () {
         
         //stats
         this.enemySprite.health = 5;
-        this.enemySprite.moveSpeed = 250;
+        this.enemySprite.moveSpeed = 100;
         
         //functions attached to enemySprite
         this.enemySprite.hit = this.hit;    
@@ -54,14 +55,17 @@ enemyStuff.EnemyPrototype = function () {
         game.physics.arcade.moveToObject(this, this.target, this.moveSpeed);
     };
     
-
     //enemy hit
     this.hit = function (bulletSpritec, enemySpritec) {
         //decrease enemy health, kill and remove bullet, add to tower's hit score
         if (enemySpritec.health == 0) {
             //drop civilion if holding it
+            //drop stuff
             if (enemySpritec.isHoldingCivilion){
                 enemySpritec.civilion.dropped(enemySpritec);
+                //change target
+                enemySpritec.civilionTarget = enemySpritec.civilion.civilionSprite;
+                enemyStuff.moveToPoint = enemySpritec.civilionTarget;
             }
             
             //kill sprite stuff
@@ -94,7 +98,7 @@ enemyStuff.EnemyPrototype = function () {
         enemySprite.civilion.endReached();
         helper.removeFromArray(enemyStuff.allEnemyArray, null, null, enemySprite);
 
-    }
+    };
 };
 
 //subclass of EnemyPrototype

@@ -90,17 +90,13 @@ var mainGameVar = {
             towerStuff.towerNeedSearchArray[tower].findEnemy(enemyStuff.allEnemyArray);
         }   //for tower find enemy
         
-        //when enemy reaches home
+        //when enemy reaches home or end
         for (var enemy = 0; enemy < enemyStuff.allEnemyArray.length; enemy++){
             var enemySprite = enemyStuff.allEnemyArray[enemy];
             game.physics.arcade.overlap(enemySprite, enemySprite.home, enemySprite.homeReached, null, null);
-        }   //for 
-        
-        //when enemy reaches end
-        for (var enemy = 0; enemy < enemyStuff.allEnemyArray.length; enemy++) {
-            var enemySprite = enemyStuff.allEnemyArray[enemy];
             game.physics.arcade.overlap(enemySprite, enemySprite.end, enemySprite.endReached, null, this);
-        }   //for
+
+        }   //for 
         
         //civilion follow enemy
         for (enemy = 0; enemy < enemyStuff.allEnemyArray.length; enemy++){
