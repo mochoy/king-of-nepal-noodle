@@ -102,7 +102,7 @@ var mainGameVar = {
         for (var enemy = 0; enemy < enemyStuff.allEnemyArray.length; enemy++){
             var enemySprite = enemyStuff.allEnemyArray[enemy];
             if (enemySprite.isHoldingcivilian) {
-                enemySprite.civilian.civilianSprite.followEnemy(enemySprite);
+                enemySprite.civilian.followEnemy(enemySprite);
             }   //if
         }   //for iterate enemies
         
@@ -112,7 +112,7 @@ var mainGameVar = {
             if (enemyStuff.civilianArray[civilan].isPickedUp == false){
                 //change enemy's target
                 enemyStuff.moveToPoint = enemyStuff.civilianArray[civilan];
-                enemyStuff.updateTarget();
+                enemyStuff.updateTarget(enemyStuff.moveToPoint);
             } else {
                 enemyStuff.moveToPoint = enemyStuff.allEnemyArray[0].home;
             }   //else
