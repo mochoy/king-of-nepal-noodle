@@ -90,21 +90,33 @@ var mainGameVar = {
             towerStuff.towerNeedSearchArray[tower].findEnemy(enemyStuff.allEnemyArray);
         }   //for tower find enemy
         
-        //when enemy reaches home or end
+        //when enemy reaches home or end or dropped civilian
         for (var enemy = 0; enemy < enemyStuff.allEnemyArray.length; enemy++){
             var enemySprite = enemyStuff.allEnemyArray[enemy];
+            game.physics.arcade.overlap(enemySprite, enemySprite.targetCivilian, enemySprite.civilianReached, null, this);
             game.physics.arcade.overlap(enemySprite, enemySprite.home, enemySprite.homeReached, null, null);
             game.physics.arcade.overlap(enemySprite, enemySprite.end, enemySprite.endReached, null, this);
-
         }   //for 
         
         //civilion follow enemy
-        for (enemy = 0; enemy < enemyStuff.allEnemyArray.length; enemy++){
+        for (var enemy = 0; enemy < enemyStuff.allEnemyArray.length; enemy++){
             var enemySprite = enemyStuff.allEnemyArray[enemy];
             if (enemySprite.isHoldingCivilion) {
                 enemySprite.civilion.civilionSprite.followEnemy(enemySprite);
             }   //if
         }   //for iterate enemies
+        
+        //change enemy target if civilan dropped
+        for (var civilan = 0; civilan < enemyStuff.civilionArray.length; civilan++){
+            //if civilian dropped when enemy not reached end
+            if (enemyStuff.civilionArray[civilan].isPickedUp == false){
+                //change enemy's target
+                enemyStuff.moveToPoint = enemyStuff.civilionArray[civilan];
+                enemyStuff.updateTarget();
+            } else {
+                enemyStuff.moveToPoint = enemyStuff.allEnemyArray[0].home;
+            }   //else
+        }   //for
         
     }  //function update
     

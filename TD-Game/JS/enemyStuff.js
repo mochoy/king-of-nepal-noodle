@@ -27,6 +27,7 @@ enemyStuff.EnemyPrototype = function () {
         
         this.enemySprite.isHoldingCivilion = false;
         this.enemySprite.civilion = null;
+        this.enemySprite.targetCivilian = null;
         
         //stats
         this.enemySprite.health = 5;
@@ -36,6 +37,7 @@ enemyStuff.EnemyPrototype = function () {
         this.enemySprite.hit = this.hit;    
         this.enemySprite.moveToTarget = this.moveToTarget;
         this.enemySprite.moveToEnd = this.moveToEnd;
+        this.enemySprite.civilianReached = this.civilianReached;
         this.enemySprite.endReached = this.endReached;
         this.enemySprite.homeReached = this.homeReached;
         
@@ -63,9 +65,6 @@ enemyStuff.EnemyPrototype = function () {
             //drop stuff
             if (enemySpritec.isHoldingCivilion){
                 enemySpritec.civilion.dropped(enemySpritec);
-                //change target
-                enemySpritec.civilionTarget = enemySpritec.civilion.civilionSprite;
-                enemyStuff.moveToPoint = enemySpritec.civilionTarget;
             }
             
             //kill sprite stuff
@@ -99,6 +98,12 @@ enemyStuff.EnemyPrototype = function () {
         helper.removeFromArray(enemyStuff.allEnemyArray, null, null, enemySprite);
 
     };
+    
+    //enemy reaches civilian
+    //intended to be used as a stateless function, don't use "this"
+    this.civilianReached = function (enemySprite, civilian) {
+        
+    };
 };
 
 //subclass of EnemyPrototype
@@ -127,8 +132,18 @@ enemyStuff.spawnEnemy = function () {
     } else {
         new enemyStuff.EnemyBasic().create(game, ((game.width/3)*2), 10);
     }
-}
+};
 
+//update enemy's target when it changes
+enemyStuff.updateTarget = function () {
+    for (var enemy = 0; enemy < enemyStuff.allEnemyArray.length; enemy++) {
+        enemySprite = enemyStuff.allEnemyArray[enemy]; 
+        enemySprite.targetCivilian = enemyStuff.moveToPoint;
+        //switch targets
+        enemySprite.target = enemyStuff.moveToPoint;
+        enemySprite.moveToTarget();
+    }   //for
+};  //function
 
 /*
 var EnemySpecial = function () {
