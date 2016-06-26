@@ -2,7 +2,7 @@ var enemyStuff = {};
 
 enemyStuff.allEnemyArray = [];
 
-enemyStuff.civilionArray = [];
+enemyStuff.civilianArray = [];
 
 enemyStuff.moveToPoint;
 enemyStuff.moveToPoint2;
@@ -20,13 +20,13 @@ enemyStuff.EnemyPrototype = function () {
         game.physics.arcade.enable(this.enemySprite);
         
         //stuff dealing with movement move locations
-        this.enemySprite.civilionTarget = null;
+        this.enemySprite.civilianTarget = null;
         this.enemySprite.home = enemyStuff.moveToPoint;
         this.enemySprite.end = enemyStuff.moveToPoint2;
         this.enemySprite.target = this.enemySprite.home;
         
-        this.enemySprite.isHoldingCivilion = false;
-        this.enemySprite.civilion = null;
+        this.enemySprite.isHoldingcivilian = false;
+        this.enemySprite.civilian = null;
         this.enemySprite.targetCivilian = null;
         
         //stats
@@ -61,10 +61,10 @@ enemyStuff.EnemyPrototype = function () {
     this.hit = function (bulletSpritec, enemySpritec) {
         //decrease enemy health, kill and remove bullet, add to tower's hit score
         if (enemySpritec.health == 0) {
-            //drop civilion if holding it
+            //drop civilian if holding it
             //drop stuff
-            if (enemySpritec.isHoldingCivilion){
-                enemySpritec.civilion.dropped(enemySpritec);
+            if (enemySpritec.isHoldingcivilian){
+                enemySpritec.civilian.dropped(enemySpritec);
             }
             
             //kill sprite stuff
@@ -79,13 +79,12 @@ enemyStuff.EnemyPrototype = function () {
     
     //enemy reaches home
     this.homeReached = function (enemySprite, point) {
-        enemySprite.end = enemyStuff.moveToPoint2;
-
         //enemySprite now holding civilian
-        enemySprite.civilion = new enemyStuff.Civilion().create(game, enemySprite.x, enemySprite.y);
-        enemySprite.civilion.pickedUp(enemySprite);
+        enemySprite.civilian = new enemyStuff.civilian().create(game, enemySprite.x, enemySprite.y);
+        enemySprite.civilian.civilianSprite.pickedUp(enemySprite);
         
         //change target
+        enemySprite.end = enemyStuff.moveToPoint2;
         enemySprite.target = enemySprite.end;
         
         enemySprite.moveToTarget();
@@ -94,7 +93,7 @@ enemyStuff.EnemyPrototype = function () {
     //enemy reaches end
     //intended to be used as a stateless function, don't use "this"
     this.endReached = function (enemySprite, end){
-        enemySprite.civilion.endReached();
+        enemySprite.civilian.endReached();
         helper.removeFromArray(enemyStuff.allEnemyArray, null, null, enemySprite);
 
     };
@@ -102,7 +101,14 @@ enemyStuff.EnemyPrototype = function () {
     //enemy reaches civilian
     //intended to be used as a stateless function, don't use "this"
     this.civilianReached = function (enemySprite, civilian) {
+        //enemySprite now holding civilian
+        enemySprite.civilian = enemySprite.targetCivilian;
+        enemySprite.civilian.pickedUp(enemySprite);
         
+        //change target
+        enemySprite.end = enemyStuff.moveToPoint2;
+        enemySprite.target = enemySprite.end;
+        enemySprite.moveToTarget;
     };
 };
 
@@ -243,38 +249,40 @@ enemyStuff.findSprite = function (enemySprite) {
 */
 
 
-enemyStuff.Civilion = function () {
+enemyStuff.civilian = function () {
     this.imgName = "pathPointIMG";
-    this.civilionSprite = null;
+    this.civilianSprite = null;
     
     this.create = function (game, x, y){
-        //civilion sprite stuff
-        this.civilionSprite = game.add.sprite (x, y, this.imgName); 
-        game.physics.arcade.enable(this.civilionSprite);
-        this.civilionSprite.anchor.set(0.5);
-        this.civilionSprite.inputEnabled = true;
+        //civilian sprite stuff
+        this.civilianSprite = game.add.sprite (x, y, this.imgName); 
+        game.physics.arcade.enable(this.civilianSprite);
+        this.civilianSprite.anchor.set(0.5);
+        this.civilianSprite.inputEnabled = true;
         
         
-        this.civilionSprite.width = 100;
-        this.civilionSprite.height = 100;
+        this.civilianSprite.width = 100;
+        this.civilianSprite.height = 100;
         
-        enemyStuff.civilionArray.push(this.civilionSprite);
+        enemyStuff.civilianArray.push(this.civilianSprite);
         
-        this.civilionSprite.isPickedUp = true;
+        this.civilianSprite.isPickedUp = true;
 
-        //civilionSprite's functions
-        this.civilionSprite.followEnemy = this.followEnemy;
+        //civilianSprite's functions
+        this.civilianSprite.followEnemy = this.followEnemy;
+        this.civilianSprite.pickedUp = this.pickedUp;
         
         return this;
     };
     
-    //when civilion picked up by enemy
+    //when civilian picked up by enemy
+    //this == civilian sprite
     this.pickedUp = function (enemySprite) {
-        this.civilionSprite.isPickedUp = true;
-        this.civilionSprite.x = enemySprite.x;
-        this.civilionSprite.y = enemySprite.y;
+        this.isPickedUp = true;
+        this.x = enemySprite.x;
+        this.y = enemySprite.y;
         
-        enemySprite.isHoldingCivilion = true;
+        enemySprite.isHoldingcivilian = true;
     };
     
     //follow enemy holding it
@@ -284,18 +292,18 @@ enemyStuff.Civilion = function () {
         this.y = enemySprite.y;
     };
     
-    //when civilion dropped by enemy
+    //when civilian dropped by enemy
     this.dropped = function (enemySprite) {
-        this.civilionSprite.isPickedUp = false;
+        this.civilianSprite.isPickedUp = false;
         
-        enemySprite.isHoldingCivilion = false;
+        enemySprite.isHoldingcivilian = false;
     };
     
-    //when enemy holding civilion reaches end
+    //when enemy holding civilian reaches end
     //this points to instance of Civlion class
     this.endReached = function () {
-        //destroy and remove civilionSprite from its arrays
-        helper.removeFromArray(enemyStuff.civilionArray, null, null, this.civilionSprite);  
+        //destroy and remove civilianSprite from its arrays
+        helper.removeFromArray(enemyStuff.civilianArray, null, null, this.civilianSprite);  
     };  //function
     
 };

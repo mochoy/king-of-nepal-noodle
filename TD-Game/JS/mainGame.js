@@ -98,20 +98,20 @@ var mainGameVar = {
             game.physics.arcade.overlap(enemySprite, enemySprite.end, enemySprite.endReached, null, this);
         }   //for 
         
-        //civilion follow enemy
+        //civilian follow enemy
         for (var enemy = 0; enemy < enemyStuff.allEnemyArray.length; enemy++){
             var enemySprite = enemyStuff.allEnemyArray[enemy];
-            if (enemySprite.isHoldingCivilion) {
-                enemySprite.civilion.civilionSprite.followEnemy(enemySprite);
+            if (enemySprite.isHoldingcivilian) {
+                enemySprite.civilian.civilianSprite.followEnemy(enemySprite);
             }   //if
         }   //for iterate enemies
         
         //change enemy target if civilan dropped
-        for (var civilan = 0; civilan < enemyStuff.civilionArray.length; civilan++){
+        for (var civilan = 0; civilan < enemyStuff.civilianArray.length; civilan++){
             //if civilian dropped when enemy not reached end
-            if (enemyStuff.civilionArray[civilan].isPickedUp == false){
+            if (enemyStuff.civilianArray[civilan].isPickedUp == false){
                 //change enemy's target
-                enemyStuff.moveToPoint = enemyStuff.civilionArray[civilan];
+                enemyStuff.moveToPoint = enemyStuff.civilianArray[civilan];
                 enemyStuff.updateTarget();
             } else {
                 enemyStuff.moveToPoint = enemyStuff.allEnemyArray[0].home;
