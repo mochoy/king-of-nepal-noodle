@@ -95,7 +95,7 @@ var mainGameVar = {
             var enemySprite = enemyStuff.allEnemyArray[enemy];
             game.physics.arcade.overlap(enemySprite, enemySprite.targetCivilian, enemySprite.civilianReached, null, this);
             game.physics.arcade.overlap(enemySprite, enemySprite.home, enemySprite.homeReached, null, null);
-            game.physics.arcade.overlap(enemySprite, enemySprite.end, enemySprite.endReached, null, this);
+            // game.physics.arcade.overlap(enemySprite, enemySprite.end, enemySprite.endReached, null, this);
         }   //for 
         
         //civilian follow enemy
@@ -103,9 +103,11 @@ var mainGameVar = {
             var enemySprite = enemyStuff.allEnemyArray[enemy];
             if (enemySprite.isHoldingcivilian) {
                 enemySprite.civilian.followEnemy(enemySprite);
+                
             }   //if
         }   //for iterate enemies
         
+        /*
         //change enemy target if civilan dropped
         for (var civilan = 0; civilan < enemyStuff.civilianArray.length; civilan++){
             //if civilian dropped when enemy not reached end
@@ -117,6 +119,8 @@ var mainGameVar = {
                 enemyStuff.moveToPoint = enemyStuff.allEnemyArray[0].home;
             }   //else
         }   //for
+        */
+    
         
     }  //function update
     
