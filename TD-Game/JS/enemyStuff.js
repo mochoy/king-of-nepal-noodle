@@ -1,9 +1,10 @@
-var enemyStuff = {};
+var enemyStuff = {
+    moveToPoint: null,
+    endPoint: null
+};
 
 enemyStuff.allEnemyArray = [];
 
-enemyStuff.moveToPoint;
-enemyStuff.moveToPoint2;
 
 //Enemy superclass thingy
 enemyStuff.EnemyPrototype = function () {
@@ -19,7 +20,6 @@ enemyStuff.EnemyPrototype = function () {
         
         //stuff dealing with movement move locations
         this.enemySprite.home = enemyStuff.moveToPoint;
-        this.enemySprite.end = enemyStuff.moveToPoint2;
         this.enemySprite.target = this.enemySprite.home;
         
         
@@ -32,7 +32,7 @@ enemyStuff.EnemyPrototype = function () {
         this.enemySprite.moveToTarget = this.moveToTarget;
         this.enemySprite.moveToEnd = this.moveToEnd;
         this.enemySprite.endReached = this.endReached;
-        this.enemySprite.homeReached = this.homeReached;
+        this.enemySprite.destinationReached = this.destinationReached;
         this.enemySprite.killed = this.killed;
         
         this.addToArray();
@@ -70,12 +70,11 @@ enemyStuff.EnemyPrototype = function () {
         helper.removeFromArray(enemyStuff.allEnemyArray, null, null, enemySprite);
     };
     
-    //enemy reaches home
-    this.homeReached = function (enemySprite, point) {
-        
+    //enemy reaches destination
+    this.destinationReached = function (enemySprite, point) {
         //change target
         enemySprite.end = enemyStuff.moveToPoint2;
-        enemySprite.target = enemySprite.end;
+        enemySprite.target = enemyStuff.endPoint;
         enemySprite.moveToTarget();
     };
     

@@ -31,10 +31,10 @@ var mainGameVar = {
         enemyStuff.moveToPoint.width = 1;
         enemyStuff.moveToPoint.height = 1;
         
-        enemyStuff.moveToPoint2 = game.add.sprite(centerX, 0, "dudeIMG");
-        game.physics.arcade.enable(enemyStuff.moveToPoint2);
-        enemyStuff.moveToPoint2.width = 1;
-        enemyStuff.moveToPoint2.height = 1;
+        enemyStuff.endPoint = game.add.sprite(centerX, 0, "dudeIMG");
+        game.physics.arcade.enable(enemyStuff.endPoint);
+        enemyStuff.endPoint.width = 1;
+        enemyStuff.endPoint.height = 1;
 
 
         towerStuff.createTower(0, game.world.width/2, 500);
@@ -80,8 +80,8 @@ var mainGameVar = {
         //when enemy reaches home or end
         for (var enemy = 0; enemy < enemyStuff.allEnemyArray.length; enemy++){
             var enemySprite = enemyStuff.allEnemyArray[enemy];
-            game.physics.arcade.overlap(enemySprite, enemySprite.home, enemySprite.homeReached, null, null);
-            // game.physics.arcade.overlap(enemySprite, enemySprite.end, enemySprite.endReached, null, this);
+            game.physics.arcade.overlap(enemySprite, enemySprite.target, enemySprite.destinationReached, null, null);
+            game.physics.arcade.overlap(enemySprite, enemyStuff.endPoint, enemySprite.endReached, null, this);
         }   //for 
         
         //keep max ammount of bullets at 20 per tower
