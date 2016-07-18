@@ -77,7 +77,7 @@ enemyStuff.EnemyPrototype = function () {
     //stateless function
     this.destinationReached = function (enemySprite, point) {
         if (point === enemyStuff.home) {
-            enemySprite.civilian = new CivilanPrototype().init(game, enemySprite.x, enemySprite.y);
+            enemySprite.civilian = new Civilan().init(game, enemySprite.x, enemySprite.y);
         }
         
         //change target

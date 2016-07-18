@@ -1,6 +1,6 @@
 var allCivilianArr = [];
 
-CivilanPrototype = function () {
+Civilan = function () {
     this.imgName = helper.imgNames.civilianImg;
     this.sprite = null;
     
