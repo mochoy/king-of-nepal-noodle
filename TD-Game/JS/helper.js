@@ -79,3 +79,7 @@ helper.removeFromArray = function (array1, array2, array3, sprite) {
     
     sprite.destroy();
 };
+
+helper.imgNames = {
+    civilianImg: "pathPointIMG"
+};
