@@ -24,10 +24,10 @@ var mainGameVar = {
         
         towerStuff.moveToPoint = game.add.sprite(centerX, centerY, null);
         
-        enemyStuff.moveToPoint = game.add.sprite(centerX, game.height - 200, "dudeIMG");
-        game.physics.arcade.enable(enemyStuff.moveToPoint);
-        enemyStuff.moveToPoint.width = 1;
-        enemyStuff.moveToPoint.height = 1;
+        enemyStuff.home = game.add.sprite(centerX, game.height - 200, "dudeIMG");
+        game.physics.arcade.enable(enemyStuff.home);
+        enemyStuff.home.width = 1;
+        enemyStuff.home.height = 1;
         
         enemyStuff.endPoint = game.add.sprite(centerX, 0, "dudeIMG");
         game.physics.arcade.enable(enemyStuff.endPoint);

@@ -1,4 +1,5 @@
 var enemyStuff = {
+    home: null,
     moveToPoint: null,
     endPoint: null
 };
@@ -19,13 +20,15 @@ enemyStuff.EnemyPrototype = function () {
         game.physics.arcade.enable(this.enemySprite);
         
         //stuff dealing with movement move locations
-        this.enemySprite.home = enemyStuff.moveToPoint;
+        this.enemySprite.home = enemyStuff.home;
         this.enemySprite.target = this.enemySprite.home;
-        
         
         //stats
         this.enemySprite.health = 3;
         this.enemySprite.moveSpeed = 100;
+        
+        //civilian stuff
+        this.enemySprite.civilian = null;
         
         //functions attached to enemySprite
         this.enemySprite.hit = this.hit;    
@@ -72,6 +75,10 @@ enemyStuff.EnemyPrototype = function () {
     
     //enemy reaches destination
     this.destinationReached = function (enemySprite, point) {
+        // if (point === enemyStuff.home) {
+            
+        // }
+        
         //change target
         enemySprite.end = enemyStuff.moveToPoint2;
         enemySprite.target = enemyStuff.endPoint;
