@@ -11,7 +11,7 @@ enemyStuff.EnemyPrototype = function () {
     this.enemySprite = null;
     
     //create sprite
-    this.create = function (game, x, y) {
+    this.init = function (game, x, y) {
         //create sprite
         this.enemySprite = game.add.sprite(x, y, this.imgName);
         this.enemySprite.anchor.set(0.5);
@@ -93,20 +93,11 @@ enemyStuff.EnemyBasic = function () {
 };
 
 enemyStuff.spawnEnemy = function () {
-    /*
-    var randomNum = Math.random();
-    if (randomNum < 0.5){
-        new EnemyBasic().enable(game, helper.pathStuff.getSpawnCoords(1), helper.pathStuff.getSpawnCoords(2));
-    } else {    
-        new EnemySpecial().enable(game, helper.pathStuff.getSpawnCoords(1), helper.pathStuff.getSpawnCoords(2));
-    }
-    */
-    
     var num = Math.random();
     if (num < 0.5) {
-        new enemyStuff.EnemyBasic().create(game, (game.width/3), 10);
+        new enemyStuff.EnemyBasic().init(game, (game.width/3), 10);
     } else {
-        new enemyStuff.EnemyBasic().create(game, ((game.width/3)*2), 10);
+        new enemyStuff.EnemyBasic().init(game, ((game.width/3)*2), 10);
     }
 };
 

@@ -15,7 +15,7 @@ towerStuff.TowerPrototype = function () {
     this.towerSprite = undefined;
 
     //create sprite
-    this.create = function (game, x, y) {
+    this.init = function (game, x, y) {
         this.towerSprite = game.add.sprite(x, y, this.image);
         game.physics.arcade.enable(this.towerSprite);
         this.towerSprite.anchor.set(0.5);
@@ -219,8 +219,8 @@ towerStuff.AutoTowerSlot = function () {
 
 towerStuff.createTower = function (towerNum, x, y) {
     if (towerNum == 0){
-        towerStuff.mainTower = new towerStuff.MainTower().create(game, x, y);
+        towerStuff.mainTower = new towerStuff.MainTower().init(game, x, y);
     } else {
-        towerStuff.newTower = new towerStuff.BasicTower().create(game, x, y).callSpecificFunctions();
+        towerStuff.newTower = new towerStuff.BasicTower().init(game, x, y).callSpecificFunctions();
     }
 };
