@@ -48,17 +48,6 @@ var mainGameVar = {
     },  //function create
     
     update: function (){
-         //move enemy along path
-        /*
-//        for (var i = 0; i < helper.pathStuff.pathArray.length; i ++){
-//            var pointToMoveTo = 0;
-//            for (var k = 0; k < helper.pathStuff.pathPointArray.length; k ++){
-//                game.physics.arcade.overlap(this.book, helper.pathStuff.pathArray[pointToMoveTo], this.moveToNextPoint, null, this);
-//            }   // for 
-//            game.physics.arcade.moveToObject(this.book, helper.pathStuff.pathArray[pointToMoveTo], 200);
-//        }   // for
-        */
-
         towerStuff.moveToPoint.bringToTop();
 
         // Aim tower to mouse click
@@ -96,27 +85,9 @@ var mainGameVar = {
             game.physics.arcade.overlap(enemySprite, enemySprite.home, enemySprite.homeReached, null, null);
             // game.physics.arcade.overlap(enemySprite, enemySprite.end, enemySprite.endReached, null, this);
         }   //for 
-        
-    
-        
-        /*
-        //change enemy target if civilan dropped
-        for (var civilan = 0; civilan < enemyStuff.civilianArray.length; civilan++){
-            //if civilian dropped when enemy not reached end
-            if (enemyStuff.civilianArray[civilan].isPickedUp == false){
-                //change enemy's target
-                enemyStuff.moveToPoint = enemyStuff.civilianArray[civilan];
-                enemyStuff.updateTarget(enemyStuff.moveToPoint);
-            } else {
-                enemyStuff.moveToPoint = enemyStuff.allEnemyArray[0].home;
-            }   //else
-        }   //for
-        */
-    
-        
     }  //function update
     
-}   //object mainGameVar
+};   //object mainGameVar
 
 var helper = {
     pathStuff: {
