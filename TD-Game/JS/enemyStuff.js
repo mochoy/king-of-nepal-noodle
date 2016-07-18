@@ -52,11 +52,12 @@ enemyStuff.EnemyPrototype = function () {
     };
     
     //enemy hit
+    //stateless function, dont use "this"
     this.hit = function (bulletSpritec, enemySprite) {
         //decrease enemy health, kill and remove bullet, add to tower's hit score
         if (enemySprite.health == 0) {
             //kill sprite stuff
-            enemySprite.killed();
+            enemySprite.killed(enemySprite);
         } else {
             enemySprite.health --;
             
@@ -65,8 +66,8 @@ enemyStuff.EnemyPrototype = function () {
         }   //else enemySprite health
     };   
     
-    this.killed = function () {
-        helper.removeFromArray(enemyStuff.allEnemyArray, null, null, this);
+    this.killed = function (enemySprite) {
+        helper.removeFromArray(enemyStuff.allEnemyArray, null, null, enemySprite);
     };
     
     //enemy reaches home
@@ -108,12 +109,3 @@ enemyStuff.spawnEnemy = function () {
     }
 };
 
-// //update enemy's target when it changes
-// enemyStuff.updateTarget = function (target) {
-//     for (var enemy = 0; enemy < enemyStuff.allEnemyArray.length; enemy++) {
-//         var enemySprite = enemyStuff.allEnemyArray[enemy]; 
-//         //switch targets
-//         enemySprite.target = target;
-//         enemySprite.moveToTarget();
-//     }   //for
-// };  //function
