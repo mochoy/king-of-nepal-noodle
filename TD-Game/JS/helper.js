@@ -73,23 +73,9 @@ var helper = {
 }   // helper
 
 helper.removeFromArray = function (array1, array2, array3, sprite) {
-    var newArray1 = [], newArray2 = [], newArray2 = [];
-    if (array1 != null){
-        for (var i = 0; i < array1.length; i++){
-            if (sprite == array1[i]){
-
-                if (i == array1.length - 1) {
-                    array1.pop();
-                } else {
-                    array1[i] = array1.pop();
-                }
-                sprite.destroy();
-    
-            }
-        }   //for
+    if (array1 != null) {
+        array1.splice(array1[array1.indexOf(sprite)], 1); 
     }   //if array1
     
-    if (!sprite) {
-    }
     sprite.destroy();
 };
