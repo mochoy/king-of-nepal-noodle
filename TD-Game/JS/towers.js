@@ -93,21 +93,21 @@ towerStuff.TowerPrototype = function () {
 //Manualtowers aim on click
 towerStuff.ManualTower = function () {
     //inherit from parent class
-    this.inherit = function (t, c) {
-        t.c = c;
-        t.c();
-    }    
+    this.inherit = function (thiz, constructer) {
+        thiz.constructer = constructer;
+        thiz.constructer();
+    };
     this.inherit(this, towerStuff.TowerPrototype);
 };
 
 //MainTower subclass of ManualTower
 towerStuff.MainTower = function () {
     //inherit from ManualTower
-    this.inherit = function (t, c) {
-        t.c = c;
-        t.c();
-    }    
-    this.inherit(this, towerStuff.TowerPrototype);
+    this.inherit = function (thiz, constructer) {
+        thiz.constructer = constructer;
+        thiz.constructer();
+    };
+    this.inherit(this, towerStuff.ManualTower);
 };
 
 
