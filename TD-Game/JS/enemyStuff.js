@@ -33,6 +33,7 @@ enemyStuff.EnemyPrototype = function () {
         this.enemySprite.moveToEnd = this.moveToEnd;
         this.enemySprite.endReached = this.endReached;
         this.enemySprite.homeReached = this.homeReached;
+        this.enemySprite.killed = this.killed;
         
         this.addToArray();
         this.enemySprite.moveToTarget();
@@ -51,18 +52,22 @@ enemyStuff.EnemyPrototype = function () {
     };
     
     //enemy hit
-    this.hit = function (bulletSpritec, enemySpritec) {
+    this.hit = function (bulletSpritec, enemySprite) {
         //decrease enemy health, kill and remove bullet, add to tower's hit score
-        if (enemySpritec.health == 0) {
+        if (enemySprite.health == 0) {
             //kill sprite stuff
-            helper.removeFromArray(enemyStuff.allEnemyArray, null, null, enemySpritec);
+            enemySprite.killed();
         } else {
-            enemySpritec.health --;
+            enemySprite.health --;
             
             bulletSpritec.towerSprite.hit ++;
             helper.removeFromArray(bulletSpritec.towerSprite.bulletArray, null, null, bulletSpritec);
         }   //else enemySprite health
     };   
+    
+    this.killed = function () {
+        helper.removeFromArray(enemyStuff.allEnemyArray, null, null, this);
+    };
     
     //enemy reaches home
     this.homeReached = function (enemySprite, point) {
@@ -92,6 +97,8 @@ enemyStuff.EnemyBasic = function () {
     this.inherit(this, enemyStuff.EnemyPrototype);
 };
 
+
+
 enemyStuff.spawnEnemy = function () {
     var num = Math.random();
     if (num < 0.5) {
@@ -101,12 +108,12 @@ enemyStuff.spawnEnemy = function () {
     }
 };
 
-//update enemy's target when it changes
-enemyStuff.updateTarget = function (target) {
-    for (var enemy = 0; enemy < enemyStuff.allEnemyArray.length; enemy++) {
-        enemySprite = enemyStuff.allEnemyArray[enemy]; 
-        //switch targets
-        enemySprite.target = target;
-        enemySprite.moveToTarget();
-    }   //for
-};  //function
+// //update enemy's target when it changes
+// enemyStuff.updateTarget = function (target) {
+//     for (var enemy = 0; enemy < enemyStuff.allEnemyArray.length; enemy++) {
+//         var enemySprite = enemyStuff.allEnemyArray[enemy]; 
+//         //switch targets
+//         enemySprite.target = target;
+//         enemySprite.moveToTarget();
+//     }   //for
+// };  //function
