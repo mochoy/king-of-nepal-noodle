@@ -20,8 +20,6 @@ var mainGameVar = {
         game.physics.startSystem(Phaser.Physics.ARCADE);
         game.stage.backgroundColor = '#ffffff'
 
-        // helper.createPath("pathIMG");
-        
         centerX = game.width/2; centerY = game.height/2;
         
         var enemySpawnTimer = game.time.events.loop(Phaser.Timer.SECOND, enemyStuff.spawnEnemy, this);
@@ -85,6 +83,15 @@ var mainGameVar = {
             game.physics.arcade.overlap(enemySprite, enemySprite.home, enemySprite.homeReached, null, null);
             // game.physics.arcade.overlap(enemySprite, enemySprite.end, enemySprite.endReached, null, this);
         }   //for 
-    }  //function update
+        
+        //keep max ammount of bullets at 20 per tower
+        for (var tower = 0; tower < towerStuff.allTowerArray.length; tower++) {
+            var towerSprite = towerStuff.allTowerArray[tower];
+            if (towerSprite.bulletArray.length > 20) {
+                towerSprite.bulletArray.shift().kill();
+            }
+        }   //for
+        
+    }  //method update
     
 };   //object mainGameVar

@@ -61,11 +61,6 @@ towerStuff.TowerPrototype = function () {
     
     //shoot
     this.shoot = function (towerSpritel, target) {
-        //keep max amount of bullets for tower at 20
-        if (towerSpritel.bulletArray.length > 20){
-        towerSpritel.bulletArray.shift().kill();
-        }
-    
         //bullet creating stuff
         var bullet = game.add.sprite(100, 100, this.img);
         bullet.x = towerSpritel.x;
@@ -80,6 +75,7 @@ towerStuff.TowerPrototype = function () {
         //bullet shooting stuff
         bullet.rotation = game.physics.arcade.angleBetween(bullet, target);
         game.physics.arcade.moveToObject(bullet, target, towerSpritel.bulletSpeed);
+        
         //weapon inaccuracy
         bullet.body.velocity.x += towerSpritel.weaponAccuracy*(Math.random() - 0.5);
         bullet.body.velocity.y += towerSpritel.weaponAccuracy*(Math.random() - 0.5);
