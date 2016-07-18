@@ -9,9 +9,12 @@ Civilan = function () {
         helper.initSprite(this.sprite, 0.1, 0.1);
         
         allCivilianArr.push(this.sprite);
+        
+        return this;
     };
     
     this.followEnemy = function (enemySprite) {
+        console.log("following enemy");
         this.sprite.x = enemySprite.x;
         this.sprite.y = enemySprite.y;
     };

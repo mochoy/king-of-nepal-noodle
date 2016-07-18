@@ -90,6 +90,14 @@ var mainGameVar = {
             }
         }   //for
         
+        //civilain follow enemy
+        for (var enemy = 0; enemy < enemyStuff.allEnemyArray.length; enemy++) {
+            var enemySprite = enemyStuff.allEnemyArray[enemy];
+            if (enemySprite.civilian != null) {
+                enemySprite.civilian.followEnemy(enemySprite);
+            }
+        }       //for
+        
     }  //method update
     
 };   //object mainGameVar
