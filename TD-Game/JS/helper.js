@@ -83,3 +83,10 @@ helper.removeFromArray = function (array1, array2, array3, sprite) {
 helper.imgNames = {
     civilianImg: "pathPointIMG"
 };
+
+helper.initSprite = function (sprite, scaleX, scaleY) {
+    sprite.anchor.set(0.5);
+    game.physics.arcade.enable(sprite);
+    sprite.scale.x = scaleX;
+    sprite.scale.y = scaleY;
+};
