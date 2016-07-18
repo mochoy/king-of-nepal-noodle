@@ -1,8 +1,6 @@
-var gameManagerStuff = {};
 var centerX , centerY;
 
 var mainGameVar = {
-    
     preload: function (){
         game.load.image ("bookIMG", "Assets/Images/Test/book.jpg");                 //test asset
         game.load.image ("pathIMG", "Assets/Images/Test/greyBlock.jpg");            //test asset
