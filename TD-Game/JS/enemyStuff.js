@@ -91,7 +91,9 @@ enemyStuff.EnemyPrototype = function () {
     //enemy reaches end
     //intended to be used as a stateless function, don't use "this"
     this.endReached = function (enemySprite, end){
+        console.log("end reached");
         helper.removeFromArray(enemyStuff.allEnemyArray, null, null, enemySprite);
+        helper.removeFromArray(allCivilianArr, null, null, enemySprite.civilian);
 
     };
     

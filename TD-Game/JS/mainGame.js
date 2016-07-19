@@ -18,7 +18,8 @@ var mainGameVar = {
         game.physics.startSystem(Phaser.Physics.ARCADE);
         game.stage.backgroundColor = '#ffffff'
 
-        centerX = game.width/2; centerY = game.height/2;
+        centerX = game.width/2;
+        centerY = game.height/2;
         
         var enemySpawnTimer = game.time.events.loop(Phaser.Timer.SECOND, enemyStuff.spawnEnemy, this);
         
@@ -28,11 +29,11 @@ var mainGameVar = {
         game.physics.arcade.enable(enemyStuff.home);
         enemyStuff.home.width = 1;
         enemyStuff.home.height = 1;
-        
+           
         enemyStuff.endPoint = game.add.sprite(centerX, 0, "dudeIMG");
         game.physics.arcade.enable(enemyStuff.endPoint);
-        enemyStuff.endPoint.width = 1;
-        enemyStuff.endPoint.height = 1;
+        enemyStuff.endPoint.width = 10;
+        enemyStuff.endPoint.height = 10;
 
 
         towerStuff.createTower(0, game.world.width/2, 500);
@@ -86,7 +87,7 @@ var mainGameVar = {
         for (var tower = 0; tower < towerStuff.allTowerArray.length; tower++) {
             var towerSprite = towerStuff.allTowerArray[tower];
             if (towerSprite.bulletArray.length > 20) {
-                towerSprite.bulletArray.shift().kill();
+                towerSprite.bulletArray.shift().destroy();
             }
         }   //for
         
@@ -97,6 +98,11 @@ var mainGameVar = {
                 enemySprite.civilian.followEnemy(enemySprite);
             }
         }       //for
+        
+        //keep max amount of civilians at 20
+        if (allCivilianArr.length < 20) {
+            allCivilianArr.shift().destroy();
+        }
         
     }  //method update
     
