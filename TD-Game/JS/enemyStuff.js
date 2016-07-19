@@ -70,6 +70,9 @@ enemyStuff.EnemyPrototype = function () {
     };   
     
     this.killed = function (enemySprite) {
+        if (enemySprite.civilian != null) {
+            enemySprite.civilian.isPickedUp = false;
+        }
         helper.removeFromArray(enemyStuff.allEnemyArray, null, null, enemySprite);
     };
     
@@ -81,6 +84,7 @@ enemyStuff.EnemyPrototype = function () {
         }
         
         enemySprite.civilian = new Civilan().init(game, enemySprite.x, enemySprite.y);
+        enemySprite.civilian.isPickedUp = true;
         
         //change target
         enemySprite.end = enemyStuff.moveToPoint2;

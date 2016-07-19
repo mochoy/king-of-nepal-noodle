@@ -100,9 +100,14 @@ var mainGameVar = {
         }       //for
         
         //keep max amount of civilians at 20
-        if (allCivilianArr.length < 20) {
+        if (allCivilianArr.length > 20) {
             allCivilianArr.shift().destroy();
         }
+        
+        //check if civilian is dropped
+        // for () {
+            
+        // }
         
     }  //method update
     
