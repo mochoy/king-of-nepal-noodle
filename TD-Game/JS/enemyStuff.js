@@ -124,3 +124,8 @@ enemyStuff.spawnEnemy = function () {
     }
 };
 
+enemyStuff.changeTarget = function () {
+    for (var enemy; enemy < enemyStuff.allEnemyArray.length; enemy ++) {
+        enemyStuff.allEnemyArray[enemy].target = enemyStuff.moveToPoint;
+    }  
+};

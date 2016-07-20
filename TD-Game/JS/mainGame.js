@@ -105,9 +105,12 @@ var mainGameVar = {
         }
         
         //check if civilian is dropped
-        // for () {
-            
-        // }
+        for (var civilian = 0; civilian < allCivilianArr.length; civilian++) {
+            var civilainSprite = allCivilianArr[civilian];
+            if (!civilainSprite.isPickedUp) {
+                enemyStuff.moveToPoint = civilainSprite;
+            }
+        }   //for
         
     }  //method update
     
