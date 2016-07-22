@@ -1,10 +1,13 @@
 var enemyData = 
-    [
+{
+    "data": [
         {
             "name": "enemyBasic",
             "class": "EnemyPrototype",
+			"src": "bookIMG",
             "health": 3,
             "moveSpeed": 100
         }
     ]
+}
 

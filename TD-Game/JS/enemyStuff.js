@@ -8,24 +8,22 @@ enemyStuff.allEnemyArray = [];
 
 
 //Enemy superclass thingy
-enemyStuff.EnemyPrototype = function () {
-    this.imgName = "bookIMG";
+EnemyPrototype = function () {
     this.enemySprite = null;
     
     //create sprite
-    this.init = function (game, x, y) {
+    this.init = function (game, x, y, obj) {
         //create sprite
-        this.enemySprite = game.add.sprite(x, y, this.imgName);
-        this.enemySprite.anchor.set(0.5);
-        game.physics.arcade.enable(this.enemySprite);
+        this.enemySprite = game.add.sprite(x, y, obj.src);
+		helper.initSprite(this.enemySprite, 1, 1);
         
         //stuff dealing with movement move locations
         this.enemySprite.home = enemyStuff.home;
         this.enemySprite.target = this.enemySprite.home;
         
         //stats
-        this.enemySprite.health = 3;
-        this.enemySprite.moveSpeed = 100;
+        this.enemySprite.health = obj.health;
+        this.enemySprite.moveSpeed = obj.moveSpeed;
         
         //civilian stuff
         this.enemySprite.civilian = null;
@@ -118,9 +116,11 @@ enemyStuff.EnemyBasic = function () {
 enemyStuff.spawnEnemy = function () {
     var num = Math.random();
     if (num < 0.5) {
-        new enemyStuff.EnemyBasic().init(game, (game.width/3), 10);
+		new window[enemyData.data[0].class]().init(game, (game.width/3), 10, enemyData.data[0]);
+//        new enemyStuff.EnemyBasic().init(game, (game.width/3), 10);
     } else {
-        new enemyStuff.EnemyBasic().init(game, ((game.width/3)*2), 10);
+		new window[enemyData.data[0].class]().init(game, ((game.width/3)*2), 10, enemyData.data[0]);
+//        new enemyStuff.EnemyBasic().init(game, ((game.width/3)*2), 10);
     }
 };
 
