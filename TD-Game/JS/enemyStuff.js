@@ -101,18 +101,6 @@ EnemyPrototype = function () {
     
 };
 
-//subclass of EnemyPrototype
-enemyStuff.EnemyBasic = function () {
-    //inherit from parent class
-    this.inherit = function (t, c) {
-        t.c = c;
-        t.c();
-    }    
-    this.inherit(this, enemyStuff.EnemyPrototype);
-};
-
-
-
 enemyStuff.spawnEnemy = function () {
     var num = Math.random();
     if (num < 0.5) {
