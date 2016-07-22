@@ -1,3 +1,15 @@
 var towerData = {
-
-}
+	"data": [
+		{
+			"name": "mainTower",
+			"class": "ManualTower",
+			"src": "tower1IMG",
+			
+			"fireRate": 500,
+			"bulletSpeed": 1000,
+			"weaponAccuracy": 500,
+			"hit": 0,
+			"rangeVal": 0
+		}
+	]
+};

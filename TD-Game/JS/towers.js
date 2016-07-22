@@ -10,13 +10,12 @@ towerStuff.moveToPoint;
 
 
 //tower superclass thingy
-towerStuff.TowerPrototype = function () {
-    this.image = 'tower1IMG';
+TowerPrototype = function () {
     this.towerSprite = undefined;
 
     //create sprite
-    this.init = function (game, x, y) {
-        this.towerSprite = game.add.sprite(x, y, this.image);
+    this.init = function (game, x, y, obj) {
+        this.towerSprite = game.add.sprite(x, y, obj.src);
         game.physics.arcade.enable(this.towerSprite);
         this.towerSprite.anchor.set(0.5);
         this.towerSprite.inputEnabled = true;
@@ -32,11 +31,11 @@ towerStuff.TowerPrototype = function () {
         
         //stats stuff
         //all default MainTower stats
-        this.towerSprite.fireRate = 500;    //lower fireRate = shoot faster
-        this.towerSprite.bulletSpeed = 1000;
-        this.towerSprite.weaponAccuracy = 500;
-        this.towerSprite.hit = 0;
-        this.towerSprite.rangeVal = 0;
+        this.towerSprite.fireRate = obj.fireRate;    //lower fireRate = shoot faster
+        this.towerSprite.bulletSpeed = obj.bulletSpeed;
+        this.towerSprite.weaponAccuracy = obj.weaponAccuacy;
+        this.towerSprite.hit = obj.hit;
+        this.towerSprite.rangeVal = obj.rangeVal;
         
         //towerSprite clickable
         this.towerSprite.events.onInputDown.add(this.towerSprite.clicked, this);
@@ -91,13 +90,13 @@ towerStuff.TowerPrototype = function () {
 
 //ManualTower subclass of TowerPrototype
 //Manualtowers aim on click
-towerStuff.ManualTower = function () {
+ManualTower = function () {
     //inherit from parent class
     this.inherit = function (thiz, constructer) {
         thiz.constructer = constructer;
         thiz.constructer();
     };
-    this.inherit(this, towerStuff.TowerPrototype);
+    this.inherit(this, TowerPrototype);
 };
 
 //MainTower subclass of ManualTower
@@ -113,7 +112,7 @@ towerStuff.MainTower = function () {
 
 //AutoTower subclass of TowerPrototype
 //Autotowers aim automatically
-towerStuff.AutoTower = function () {
+AutoTower = function () {
     //inherit from TowerPrototype
     this.inherit = function (t, c) {    //t is this, c is constructor
         t.c = c;
@@ -215,8 +214,8 @@ towerStuff.AutoTowerSlot = function () {
 
 towerStuff.createTower = function (towerNum, x, y) {
     if (towerNum == 0){
-        towerStuff.mainTower = new towerStuff.MainTower().init(game, x, y);
+		new window[towerData.data[0].class]().init(game, x, y, towerData.data[0]);
     } else {
-        towerStuff.newTower = new towerStuff.BasicTower().init(game, x, y).callSpecificFunctions();
+		new window[towerData.data[0].class]().init(game, x, y, towerData.data[0]).callSpecificFunctions();
     }
 };
