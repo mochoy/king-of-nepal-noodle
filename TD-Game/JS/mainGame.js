@@ -40,7 +40,7 @@ var mainGameVar = {
         towerStuff.createTower(1, 100, 100);
         
         new towerStuff.TowerSlotPrototype().create(game, 500, 500);
-
+        
 
     },  //function create
     
