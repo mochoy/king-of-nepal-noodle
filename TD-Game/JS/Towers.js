@@ -90,19 +90,6 @@ TowerPrototype = function () {
             towerSprite.range = new Phaser.Circle(towerSprite.x+(towerSprite.width/2), towerSprite.y+(towerSprite.height/2), towerSprite.rangeVal)
         }   //if
     };  //fucntion
-	
-	    
-    this.findEnemy = function (enemyArray) {
-        for (var i = 0; i < enemyArray.length; i ++){
-            enemySprite = enemyArray[i];
-            if (this.range.contains(enemySprite.x, enemySprite.y)) {
-                this.canShoot = true;
-                this.target = enemySprite;
-                this.rotation = game.physics.arcade.angleBetween(this, this.target);
-    
-            }   //if
-        }   //for
-    };  //function findEnemy
     
 
 };   //class MainTower
@@ -133,7 +120,21 @@ AutoTower = function () {
         towerStuff.allTowerArr.push(this.towerSprite);
         towerStuff.autoTowerArr.push(this.towerSprite);
     };
-   
+    
+    
+    this.findEnemy = function (enemyArray) {
+        for (var i = 0; i < enemyArray.length; i ++){
+            enemySprite = enemyArray[i];
+            if (this.range.contains(enemySprite.x, enemySprite.y)) {
+                this.canShoot = true;
+                this.target = enemySprite;
+				this.rotation = game.physics.arcade.angleBetween(this, this.target);
+            } else {
+				this.canShoot = false;
+			}
+        }   //for
+		
+    };  //function findEnemy
 };
 
 
