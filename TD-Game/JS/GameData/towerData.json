@@ -14,7 +14,7 @@ var towerData = {
 		{
 			"name": "basicTower",
 			"class": "AutoTower",
-			"src": "ManualTower",
+			"src": "tower1IMG",
 			
 			"fireRate": 500,
 			"bulletSpeed": 1000,

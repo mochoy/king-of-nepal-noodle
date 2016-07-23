@@ -11,12 +11,11 @@ towerStuff.moveToPoint;
 
 //tower superclass thingy
 TowerPrototype = function () {
-    this.image = 'tower1IMG';
     this.towerSprite = undefined;
 
     //create sprite
     this.init = function (game, x, y, data) {
-        this.towerSprite = game.add.sprite(x, y, this.image);
+        this.towerSprite = game.add.sprite(x, y, data.src);
         game.physics.arcade.enable(this.towerSprite);
         this.towerSprite.anchor.set(0.5);
         this.towerSprite.inputEnabled = true;
@@ -32,11 +31,11 @@ TowerPrototype = function () {
         
         //stats stuff
         //all default MainTower stats
-        this.towerSprite.fireRate = 500;    //lower fireRate = shoot faster
-        this.towerSprite.bulletSpeed = 1000;
-        this.towerSprite.weaponAccuracy = 500;
-        this.towerSprite.hit = 0;
-        this.towerSprite.rangeVal = 0;
+        this.towerSprite.fireRate = data.fireRate;    //lower fireRate = shoot faster
+        this.towerSprite.bulletSpeed = data.bulletSpeed;
+        this.towerSprite.weaponAccuracy = data.weaponAccuracy;
+        this.towerSprite.hit = data.hit;
+        this.towerSprite.rangeVal = data.rangeVal;
         
         //towerSprite clickable
         this.towerSprite.events.onInputDown.add(this.towerSprite.clicked, this);
@@ -49,7 +48,8 @@ TowerPrototype = function () {
         
         //call functions
         this.addToArray();
-
+	  	this.createRange();
+	  
         return this;
     };   //function create
     
@@ -85,6 +85,14 @@ TowerPrototype = function () {
     this.clicked = function () {
         console.log("tower clicked!");
     };
+  
+	//create tower's range
+    this.createRange = function () {
+        if (this.towerSprite.rangeVal != 0) {
+            towerSprite = this.towerSprite;
+            towerSprite.range = new Phaser.Circle(towerSprite.x+(towerSprite.width/2), towerSprite.y+(towerSprite.height/2), towerSprite.rangeVal)
+        }   //if
+    };  //fucntion
     
 
 };   //class MainTower
@@ -117,18 +125,6 @@ AutoTower = function () {
         this.towerSprite.canShoot = false;
     };
     
-    //update or create variables specific to AutoTower
-    this.addStats = function () {
-        this.towerSprite.rangeVal = 500;  
-    };
-    
-    //create tower's range
-    this.createRange = function () {
-        if (this.towerSprite.rangeVal != 0) {
-            towerSprite = this.towerSprite;
-            towerSprite.range = new Phaser.Circle(towerSprite.x+(towerSprite.width/2), towerSprite.y+(towerSprite.height/2), towerSprite.rangeVal)
-        }   //if
-    };  //fucntion
     
     this.findEnemy = function (enemyArray) {
         for (var i = 0; i < enemyArray.length; i ++){
@@ -141,12 +137,6 @@ AutoTower = function () {
             }   //if
         }   //for
     };  //function findEnemy
-    
-    //call functions specific to this tower
-    this.callSpecificFunctions = function () {
-        this.addStats();
-        this.createRange();
-    }   //function
 };
 
 
@@ -187,7 +177,7 @@ towerStuff.createTower = function (towerNum, x, y) {
     if (towerNum == 0){
 	  	towerStuff.mainTower = new window[towerData.data[0].class]().init(game, x, y, towerData.data[0]);
     } else {
-	  	towerStuff.mainTower = new window[towerData.data[1].class]().init(game, x, y, towerData.data[1]).callSpecificFunctions();
+	  	towerStuff.mainTower = new window[towerData.data[1].class]().init(game, x, y, towerData.data[1]).createRange();
     }
 };
 
