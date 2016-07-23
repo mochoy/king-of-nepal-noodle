@@ -113,13 +113,13 @@ towerStuff.MainTower = function () {
 
 //AutoTower subclass of TowerPrototype
 //Autotowers aim automatically
-towerStuff.AutoTower = function () {
+AutoTower = function () {
     //inherit from TowerPrototype
     this.inherit = function (t, c) {    //t is this, c is constructor
         t.c = c;
         t.c();
     };  
-    this.inherit(this, towerStuff.TowerPrototype);
+    this.inherit(this, TowerPrototype);
     
     //add sprite to specific arrays
     this.addToArray = function () {
@@ -217,6 +217,6 @@ towerStuff.createTower = function (towerNum, x, y) {
     if (towerNum == 0){
 	  	towerStuff.mainTower = new window[towerData.data[0].class]().init(game, x, y, towerData.data[0]);
     } else {
-        towerStuff.newTower = new towerStuff.BasicTower().init(game, x, y).callSpecificFunctions();
+	  	towerStuff.mainTower = new window[towerData.data[1].class]().init(game, x, y, towerData.data[1]).callSpecificFunctions();
     }
 };

@@ -13,7 +13,7 @@ var towerData = {
 		},
 		{
 			"name": "basicTower",
-			"class": "autoTower",
+			"class": "AutoTower",
 			"src": "ManualTower",
 			
 			"fireRate": 500,
