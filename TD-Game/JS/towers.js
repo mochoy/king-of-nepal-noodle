@@ -100,17 +100,6 @@ ManualTower = function () {
     this.inherit(this, TowerPrototype);
 };
 
-//MainTower subclass of ManualTower
-towerStuff.MainTower = function () {
-    //inherit from ManualTower
-    this.inherit = function (thiz, constructer) {
-        thiz.constructer = constructer;
-        thiz.constructer();
-    };
-    this.inherit(this, towerStuff.ManualTower);
-};
-
-
 //AutoTower subclass of TowerPrototype
 //Autotowers aim automatically
 AutoTower = function () {
@@ -160,15 +149,6 @@ AutoTower = function () {
     }   //function
 };
 
-//BasicTower subclass of AutoTower
-towerStuff.BasicTower = function () {
-    //inherit from TowerPrototype
-    this.inherit = function (t, c) {
-        t.c = c;
-        t.c();
-    };  
-    this.inherit(this, towerStuff.AutoTower);
-};
 
 
 //towerSlot supercalss thingy
@@ -202,16 +182,6 @@ towerStuff.TowerSlotPrototype = function () {
     }
 };
 
-towerStuff.AutoTowerSlot = function () {
-    //inherit from parent class
-    this.inherit = function (t, c) {
-        t.c = c;
-        t.c();
-    }    
-    this.inherit(this, towerStuff.TowerSlotPrototype);
-    
-};
-
 
 towerStuff.createTower = function (towerNum, x, y) {
     if (towerNum == 0){
@@ -220,3 +190,4 @@ towerStuff.createTower = function (towerNum, x, y) {
 	  	towerStuff.mainTower = new window[towerData.data[1].class]().init(game, x, y, towerData.data[1]).callSpecificFunctions();
     }
 };
+
