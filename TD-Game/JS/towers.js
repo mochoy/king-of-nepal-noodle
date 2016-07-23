@@ -1,28 +1,26 @@
 var towerStuff = {};
 
-towerStuff.allTowerArray = [];
-towerStuff.towerNeedSearchArray = [];
-towerStuff.towerFollowMouseArray = [];
+towerStuff.allTowerArr = [];
+towerStuff.autoTowerArr = [];
+towerStuff.manualTowerArr = [];
 
-towerStuff.towerSlotArray = [];
+towerStuff.towerSlotArr = [];
 
 towerStuff.moveToPoint;
 
 
 //tower superclass thingy
 TowerPrototype = function () {
-    this.towerSprite = undefined;
-
     //create sprite
     this.init = function (game, x, y, data) {
         this.towerSprite = game.add.sprite(x, y, data.src);
-        game.physics.arcade.enable(this.towerSprite);
-        this.towerSprite.anchor.set(0.5);
+        helper.initSprite(this.towerSprite, 1, 1);
         this.towerSprite.inputEnabled = true;
         
+		//initialize shooting stuff
         this.towerSprite.bulletArray = [];
         this.towerSprite.target = towerStuff.moveToPoint;
-        this.towerSprite.canShoot = true;
+        this.towerSprite.canShoot = data.canShoot;
         
         //towerSprite's functions
         this.towerSprite.shoot = this.shoot;    
@@ -55,8 +53,8 @@ TowerPrototype = function () {
     
     //add tower to specific arrays 
     this.addToArray = function () {
-        towerStuff.allTowerArray.push(this.towerSprite);
-        towerStuff.towerFollowMouseArray.push(this.towerSprite);
+        towerStuff.allTowerArr.push(this.towerSprite);
+        towerStuff.manualTowerArr.push(this.towerSprite);
     };   //function 
     
     //shoot
@@ -65,8 +63,7 @@ TowerPrototype = function () {
         var bullet = game.add.sprite(100, 100, this.img);
         bullet.x = towerSpritel.x;
         bullet.y = towerSpritel.y;
-        game.physics.arcade.enable(bullet);
-        bullet.anchor.set(0.5);
+       	helper.initSprite(bullet, 1, 1);
         bullet.inputEnabled = true;
         
         bullet.towerSprite = this;
@@ -120,9 +117,8 @@ AutoTower = function () {
     
     //add sprite to specific arrays
     this.addToArray = function () {
-        towerStuff.allTowerArray.push(this.towerSprite);
-        towerStuff.towerNeedSearchArray.push(this.towerSprite);
-        this.towerSprite.canShoot = false;
+        towerStuff.allTowerArr.push(this.towerSprite);
+        towerStuff.autoTowerArr.push(this.towerSprite);
     };
     
     
@@ -138,7 +134,6 @@ AutoTower = function () {
         }   //for
     };  //function findEnemy
 };
-
 
 
 //towerSlot supercalss thingy
@@ -158,11 +153,12 @@ towerStuff.TowerSlotPrototype = function () {
         this.sprite.buyTower = this.buyTower;
         
         this.sprite.events.onInputDown.add(this.sprite.clicked, this);
+		
+		towerStuff.towerSlotArr.push(this.sprite);
     };  //function create
     
     this.clicked = function () {
         this.sprite.buyTower();
-
     }
     
     this.buyTower = function () {
@@ -177,7 +173,7 @@ towerStuff.createTower = function (towerNum, x, y) {
     if (towerNum == 0){
 	  	towerStuff.mainTower = new window[towerData.data[0].class]().init(game, x, y, towerData.data[0]);
     } else {
-	  	towerStuff.mainTower = new window[towerData.data[1].class]().init(game, x, y, towerData.data[1]).createRange();
+	  	towerStuff.mainTower = new window[towerData.data[1].class]().init(game, x, y, towerData.data[1]);
     }
 };
 

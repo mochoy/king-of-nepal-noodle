@@ -9,7 +9,8 @@ var towerData = {
 			"bulletSpeed": 1000,
 			"weaponAccuracy": 500,
 			"hit": 0,
-			"rangeVal": 0
+			"rangeVal": 0,
+			"canShoot": true
 		},
 		{
 			"name": "basicTower",
@@ -20,7 +21,8 @@ var towerData = {
 			"bulletSpeed": 1000,
 			"weaponAccuracy": 500,
 			"hit": 0,
-			"rangeVal": 500
+			"rangeVal": 500,
+			"canShoot": false
 		}
 	]
 };

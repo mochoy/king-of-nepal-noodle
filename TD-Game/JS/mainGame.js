@@ -51,8 +51,8 @@ var mainGameVar = {
         game.input.onDown.add(function () {
             towerStuff.moveToPoint.x = game.input.x;
             towerStuff.moveToPoint.y = game.input.y;
-            for (var i = 0; i < towerStuff.towerFollowMouseArray.length; i ++) {
-                var towerSprite = towerStuff.towerFollowMouseArray[i];
+            for (var i = 0; i < towerStuff.manualTowerArr.length; i ++) {
+                var towerSprite = towerStuff.manualTowerArr[i];
                 towerSprite.rotation = (game.physics.arcade.angleToPointer(towerSprite));
             }
         }, this);
@@ -61,8 +61,8 @@ var mainGameVar = {
         for (var enemy = 0; enemy < enemyStuff.allEnemyArray.length; enemy++) {
             var enemySprite = enemyStuff.allEnemyArray[enemy];
             //loop through all towers
-            for (var tower = 0; tower < towerStuff.allTowerArray.length; tower++ ){
-                var towerSprite = towerStuff.allTowerArray[tower];
+            for (var tower = 0; tower < towerStuff.allTowerArr.length; tower++ ){
+                var towerSprite = towerStuff.allTowerArr[tower];
                 //loop through bullets
                 for (var bullet = 0; bullet < towerSprite.bulletArray.length; bullet++) {
                     var bulletSprite = towerSprite.bulletArray[bullet];
@@ -72,8 +72,8 @@ var mainGameVar = {
         }   //for iterate enemyStuff.allEnemyArray
     
         //tower find enemy
-        for (var tower = 0; tower < towerStuff.towerNeedSearchArray.length; tower++) {
-            towerStuff.towerNeedSearchArray[tower].findEnemy(enemyStuff.allEnemyArray);
+        for (var tower = 0; tower < towerStuff.autoTowerArr.length; tower++) {
+            towerStuff.autoTowerArr[tower].findEnemy(enemyStuff.allEnemyArray);
         }   //for tower find enemy
         
         //when enemy reaches home or end
@@ -84,8 +84,8 @@ var mainGameVar = {
         }   //for 
         
         //keep max ammount of bullets at 20 per tower
-        for (var tower = 0; tower < towerStuff.allTowerArray.length; tower++) {
-            var towerSprite = towerStuff.allTowerArray[tower];
+        for (var tower = 0; tower < towerStuff.allTowerArr.length; tower++) {
+            var towerSprite = towerStuff.allTowerArr[tower];
             if (towerSprite.bulletArray.length > 20) {
                 towerSprite.bulletArray.shift().destroy();
             }
