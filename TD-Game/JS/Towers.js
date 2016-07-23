@@ -123,16 +123,21 @@ AutoTower = function () {
     
     
     this.findEnemy = function (enemyArray) {
+		//find enemy
         for (var i = 0; i < enemyArray.length; i ++){
             enemySprite = enemyArray[i];
             if (this.range.contains(enemySprite.x, enemySprite.y)) {
                 this.canShoot = true;
                 this.target = enemySprite;
-				this.rotation = game.physics.arcade.angleBetween(this, this.target);
             } else {
 				this.canShoot = false;
 			}
         }   //for
+		
+		//rotate to enemy
+		if (this.canShoot) {
+			this.rotation = game.physics.arcade.angleBetween(this, this.target);
+		}
 		
     };  //function findEnemy
 };
