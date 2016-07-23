@@ -11,11 +11,12 @@ towerStuff.moveToPoint;
 
 //tower superclass thingy
 TowerPrototype = function () {
+    this.image = 'tower1IMG';
     this.towerSprite = undefined;
 
     //create sprite
-    this.init = function (game, x, y, obj) {
-        this.towerSprite = game.add.sprite(x, y, obj.src);
+    this.init = function (game, x, y, data) {
+        this.towerSprite = game.add.sprite(x, y, this.image);
         game.physics.arcade.enable(this.towerSprite);
         this.towerSprite.anchor.set(0.5);
         this.towerSprite.inputEnabled = true;
@@ -31,11 +32,11 @@ TowerPrototype = function () {
         
         //stats stuff
         //all default MainTower stats
-        this.towerSprite.fireRate = obj.fireRate;    //lower fireRate = shoot faster
-        this.towerSprite.bulletSpeed = obj.bulletSpeed;
-        this.towerSprite.weaponAccuracy = obj.weaponAccuacy;
-        this.towerSprite.hit = obj.hit;
-        this.towerSprite.rangeVal = obj.rangeVal;
+        this.towerSprite.fireRate = 500;    //lower fireRate = shoot faster
+        this.towerSprite.bulletSpeed = 1000;
+        this.towerSprite.weaponAccuracy = 500;
+        this.towerSprite.hit = 0;
+        this.towerSprite.rangeVal = 0;
         
         //towerSprite clickable
         this.towerSprite.events.onInputDown.add(this.towerSprite.clicked, this);
@@ -112,7 +113,7 @@ towerStuff.MainTower = function () {
 
 //AutoTower subclass of TowerPrototype
 //Autotowers aim automatically
-AutoTower = function () {
+towerStuff.AutoTower = function () {
     //inherit from TowerPrototype
     this.inherit = function (t, c) {    //t is this, c is constructor
         t.c = c;
@@ -214,8 +215,10 @@ towerStuff.AutoTowerSlot = function () {
 
 towerStuff.createTower = function (towerNum, x, y) {
     if (towerNum == 0){
-		new window[towerData.data[0].class]().init(game, x, y, towerData.data[0]);
+	  	towerStuff.mainTower = new window[towerData.data[0].class]().init(game, x, y, towerData.data[0]);
+		new window[enemyData.data[0].class]().init(game, (game.width/3), 10, enemyData.data[0]);
+//        towerStuff.mainTower = new towerStuff.MainTower().init(game, x, y);
     } else {
-		new window[towerData.data[0].class]().init(game, x, y, towerData.data[0]).callSpecificFunctions();
+        towerStuff.newTower = new towerStuff.BasicTower().init(game, x, y).callSpecificFunctions();
     }
 };
