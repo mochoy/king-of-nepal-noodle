@@ -10,6 +10,17 @@ var towerData = {
 			"weaponAccuracy": 500,
 			"hit": 0,
 			"rangeVal": 0
+		},
+		{
+			"name": "basicTower",
+			"class": "autoTower",
+			"src": "ManualTower",
+			
+			"fireRate": 500,
+			"bulletSpeed": 1000,
+			"weaponAccuracy": 500,
+			"hit": 0,
+			"rangeVal": 500
 		}
 	]
 };

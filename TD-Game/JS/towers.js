@@ -216,8 +216,6 @@ towerStuff.AutoTowerSlot = function () {
 towerStuff.createTower = function (towerNum, x, y) {
     if (towerNum == 0){
 	  	towerStuff.mainTower = new window[towerData.data[0].class]().init(game, x, y, towerData.data[0]);
-		new window[enemyData.data[0].class]().init(game, (game.width/3), 10, enemyData.data[0]);
-//        towerStuff.mainTower = new towerStuff.MainTower().init(game, x, y);
     } else {
         towerStuff.newTower = new towerStuff.BasicTower().init(game, x, y).callSpecificFunctions();
     }
