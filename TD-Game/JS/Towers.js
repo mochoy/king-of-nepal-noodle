@@ -60,7 +60,7 @@ TowerPrototype = function () {
     //shoot
     this.shoot = function (towerSpritel, target) {
         //bullet creating stuff
-        var bullet = game.add.sprite(100, 100, this.img);
+        var bullet = game.add.sprite(0, 0, this.img);
         bullet.x = towerSpritel.x;
         bullet.y = towerSpritel.y;
        	helper.initSprite(bullet, 1, 1);
@@ -74,8 +74,8 @@ TowerPrototype = function () {
         game.physics.arcade.moveToObject(bullet, target, towerSpritel.bulletSpeed);
         
         //weapon inaccuracy
-        bullet.body.velocity.x += towerSpritel.weaponAccuracy*(Math.random() - 0.5);
-        bullet.body.velocity.y += towerSpritel.weaponAccuracy*(Math.random() - 0.5);
+        bullet.body.velocity.x += towerSpritel.weaponAccuracy * (Math.random() - 0.5);
+        bullet.body.velocity.y += towerSpritel.weaponAccuracy * (Math.random() - 0.5);
     };   //function shoot
 
     //when tower clicked
