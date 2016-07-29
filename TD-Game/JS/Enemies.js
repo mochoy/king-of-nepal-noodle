@@ -19,7 +19,7 @@ EnemyPrototype = function () {
         
         //stuff dealing with movement move locations
         this.enemySprite.home = enemyStuff.home;
-        this.enemySprite.target = this.enemySprite.home;
+        this.enemySprite.target = enemyStuff.moveToPoint;
         
         //stats
         this.enemySprite.health = obj.health;
@@ -57,7 +57,6 @@ EnemyPrototype = function () {
     this.hit = function (bulletSpritec, enemySprite) {
         //decrease enemy health, kill and remove bullet, add to tower's hit score
         if (enemySprite.health == 0) {
-            //kill sprite stuff
             enemySprite.killed(enemySprite);
         } else {
             enemySprite.health --;
@@ -69,18 +68,20 @@ EnemyPrototype = function () {
     
     this.killed = function (enemySprite) {
         if (enemySprite.civilian != null) {
-            enemySprite.civilian.isPickedUp = false;
+            enemySprite.civilian.sprite.isPickedUp = false;
         }
         helper.removeFromArray(enemyStuff.allEnemyArray, null, null, enemySprite);
     };
     
-    //enemy reaches destination
+    //enemy reaches destination: home or civilian
     //stateless function
-    this.destinationReached = function (enemySprite, point) {
+    this.destinationReached = function (enemySprite, point) {        
+        //if point is a civilian
         if (point != enemyStuff.home) {
             helper.removeFromArray(allCivilianArr, null, null, point);
         }
         
+        //create new civilian
         enemySprite.civilian = new Civilan().init(game, enemySprite.x, enemySprite.y);
         enemySprite.civilian.isPickedUp = true;
         
@@ -93,9 +94,8 @@ EnemyPrototype = function () {
     //enemy reaches end
     //intended to be used as a stateless function, don't use "this"
     this.endReached = function (enemySprite, end){
-        console.log("end reached");
+        helper.removeFromArray(allCivilianArr, null, null, enemySprite.civilian.sprite);
         helper.removeFromArray(enemyStuff.allEnemyArray, null, null, enemySprite);
-        helper.removeFromArray(allCivilianArr, null, null, enemySprite.civilian);
 
     };
     
@@ -112,8 +112,9 @@ enemyStuff.spawnEnemy = function () {
     }
 };
 
-enemyStuff.changeTarget = function () {
-    for (var enemy; enemy < enemyStuff.allEnemyArray.length; enemy ++) {
+enemyStuff.changeTarget = function (target) {
+    for (var enemy = 0; enemy < enemyStuff.allEnemyArray.length; enemy ++) {
+        enemyStuff.moveToPoint = target;
         enemyStuff.allEnemyArray[enemy].target = enemyStuff.moveToPoint;
     }  
 };
