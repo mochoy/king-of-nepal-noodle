@@ -84,19 +84,9 @@ var mainGameVar = {
         //when enemy reaches home or end
         for (var enemy = 0; enemy < enemyStuff.allEnemyArray.length; enemy++){
             var enemySprite = enemyStuff.allEnemyArray[enemy];
-            console.log(enemySprite.target.name)
+            //call specific functions depending on what's reached
             game.physics.arcade.overlap(enemySprite, enemySprite.target, enemySprite.destinationReached, null, this);
             game.physics.arcade.overlap(enemySprite, enemyStuff.endPoint, enemySprite.endReached, null, this);
-            
-            if (enemySprite.target.name === "civilian") {
-                game.physics.arcade.collide(enemySprite, enemySprite.target, function (){
-                    console.log("reached")
-                }, null, null);        
-                
-                game.physics.arcade.overlap(enemySprite, enemySprite.target, function (){
-                    console.log("reached")
-                }, null, null);
-            }
         }   //for 
         
         //keep max ammount of bullets at 20 per tower
@@ -121,12 +111,12 @@ var mainGameVar = {
         }
         
         //check if civilian is dropped
-        for (var civilian = 0; civilian < allCivilianArr.length; civilian++) {
-            var civilainSprite = allCivilianArr[civilian];
-            if (civilainSprite.isPickedUp == false) {
-                enemyStuff.changeTarget(civilainSprite);
-            }
-        }   //for
+//        for (var civilian = 0; civilian < allCivilianArr.length; civilian++) {
+//            var civilainSprite = allCivilianArr[civilian];
+//            if (civilainSprite.isPickedUp == false) {
+//                enemyStuff.changeTarget(civilainSprite);
+//            }
+//       }   //for
         
     }  //method update
     

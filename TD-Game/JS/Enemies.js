@@ -74,7 +74,9 @@ EnemyPrototype = function () {
     
     //enemy reaches destination: home or civilian
     //stateless function
-    this.destinationReached = function (enemySprite, point) {        
+    this.destinationReached = function (enemySprite, point) {    
+        console.log("destination reached")
+        
         //if point is a civilian
         if (point != enemyStuff.home) {
             helper.removeFromArray(allCivilianArr, null, null, point);
