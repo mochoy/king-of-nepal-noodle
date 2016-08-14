@@ -82,8 +82,7 @@ TowerPrototype = function () {
 	//create tower's range
     this.createRange = function () {
         if (this.towerSprite.data.rangeVal != 0) {
-            towerSprite = this.towerSprite;
-            towerSprite.range = new Phaser.Circle(towerSprite.x+(towerSprite.width/2), towerSprite.y+(towerSprite.height/2), towerSprite.data.rangeVal)
+            this.towerSprite.range = new Phaser.Circle(this.towerSprite.x +(this.towerSprite.width/2), this.towerSprite.y+(this.towerSprite.height/2), this.towerSprite.data.rangeVal)
         }   //if
     };  //fucntion
     
