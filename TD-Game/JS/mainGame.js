@@ -109,6 +109,13 @@ var mainGameVar = {
         if (allCivilianArr.length > 20) {
             allCivilianArr.shift().destroy();
         }
+        
+        for (var civilian = 0; civilian < allCivilianArr.length; civilian++) {
+            var civilianSprite = allCivilianArr[civilian];
+            if (!civilianSprite.isTimerStarted && !civilianSprite.isPickedUp) {
+                civilianSprite.dropped();
+            }
+        }
     
         
     }  //method update

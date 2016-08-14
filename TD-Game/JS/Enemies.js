@@ -68,7 +68,7 @@ EnemyPrototype = function () {
     this.killed = function (enemySprite) {
         if (enemySprite.civilian != null) {
             enemySprite.civilian.sprite.isPickedUp = false;
-            enemySprite.civilian.dropped();
+            enemySprite.civilian.sprite.dropped();
         }
         helper.removeFromArray(enemyStuff.allEnemyArray, null, null, enemySprite);
     };

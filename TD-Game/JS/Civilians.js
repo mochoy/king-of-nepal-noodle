@@ -9,8 +9,11 @@ Civilan = function () {
         helper.initSprite(this.sprite, 0.1, 0.1);
         
         this.sprite.isPickedUp = true;
+        this.sprite.isTimerStarted = false;
         
         allCivilianArr.push(this.sprite);
+        
+        this.sprite.dropped = this.dropped;
         
         return this;
     };
@@ -22,9 +25,11 @@ Civilan = function () {
         return this;
     };
     
+    //this = sprite
     this.dropped = function() {
+        this.isTimerStarted = true;
         game.time.events.add(Phaser.Timer.SECOND * 5, function () {
-            helper.removeFromArray(allCivilianArr, null, null, this.sprite);
+            helper.removeFromArray(allCivilianArr, null, null, this);
         }, this);
 
     }
