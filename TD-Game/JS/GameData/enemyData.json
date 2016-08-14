@@ -4,7 +4,8 @@ var enemyData =
         {
             "name": "enemyBasic",
             "class": "EnemyPrototype",
-			"src": "bookIMG",
+			"src": "mediumGroundEnemyIMG",
+            
             "health": 3,
             "moveSpeed": 100
         }

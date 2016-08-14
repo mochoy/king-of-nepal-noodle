@@ -10,6 +10,7 @@ var mainGameVar = {
         
         game.load.image("chainGunIMG", "Assets/Images/Test/canyonDefenseChainGun.png");    
         game.load.image("gooGunIMG", "Assets/Images/Test/canyonDefenseGooGun.png");
+        game.load.image("mediumGroundEnemyIMG", "Assets/Images/Test/canyonDefenseMediumGroundEnemy.png");
         
         game.load.image ("rangeExteriorIMG", "Assets/Images/greyCircle_interior.png");     //range circle
         game.load.image ("rangeExterior2IMG", "Assets/Images/greyCircle_interior2.png");   //range circle
