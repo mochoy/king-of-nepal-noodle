@@ -109,14 +109,7 @@ var mainGameVar = {
         if (allCivilianArr.length > 20) {
             allCivilianArr.shift().destroy();
         }
-        
-        //check if civilian is dropped
-//        for (var civilian = 0; civilian < allCivilianArr.length; civilian++) {
-//            var civilainSprite = allCivilianArr[civilian];
-//            if (civilainSprite.isPickedUp == false) {
-//                enemyStuff.changeTarget(civilainSprite);
-//            }
-//       }   //for
+    
         
     }  //method update
     
