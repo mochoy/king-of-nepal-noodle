@@ -29,7 +29,7 @@ TowerPrototype = function () {
         
         //stats stuff
         //all default MainTower stats
-        this.towerSprite.data = data;
+        this.towerSprite.data = Object.create(data);
         
         //towerSprite clickable
         this.towerSprite.events.onInputDown.add(this.towerSprite.clicked, this);
