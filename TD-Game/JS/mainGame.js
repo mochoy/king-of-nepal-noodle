@@ -2,16 +2,18 @@ var centerX , centerY;
 
 var mainGameVar = {
     preload: function (){
-        game.load.image ("bookIMG", "Assets/Images/Test/book.jpg");                 //test asset
-        game.load.image ("pathIMG", "Assets/Images/Test/greyBlock.jpg");            //test asset
-        game.load.image ("pathPointIMG", "Assets/Images/Test/storyOfSeeds.png");    //test asset
-        game.load.image ("dudeIMG", "Assets/Images/Test/dude.png")                  //test asset
-        game.load.image ("tower1IMG", "Assets/Images/Test/baddie.png")              //test asset
+        game.load.image ("bookIMG", "Assets/Images/Test/book.jpg");                 
+        game.load.image ("pathIMG", "Assets/Images/Test/greyBlock.jpg");            
+        game.load.image ("pathPointIMG", "Assets/Images/Test/storyOfSeeds.png");    
+        game.load.image ("dudeIMG", "Assets/Images/Test/dude.png")                  
+        game.load.image ("tower1IMG", "Assets/Images/Test/baddie.png")             
+        
+        game.load.image("chainGunIMG", "Assets/Images/Test/canyonDefenseChainGun.png");    
+        game.load.image("gooGunIMG", "Assets/Images/Test/canyonDefenseGooGun.png");
         
         game.load.image ("rangeExteriorIMG", "Assets/Images/greyCircle_interior.png");     //range circle
         game.load.image ("rangeExterior2IMG", "Assets/Images/greyCircle_interior2.png");   //range circle
-
-
+        
     },  //function preload
     
     create: function (){
