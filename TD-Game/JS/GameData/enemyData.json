@@ -5,6 +5,7 @@ var enemyData =
             "name": "enemyBasic",
             "class": "EnemyPrototype",
 			"src": "mediumGroundEnemyIMG",
+            "srcScale": 2,
             
             "health": 3,
             "moveSpeed": 100

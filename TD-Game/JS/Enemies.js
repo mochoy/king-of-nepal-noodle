@@ -12,18 +12,18 @@ EnemyPrototype = function () {
     this.enemySprite = null;
     
     //create sprite
-    this.init = function (game, x, y, obj) {
+    this.init = function (game, x, y, data) {
         //create sprite
-        this.enemySprite = game.add.sprite(x, y, obj.src);
-		helper.initSprite(this.enemySprite, 1, 1);
+        this.enemySprite = game.add.sprite(x, y, data.src);
+		helper.initSprite(this.enemySprite, data.srcScale, data.srcScale);
         
         //stuff dealing with movement move locations
         this.enemySprite.home = enemyStuff.home;
         this.enemySprite.target = enemyStuff.moveToPoint;
         
         //stats
-        this.enemySprite.health = obj.health;
-        this.enemySprite.moveSpeed = obj.moveSpeed;
+        this.enemySprite.health = data.health;
+        this.enemySprite.moveSpeed = data.moveSpeed;
         
         //civilian stuff
         this.enemySprite.civilian = null;
