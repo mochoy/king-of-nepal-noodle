@@ -22,8 +22,7 @@ EnemyPrototype = function () {
         this.enemySprite.target = enemyStuff.moveToPoint;
         
         //stats
-        this.enemySprite.health = data.health;
-        this.enemySprite.moveSpeed = data.moveSpeed;
+        this.enemySprite.data = Object.create(data);
         
         //civilian stuff
         this.enemySprite.civilian = null;
@@ -36,30 +35,30 @@ EnemyPrototype = function () {
         this.enemySprite.destinationReached = this.destinationReached;
         this.enemySprite.killed = this.killed;
         
-        this.addToArray();
-        this.enemySprite.moveToTarget();
+        this.addToArray().enemySprite.moveToTarget();
     };
     
     //add to specific arrays
     this.addToArray = function () {
         enemyStuff.allEnemyArray.push(this.enemySprite);
+        return this;
     };
     
     //move to target
     //this == sprite
     this.moveToTarget = function () {
         this.rotation = game.physics.arcade.angleBetween(this, this.target);
-        game.physics.arcade.moveToObject(this, this.target, this.moveSpeed);
+        game.physics.arcade.moveToObject(this, this.target, this.data.moveSpeed);
     };
     
     //enemy hit
     //stateless function, dont use "this"
     this.hit = function (bulletSpritec, enemySprite) {
         //decrease enemy health, kill and remove bullet, add to tower's hit score
-        if (enemySprite.health == 0) {
+        if (enemySprite.data.health === 0) {
             enemySprite.killed(enemySprite);
         } else {
-            enemySprite.health --;
+            enemySprite.data.health --;
             
             bulletSpritec.towerSprite.hit ++;
             helper.removeFromArray(bulletSpritec.towerSprite.bulletArray, null, null, bulletSpritec);
