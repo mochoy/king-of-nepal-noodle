@@ -1,5 +1,9 @@
 var centerX , centerY;
 
+WebFontConfig = {
+  google: { families: [ 'Montserrat' ] }
+};
+
 var mainGameVar = {
     preload: function (){
         game.load.image ("bookIMG", "Assets/Images/Test/book.jpg");                 
@@ -15,9 +19,12 @@ var mainGameVar = {
         game.load.image ("rangeExteriorIMG", "Assets/Images/greyCircle_interior.png");     //range circle
         game.load.image ("rangeExterior2IMG", "Assets/Images/greyCircle_interior2.png");   //range circle
         
+         game.load.script("webFont", "//ajax.googleapis.com/ajax/libs/webfont/1/webfont.js");
+        
     },  //function preload
     
     create: function (){
+//        game.add.text(0, 0, "Awesome Game", { fontFamily: 'Montserrat', fontSize: 128, fontWeight: 'bold', fill: '#000000' });        
         game.physics.startSystem(Phaser.Physics.ARCADE);
         game.stage.backgroundColor = '#ffffff'
 
@@ -110,6 +117,7 @@ var mainGameVar = {
             allCivilianArr.shift().destroy();
         }
         
+        //kill enemy if dropped() somehow isnt called but it has been dropped
         for (var civilian = 0; civilian < allCivilianArr.length; civilian++) {
             var civilianSprite = allCivilianArr[civilian];
             if (!civilianSprite.isTimerStarted && !civilianSprite.isPickedUp) {
