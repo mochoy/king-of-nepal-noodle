@@ -14,7 +14,7 @@ TowerPrototype = function () {
     //create sprite
     this.init = function (game, x, y, data) {
         this.towerSprite = game.add.sprite(x, y, data.src);
-        helper.initSprite(this.towerSprite, 1, 1);
+        helper.initSprite(this.towerSprite, data.srcScale, data.srcScale);
         this.towerSprite.inputEnabled = true;
         
 		//initialize shooting stuff

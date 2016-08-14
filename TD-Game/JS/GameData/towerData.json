@@ -4,6 +4,7 @@ var towerData = {
 			"name": "mainTower",
 			"class": "ManualTower",
 			"src": "chainGunIMG",
+            "srcScale": 0.1,
 			
 			"fireRate": 500,
 			"bulletSpeed": 1000,
@@ -16,6 +17,7 @@ var towerData = {
 			"name": "basicTower",
 			"class": "AutoTower",
 			"src": "gooGunIMG",
+            "srcScale": 0.1,
 			
 			"fireRate": 500,
 			"bulletSpeed": 1000,
