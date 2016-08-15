@@ -43,6 +43,7 @@ var mainGameVar = {
         enemyStuff.home.width = 1;
         enemyStuff.home.height = 1;
            
+        
         enemyStuff.endPoint = game.add.sprite(centerX, 0, "dudeIMG");
         game.physics.arcade.enable(enemyStuff.endPoint);
         enemyStuff.endPoint.width = 10;
@@ -126,6 +127,7 @@ var mainGameVar = {
             if (!civilianSprite.isTimerStarted && !civilianSprite.isPickedUp) {
                 civilianSprite.dropped();
             }
+    
         }
     
         

@@ -18,7 +18,6 @@ EnemyPrototype = function () {
 		helper.initSprite(this.enemySprite, data.srcScale, data.srcScale);
         
         //stuff dealing with movement move locations
-        this.enemySprite.home = enemyStuff.home;
         this.enemySprite.target = enemyStuff.moveToPoint;
         
         //stats
@@ -81,9 +80,11 @@ EnemyPrototype = function () {
             helper.removeFromArray(allCivilianArr, null, null, point);
         }
         
-        //create new civilian
-        enemySprite.civilian = new Civilan().init(game, enemySprite.x, enemySprite.y);
-        enemySprite.civilian.isPickedUp = true;
+        //create new civilian if point is home
+        if (point === enemyStuff.home) {
+            enemySprite.civilian = new Civilan().init(game, enemySprite.x, enemySprite.y);
+            enemySprite.civilian.isPickedUp = true;
+        }
         
         //change target
         enemySprite.end = enemyStuff.moveToPoint2;
@@ -94,7 +95,7 @@ EnemyPrototype = function () {
     //enemy reaches end
     //intended to be used as a stateless function, don't use "this"
     this.endReached = function (enemySprite, end){
-        helper.removeFromArray(allCivilianArr, null, null, enemySprite.civilian.sprite);
+        enemySprite.civilian.sprite.dropped();
         helper.removeFromArray(enemyStuff.allEnemyArray, null, null, enemySprite);
 
     };
