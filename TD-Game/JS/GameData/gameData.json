@@ -2,7 +2,9 @@ var gameData = {
     "data": [
         {
             "health": 10,
-            "startingCash": 100,
+            
+            "startingMoney": 100,
+            "money": 100
         }
     ]
 };

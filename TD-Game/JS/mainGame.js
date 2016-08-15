@@ -6,7 +6,7 @@ WebFontConfig = {
 };
 
 //init game data from gameData json file
-var data = Object.create(gameData.data);
+var data = Object.create(gameData.data)[0];
 
 var mainGameVar = {
     preload: function (){
