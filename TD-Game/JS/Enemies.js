@@ -95,6 +95,12 @@ EnemyPrototype = function () {
     //enemy reaches end
     //intended to be used as a stateless function, don't use "this"
     this.endReached = function (enemySprite, end){
+        //decrement health
+        if (data.health > 0) {
+            data.health --;
+            UI.updateUI();
+        }
+        
         enemySprite.civilian.sprite.dropped(true);
         helper.removeFromArray(enemyStuff.allEnemyArray, null, null, enemySprite);
 

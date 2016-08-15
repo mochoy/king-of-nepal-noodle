@@ -117,3 +117,10 @@ UI.createUI = function () {
     UI.moneyText = game.add.text(200, 0, "MONEY: " + data.money, { fontFamily: UI.fontFamily, fontSize: 20, fontWeight: 'bold', fill: '#000000' });
 
 }
+
+UI.updateUI = function(){
+    UI.healthText.text = "HEALTH: " + data.health;
+    UI.moneyText.text = "MONEY: " + data.money;
+}
+
+
