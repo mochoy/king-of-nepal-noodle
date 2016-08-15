@@ -61,7 +61,7 @@ var mainGameVar = {
     },  //function create
     
     update: function (){
-        // Aim tower to mouse click
+        // Aim manual towers to mouse click
         game.input.onDown.add(function () {
             towerStuff.moveToPoint.x = game.input.x;
             towerStuff.moveToPoint.y = game.input.y;
@@ -121,11 +121,10 @@ var mainGameVar = {
         
         //kill enemy if dropped() somehow isnt called but it has been dropped
         for (var civilian = 0; civilian < allCivilianArr.length; civilian++) {
-            var civilianSprite = allCivilianArr[civilian];
-            if (!civilianSprite.isTimerStarted && !civilianSprite.isPickedUp) {
-                civilianSprite.dropped(false);
+            //if civilain isnt picked up then drop()
+            if (!allCivilianArr[civilian].isPickedUp) {
+                allCivilianArr[civilian].dropped(false);
             }
-    
         }
     
         helper.bringToTop();

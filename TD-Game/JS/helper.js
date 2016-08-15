@@ -103,7 +103,6 @@ helper.bringToTop = function () {
     
     //make sure this stuff is at the most top 
     towerStuff.moveToPoint.bringToTop();
-
     
     UI.healthText.bringToTop();
     UI.moneyText.bringToTop();
