@@ -1,8 +1,12 @@
 var centerX , centerY;
 
+//config font stuff
 WebFontConfig = {
   google: { families: [ 'Montserrat' ] }
 };
+
+//init game data from gameData json file
+var data = Object.create(gameData.data);
 
 var mainGameVar = {
     preload: function (){
@@ -24,7 +28,6 @@ var mainGameVar = {
     },  //function preload
     
     create: function (){
-//        game.add.text(0, 0, "Awesome Game", { fontFamily: 'Montserrat', fontSize: 128, fontWeight: 'bold', fill: '#000000' });        
         game.physics.startSystem(Phaser.Physics.ARCADE);
         game.stage.backgroundColor = '#ffffff'
 
@@ -53,7 +56,7 @@ var mainGameVar = {
         
         new towerStuff.TowerSlotPrototype().create(game, 500, 500);
         
-
+        UI.createUI();
     },  //function create
     
     update: function (){

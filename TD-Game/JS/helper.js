@@ -90,3 +90,11 @@ helper.initSprite = function (sprite, scaleX, scaleY) {
     sprite.scale.x = scaleX;
     sprite.scale.y = scaleY;
 };
+
+UI = {
+    fontFamily: "Montserrat"
+};
+
+UI.createUI = function () {
+    UI.healthText = game.add.text(0, 0, "HEALTH: " + data[0].health, { fontFamily: UI.fontFamily, fontSize: 20, fontWeight: 'bold', fill: '#000000' });
+}
