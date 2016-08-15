@@ -91,6 +91,24 @@ helper.initSprite = function (sprite, scaleX, scaleY) {
     sprite.scale.y = scaleY;
 };
 
+helper.bringToTop = function () {
+    //draw enemies first
+    for (var enemy = 0; enemy < enemyStuff.allEnemyArray.length; enemy++) {
+        enemyStuff.allEnemyArray[enemy].bringToTop();
+    }
+    
+    for (var tower = 0; tower < towerStuff.allTowerArr.length; tower++) {
+        towerStuff.allTowerArr[tower].bringToTop();
+    }
+    
+    //make sure this stuff is at the most top 
+    towerStuff.moveToPoint.bringToTop();
+
+    
+    UI.healthText.bringToTop();
+    UI.moneyText.bringToTop();
+}
+
 UI = {
     fontFamily: "Montserrat"
 };
