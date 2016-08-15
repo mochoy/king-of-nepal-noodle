@@ -26,11 +26,14 @@ Civilan = function () {
     };
     
     //this = sprite
-    this.dropped = function() {
+    this.dropped = function(isToKillNow) {
         this.isTimerStarted = true;
-        game.time.events.add(Phaser.Timer.SECOND * 5, function () {
-            helper.removeFromArray(allCivilianArr, null, null, this);
-        }, this);
-
+        if (!isToKillNow){
+            game.time.events.add(Phaser.Timer.SECOND * 5, function () {
+                helper.removeFromArray(allCivilianArr, null, null, this);
+            }, this);
+        } else {
+            helper.removeFromArray(allCivilianArr, null, null, this);        
+        }
     }
 };
