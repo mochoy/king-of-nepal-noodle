@@ -16,9 +16,21 @@ var mainGameVar = {
         game.load.image ("dudeIMG", "Assets/Images/Test/dude.png")                  
         game.load.image ("tower1IMG", "Assets/Images/Test/baddie.png")             
         
+        //more test tower assets
         game.load.image("chainGunIMG", "Assets/Images/Test/canyonDefenseChainGun.png");    
         game.load.image("gooGunIMG", "Assets/Images/Test/canyonDefenseGooGun.png");
+        game.load.image("gutlingLaserIMG", "Assets/Images/Test/canyonDefenseGutlingLaser.png");
+        game.load.image("howitzerIMG", "Assets/Images/Test/canyonDefenseHowitzer.png");        
+        game.load.image("missileTurretIMG", "Assets/Images/Test/canyonDefenseMissileTurret.png");
+        game.load.image("aaGunIMG", "Assets/Images/Test/canyonDefenseAAGun.png");
+        game.load.image("gaussCannonIMG", "Assets/Images/Test/canyonDefenseGaussCannon.png");
+        game.load.image("nulificatorIMG", "Assets/Images/Test/canyonDefenseNulificator.png");
+        game.load.image("oilSprayIMG", "Assets/Images/Test/canyonDefenseOilSpray.png");
+
+        //some test enemy assets
         game.load.image("mediumGroundEnemyIMG", "Assets/Images/Test/canyonDefenseMediumGroundEnemy.png");
+        game.load.image("mediumGroundEnemyIMG", "Assets/Images/Test/canyonDefenseMediumGroundEnemy.png");
+
         
         game.load.image ("rangeExteriorIMG", "Assets/Images/greyCircle_interior.png");     //range circle
         game.load.image ("rangeExterior2IMG", "Assets/Images/greyCircle_interior2.png");   //range circle

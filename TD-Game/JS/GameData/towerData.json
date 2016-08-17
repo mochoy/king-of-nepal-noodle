@@ -11,7 +11,29 @@ var towerData = {
 			"weaponAccuracy": 500,
 			"hit": 0,
 			"rangeVal": 0,
-			"canShoot": true
+			"canShoot": true,
+            
+            /*
+            "upgrades": [
+                {
+                    "path1": [
+                        {
+                            "name": "Path a upgrade 1",
+                            "src": 
+                        }
+                    ],
+                    
+                    "path2": [
+                        
+                    ],
+                    
+                    "path3":[
+                        
+                    ]
+                }
+                
+            ]
+            */
 		},
 		{
 			"name": "basicTower",

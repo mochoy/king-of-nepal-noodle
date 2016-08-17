@@ -9,9 +9,9 @@ var UpgradeManager = function (upgradeData) {
 
     this.validateUpgradeEntity = function (path) {        
         //money and upgrades validation before upgrade
-        if (data.money < upgradeData.path.cost;) {
+        if (data.money < upgradeData.path.cost) {
             //too poor, can't buy
-        } else if (data.money >= upgradeData.path.cost;) {
+        } else if (data.money >= upgradeData.path.cost) {
             this.upgradeEntity();
         }
         
@@ -20,7 +20,7 @@ var UpgradeManager = function (upgradeData) {
     
     this.upgradeEntity = function () {
         window["currentUps" + path]++;
-        data.money -= upgradeData.[path].cost;
+        data.money -= upgradeData[path].cost;
         UI.updatateUI();
     }
 
