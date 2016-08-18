@@ -1,11 +1,13 @@
+//when instantiated, this is reference to entity object, not sprite object instead of UpgradeManager itself
 var UpgradeManager = function (tower, upgradeData) {
     //Entity being upgraded gets a new copy of the JSON object containing all of the data 
     this.data = Object.create(upgradeData);
-    this.tower = tower;
     
     //when entity clicked, display upgrade information
     this.displayUpgradeInfo = function (path) {
-        //temporary code before disigning actual stuff        
+        //temporary code before disigning actual stuff      
+        console.log(this)
+        
         this.validateUpgradeEntity(path);
     }
 

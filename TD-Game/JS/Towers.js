@@ -13,33 +13,33 @@ towerStuff.moveToPoint;
 TowerPrototype = function () {
     //create sprite
     this.init = function (game, x, y, data) {
-        this.towerSprite = game.add.sprite(x, y, data.src);
-        helper.initSprite(this.towerSprite, data.srcScale, data.srcScale);
-        this.towerSprite.inputEnabled = true;
+        this.sprite = game.add.sprite(x, y, data.src);
+        helper.initSprite(this.sprite, data.srcScale, data.srcScale);
+        this.sprite.inputEnabled = true;
         
 		//initialize shooting stuff
-        this.towerSprite.bulletArray = [];
-        this.towerSprite.target = towerStuff.moveToPoint;
-        this.towerSprite.canShoot = data.canShoot;
+        this.sprite.bulletArray = [];
+        this.sprite.target = towerStuff.moveToPoint;
+        this.sprite.canShoot = data.canShoot;
         
         //towerSprite's functions
-        this.towerSprite.shoot = this.shoot;    
-        this.towerSprite.findEnemy = this.findEnemy;
-        this.towerSprite.clicked = this.clicked;
+        this.sprite.shoot = this.shoot;    
+        this.sprite.findEnemy = this.findEnemy;
+        this.sprite.clicked = this.clicked;
         
         //stats stuff
         //all default MainTower stats
-        this.towerSprite.data = Object.create(data);
+        this.sprite.data = Object.create(data);
         
         //attatch upgradeManager to sprite object
-        this.towerSprite.upgradeManager = new UpgradeManager(this.towerSprite, data.upgrades[0]);
+        this.sprite.upgradeManager = new UpgradeManager(this.sprite, data.upgrades[0]);
         
         //towerSprite clickable
-        this.towerSprite.events.onInputDown.add(this.towerSprite.upgradeManager.displayUpgradeInfo, this);
+        this.sprite.events.onInputDown.add(this.sprite.upgradeManager.displayUpgradeInfo, this);
     
-        this.towerSprite.timer = game.time.events.loop(this.towerSprite.data.fireRate, function () {
-            if (this.towerSprite.canShoot == true){
-                this.towerSprite.shoot(this.towerSprite, this.towerSprite.target);
+        this.sprite.timer = game.time.events.loop(this.sprite.data.fireRate, function () {
+            if (this.sprite.canShoot == true){
+                this.sprite.shoot(this.sprite, this.sprite.target);
             }
         }, this);
         
@@ -52,8 +52,8 @@ TowerPrototype = function () {
     
     //add tower to specific arrays 
     this.addToArray = function () {
-        towerStuff.allTowerArr.push(this.towerSprite);
-        towerStuff.manualTowerArr.push(this.towerSprite);
+        towerStuff.allTowerArr.push(this.sprite);
+        towerStuff.manualTowerArr.push(this.sprite);
         
         return this;
     };   //function 
@@ -81,8 +81,8 @@ TowerPrototype = function () {
   
 	//create tower's range
     this.createRange = function () {
-        if (this.towerSprite.data.rangeVal != 0) {
-            this.towerSprite.range = new Phaser.Circle(this.towerSprite.x +(this.towerSprite.width/2), this.towerSprite.y+(this.towerSprite.height/2), this.towerSprite.data.rangeVal)
+        if (this.sprite.data.rangeVal != 0) {
+            this.sprite.range = new Phaser.Circle(this.sprite.x +(this.sprite.width/2), this.sprite.y+(this.sprite.height/2), this.sprite.data.rangeVal)
         }   //if
     };  //fucntion
     
@@ -112,8 +112,8 @@ AutoTower = function () {
     
     //add sprite to specific arrays
     this.addToArray = function () {
-        towerStuff.allTowerArr.push(this.towerSprite);
-        towerStuff.autoTowerArr.push(this.towerSprite);
+        towerStuff.allTowerArr.push(this.sprite);
+        towerStuff.autoTowerArr.push(this.sprite);
     };
     
     
