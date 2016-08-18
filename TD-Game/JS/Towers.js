@@ -31,6 +31,8 @@ TowerPrototype = function () {
         //all default MainTower stats
         this.towerSprite.data = Object.create(data);
         
+        //attatch upgradeManager to sprite object
+        
         //towerSprite clickable
         this.towerSprite.events.onInputDown.add(this.towerSprite.clicked, this);
     
