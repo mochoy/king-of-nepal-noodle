@@ -32,9 +32,10 @@ TowerPrototype = function () {
         this.towerSprite.data = Object.create(data);
         
         //attatch upgradeManager to sprite object
+        this.towerSprite.upgradeManager = new UpgradeManager(this.towerSprite, data.upgrades[0]);
         
         //towerSprite clickable
-        this.towerSprite.events.onInputDown.add(this.towerSprite.clicked, this);
+//        this.towerSprite.events.onInputDown.add(this.towerSprite.upgradeManager, this);
     
         this.towerSprite.timer = game.time.events.loop(this.towerSprite.data.fireRate, function () {
             if (this.towerSprite.canShoot == true){
@@ -44,7 +45,7 @@ TowerPrototype = function () {
         
         //call functions
         this.addToArray();
-	  	this.createRange();
+        this.createRange();
 	  
         return this;
     };   //function create
@@ -53,6 +54,8 @@ TowerPrototype = function () {
     this.addToArray = function () {
         towerStuff.allTowerArr.push(this.towerSprite);
         towerStuff.manualTowerArr.push(this.towerSprite);
+        
+        return this;
     };   //function 
     
     //shoot
@@ -75,11 +78,6 @@ TowerPrototype = function () {
         bullet.body.velocity.x += towerSpritel.data.weaponAccuracy * (Math.random() - 0.5);
         bullet.body.velocity.y += towerSpritel.data.weaponAccuracy * (Math.random() - 0.5);
     };   //function shoot
-
-    //when tower clicked
-    this.clicked = function () {
-        console.log("tower clicked!");
-    };
   
 	//create tower's range
     this.createRange = function () {
