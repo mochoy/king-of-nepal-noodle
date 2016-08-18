@@ -3,6 +3,8 @@ var UpgradeManager = function (tower, upgradeData) {
     //Entity being upgraded gets a new copy of the JSON object containing all of the data 
     this.data = Object.create(upgradeData);
     
+    this.upgradeManagerInstance = tower.upgradeManager;
+    
     //when entity clicked, display upgrade information
     this.displayUpgradeInfo = function (path) {
         //temporary code before disigning actual stuff      
