@@ -7,7 +7,8 @@ var UpgradeManager = function (towerSprite, upgradeData) {
     this.displayUpgradeInfo = function (path) {
         //temporary code before disigning actual stuff     
         
-        console.log(this.sprite.upgradeManager);
+        console.log("DISplay upgrade info"+this);
+        console.log(this);
         
         this.sprite.upgradeManager.validateUpgradeEntity(path, this.sprite.upgradeManager);
     }
