@@ -5,8 +5,8 @@ var UpgradeManager = function (tower, upgradeData) {
     
     //when entity clicked, display upgrade information
     this.displayUpgradeInfo = function (path) {
-        //temporary code before disigning actual stuff
-        this.validatedUpgradeEntity(path);
+        //temporary code before disigning actual stuff        
+        this.validateUpgradeEntity(path);
     }
 
     //make sure entitiy can be upgraded 

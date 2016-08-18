@@ -35,7 +35,7 @@ TowerPrototype = function () {
         this.towerSprite.upgradeManager = new UpgradeManager(this.towerSprite, data.upgrades[0]);
         
         //towerSprite clickable
-//        this.towerSprite.events.onInputDown.add(this.towerSprite.upgradeManager, this);
+        this.towerSprite.events.onInputDown.add(this.towerSprite.upgradeManager.displayUpgradeInfo, this);
     
         this.towerSprite.timer = game.time.events.loop(this.towerSprite.data.fireRate, function () {
             if (this.towerSprite.canShoot == true){
