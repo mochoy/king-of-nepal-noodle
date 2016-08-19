@@ -24,8 +24,9 @@ var UpgradeManager = function (towerSprite, upgradeData) {
     //make sure entitiy can be upgraded 
     //path will be a number correspoding to the value of currentPathUps      
     this.validateUpgradeEntity = function (path) {      
-        
-        console.log("asdoghai")
+        this.path1BTN.kill();
+        this.path2BTN.kill();
+        this.path3BTN.kill();
         
         //money and upgrades validation before upgrade
         if (data.money < upgradeData.window["currentUpsPath" + path].cost) {
