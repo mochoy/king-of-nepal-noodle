@@ -41,13 +41,18 @@ var UpgradeManager = function (towerSprite, upgradeData) {
         
     }    //method
     
+    //what to do when entity is actually being upgraded: subtract money, new entity texture
     this.upgradeEntity = function (path) {        
         this.data["path" + path][0]["currentUps" + path];      //reference to variable keeping track of upgrades on each path
-        //window["currentUps" + path]++;
         data.money -= this.data["path" + path][0].cost;
         UI.updateUI();
         
+        this.drawNewEntity(path);   
     }   //method
+    
+    this.drawNewEntity = function (path) {
+        
+    }
 
 
 }   //constructor
