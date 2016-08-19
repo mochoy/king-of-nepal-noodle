@@ -5,6 +5,7 @@ var UpgradeManager = function (towerSprite, upgradeData) {
     
     //when entity clicked, display upgrade information
     this.displayUpgradeInfo = function () {
+        //draw upgrade menu
         //temporary code before disigning actual stuff     
         this.path1BTN = game.add.button(100, 100, "buttonStartSS", function () {
               this.validateUpgradeEntity(1);
@@ -23,15 +24,17 @@ var UpgradeManager = function (towerSprite, upgradeData) {
         
     //make sure entitiy can be upgraded 
     //path will be a number correspoding to the value of currentPathUps      
-    this.validateUpgradeEntity = function (path) {      
+    this.validateUpgradeEntity = function (path) {    
+        //kill buttons/upgrade menu
         this.path1BTN.kill();
         this.path2BTN.kill();
         this.path3BTN.kill();
         
         //money and upgrades validation before upgrade
-        if (data.money < upgradeData.window["currentUpsPath" + path].cost) {
+        if (data.money < this.data["path" + path].cost) {
             //too poor, can't buy
-        } else if (data.money >= upgradeData.window["currentUpsPath" + path].cost) {
+            console.log("too poor")
+        } else if (data.money >= this.data["path" + path].cost) {
             this.upgradeEntity(path);
         }
         
@@ -39,6 +42,8 @@ var UpgradeManager = function (towerSprite, upgradeData) {
     }    //method
     
     this.upgradeEntity = function (path) {
+        console.log("buying")
+        
         upgradeData.window["currentUpsPath" + path]++;      //reference to variable keeping track of upgrades on each path
         //window["currentUps" + path]++;
         data.money -= upgradeData[path].cost;
