@@ -29,15 +29,12 @@ var UpgradeManager = function (towerSprite, upgradeData) {
         this.path1BTN.kill();
         this.path2BTN.kill();
         this.path3BTN.kill();
-        
-        console.log(data.money)
-        console.log(this.data["path" + path])
-        
+                
         //money and upgrades validation before upgrade
-        if (data.money < this.data["path" + path].cost) {
+        if (data.money < this.data["path" + path][0].cost) {
             //too poor, can't buy
             console.log("too poor")
-        } else if (data.money >= this.data["path" + path].cost) {
+        } else if (data.money >= this.data["path" + path][0].cost) {
             this.upgradeEntity(path);
         }
         
