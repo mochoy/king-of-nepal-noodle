@@ -22,21 +22,27 @@ var towerData = {
                     "path1": [
                         {
                             "name": "Path 1 upgrade 1",
-                            "src": "aaGunIMG"
+                            "src": "aaGunIMG",
+                            
+                            "cost": 50
                         }
                     ],
                     
                     "path2": [
                         {
                             "name": "Path 2 upgrade 1",
-                            "src": "gaussCannonIMG"
+                            "src": "gaussCannonIMG",
+                            
+                            cost: 75
                         }
                     ],
                     
                     "path3":[
                         {
                             "name": "Path 3 upgrade 1",
-                            "src": "gutlingLaserIMG"
+                            "src": "gutlingLaserIMG",
+                            
+                            cost: 100
                         }
                     ]
                 }
