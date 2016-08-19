@@ -4,18 +4,26 @@ var UpgradeManager = function (towerSprite, upgradeData) {
     this.data = Object.create(upgradeData);
     
     //when entity clicked, display upgrade information
-    this.displayUpgradeInfo = function (path) {
+    this.displayUpgradeInfo = function () {
         //temporary code before disigning actual stuff     
+        this.path1BTN = game.add.button(100, 100, "buttonStartSS", function () {
+              this.validateUpgradeEntity(1);
+        }, this, 2, 1, 0  );        
         
-        console.log("DISplay upgrade info"+this);
-        console.log(this);
+        this.path2BTN = game.add.button(100, 300, "buttonStartSS", function () {
+              this.validateUpgradeEntity(2);
+        }, this, 2, 1, 0  );        
         
-        this.sprite.upgradeManager.validateUpgradeEntity(path, this.sprite.upgradeManager);
-    }
+        this.path3BTN = game.add.button(100, 500, "buttonStartSS", function () {
+              this.validateUpgradeEntity(3);
+        }, this, 2, 1, 0  );
 
+            
+    }
+        
     //make sure entitiy can be upgraded 
     //path will be a number correspoding to the value of currentPathUps      
-    this.validateUpgradeEntity = function (path, spriteUpgradeManager) {      
+    this.validateUpgradeEntity = function (path) {      
         
         console.log("asdoghai")
         
@@ -23,13 +31,13 @@ var UpgradeManager = function (towerSprite, upgradeData) {
         if (data.money < upgradeData.window["currentUpsPath" + path].cost) {
             //too poor, can't buy
         } else if (data.money >= upgradeData.window["currentUpsPath" + path].cost) {
-            this.upgradeEntity(path, spriteUpgradeManager);
+            this.upgradeEntity(path);
         }
         
         
     }    //method
     
-    this.upgradeEntity = function (path, spriteUpgradeManager) {
+    this.upgradeEntity = function (path) {
         upgradeData.window["currentUpsPath" + path]++;      //reference to variable keeping track of upgrades on each path
         //window["currentUps" + path]++;
         data.money -= upgradeData[path].cost;
