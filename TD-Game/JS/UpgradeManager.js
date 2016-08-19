@@ -41,13 +41,11 @@ var UpgradeManager = function (towerSprite, upgradeData) {
         
     }    //method
     
-    this.upgradeEntity = function (path) {
-        console.log("buying")
-        
-        upgradeData.window["currentUpsPath" + path]++;      //reference to variable keeping track of upgrades on each path
+    this.upgradeEntity = function (path) {        
+        this.data["path" + path][0]["currentUps" + path];      //reference to variable keeping track of upgrades on each path
         //window["currentUps" + path]++;
-        data.money -= upgradeData[path].cost;
-        UI.updatateUI();
+        data.money -= this.data["path" + path][0].cost;
+        UI.updateUI();
         
     }   //method
 
