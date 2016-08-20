@@ -68,7 +68,12 @@ var UpgradeManager = function (towerSprite, upgradeData) {
     this.updateTowerStats = function (path, currentUpsPathObj) {
         for (key in currentUpsPathObj.upgradeStats) {         
             towerSprite.data[key] += currentUpsPathObj.upgradeStats[key];
-        }
+            
+            //change timer values if the fireRate is to be changed
+            if (key === "fireRate") {
+                towerSprite.fireLoopTimer.delay = towerSprite.data.fireRate;
+            }   //if
+        }   //for
     }       //method
 
 

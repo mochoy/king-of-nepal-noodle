@@ -41,7 +41,7 @@ TowerPrototype = function () {
             }, this);
     
         //periodically shoot depending on tower's fireRate
-        this.sprite.timer = game.time.events.loop(this.sprite.data.fireRate, function () {
+        this.sprite.fireLoopTimer = game.time.events.loop(this.sprite.data.fireRate, function () {
             if (this.sprite.canShoot){
                 this.sprite.shoot(this.sprite, this.sprite.target);
             }
