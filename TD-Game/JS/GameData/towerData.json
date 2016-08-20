@@ -23,7 +23,7 @@ var towerData = {
                         {
                             "name": "Path 1 upgrade 1",
                             "src": "aaGunIMG",
-                            "srcScale": 5,
+                            "srcScale": 3,
                             
                             "cost": 50
                         }
@@ -33,6 +33,7 @@ var towerData = {
                         {
                             "name": "Path 2 upgrade 1",
                             "src": "gaussCannonIMG",
+                            "srcScale": 3,
                             
                             cost: 75
                         }
@@ -42,7 +43,8 @@ var towerData = {
                         {
                             "name": "Path 3 upgrade 1",
                             "src": "gutlingLaserIMG",
-                            
+                            "srcScale": 3,
+
                             cost: 100
                         }
                     ]
