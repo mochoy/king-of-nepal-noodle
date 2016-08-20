@@ -32,7 +32,7 @@ TowerPrototype = function () {
         this.sprite.data = Object.create(data);
         
         //attatch upgradeManager to sprite object
-        this.sprite.upgradeManager = new UpgradeManager(this.sprite, data.upgrades[0]);
+        this.sprite.upgradeManager = new UpgradeManager(this.sprite, data.upgrades);
         
         //towerSprite clickable
         //if pass in function, function will be part of sprite
@@ -96,7 +96,7 @@ TowerPrototype = function () {
 //ManualTower subclass of TowerPrototype
 //Manualtowers aim on click
 ManualTower = function () {
-    //inherit from parent class
+    //inherit from parent class 
     this.inherit = function (thiz, constructer) {
         thiz.constructer = constructer;
         thiz.constructer();
