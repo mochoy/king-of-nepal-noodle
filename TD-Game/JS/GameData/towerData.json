@@ -23,6 +23,7 @@ var towerData = {
                         {
                             "name": "Path 1 upgrade 1",
                             "src": "aaGunIMG",
+                            "srcScale": 5,
                             
                             "cost": 50
                         }

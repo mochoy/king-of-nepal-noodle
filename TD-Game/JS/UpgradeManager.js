@@ -1,4 +1,5 @@
 //when instantiated, this is reference to entity object, not sprite object instead of UpgradeManager itself
+//towerSprite parameter circular refernce, make sure to make null when killed
 var UpgradeManager = function (towerSprite, upgradeData) {
     //Entity being upgraded gets a new copy of the JSON object containing all of the data 
     this.data = Object.create(upgradeData);
@@ -6,7 +7,8 @@ var UpgradeManager = function (towerSprite, upgradeData) {
     //when entity clicked, display upgrade information
     this.displayUpgradeInfo = function () {
         //draw upgrade menu
-        //temporary code before disigning actual stuff     
+        //temporary code before disigning actual stuff   
+        //will find a better way to do this
         this.path1BTN = game.add.button(100, 100, "buttonStartSS", function () {
               this.validateUpgradeEntity(1);
         }, this, 2, 1, 0  );        
@@ -51,7 +53,9 @@ var UpgradeManager = function (towerSprite, upgradeData) {
     }   //method
     
     this.drawNewEntity = function (path) {
+        console.log(this.data["path" + path][0].src)
         
+        towerSprite.loadTexture(this.data["path" + path][0].src);
     }
 
 
