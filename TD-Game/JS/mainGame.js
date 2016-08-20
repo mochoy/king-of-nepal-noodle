@@ -17,6 +17,7 @@ var mainGameVar = {
         game.load.image ("tower1IMG", "Assets/Images/Test/baddie.png")             
         
         //more test tower assets
+        //from canyon defense
         game.load.image("chainGunIMG", "Assets/Images/Test/canyonDefenseChainGun.png");    
         game.load.image("gooGunIMG", "Assets/Images/Test/canyonDefenseGooGun.png");
         game.load.image("gutlingLaserIMG", "Assets/Images/Test/canyonDefenseGutlingLaser.png");
@@ -27,6 +28,31 @@ var mainGameVar = {
         game.load.image("nulificatorIMG", "Assets/Images/Test/canyonDefenseNulificator.png");
         game.load.image("oilSprayIMG", "Assets/Images/Test/canyonDefenseOilSpray.png");
 
+        //from btd5
+        game.load.image("beeKeeperIMG", "Assets/Images/Test/btd5BeeKeeper.png");
+        game.load.image("bloonChipperIMG", "Assets/Images/Test/btd5BloonChipper.png");
+        game.load.image("bombTowerIMG", "Assets/Images/Test/btd5BombTower.png");
+        game.load.image("boomerangThrowerIMG", "Assets/Images/Test/btd5BoomerangThrower.png");
+        game.load.image("dartlingGunIMG", "Assets/Images/Test/btd5DartlingGun.png");
+        game.load.image("dartMonkeyIMG", "Assets/Images/Test/btd5DartMonkey.png");
+        game.load.image("glueGunnerIMG", "Assets/Images/Test/btd5GlueGunner.png");
+        game.load.image("iceTowerIMG", "Assets/Images/Test/btd5IceTower.png");
+        game.load.image("monkeyAceIMG", "Assets/Images/Test/btd5MonkeyAce.png");
+        game.load.image("monkeyApprenticeIMG", "Assets/Images/Test/btd5MonkeyApprentice.png");
+        game.load.image("monkeyBuccaneerIMG", "Assets/Images/Test/btd5MonkeyBuccaneer.png");
+        game.load.image("monkeyEngineerIMG", "Assets/Images/Test/btd5MonkeyEngineer.png");
+        game.load.image("monkeySubIMG", "Assets/Images/Test/btd5MonkeySub.png");
+        game.load.image("mortarTowerIMG", "Assets/Images/Test/btd5MortarTower.png");
+        game.load.image("ninjaMonkeyIMG", "Assets/Images/Test/btd5NinjaMonkey.png");
+        game.load.image("sniperMonkeyIMG", "Assets/Images/Test/btd5SniperMonkey.png");
+        game.load.image("spikeFactoryIMG", "Assets/Images/Test/btd5SpikeFactory.png");
+        game.load.image("superMonekyIMG", "Assets/Images/Test/btd5SuperMonkey.png");
+        game.load.image("tackShooterIMG", "Assets/Images/Test/btd5TackShooter.png");
+        game.load.image("wizardLordIMG", "Assets/Images/Test/btd5WizardLord.png");
+
+        
+        
+        
         //some test enemy assets
         game.load.image("mediumGroundEnemyIMG", "Assets/Images/Test/canyonDefenseMediumGroundEnemy.png");
         game.load.image("mediumGroundEnemyIMG", "Assets/Images/Test/canyonDefenseMediumGroundEnemy.png");
