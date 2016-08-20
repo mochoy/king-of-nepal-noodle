@@ -31,12 +31,15 @@ var UpgradeManager = function (towerSprite, upgradeData) {
         this.path1BTN.kill();
         this.path2BTN.kill();
         this.path3BTN.kill();
-                
+                        
         //money and upgrades validation before upgrade
-        if (data.money < this.data["path" + path][0].cost) {
+        if (this.data["currentPathUps" + path] >= this.data["path" + path].length) {
+            //at max upgrades for path
+            console.log("max upgrades for path")
+        } else if (data.money < this.data["path" + path][this.data["currentPathUps" + path]].cost) {
             //too poor, can't buy
             console.log("too poor")
-        } else if (data.money >= this.data["path" + path][0].cost) {
+        } else if (data.money >= this.data["path" + path][this.data["currentPathUps" + path]].cost) {
             this.upgradeEntity(path);
         }
         
@@ -45,16 +48,17 @@ var UpgradeManager = function (towerSprite, upgradeData) {
     
     //what to do when entity is actually being upgraded: subtract money, new entity texture
     this.upgradeEntity = function (path) {        
-        this.data["path" + path][0]["currentUps" + path];      //reference to variable keeping track of upgrades on each path
-        data.money -= this.data["path" + path][0].cost;
+        data.money -= this.data["path" + path][this.data["currentPathUps" + path]].cost;
         UI.updateUI();
         
         this.drawNewEntity(path);   
+        
+        this.data["currentPathUps" + path] ++;      //keeping track of upgrades on each path
     }   //method
     
     this.drawNewEntity = function (path) {        
-        towerSprite.loadTexture(this.data["path" + path][0].src);
-        helper.initSprite(towerSprite, this.data["path" + path][0].srcScale, this.data["path" + path][0].srcScale);
+        towerSprite.loadTexture(this.data["path" + path][this.data["currentPathUps" + path]].src);
+        helper.initSprite(towerSprite, this.data["path" + path][this.data["currentPathUps" + path]].srcScale, this.data["path" + path][this.data["currentPathUps" + path]].srcScale);
     }
 
 
