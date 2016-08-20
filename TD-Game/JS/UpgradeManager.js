@@ -31,34 +31,37 @@ var UpgradeManager = function (towerSprite, upgradeData) {
         this.path1BTN.kill();
         this.path2BTN.kill();
         this.path3BTN.kill();
-                        
+        
+        //object with reference to object containing current path upgrade
+        var currentUpsPathObj = this.data["path" + path][this.data["currentPathUps" + path]];
+        
         //money and upgrades validation before upgrade
         if (this.data["currentPathUps" + path] >= this.data["path" + path].length) {
             //at max upgrades for path
             console.log("max upgrades for path")
-        } else if (data.money < this.data["path" + path][this.data["currentPathUps" + path]].cost) {
+        } else if (data.money < currentUpsPathObj.cost) {
             //too poor, can't buy
             console.log("too poor")
-        } else if (data.money >= this.data["path" + path][this.data["currentPathUps" + path]].cost) {
-            this.upgradeEntity(path);
+        } else if (data.money >= currentUpsPathObj.cost) {
+            this.upgradeEntity(path, currentUpsPathObj);
         }
         
         
     }    //method
     
     //what to do when entity is actually being upgraded: subtract money, new entity texture
-    this.upgradeEntity = function (path) {        
-        data.money -= this.data["path" + path][this.data["currentPathUps" + path]].cost;
+    this.upgradeEntity = function (path, currentUpsPathObj) {        
+        data.money -= currentUpsPathObj.cost;
         UI.updateUI();
         
-        this.drawNewEntity(path);   
+        this.drawNewEntity(path, currentUpsPathObj);   
         
         this.data["currentPathUps" + path] ++;      //keeping track of upgrades on each path
     }   //method
     
-    this.drawNewEntity = function (path) {        
-        towerSprite.loadTexture(this.data["path" + path][this.data["currentPathUps" + path]].src);
-        helper.initSprite(towerSprite, this.data["path" + path][this.data["currentPathUps" + path]].srcScale, this.data["path" + path][this.data["currentPathUps" + path]].srcScale);
+    this.drawNewEntity = function (path, currentUpsPathObj) {        
+        towerSprite.loadTexture(currentUpsPathObj.src);
+        helper.initSprite(towerSprite, currentUpsPathObj.srcScale, currentUpsPathObj.srcScale);
     }
 
 
