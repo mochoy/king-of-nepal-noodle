@@ -52,10 +52,10 @@ var UpgradeManager = function (towerSprite, upgradeData) {
         this.drawNewEntity(path);   
     }   //method
     
-    this.drawNewEntity = function (path) {
-        console.log(this.data["path" + path][0].src)
-        
+    this.drawNewEntity = function (path) {        
         towerSprite.loadTexture(this.data["path" + path][0].src);
+        helper.initSprite(towerSprite, this.data["path" + path][0].srcScale, this.data["path" + path][0].srcScale);
+
     }
 
 
