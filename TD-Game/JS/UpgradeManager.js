@@ -1,4 +1,3 @@
-//when instantiated, this is reference to entity object, not sprite object instead of UpgradeManager itself
 //towerSprite parameter circular refernce, make sure to make null when killed
 var UpgradeManager = function (towerSprite, upgradeData) {
     //Entity being upgraded gets a new copy of the JSON object containing all of the data 
@@ -67,7 +66,7 @@ var UpgradeManager = function (towerSprite, upgradeData) {
     
     //change stats from data onto the tower
     this.updateTowerStats = function (path, currentUpsPathObj) {
-        for (key in currentUpsPathObj.upgradeStats) {            
+        for (key in currentUpsPathObj.upgradeStats) {         
             towerSprite.data[key] += currentUpsPathObj.upgradeStats[key];
         }
     }       //method

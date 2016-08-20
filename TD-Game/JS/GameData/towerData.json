@@ -6,9 +6,9 @@ var towerData = {
 			"src": "chainGunIMG",
             "srcScale": 0.1,
 			
-			"fireRate": 500,
+			"fireRate": 300,
 			"bulletSpeed": 1000,
-			"weaponAccuracy": 500,
+			"weaponAccuracy": 300,
 			"hit": 0,
 			"rangeVal": 0,
 			"canShoot": true,
@@ -19,17 +19,40 @@ var towerData = {
                 currentPathUps3: 0,
                 
                 "path1": [
-                        {
-                            "name": "Path 1 upgrade 1",
-                            "src": "aaGunIMG",
-                            "srcScale": 3,
+                    {
+                        "name": "Path 1 upgrade 1",
+                        "src": "aaGunIMG",
+                        "srcScale": 3,
                                 
-                            "cost": 50,
+                        "cost": 50,
                             
-                            "upgradeStats": {
-                                "fireRate": 500
-                            }
+                        "upgradeStats": {
+                            "fireRate": -20
                         }
+                    }, 
+                    {
+                        "name": "Path 1 upgrade 2",
+                        "src": "missileTurretIMG",
+                        "srcScale": 3,
+                                
+                        "cost": 75,
+                            
+                        "upgradeStats": {
+                            "fireRate": -20
+                        }
+                    },
+                    {
+                        "name": "Path 1 upgrade 3",
+                        "src": "howitzerIMG",
+                        "srcScale": 3,
+                                
+                        "cost": 100,
+                            
+                        "upgradeStats": {
+                            "fireRate": -40
+                        }
+                    }
+                    
                 ],
 
                 "path2": [
@@ -43,7 +66,29 @@ var towerData = {
                         "upgradeStats": {
                             "bulletSpeed": 100
                         }
-                    }
+                    },
+                    {
+                        "name": "Path 2 upgrade 2",
+                        "src": "oilSprayIMG",
+                        "srcScale": 3,
+                        
+                        cost: 75,
+                                                    
+                        "upgradeStats": {
+                            "bulletSpeed": 100
+                        }
+                    },
+                    {
+                        "name": "Path 2 upgrade 3",
+                        "src": "nullificatorMG",
+                        "srcScale": 3,
+                        
+                        cost: 75,
+                                                    
+                        "upgradeStats": {
+                            "bulletSpeed": 100
+                        }
+                    },
                 ],
 
                 "path3":[
@@ -55,9 +100,31 @@ var towerData = {
                         cost: 100,
                         
                         "upgradeStats": {
+                            "weaponAccuracy": -50
+                        }
+                    },
+                    {
+                        "name": "Path 3 upgrade 2",
+                        "src": "gooGunIMG",
+                        "srcScale": 0.1,
+                        
+                        cost: 100,
+                        
+                        "upgradeStats": {
+                            "weaponAccuracy": -50
+                        }
+                    },
+                    {
+                        "name": "Path 3 upgrade 3",
+                        "src": "chainGunIMG",
+                        "srcScale": 0.1,
+                        
+                        cost: 100,
+                        
+                        "upgradeStats": {
                             "weaponAccuracy": -100
                         }
-                    }
+                    },
                 ]       //path3
             }
         },      //main tower upgrades

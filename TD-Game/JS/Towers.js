@@ -35,14 +35,14 @@ TowerPrototype = function () {
         this.sprite.upgradeManager = new UpgradeManager(this.sprite, data.upgrades);
         
         //towerSprite clickable
-        //if pass in function, function will be part of sprite
         this.sprite.events.onInputDown.add(
             function () {
                 this.sprite.upgradeManager.displayUpgradeInfo()
             }, this);
     
+        //periodically shoot depending on tower's fireRate
         this.sprite.timer = game.time.events.loop(this.sprite.data.fireRate, function () {
-            if (this.sprite.canShoot == true){
+            if (this.sprite.canShoot){
                 this.sprite.shoot(this.sprite, this.sprite.target);
             }
         }, this);
