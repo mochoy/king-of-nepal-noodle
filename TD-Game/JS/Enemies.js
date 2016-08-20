@@ -69,6 +69,10 @@ EnemyPrototype = function () {
             enemySprite.civilian.sprite.isPickedUp = false;
             enemySprite.civilian.sprite.dropped();
         }
+        
+        data.money+= enemySprite.data.rewardMoney;
+        UI.updateUI();
+        
         helper.removeFromArray(enemyStuff.allEnemyArray, null, null, enemySprite);
     };
     
