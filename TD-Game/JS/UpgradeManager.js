@@ -55,6 +55,7 @@ var UpgradeManager = function (towerSprite, upgradeData) {
         UI.updateUI();
         
         this.drawNewEntity(path, currentUpsPathObj);   
+        this.updateTowerStats(path, currentUpsPathObj);
         
         this.data["currentPathUps" + path] ++;      //keeping track of upgrades on each path
     }   //method
@@ -63,6 +64,13 @@ var UpgradeManager = function (towerSprite, upgradeData) {
         towerSprite.loadTexture(currentUpsPathObj.src);
         helper.initSprite(towerSprite, currentUpsPathObj.srcScale, currentUpsPathObj.srcScale);
     }
+    
+    //change stats from data onto the tower
+    this.updateTowerStats = function (path, currentUpsPathObj) {
+        for (key in currentUpsPathObj.upgradeStats) {            
+            towerSprite.data[key] += currentUpsPathObj.upgradeStats[key];
+        }
+    }       //method
 
 
 }   //constructor

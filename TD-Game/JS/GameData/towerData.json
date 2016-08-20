@@ -24,7 +24,11 @@ var towerData = {
                             "src": "aaGunIMG",
                             "srcScale": 3,
                                 
-                            "cost": 50
+                            "cost": 50,
+                            
+                            "upgradeStats": {
+                                "fireRate": 500
+                            }
                         }
                 ],
 
@@ -34,7 +38,11 @@ var towerData = {
                         "src": "gaussCannonIMG",
                         "srcScale": 3,
                         
-                        cost: 75
+                        cost: 75,
+                                                    
+                        "upgradeStats": {
+                            "bulletSpeed": 100
+                        }
                     }
                 ],
 
@@ -44,11 +52,15 @@ var towerData = {
                         "src": "gutlingLaserIMG",
                         "srcScale": 3,
                         
-                        cost: 100
+                        cost: 100,
+                        
+                        "upgradeStats": {
+                            "weaponAccuracy": -100
+                        }
                     }
-                ]
+                ]       //path3
             }
-        },
+        },      //main tower upgrades
         
 		{
 			"name": "basicTower",
