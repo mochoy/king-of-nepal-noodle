@@ -1,5 +1,5 @@
-//towerSprite parameter circular refernce, make sure to make null when killed
-var UpgradeManager = function (towerSprite, upgradeData) {
+//this class is inherited by the entity, so this will be reference to the entity class
+var UpgradeManager = function (upgradeData) {
     //Entity being upgraded gets a new copy of the JSON object containing all of the data 
     this.data = Object.create(upgradeData);
     
@@ -60,20 +60,20 @@ var UpgradeManager = function (towerSprite, upgradeData) {
     }   //method
     
     this.drawNewEntity = function (path, currentUpsPathObj) {        
-        towerSprite.loadTexture(currentUpsPathObj.src);
-        helper.initSprite(towerSprite, currentUpsPathObj.srcScale, currentUpsPathObj.srcScale);
+        this.sprite.loadTexture(currentUpsPathObj.src);
+        helper.initSprite(this.sprite, currentUpsPathObj.srcScale, currentUpsPathObj.srcScale);
     }
     
     //change stats from data onto the tower
     this.updateTowerStats = function (path, currentUpsPathObj) {
         for (key in currentUpsPathObj.upgradeStats) {         
-            towerSprite.data[key] += currentUpsPathObj.upgradeStats[key];
+            this.sprite.data[key] += currentUpsPathObj.upgradeStats[key];
             
             //change timer values if the fireRate is to be changed
             if (key === "fireRate") {
-                towerSprite.fireLoopTimer.delay = towerSprite.data.fireRate;
+                this.sprite.fireLoopTimer.delay = this.sprite.data.fireRate;
             } else if (key === "rangeVal") {     //re create range if rangeVal changed  
-                towerSprite.createRange();
+                this.createRange();
             }
         }   //for
     }       //method

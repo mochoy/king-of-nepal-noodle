@@ -10,7 +10,15 @@ towerStuff.moveToPoint;
 
 
 //tower superclass thingy
-TowerPrototype = function () {
+TowerPrototype = function (data) { 
+    //inherit from upgrade manager
+    debugger
+    this.inherit = function (thiz, constructer) {
+        thiz.constructer = constructer;
+        thiz.constructer(data.upgrades);
+    };
+    this.inherit(this, UpgradeManager);
+    
     //create sprite
     this.init = function (game, x, y, data) {
         this.sprite = game.add.sprite(x, y, data.src);
@@ -26,19 +34,15 @@ TowerPrototype = function () {
         this.sprite.shoot = this.shoot;    
         this.sprite.findEnemy = this.findEnemy;
         this.sprite.clicked = this.clicked;
-        this.sprite.createRange = this.createRange;
         
         //stats stuff
         //all default MainTower stats
         this.sprite.data = Object.create(data);
-        
-        //attatch upgradeManager to sprite object
-        this.sprite.upgradeManager = new UpgradeManager(this.sprite, data.upgrades);
-        
+                
         //towerSprite clickable
         this.sprite.events.onInputDown.add(
             function () {
-                this.sprite.upgradeManager.displayUpgradeInfo()
+                this.displayUpgradeInfo()
             }, this);
     
         //periodically shoot depending on tower's fireRate
@@ -178,9 +182,9 @@ towerStuff.TowerSlotPrototype = function () {
 
 towerStuff.createTower = function (towerNum, x, y) {
     if (towerNum == 0){
-	  	towerStuff.mainTower = new window[towerData.data[0].class]().init(game, x, y, towerData.data[0]);
+	  	towerStuff.mainTower = new window[towerData.data[0].class](towerData.data[0]).init(game, x, y);
     } else {
-	  	towerStuff.mainTower = new window[towerData.data[1].class]().init(game, x, y, towerData.data[1]);
+	  	towerStuff.mainTower = new window[towerData.data[1].class](towerData.data[1]).init(game, x, y);
     }
 };
 
