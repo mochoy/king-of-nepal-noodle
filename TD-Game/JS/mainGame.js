@@ -46,7 +46,7 @@ var mainGameVar = {
         game.load.image("ninjaMonkeyIMG", "Assets/Images/Test/btd5NinjaMonkey.png");
         game.load.image("sniperMonkeyIMG", "Assets/Images/Test/btd5SniperMonkey.png");
         game.load.image("spikeFactoryIMG", "Assets/Images/Test/btd5SpikeFactory.png");
-        game.load.image("superMonekyIMG", "Assets/Images/Test/btd5SuperMonkey.png");
+        game.load.image("superMonkeyIMG", "Assets/Images/Test/btd5SuperMonkey.png");
         game.load.image("tackShooterIMG", "Assets/Images/Test/btd5TackShooter.png");
         game.load.image("wizardLordIMG", "Assets/Images/Test/btd5WizardLord.png");
 

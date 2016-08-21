@@ -80,7 +80,7 @@ var towerData = {
                     },
                     {
                         "name": "Path 2 upgrade 3",
-                        "src": "nullificatorMG",
+                        "src": "nulificatorIMG",
                         "srcScale": 3,
                         
                         cost: 75,
@@ -132,8 +132,8 @@ var towerData = {
 		{
 			"name": "basicTower",
 			"class": "AutoTower",
-			"src": "gooGunIMG",
-            "srcScale": 0.1,
+			"src": "wizardLordIMG",
+            "srcScale": 0.5,
 			
 			"fireRate": 500,
 			"bulletSpeed": 1000,
@@ -142,31 +142,120 @@ var towerData = {
 			"rangeVal": 500,
 			"canShoot": false,
             
-            "upgrades": [
-                {
-                    "path1": [
-                        {
-                            "name": "Path 1 upgrade 1",
-                            "src": "howitzerIMG"
-                        }
-                    ],
-                    
-                    "path2": [
-                        {
-                            "name": "Path 2 upgrade 1",
-                            "src": "missileTurretIMG"
-                        }
-                    ],
-                    
-                    "path3":[
-                        {
-                            "name": "Path 3 upgrade 1",
-                            "src": "nulificatorIMG"
-                        }
-                    ]
-                }
+            "upgrades": {
+                currentPathUps1: 0,
+                currentPathUps2: 0,
+                currentPathUps3: 0,
                 
-            ]
-		}
+                "path1": [
+                    {
+                        "name": "Path 1 upgrade 1",
+                        "src": "beeKeeperIMG",
+                        "srcScale": 0.5,
+                                
+                        "cost": 50,
+                            
+                        "upgradeStats": {
+                            "fireRate": -20
+                        }
+                    }, 
+                    {
+                        "name": "Path 1 upgrade 2",
+                        "src": "monkeySubIMG",
+                        "srcScale": 0.5,
+                                
+                        "cost": 75,
+                            
+                        "upgradeStats": {
+                            "fireRate": -20
+                        }
+                    },
+                    {
+                        "name": "Path 1 upgrade 3",
+                        "src": "bloonChipperIMG",
+                        "srcScale": 0.5,
+                                
+                        "cost": 100,
+                            
+                        "upgradeStats": {
+                            "fireRate": -40
+                        }
+                    }
+                    
+                ],
+
+                "path2": [
+                    {
+                        "name": "Path 2 upgrade 1",
+                        "src": "monkeyEngineerIMG",
+                        "srcScale": 0.5,
+                        
+                        cost: 75,
+                                                    
+                        "upgradeStats": {
+                            "bulletSpeed": 100
+                        }
+                    },
+                    {
+                        "name": "Path 2 upgrade 2",
+                        "src": "spikeFactoryIMG",
+                        "srcScale": 0.5,
+                        
+                        cost: 75,
+                                                    
+                        "upgradeStats": {
+                            "bulletSpeed": 100
+                        }
+                    },
+                    {
+                        "name": "Path 2 upgrade 3",
+                        "src": "dartlingGunIMG",
+                        "srcScale": 0.5,
+                        
+                        cost: 75,
+                                                    
+                        "upgradeStats": {
+                            "bulletSpeed": 100
+                        }
+                    },
+                ],
+
+                "path3":[
+                    {
+                        "name": "Path 3 upgrade 1",
+                        "src": "mortarTowerIMG",
+                        "srcScale": 0.5,
+                        
+                        cost: 100,
+                        
+                        "upgradeStats": {
+                            "weaponAccuracy": -50
+                        }
+                    },
+                    {
+                        "name": "Path 3 upgrade 2",
+                        "src": "monkeyApprenticeIMG",
+                        "srcScale": 0.5,
+                        
+                        cost: 100,
+                        
+                        "upgradeStats": {
+                            "weaponAccuracy": -50
+                        }
+                    },
+                    {
+                        "name": "Path 3 upgrade 3",
+                        "src": "superMonkeyIMG",
+                        "srcScale": 0.5,
+                        
+                        cost: 100,
+                        
+                        "upgradeStats": {
+                            "weaponAccuracy": -100
+                        }
+                    },
+                ]       //path3
+            }
+        },      //tower upgrades
 	]
 };
