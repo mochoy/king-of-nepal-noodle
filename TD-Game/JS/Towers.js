@@ -11,13 +11,12 @@ towerStuff.moveToPoint;
 
 //tower superclass thingy
 TowerPrototype = function (game, x, y, data) {    
-    
-    this.inherit = function (thiz, constructer) {
+    //inherit from Entity
+    this.inheritEntity = function (thiz, constructer) {
         thiz.constructer = constructer;
         thiz.constructer(x, y, data);
     };
-    this.inherit(this, Entity);
-    
+    this.inheritEntity(this, Entity);
     
     //create sprite
     this.init = function (game, x, y, data) {        
@@ -25,12 +24,7 @@ TowerPrototype = function (game, x, y, data) {
         this.sprite.bulletArray = [];
         this.sprite.target = towerStuff.moveToPoint;
         this.sprite.canShoot = data.canShoot;
-        
-        //towerSprite's functions
-        this.sprite.shoot = this.shoot;    
-        this.sprite.findEnemy = this.findEnemy;
-        this.sprite.clicked = this.clicked;
-        
+                
         //stats stuff
         //all default MainTower stats
         this.sprite.data = Object.create(data);
@@ -64,7 +58,7 @@ TowerPrototype = function (game, x, y, data) {
     };   //function 
     
     //shoot
-    this.shoot = function (towerSpritel, target) {
+    this.sprite.shoot = function (towerSpritel, target) {
         //bullet creating stuff
         var bullet = game.add.sprite(0, 0, "bookIMG");
         bullet.x = towerSpritel.x;
@@ -122,7 +116,7 @@ AutoTower = function (game, x, y, data) {
     };
     
     
-    this.findEnemy = function (enemyArray) {
+    this.sprite.findEnemy = function (enemyArray) {
 		//find enemy
         for (var i = 0; i < enemyArray.length; i ++){
             enemySprite = enemyArray[i];
