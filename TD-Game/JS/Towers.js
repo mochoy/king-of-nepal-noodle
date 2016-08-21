@@ -18,7 +18,14 @@ TowerPrototype = function (game, x, y, data) {
     };
     this.inheritEntity(this, Entity);
     
-     
+    //inherit from UpgradeManager
+    //yay polymorphism
+    this.inheritUpgrades = function (thiz, constructer) {
+        thiz.constructer = constructer;
+        thiz.constructer(sprite.data.upgrades);
+    }
+    this.inheritEntity(this, UpgradeManager);
+
     //initialize shooting stuff
     this.sprite.bulletArray = [];
     this.sprite.target = towerStuff.moveToPoint;
