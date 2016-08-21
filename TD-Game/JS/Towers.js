@@ -18,36 +18,24 @@ TowerPrototype = function (game, x, y, data) {
     };
     this.inheritEntity(this, Entity);
     
-    //create sprite
-    this.init = function (game, x, y, data) {        
-		//initialize shooting stuff
-        this.sprite.bulletArray = [];
-        this.sprite.target = towerStuff.moveToPoint;
-        this.sprite.canShoot = data.canShoot;
-                
-        //stats stuff
-        //all default MainTower stats
-        this.sprite.data = Object.create(data);
-                
-        //towerSprite clickable
-        this.sprite.events.onInputDown.add(
-            function () {
-                this.displayUpgradeInfo()
-            }, this);
+     
+    //initialize shooting stuff
+    this.sprite.bulletArray = [];
+    this.sprite.target = towerStuff.moveToPoint;
+    this.sprite.canShoot = data.canShoot;
     
-        //periodically shoot depending on tower's fireRate
-        this.sprite.fireLoopTimer = game.time.events.loop(this.sprite.data.fireRate, function () {
-            if (this.sprite.canShoot){
-                this.sprite.shoot(this.sprite, this.sprite.target);
-            }
+    //towerSprite clickable
+    this.sprite.events.onInputDown.add(
+        function () {
+            this.displayUpgradeInfo()
         }, this);
-        
-        //call functions
-        this.addToArray();
-        this.createRange();
-	  
-        return this;
-    };   //function create
+    
+    //periodically shoot depending on tower's fireRate
+    this.sprite.fireLoopTimer = game.time.events.loop(this.sprite.data.fireRate, function () {
+        if (this.sprite.data.canShoot){
+            this.sprite.shoot(this.sprite, this.sprite.target);
+        }
+    }, this);
     
     //add tower's sprite to specific arrays 
     this.addToArray = function () {
@@ -83,6 +71,8 @@ TowerPrototype = function (game, x, y, data) {
         if (this.sprite.data.rangeVal != 0) {
             this.sprite.range = new Phaser.Circle(this.sprite.x +(this.sprite.width/2), this.sprite.y+(this.sprite.height/2), this.sprite.data.rangeVal)
         }   //if
+        
+        return this;
     };  //fucntion
     
     return this;
@@ -116,20 +106,21 @@ AutoTower = function (game, x, y, data) {
     };
     
     
+    //this reference to sprite
     this.sprite.findEnemy = function (enemyArray) {
 		//find enemy
         for (var i = 0; i < enemyArray.length; i ++){
             enemySprite = enemyArray[i];
             if (this.range.contains(enemySprite.x, enemySprite.y)) {
-                this.canShoot = true;
+                this.data.canShoot = true;
                 this.target = enemySprite;
             } else {
-				this.canShoot = false;
+				this.data.canShoot = false;
 			}
         }   //for
 		
 		//rotate to enemy
-		if (this.canShoot) {
+		if (this.data.canShoot) {
 			this.rotation = game.physics.arcade.angleBetween(this, this.target);
 		}
 		
@@ -172,9 +163,9 @@ towerStuff.TowerSlotPrototype = function () {
 
 towerStuff.createTower = function (towerNum, x, y) {
     if (towerNum == 0){
-	  	towerStuff.mainTower = new window[towerData.data[0].class](game, x, y, towerData.data[0]).init(game, x, y, towerData.data[0]);
+	  	towerStuff.mainTower = new window[towerData.data[0].class](game, x, y, towerData.data[0]).createRange().addToArray();
     } else {
-	  	towerStuff.mainTower = new window[towerData.data[1].class](game, x, y, towerData.data[1]).init(game, x, y, towerData.data[1]);
+	  	towerStuff.mainTower = new window[towerData.data[1].class](game, x, y, towerData.data[1]).createRange().addToArray();
     }
 };
 
