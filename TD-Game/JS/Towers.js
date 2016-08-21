@@ -20,11 +20,11 @@ TowerPrototype = function (game, x, y, data) {
     
     //inherit from UpgradeManager
     //yay polymorphism
-    this.inheritUpgrades = function (thiz, constructer) {
+    this.inheritUpgrades = function (thiz, constructer) {        
         thiz.constructer = constructer;
-        thiz.constructer(sprite.data.upgrades);
+        thiz.constructer(this.sprite.data.upgrades);
     }
-    this.inheritEntity(this, UpgradeManager);
+    this.inheritUpgrades(this, UpgradeManager);
 
     //initialize shooting stuff
     this.sprite.bulletArray = [];
@@ -58,7 +58,7 @@ TowerPrototype = function (game, x, y, data) {
         var bullet = game.add.sprite(0, 0, "bookIMG");
         bullet.x = towerSpritel.x;
         bullet.y = towerSpritel.y;
-       	helper.initSprite(bullet, 1, 1);
+       	helper.initSprite(bullet, 0.1, 0.1);
         bullet.inputEnabled = true;
         
         bullet.towerSprite = this;
@@ -128,7 +128,7 @@ AutoTower = function (game, x, y, data) {
 		
 		//rotate to enemy
 		if (this.data.canShoot) {
-			this.rotation = game.physics.arcade.angleBetween(this, this.target);
+			this.rotation = game.physics.arcade.angleBetween(this, this.target) + 90;
 		}
 		
     };  //function findEnemy

@@ -1,8 +1,5 @@
 //this class is inherited by the entity, so this will be reference to the entity class
-var UpgradeManager = function (upgradeData) {
-    //Entity being upgraded gets a new copy of the JSON object containing all of the data 
-    this.data = Object.create(upgradeData);
-    
+var UpgradeManager = function (upgradeData) {    
     //when entity clicked, display upgrade information
     this.displayUpgradeInfo = function () {
         //draw upgrade menu
@@ -32,10 +29,10 @@ var UpgradeManager = function (upgradeData) {
         this.path3BTN.kill();
         
         //object with reference to object containing current path upgrade
-        var currentUpsPathObj = this.data["path" + path][this.data["currentPathUps" + path]];
+        var currentUpsPathObj = upgradeData["path" + path][upgradeData["currentPathUps" + path]];
         
         //money and upgrades validation before upgrade
-        if (this.data["currentPathUps" + path] >= this.data["path" + path].length) {
+        if (upgradeData["currentPathUps" + path] >= upgradeData["path" + path].length) {
             //at max upgrades for path
             console.log("max upgrades for path")
         } else if (data.money < currentUpsPathObj.cost) {
@@ -56,7 +53,7 @@ var UpgradeManager = function (upgradeData) {
         this.drawNewEntity(path, currentUpsPathObj);   
         this.updateTowerStats(path, currentUpsPathObj);
         
-        this.data["currentPathUps" + path] ++;      //keeping track of upgrades on each path
+        upgradeData["currentPathUps" + path] ++;      //keeping track of upgrades on each path
     }   //method
     
     this.drawNewEntity = function (path, currentUpsPathObj) {        

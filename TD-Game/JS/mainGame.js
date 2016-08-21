@@ -105,7 +105,7 @@ var mainGameVar = {
             towerStuff.moveToPoint.y = game.input.y;
             for (var i = 0; i < towerStuff.manualTowerArr.length; i ++) {
                 var towerSprite = towerStuff.manualTowerArr[i];
-                towerSprite.rotation = (game.physics.arcade.angleToPointer(towerSprite));
+                towerSprite.rotation = (game.physics.arcade.angleToPointer(towerSprite)) + 90;
             }
         }, this);
         
