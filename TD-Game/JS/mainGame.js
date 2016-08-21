@@ -51,8 +51,6 @@ var mainGameVar = {
         game.load.image("wizardLordIMG", "Assets/Images/Test/btd5WizardLord.png");
 
         
-        
-        
         //some test enemy assets
         game.load.image("mediumGroundEnemyIMG", "Assets/Images/Test/canyonDefenseMediumGroundEnemy.png");
         game.load.image("mediumGroundEnemyIMG", "Assets/Images/Test/canyonDefenseMediumGroundEnemy.png");
@@ -101,12 +99,28 @@ var mainGameVar = {
     update: function (){
         // Aim manual towers to mouse click
         game.input.onDown.add(function () {
+            var canAim = false
             towerStuff.moveToPoint.x = game.input.x;
             towerStuff.moveToPoint.y = game.input.y;
-            for (var i = 0; i < towerStuff.manualTowerArr.length; i ++) {
-                var towerSprite = towerStuff.manualTowerArr[i];
-                towerSprite.rotation = (game.physics.arcade.angleToPointer(towerSprite)) + 90;
+            
+            //make sure not clicked on tower before rotate
+            for (var i = 0; i < towerStuff.allTowerArr.length; i ++) {
+                var towerSprite = towerStuff.allTowerArr[i];
+                if (!game.physics.arcade.overlap(towerStuff.moveToPoint, towerSprite)) {
+                    canAim = true;
+                } else {
+                    cainAim = false;
+                }
             }
+            
+            //rotate only if can
+            if (canAim) {
+                for (var i = 0; i < towerStuff.manualTowerArr.length; i ++) {
+                    var towerSprite = towerStuff.manualTowerArr[i];
+                    towerSprite.rotation = (game.physics.arcade.angleToPointer(towerSprite)) + 90;
+                }
+            }
+
         }, this);
         
         //collision for bullets and enemies
