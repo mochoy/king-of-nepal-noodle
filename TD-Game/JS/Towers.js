@@ -26,6 +26,7 @@ TowerPrototype = function () {
         this.sprite.shoot = this.shoot;    
         this.sprite.findEnemy = this.findEnemy;
         this.sprite.clicked = this.clicked;
+        this.sprite.createRange = this.createRange;
         
         //stats stuff
         //all default MainTower stats

@@ -72,7 +72,9 @@ var UpgradeManager = function (towerSprite, upgradeData) {
             //change timer values if the fireRate is to be changed
             if (key === "fireRate") {
                 towerSprite.fireLoopTimer.delay = towerSprite.data.fireRate;
-            }   //if
+            } else if (key === "rangeVal") {     //re create range if rangeVal changed  
+                towerSprite.createRange();
+            }
         }   //for
     }       //method
 
