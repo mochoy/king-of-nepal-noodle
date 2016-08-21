@@ -10,21 +10,17 @@ towerStuff.moveToPoint;
 
 
 //tower superclass thingy
-TowerPrototype = function (data) { 
-    //inherit from upgrade manager
-    debugger
+TowerPrototype = function (game, x, y, data) {    
+    
     this.inherit = function (thiz, constructer) {
         thiz.constructer = constructer;
-        thiz.constructer(data.upgrades);
+        thiz.constructer(x, y, data);
     };
-    this.inherit(this, UpgradeManager);
+    this.inherit(this, Entity);
+    
     
     //create sprite
-    this.init = function (game, x, y, data) {
-        this.sprite = game.add.sprite(x, y, data.src);
-        helper.initSprite(this.sprite, data.srcScale, data.srcScale);
-        this.sprite.inputEnabled = true;
-        
+    this.init = function (game, x, y, data) {        
 		//initialize shooting stuff
         this.sprite.bulletArray = [];
         this.sprite.target = towerStuff.moveToPoint;
@@ -59,7 +55,7 @@ TowerPrototype = function (data) {
         return this;
     };   //function create
     
-    //add tower to specific arrays 
+    //add tower's sprite to specific arrays 
     this.addToArray = function () {
         towerStuff.allTowerArr.push(this.sprite);
         towerStuff.manualTowerArr.push(this.sprite);
@@ -70,7 +66,7 @@ TowerPrototype = function (data) {
     //shoot
     this.shoot = function (towerSpritel, target) {
         //bullet creating stuff
-        var bullet = game.add.sprite(0, 0, this.img);
+        var bullet = game.add.sprite(0, 0, "bookIMG");
         bullet.x = towerSpritel.x;
         bullet.y = towerSpritel.y;
        	helper.initSprite(bullet, 1, 1);
@@ -95,28 +91,28 @@ TowerPrototype = function (data) {
         }   //if
     };  //fucntion
     
-
+    return this;
 };   //class MainTower
 
 //ManualTower subclass of TowerPrototype
 //Manualtowers aim on click
-ManualTower = function () {
+ManualTower = function (game, x, y, data) {   
     //inherit from parent class 
     this.inherit = function (thiz, constructer) {
         thiz.constructer = constructer;
-        thiz.constructer();
+        thiz.constructer(game, x, y, data);
     };
     this.inherit(this, TowerPrototype);
 };
 
 //AutoTower subclass of TowerPrototype
 //Autotowers aim automatically
-AutoTower = function () {
+AutoTower = function (game, x, y, data) {
     //inherit from TowerPrototype
-    this.inherit = function (t, c) {    //t is this, c is constructor
-        t.c = c;
-        t.c();
-    };  
+    this.inherit = function (thiz, constructer) {
+        thiz.constructer = constructer;
+        thiz.constructer(game, x, y, data);
+    };
     this.inherit(this, TowerPrototype);
     
     //add sprite to specific arrays
@@ -182,9 +178,9 @@ towerStuff.TowerSlotPrototype = function () {
 
 towerStuff.createTower = function (towerNum, x, y) {
     if (towerNum == 0){
-	  	towerStuff.mainTower = new window[towerData.data[0].class](towerData.data[0]).init(game, x, y);
+	  	towerStuff.mainTower = new window[towerData.data[0].class](game, x, y, towerData.data[0]).init(game, x, y, towerData.data[0]);
     } else {
-	  	towerStuff.mainTower = new window[towerData.data[1].class](towerData.data[1]).init(game, x, y);
+	  	towerStuff.mainTower = new window[towerData.data[1].class](game, x, y, towerData.data[1]).init(game, x, y, towerData.data[1]);
     }
 };
 
