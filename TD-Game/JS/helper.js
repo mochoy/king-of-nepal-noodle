@@ -130,6 +130,6 @@ var Entity = function (x, y, data) {
     helper.initSprite(this.sprite, data.srcScale, data.srcScale);
     this.sprite.inputEnabled = true;
     this.sprite.data = Object.assign({}, data);
-    this.sprite.data.upgrades = Object.assign({}, data.upgrades);
+    this.sprite.data.upgrades = _.assignIn({}, data.upgrades);
 }
 
