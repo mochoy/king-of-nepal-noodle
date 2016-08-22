@@ -64,6 +64,10 @@ var mainGameVar = {
     },  //function preload
     
     create: function (){
+        //scale game to fit page
+        game.scale.scaleMode = Phaser.ScaleManager.SHOW_ALL;
+        game.scale.pageAlignHorizontally = game.scale.pageAlignVertically = true;
+        
         game.physics.startSystem(Phaser.Physics.ARCADE);
         game.stage.backgroundColor = '#ffffff'
 
