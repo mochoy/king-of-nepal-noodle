@@ -112,7 +112,6 @@ AutoTower = function (game, x, y, data) {
         towerStuff.autoTowerArr.push(this.sprite);
     };
     
-    
     //this reference to sprite
     this.sprite.findEnemy = function (enemyArray) {
 		//find enemy

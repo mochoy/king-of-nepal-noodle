@@ -108,14 +108,7 @@ helper.bringToTop = function () {
     UI.moneyText.bringToTop();
 }
 
-//
-//
-//
-//UI stuff Below
-//
-//
-//
-
+//UI stuff
 UI = {
     fontFamily: "Montserrat"
 };
@@ -131,34 +124,12 @@ UI.updateUI = function(){
     UI.moneyText.text = "MONEY: " + data.money;
 }
 
-//
-//
-//
-//UI stuff above
-//
-//
-//
-
-
-//
-//
-//
-//Entity class stuff Below
-//
-//
-//
-
+//Entity class
 var Entity = function (x, y, data) {
     this.sprite = game.add.sprite(x, y, data.src);
     helper.initSprite(this.sprite, data.srcScale, data.srcScale);
     this.sprite.inputEnabled = true;
-    this.sprite.data = Object.create(data);
+    this.sprite.data = Object.assign({}, data);
+    this.sprite.data.upgrades = Object.assign({}, data.upgrades);
 }
 
-//
-//
-//
-//Entity class stuff above
-//
-//
-//
