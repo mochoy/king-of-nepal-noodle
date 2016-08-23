@@ -1,5 +1,5 @@
 //this class is inherited by the entity, so this will be reference to the entity class
-var PurchaseManager = function (upgradeData) {    
+var PurchaseManager = function (purchaseData) {    
     //when entity clicked, display upgrade information
     this.displayUpgradeInfo = function () {
         //draw upgrade menu
@@ -16,7 +16,6 @@ var PurchaseManager = function (upgradeData) {
         this.path3BTN = game.add.button(100, 500, "buttonStartSS", function () {
               this.validateUpgradeEntity(3);
         }, this, 2, 1, 0  );
-
             
     }
         
@@ -29,10 +28,10 @@ var PurchaseManager = function (upgradeData) {
         this.path3BTN.kill();
         
         //object with reference to object containing current path upgrade
-        var currentUpsPathObj = upgradeData["path" + path][upgradeData["currentPathUps" + path]];
+        var currentUpsPathObj = purchaseData["path" + path][purchaseData["currentPathUps" + path]];
         
         //money and upgrades validation before upgrade
-        if (upgradeData["currentPathUps" + path] >= upgradeData["path" + path].length) {
+        if (purchaseData["currentPathUps" + path] >= purchaseData["path" + path].length) {
             //at max upgrades for path
             console.log("max upgrades for path")
         } else if (data.money < currentUpsPathObj.cost) {
@@ -53,7 +52,7 @@ var PurchaseManager = function (upgradeData) {
         this.drawNewEntity(path, currentUpsPathObj);   
         this.updateEntityStats(path, currentUpsPathObj);
         
-        upgradeData["currentPathUps" + path] ++;      //keeping track of upgrades on each path
+        purchaseData["currentPathUps" + path] ++;      //keeping track of upgrades on each path
     }   //method
     
     this.drawNewEntity = function (path, currentUpsPathObj) {        
@@ -74,6 +73,18 @@ var PurchaseManager = function (upgradeData) {
             }
         }   //for
     }       //method
+    
+    //create menu/stuff to display when buying stuff
+    this.displayBuyData = function () {
+        //temp code for now
+        //check for validation after user interacts   
+        
+    }
+    
+    //create new tower, subtract money
+    this.buyEnity = function () {
+        
+    }
     
 
 }   //constructor
