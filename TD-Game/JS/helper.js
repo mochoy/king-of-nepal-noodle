@@ -110,19 +110,31 @@ helper.bringToTop = function () {
 
 //UI stuff
 UI = {
-    fontFamily: "Montserrat"
+    fontFamily: "Montserrat",
+    
+    //create UI that's mainly visible all in game
+    createUI: function () {
+        UI.healthText = game.add.text(0, 0, "HEALTH: " + data.health, { fontFamily: UI.fontFamily, fontSize: 20, fontWeight: 'bold', fill: '#000000'    });
+        UI.moneyText = game.add.text(200, 0, "MONEY: " + data.money, { fontFamily: UI.fontFamily, fontSize: 20, fontWeight: 'bold', fill: '#000000' });
+    },
+        
+    updateUI: function(){
+        UI.healthText.text = "HEALTH: " + data.health;
+        UI.moneyText.text = "MONEY: " + data.money;
+    }, 
+        
+    createPurchaseInterface: function () {
+        
+    }, 
+        
+    removePurchaseInterface: function () {
+        
+    }
+        
 };
 
-UI.createUI = function () {
-    UI.healthText = game.add.text(0, 0, "HEALTH: " + data.health, { fontFamily: UI.fontFamily, fontSize: 20, fontWeight: 'bold', fill: '#000000' });
-    UI.moneyText = game.add.text(200, 0, "MONEY: " + data.money, { fontFamily: UI.fontFamily, fontSize: 20, fontWeight: 'bold', fill: '#000000' });
 
-}
 
-UI.updateUI = function(){
-    UI.healthText.text = "HEALTH: " + data.health;
-    UI.moneyText.text = "MONEY: " + data.money;
-}
 
 //Entity class
 var Entity = function (x, y, data) {
