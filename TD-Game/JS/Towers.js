@@ -18,13 +18,13 @@ TowerPrototype = function (game, x, y, data) {
     };
     this.inheritEntity(this, Entity);
     
-    //inherit from UpgradeManager
+    //inherit from PurchaseManager
     //yay polymorphism
     this.inheritUpgrades = function (thiz, constructer) {        
         thiz.constructer = constructer;
         thiz.constructer(this.sprite.data.upgrades);
     }
-    this.inheritUpgrades(this, UpgradeManager);
+    this.inheritUpgrades(this, PurchaseManager);
 
     //initialize shooting stuff
     this.sprite.bulletArray = [];
