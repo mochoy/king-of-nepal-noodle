@@ -114,6 +114,7 @@ var mainGameVar = {
                     canAim = true;
                 } else {
                     cainAim = false;
+                    break;
                 }
             }
             

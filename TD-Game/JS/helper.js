@@ -129,6 +129,6 @@ var Entity = function (x, y, data) {
     this.sprite = game.add.sprite(x, y, data.src);
     helper.initSprite(this.sprite, data.srcScale, data.srcScale);
     this.sprite.inputEnabled = true;
-    this.sprite.data = _.assignIn({}, data);
+    this.sprite.data = _.cloneDeep(data);
 }
 
