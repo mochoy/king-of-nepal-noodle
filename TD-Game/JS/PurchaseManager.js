@@ -51,7 +51,7 @@ var PurchaseManager = function (upgradeData) {
         UI.updateUI();
         
         this.drawNewEntity(path, currentUpsPathObj);   
-        this.updateTowerStats(path, currentUpsPathObj);
+        this.updateEntityStats(path, currentUpsPathObj);
         
         upgradeData["currentPathUps" + path] ++;      //keeping track of upgrades on each path
     }   //method
@@ -61,8 +61,8 @@ var PurchaseManager = function (upgradeData) {
         helper.initSprite(this.sprite, currentUpsPathObj.srcScale, currentUpsPathObj.srcScale);
     }
     
-    //change stats from data onto the tower
-    this.updateTowerStats = function (path, currentUpsPathObj) {
+    //change stats from data onto the entity
+    this.updateEntityStats = function (path, currentUpsPathObj) {
         for (key in currentUpsPathObj.upgradeStats) {         
             this.sprite.data[key] += currentUpsPathObj.upgradeStats[key];
             
@@ -74,6 +74,6 @@ var PurchaseManager = function (upgradeData) {
             }
         }   //for
     }       //method
-
+    
 
 }   //constructor
