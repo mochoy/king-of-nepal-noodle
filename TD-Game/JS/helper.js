@@ -124,27 +124,30 @@ UI = {
         UI.healthText.text = "HEALTH: " + data.health;
         UI.moneyText.text = "MONEY: " + data.money;
     }, 
+    
+    
+    //create buttons/interface when user buying or upgrading entity if not already created
+    createPurchaseInterface: function (parent) {
+        //create buttons and add them to array
+        for (var button = 0; button < 3; button++) {                   
+            UI.purchaseInterfaceArr.push(
+                game.add.button(100, 100, "buttonStartSS", function () {
+                    parent.validateUpgradeEntity(button + 1)
+                }, parent, 2, 1, 0) );
+        }
+    },
         
-    //create buttons/interface when user buying or upgrading entity
-    createPurchaseInterface: function (parent, btn1Src, btn2Src, btn3Src, btn4Src) {    
+    //show buttons/interface when user buying or upgrading entity. 
+    showPurchaseInterface: function (parent, btn1Src, btn2Src, btn3Src, btn4Src) { 
+        //if there are no button(first time creating buttons) then create some blank ones
+        if (UI.purchaseInterfaceArr.length === 0) {
+            UI.createPurchaseInterface(parent);
+        }
+        
         //show buttons just in case they're hidden
         for (var button = 0; button < UI.purchaseInterfaceArr.length; button++) {
             UI.purchaseInterfaceArr[button].visible = true;
         }
-        
-        UI.purchaseInterfaceArr[0] = game.add.button(100, 100, btn1Src, function () {
-              parent.validateUpgradeEntity(1);
-        }, parent, 2, 1, 0  );        
-        UI.purchaseInterfaceArr[1] = game.add.button(100, 300, btn1Src, function () {
-              parent.validateUpgradeEntity(2);
-        }, parent, 2, 1, 0  );        
-        UI.purchaseInterfaceArr[2] = game.add.button(100, 500, btn1Src, function () {
-              parent.validateUpgradeEntity(3);
-        }, parent, 2, 1, 0  );
-        //this will be the sell button
-        UI.purchaseInterfaceArr[3] = game.add.button(100, 700, btn1Src, function () {
-              parent.sellEntity();
-        }, parent, 2, 1, 0  );
         
     }, 
     

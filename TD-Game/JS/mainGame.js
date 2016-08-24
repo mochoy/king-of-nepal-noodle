@@ -11,7 +11,7 @@ var data = Object.create(gameData.data)[0];
 var mainGameVar = {
     preload: function (){
         //test button spritesheets
-        game.load.spritesheet('testBtn1SS', 'Assets/Images/Test/baddie.jpg', 32, 32);
+        game.load.spritesheet('testBtn1SS', 'Assets/Images/Test/baddie.png', 32, 32);
         
         game.load.image ("bookIMG", "Assets/Images/Test/book.jpg");                 
         game.load.image ("pathIMG", "Assets/Images/Test/greyBlock.jpg");            
