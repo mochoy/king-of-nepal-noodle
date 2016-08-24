@@ -104,6 +104,7 @@ helper.bringToTop = function () {
     //make sure this stuff is at the most top 
     towerStuff.moveToPoint.bringToTop();
     
+    UI.bringPurchaseInterfaceToTop();
     UI.healthText.bringToTop();
     UI.moneyText.bringToTop();
 }
@@ -148,12 +149,21 @@ UI = {
     }, 
     
     removePurchaseInterface: function () {
-        console.log ("hiding buttons")
         //hide all buttons
         for (var button = 0; button < UI.purchaseInterfaceArr.length; button++) {
             UI.purchaseInterfaceArr[button].visible = false;
         }
+    },
+    
+    //bring purchase buttons to top so it's not covered by towers or anything
+    bringPurchaseInterfaceToTop: function () {
+        for (var button = 0; button < UI.purchaseInterfaceArr.length; button++) {
+            if (UI.purchaseInterfaceArr[button].visible) {
+                UI.purchaseInterfaceArr[button].bringToTop();
+            }
+        }   
     }
+    
     
 };
 
