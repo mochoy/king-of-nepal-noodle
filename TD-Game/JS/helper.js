@@ -158,6 +158,11 @@ UI = {
             }
         }
         
+        //make all buttons with different loaded textures visible
+        for (var button = 0; button < counter; button++) {
+            UI.purchaseInterfaceArr[button].visible = true;
+        }
+        
         
         
     }, 
