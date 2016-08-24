@@ -10,6 +10,9 @@ var data = Object.create(gameData.data)[0];
 
 var mainGameVar = {
     preload: function (){
+        //test button spritesheets
+        game.load.spritesheet('testBtn1SS', 'Assets/Images/Test/baddie.jpg', 32, 32);
+        
         game.load.image ("bookIMG", "Assets/Images/Test/book.jpg");                 
         game.load.image ("pathIMG", "Assets/Images/Test/greyBlock.jpg");            
         game.load.image ("pathPointIMG", "Assets/Images/Test/storyOfSeeds.png");    
@@ -59,7 +62,7 @@ var mainGameVar = {
         game.load.image ("rangeExteriorIMG", "Assets/Images/greyCircle_interior.png");     //range circle
         game.load.image ("rangeExterior2IMG", "Assets/Images/greyCircle_interior2.png");   //range circle
         
-         game.load.script("webFont", "//ajax.googleapis.com/ajax/libs/webfont/1/webfont.js");
+        game.load.script("webFont", "//ajax.googleapis.com/ajax/libs/webfont/1/webfont.js");
         
     },  //function preload
     
