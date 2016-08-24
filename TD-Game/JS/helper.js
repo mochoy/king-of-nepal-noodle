@@ -138,12 +138,12 @@ UI = {
     },
         
     //show buttons/interface when user buying or upgrading entity. 
-    showPurchaseInterface: function (parent, btn1Src, btn2Src, btn3Src, btn4Src) { 
+    showPurchaseInterface: function (parent, upgrades) { 
         //if there are no button(first time creating buttons) then create some blank ones
         if (UI.purchaseInterfaceArr.length === 0) {
             UI.createPurchaseInterface(parent);
         }
-        
+            
         //show buttons just in case they're hidden
         for (var button = 0; button < UI.purchaseInterfaceArr.length; button++) {
             UI.purchaseInterfaceArr[button].visible = true;
