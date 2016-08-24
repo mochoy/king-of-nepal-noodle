@@ -150,20 +150,35 @@ UI = {
         
         //change textures of buttons according to how far upgraded entity is
         //change position of buttons according to how many are shown
-        var counter = 0;       //keep track of how many buttons drawn
+        var amtOfVisBtns = 0;       //keep track of how many buttons drawn
         for (var button = 0; button < UI.purchaseInterfaceArr.length; button++) {
-            if (data["path" + (button + 1)]){
-                counter++;
-                UI.purchaseInterfaceArr[button].loadTexture(data["path" + (button + 1)][data["currentPathUps" + (button + 1)]].btnSrc);
+            //set texture of button to the one specified in data file
+            if ( amtOfVisBtns >= 1 ) {     //make sure not to overwrite the first texture set
+                if (data["path" + button]){                         
+                    amtOfVisBtns++;
+                    UI.purchaseInterfaceArr[button].loadTexture(data["path" + button][data["currentPathUps" + button]].btnSrc);
+                }
+            }
+            
+            //make 1 sell button
+            if (amtOfVisBtns === 0) {
+                amtOfVisBtns++;
+                UI.purchaseInterfaceArr[button].loadTexture("testBtn2SS");
             }
         }
         
         //make all buttons with different loaded textures visible
-        for (var button = 0; button < counter; button++) {
+        for (var button = 0; button < amtOfVisBtns; button++) {
             UI.purchaseInterfaceArr[button].visible = true;
         }
         
-        
+        //fix coordinates of all buttons that are visible so they do not overlap
+        for (var button = 0; button < amtOfVisBtns; button++) {
+            if (UI.purchaseInterfaceArr[button].visible) {      //make sure button is visible
+                UI.purchaseInterfaceArr[button].y = 100;
+                UI.purchaseInterfaceArr[button].x = (game.world.width/(amtOfVisBtns + 1)) * (button + 1);
+            }
+        }
         
     }, 
     
