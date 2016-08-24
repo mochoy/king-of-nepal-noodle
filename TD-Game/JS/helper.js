@@ -112,10 +112,6 @@ helper.bringToTop = function () {
 UI = {
     fontFamily: "Montserrat",
     purchaseInterfaceArr: [],
-    purchaseInterfaceBtn1: null,
-    purchaseInterfaceBtn2: null,
-    purchaseInterfaceBtn3: null,
-    purchaseInterfaceBtn4: null,
     
     //create UI that's mainly visible all in game
     createUI: function () {
@@ -129,28 +125,23 @@ UI = {
     }, 
         
     //create buttons/interface when user buying or upgrading entity
-    createPurchaseInterface: function (parent, btn1Src, btn2Src, btn3Src, btn4Src) {
-        if (UI.purchaseInterfaceArr.length === 0) {
-            UI.purchaseInterfaceArr.push(UI.purchaseInterfaceBtn1);
-            UI.purchaseInterfaceArr.push(UI.purchaseInterfaceBtn2);
-            UI.purchaseInterfaceArr.push(UI.purchaseInterfaceBtn3);
-            UI.purchaseInterfaceArr.push(UI.purchaseInterfaceBtn4);
-        }
-        
-        UI.purchaseInterfaceBtn1 = game.add.button(100, 100, btn1Src, function () {
+    createPurchaseInterface: function (parent, btn1Src, btn2Src, btn3Src, btn4Src) {    
+        UI.purchaseInterfaceArr[0] = game.add.button(100, 100, btn1Src, function () {
               parent.validateUpgradeEntity(1);
         }, parent, 2, 1, 0  );        
-        UI.purchaseInterfaceBtn2 = game.add.button(100, 300, btn1Src, function () {
+        UI.purchaseInterfaceArr[1] = game.add.button(100, 300, btn1Src, function () {
               parent.validateUpgradeEntity(2);
         }, parent, 2, 1, 0  );        
-        UI.purchaseInterfaceBtn3 = game.add.button(100, 500, btn1Src, function () {
+        UI.purchaseInterfaceArr[2] = game.add.button(100, 500, btn1Src, function () {
               parent.validateUpgradeEntity(3);
         }, parent, 2, 1, 0  );
         //this will be the sell button
-        UI.purchaseInterfaceBtn4 = game.add.button(100, 700, btn1Src, function () {
+        UI.purchaseInterfaceArr[3] = game.add.button(100, 700, btn1Src, function () {
               parent.sellEntity();
         }, parent, 2, 1, 0  );
     }, 
+    
+    
         
     removePurchaseInterface: function () {
         
