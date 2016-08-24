@@ -151,11 +151,8 @@ UI = {
         var amtOfVisBtns = 0;       //keep track of how many buttons drawn
         amtOfVisBtns = UI.changeInterfaceTextures(amtOfVisBtns, data);
         
-        //make all buttons with different loaded textures visible
-        for (var button = 0; button < amtOfVisBtns; button++) {
-            UI.purchaseInterfaceArr[button].visible = true;
-        }
-        
+        UI.showLoadedTextureBtns(amtOfVisBtns)
+                
         //fix coordinates of all buttons that are visible so they do not overlap
         //change position of buttons according to how many are shown
         for (var button = 0; button < amtOfVisBtns; button++) {
@@ -186,6 +183,15 @@ UI = {
         }
         
         return amtOfVisBtns;
+    },
+    
+    //make all buttons with different loaded textures visible
+    showLoadedTextureBtns: function (amtOfVisBtns) {
+        for (var button = 0; button < amtOfVisBtns; button++) {
+            UI.purchaseInterfaceArr[button].visible = true;
+        }
+        
+        return this;
     },
     
     removePurchaseInterface: function () {
