@@ -5,18 +5,7 @@ var PurchaseManager = function (purchaseData) {
         //draw upgrade menu
         //temporary code before disigning actual stuff   
         //will find a better way to do this
-        this.path1BTN = game.add.button(100, 100, "buttonStartSS", function () {
-              this.validateUpgradeEntity(1);
-        }, this, 2, 1, 0  );        
-        
-        this.path2BTN = game.add.button(100, 300, "buttonStartSS", function () {
-              this.validateUpgradeEntity(2);
-        }, this, 2, 1, 0  );        
-        
-        this.path3BTN = game.add.button(100, 500, "buttonStartSS", function () {
-              this.validateUpgradeEntity(3);
-        }, this, 2, 1, 0  );
-            
+        UI.createPurchaseInterface(this, "buttonStartSS", "buttonStartSS", "buttonStartSS", "buttonStartSS");    
     }
         
     //make sure entitiy can be upgraded 
@@ -81,10 +70,11 @@ var PurchaseManager = function (purchaseData) {
         
     }
     
-    //create new tower, subtract money
-    this.buyEnity = function () {
+    //create new entity, subtract money
+    this.buyEntity = function () {
         
     }
     
+    this.sellEntity
 
 }   //constructor

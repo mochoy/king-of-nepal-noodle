@@ -137,14 +137,18 @@ UI = {
             UI.purchaseInterfaceArr.push(UI.purchaseInterfaceBtn4);
         }
         
-        UI.purchaseInterfaceBtn1 = game.add.button(100, 300, btn1Src, function () {
+        UI.purchaseInterfaceBtn1 = game.add.button(100, 100, btn1Src, function () {
               parent.validateUpgradeEntity(1);
         }, parent, 2, 1, 0  );        
         UI.purchaseInterfaceBtn2 = game.add.button(100, 300, btn1Src, function () {
               parent.validateUpgradeEntity(2);
         }, parent, 2, 1, 0  );        
-        UI.purchaseInterfaceBtn3 = game.add.button(100, 300, btn1Src, function () {
+        UI.purchaseInterfaceBtn3 = game.add.button(100, 500, btn1Src, function () {
               parent.validateUpgradeEntity(3);
+        }, parent, 2, 1, 0  );
+        //this will be the sell button
+        UI.purchaseInterfaceBtn4 = game.add.button(100, 700, btn1Src, function () {
+              parent.sellEntity();
         }, parent, 2, 1, 0  );
     }, 
         
