@@ -148,24 +148,8 @@ UI = {
         //hide all buttons in case there are some extra buttons from last time
         UI.removePurchaseInterface();
         
-        //change textures of buttons according to how far upgraded entity is
-        //change position of buttons according to how many are shown
         var amtOfVisBtns = 0;       //keep track of how many buttons drawn
-        for (var button = 0; button < UI.purchaseInterfaceArr.length; button++) {
-            //set texture of button to the one specified in data file
-            if ( amtOfVisBtns >= 1 ) {     //make sure not to overwrite the first texture set
-                if (data["path" + button]){                         
-                    amtOfVisBtns++;
-                    UI.purchaseInterfaceArr[button].loadTexture(data["path" + button][data["currentPathUps" + button]].btnSrc);
-                }
-            }
-            
-            //make 1 sell button
-            if (amtOfVisBtns === 0) {
-                amtOfVisBtns++;
-                UI.purchaseInterfaceArr[button].loadTexture("testBtn2SS");
-            }
-        }
+        amtOfVisBtns = UI.changeInterfaceTextures(amtOfVisBtns, data);
         
         //make all buttons with different loaded textures visible
         for (var button = 0; button < amtOfVisBtns; button++) {
@@ -173,6 +157,7 @@ UI = {
         }
         
         //fix coordinates of all buttons that are visible so they do not overlap
+        //change position of buttons according to how many are shown
         for (var button = 0; button < amtOfVisBtns; button++) {
             if (UI.purchaseInterfaceArr[button].visible) {      //make sure button is visible
                 UI.purchaseInterfaceArr[button].y = 100;
@@ -181,6 +166,27 @@ UI = {
         }
         
     }, 
+    
+    //change textures of buttons according to how far upgraded entity is
+    changeInterfaceTextures: function (amtOfVisBtns, data) {
+        for (var button = 0; button < UI.purchaseInterfaceArr.length; button++) {
+            //set texture of button to the one specified in data file
+            if ( amtOfVisBtns >= 1 ) {     //make sure not to overwrite the first texture set
+                if (data["path" + button]){                         
+                    amtOfVisBtns++;
+                    UI.purchaseInterfaceArr[button].loadTexture(data["path" + button][data["currentPathUps" + button]].btnSrc);
+                }
+            }
+               
+            //make 1 sell button
+            if (amtOfVisBtns === 0) {
+                amtOfVisBtns++;
+                UI.purchaseInterfaceArr[button].loadTexture("testBtn2SS");
+            }
+        }
+        
+        return amtOfVisBtns;
+    },
     
     removePurchaseInterface: function () {
         //hide all buttons
