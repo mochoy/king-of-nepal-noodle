@@ -151,16 +151,7 @@ UI = {
         var amtOfVisBtns = 0;       //keep track of how many buttons drawn
         amtOfVisBtns = UI.changeInterfaceTextures(amtOfVisBtns, data);
         
-        UI.showLoadedTextureBtns(amtOfVisBtns)
-                
-        //fix coordinates of all buttons that are visible so they do not overlap
-        //change position of buttons according to how many are shown
-        for (var button = 0; button < amtOfVisBtns; button++) {
-            if (UI.purchaseInterfaceArr[button].visible) {      //make sure button is visible
-                UI.purchaseInterfaceArr[button].y = 100;
-                UI.purchaseInterfaceArr[button].x = (game.world.width/(amtOfVisBtns + 1)) * (button + 1);
-            }
-        }
+        UI.showLoadedTextureBtns(amtOfVisBtns).fixCoordsVisBtns(amtOfVisBtns);
         
     }, 
     
@@ -189,6 +180,19 @@ UI = {
     showLoadedTextureBtns: function (amtOfVisBtns) {
         for (var button = 0; button < amtOfVisBtns; button++) {
             UI.purchaseInterfaceArr[button].visible = true;
+        }
+        
+        return this;
+    },
+    
+    //fix coordinates of all buttons that are visible so they do not overlap
+    //change position of buttons according to how many are shown
+    fixCoordsVisBtns: function (amtOfVisBtns) {
+        for (var button = 0; button < amtOfVisBtns; button++) {
+            if (UI.purchaseInterfaceArr[button].visible) {      //make sure button is visible
+                UI.purchaseInterfaceArr[button].y = 100;
+                UI.purchaseInterfaceArr[button].x = (game.world.width/(amtOfVisBtns + 1)) * (button + 1);
+            }
         }
         
         return this;
