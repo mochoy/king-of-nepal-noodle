@@ -25,6 +25,7 @@ var towerData = {
                         "srcScale": 3,
                                 
                         "cost": 50,
+                        "btnSrc": "testBtn1SS",
                             
                         "upgradeStats": {
                             "fireRate": -20
@@ -36,6 +37,7 @@ var towerData = {
                         "srcScale": 3,
                                 
                         "cost": 75,
+                        "btnSrc": "testBtn1SS",
                             
                         "upgradeStats": {
                             "fireRate": -20
@@ -47,6 +49,7 @@ var towerData = {
                         "srcScale": 3,
                                 
                         "cost": 100,
+                        "btnSrc": "testBtn1SS",
                             
                         "upgradeStats": {
                             "fireRate": -40
@@ -62,6 +65,7 @@ var towerData = {
                         "srcScale": 3,
                         
                         cost: 75,
+                        "btnSrc": "testBtn1SS",
                                                     
                         "upgradeStats": {
                             "bulletSpeed": 100
@@ -73,6 +77,7 @@ var towerData = {
                         "srcScale": 3,
                         
                         cost: 75,
+                        "btnSrc": "testBtn1SS",
                                                     
                         "upgradeStats": {
                             "bulletSpeed": 100
@@ -84,6 +89,7 @@ var towerData = {
                         "srcScale": 3,
                         
                         cost: 75,
+                        "btnSrc": "testBtn1SS",
                                                     
                         "upgradeStats": {
                             "bulletSpeed": 100
@@ -98,6 +104,7 @@ var towerData = {
                         "srcScale": 3,
                         
                         cost: 100,
+                        "btnSrc": "testBtn1SS",
                         
                         "upgradeStats": {
                             "weaponAccuracy": -50
@@ -109,6 +116,7 @@ var towerData = {
                         "srcScale": 0.1,
                         
                         cost: 100,
+                        "btnSrc": "testBtn1SS",
                         
                         "upgradeStats": {
                             "weaponAccuracy": -50
@@ -120,6 +128,7 @@ var towerData = {
                         "srcScale": 0.1,
                         
                         cost: 100,
+                        "btnSrc": "testBtn1SS",
                         
                         "upgradeStats": {
                             "weaponAccuracy": -100

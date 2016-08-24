@@ -129,7 +129,8 @@ UI = {
     //create buttons/interface when user buying or upgrading entity if not already created
     createPurchaseInterface: function (parent) {
         //create buttons and add them to array
-        for (var button = 0; button < 3; button++) {                   
+        //6 buttons are created, just in case
+        for (var button = 0; button < 6; button++) {                   
             UI.purchaseInterfaceArr.push(
                 game.add.button(100, 100, "buttonStartSS", function () {
                     parent.validateUpgradeEntity(button + 1)
@@ -138,16 +139,26 @@ UI = {
     },
         
     //show buttons/interface when user buying or upgrading entity. 
-    showPurchaseInterface: function (parent, upgrades) { 
+    showPurchaseInterface: function (parent, data) { 
         //if there are no button(first time creating buttons) then create some blank ones
         if (UI.purchaseInterfaceArr.length === 0) {
             UI.createPurchaseInterface(parent);
         }
             
-        //show buttons just in case they're hidden
+        //hide all buttons in case there are some extra buttons from last time
+        UI.removePurchaseInterface();
+        
+        //change textures of buttons according to how far upgraded entity is
+        //change position of buttons according to how many are shown
+        var counter = 0;       //keep track of how many buttons drawn
         for (var button = 0; button < UI.purchaseInterfaceArr.length; button++) {
-            UI.purchaseInterfaceArr[button].visible = true;
+            if (data["path" + (button + 1)]){
+                counter++;
+                UI.purchaseInterfaceArr[button].loadTexture(data["path" + (button + 1)][data["currentPathUps" + (button + 1)]].btnSrc);
+            }
         }
+        
+        
         
     }, 
     
