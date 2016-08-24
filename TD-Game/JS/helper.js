@@ -111,6 +111,11 @@ helper.bringToTop = function () {
 //UI stuff
 UI = {
     fontFamily: "Montserrat",
+    purchaseInterfaceArr: [],
+    purchaseInterfaceBtn1: null,
+    purchaseInterfaceBtn2: null,
+    purchaseInterfaceBtn3: null,
+    purchaseInterfaceBtn4: null,
     
     //create UI that's mainly visible all in game
     createUI: function () {
@@ -123,8 +128,24 @@ UI = {
         UI.moneyText.text = "MONEY: " + data.money;
     }, 
         
-    createPurchaseInterface: function () {
+    //create buttons/interface when user buying or upgrading entity
+    createPurchaseInterface: function (parent, btn1Src, btn2Src, btn3Src, btn4Src) {
+        if (UI.purchaseInterfaceArr.length === 0) {
+            UI.purchaseInterfaceArr.push(UI.purchaseInterfaceBtn1);
+            UI.purchaseInterfaceArr.push(UI.purchaseInterfaceBtn2);
+            UI.purchaseInterfaceArr.push(UI.purchaseInterfaceBtn3);
+            UI.purchaseInterfaceArr.push(UI.purchaseInterfaceBtn4);
+        }
         
+        UI.purchaseInterfaceBtn1 = game.add.button(100, 300, btn1Src, function () {
+              parent.validateUpgradeEntity(1);
+        }, parent, 2, 1, 0  );        
+        UI.purchaseInterfaceBtn2 = game.add.button(100, 300, btn1Src, function () {
+              parent.validateUpgradeEntity(2);
+        }, parent, 2, 1, 0  );        
+        UI.purchaseInterfaceBtn3 = game.add.button(100, 300, btn1Src, function () {
+              parent.validateUpgradeEntity(3);
+        }, parent, 2, 1, 0  );
     }, 
         
     removePurchaseInterface: function () {
