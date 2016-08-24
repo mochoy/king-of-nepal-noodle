@@ -10,12 +10,7 @@ var PurchaseManager = function (purchaseData) {
         
     //make sure entitiy can be upgraded 
     //path will be a number correspoding to the value of currentPathUps      
-    this.validateUpgradeEntity = function (path) {    
-        //kill buttons/upgrade menu
-        this.path1BTN.kill();
-        this.path2BTN.kill();
-        this.path3BTN.kill();
-        
+    this.validateUpgradeEntity = function (path) {        
         //object with reference to object containing current path upgrade
         var currentUpsPathObj = purchaseData["path" + path][purchaseData["currentPathUps" + path]];
         
@@ -30,6 +25,7 @@ var PurchaseManager = function (purchaseData) {
             this.upgradeEntity(path, currentUpsPathObj);
         }
         
+        UI.removePurchaseInterface();
         
     }    //method
     

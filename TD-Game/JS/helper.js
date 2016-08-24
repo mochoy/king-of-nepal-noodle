@@ -126,6 +126,11 @@ UI = {
         
     //create buttons/interface when user buying or upgrading entity
     createPurchaseInterface: function (parent, btn1Src, btn2Src, btn3Src, btn4Src) {    
+        //show buttons just in case they're hidden
+        for (var button = 0; button < UI.purchaseInterfaceArr.length; button++) {
+            UI.purchaseInterfaceArr[button].visible = true;
+        }
+        
         UI.purchaseInterfaceArr[0] = game.add.button(100, 100, btn1Src, function () {
               parent.validateUpgradeEntity(1);
         }, parent, 2, 1, 0  );        
@@ -139,14 +144,17 @@ UI = {
         UI.purchaseInterfaceArr[3] = game.add.button(100, 700, btn1Src, function () {
               parent.sellEntity();
         }, parent, 2, 1, 0  );
+        
     }, 
     
-    
-        
     removePurchaseInterface: function () {
-        
+        console.log ("hiding buttons")
+        //hide all buttons
+        for (var button = 0; button < UI.purchaseInterfaceArr.length; button++) {
+            UI.purchaseInterfaceArr[button].visible = false;
+        }
     }
-        
+    
 };
 
 
