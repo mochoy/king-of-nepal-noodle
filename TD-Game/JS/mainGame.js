@@ -13,6 +13,9 @@ var mainGameVar = {
         //test button spritesheets
         game.load.spritesheet('testBtn1SS', 'Assets/Images/Test/baddie.png', 32, 32);
         game.load.spritesheet('testBtn2SS', 'Assets/Images/Test/book.jpg', 66, 25);
+        game.load.spritesheet('testBtn3SS', 'Assets/Images/Test/dude.png', 48, 48);
+        game.load.spritesheet('testBtn4SS', 'Assets/Images/Test/platform.png', 32, 40);
+        game.load.spritesheet('testBtn5SS', 'Assets/Images/Test/storyOfSeeds.png', 48, 48);
         
         game.load.image ("bookIMG", "Assets/Images/Test/book.jpg");                 
         game.load.image ("pathIMG", "Assets/Images/Test/greyBlock.jpg");            
