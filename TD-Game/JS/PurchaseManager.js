@@ -5,7 +5,8 @@ var PurchaseManager = function (purchaseData) {
         //draw upgrade menu
         //temporary code before disigning actual stuff   
         //will find a better way to do this
-        UI.showPurchaseInterface(this, purchaseData);    
+        UI.showPurchaseInterface(this, purchaseData); 
+        this.isPurchaseInterfaceShowing = true;
     }
         
     //make sure entitiy can be upgraded 
@@ -32,6 +33,7 @@ var PurchaseManager = function (purchaseData) {
         }
         
         UI.removePurchaseInterface();
+        this.isPurchaseInterfaceShowing = false;
         
     }    //method
     

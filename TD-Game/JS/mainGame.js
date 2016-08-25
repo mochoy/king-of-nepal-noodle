@@ -107,15 +107,16 @@ var mainGameVar = {
     update: function (){
         // Aim manual towers to mouse click
         game.input.onDown.add(function () {
-            var canAim = false
+            var canAim = false;
             towerStuff.moveToPoint.x = game.input.x;
             towerStuff.moveToPoint.y = game.input.y;
             
             //make sure not clicked on tower before rotate
-            for (var i = 0; i < towerStuff.allTowerArr.length; i ++) {
+            for (var i = 0; i < towerStuff.allTowerArr.length; i ++) {                
                 var towerSprite = towerStuff.allTowerArr[i];
                 if (!game.physics.arcade.overlap(towerStuff.moveToPoint, towerSprite)) {
                     canAim = true;
+                    break;
                 } else {
                     cainAim = false;
                     break;

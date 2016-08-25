@@ -245,6 +245,8 @@ var BuildingsAndTowers = function (x, y, data) {
     if (data.cost) {
         this.sprite.totalCost += data.cost;
     }
+    
+    this.isPurchaseInterfaceShowing = false;
 }
 
 
