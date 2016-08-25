@@ -125,24 +125,29 @@ UI = {
         UI.moneyText.text = "MONEY: " + data.money;
     }, 
     
-    
-    //create buttons/interface when user buying or upgrading entity if not already created
-    createPurchaseInterface: function (parent) {
+    //init buttons/interface when user buying or upgrading entity if not already created
+    //this method required b/c the value passed into callback function must be different for each button
+    initPurchaseInterface: function (parent) {
         //create buttons and add them to array
         //6 buttons are created, just in case
-        for (var button = 0; button < 6; button++) {                   
-            UI.purchaseInterfaceArr.push(
-                game.add.button(100, 100, "buttonStartSS", function () {
-                    parent.validateUpgradeEntity(button + 1)
-                }, parent, 2, 1, 0) );
+        for (var i = 0; i < 5; i++) {
+            UI.createPurchaseInterface(parent, i);
         }
+    },
+    
+    //create buttons/interface when user buying or upgrading entity if not already created
+    //this method required b/c the value passed into callback function must be different for each button
+    createPurchaseInterface: function (parent, val) {
+        UI.purchaseInterfaceArr.push(game.add.button(0, 0, "buttonStartSS", function () {                
+            parent.validateUpgradeEntity(val)   
+        }, parent, 2, 1, 0));
     },
         
     //show buttons/interface when user buying or upgrading entity. 
     showPurchaseInterface: function (parent, data) { 
         //if there are no button(first time creating buttons) then create some blank ones
         if (UI.purchaseInterfaceArr.length === 0) {
-            UI.createPurchaseInterface(parent);
+            UI.initPurchaseInterface(parent);
         }
             
         //hide all buttons in case there are some extra buttons from last time

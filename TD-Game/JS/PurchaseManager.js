@@ -10,7 +10,9 @@ var PurchaseManager = function (purchaseData) {
         
     //make sure entitiy can be upgraded 
     //path will be a number correspoding to the value of currentPathUps      
-    this.validateUpgradeEntity = function (path) {        
+    this.validateUpgradeEntity = function (path) {       
+        console.log(path)
+        
         //object with reference to object containing current path upgrade
         var currentUpsPathObj = purchaseData["path" + path][purchaseData["currentPathUps" + path]];
         
@@ -68,9 +70,11 @@ var PurchaseManager = function (purchaseData) {
     
     //create new entity, subtract money
     this.buyEntity = function () {
-        
+        console.log("buying entity")        
     }
     
-    this.sellEntity
+    this.sellEntity = function () {
+        console.log("selling entity")
+    }
 
 }   //constructor
