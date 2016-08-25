@@ -14,7 +14,7 @@ var PurchaseManager = function (purchaseData) {
         //if the sell button was pressed
         if (path === 0) {
             this.sellEntity();
-        } else {        //stuff if upgrading
+        } else {        //stuff if upgrading            
             //object with reference to object containing current path upgrade
             //only do this if the entity is being upgraded
             var currentUpsPathObj = purchaseData["path" + path][purchaseData["currentPathUps" + path]];
@@ -43,10 +43,16 @@ var PurchaseManager = function (purchaseData) {
         this.drawNewEntity(path, currentUpsPathObj);   
         this.updateEntityStats(path, currentUpsPathObj);
         
-        purchaseData["currentPathUps" + path] ++;      //keeping track of upgrades on each path
+        //keeping track of upgrades on each path
+        purchaseData["currentPathUps" + path] ++;
+        
+        //add to total cost of tower the cost of the upgrade
+        this.sprite.totalCost += currentUpsPathObj.cost;
+        
+        
     }   //method
     
-    this.drawNewEntity = function (path, currentUpsPathObj) {        
+    this.drawNewEntity = function (path, currentUpsPathObj) {           
         this.sprite.loadTexture(currentUpsPathObj.src);
         helper.initSprite(this.sprite, currentUpsPathObj.srcScale, currentUpsPathObj.srcScale);
     }
