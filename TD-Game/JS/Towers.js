@@ -12,11 +12,11 @@ towerStuff.moveToPoint;
 //tower superclass thingy
 TowerPrototype = function (game, x, y, data) {    
     //inherit from Entity
-    this.inheritEntity = function (thiz, constructer) {
+    this.inheritBuildingsAndTowers = function (thiz, constructer) {
         thiz.constructer = constructer;
         thiz.constructer(x, y, data);
     };
-    this.inheritEntity(this, Entity);
+    this.inheritBuildingsAndTowers(this, BuildingsAndTowers);
     
     //inherit from PurchaseManager
     //yay polymorphism

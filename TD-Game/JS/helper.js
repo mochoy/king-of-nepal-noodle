@@ -235,7 +235,16 @@ var Entity = function (x, y, data) {
 
 //class that buildings and towers will inherit from
 var BuildingsAndTowers = function (x, y, data) {
+    this.inheritEntity = function (thiz, constructer) {
+        thiz.constructer = constructer;
+        thiz.constructer(x, y, data);
+    };
+    this.inheritEntity(this, Entity);
     
+    this.sprite.totalCost = 0;
+    if (data.cost) {
+        this.sprite.totalCost += data.cost;
+    }
 }
 
 
