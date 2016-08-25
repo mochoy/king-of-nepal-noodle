@@ -11,20 +11,24 @@ var PurchaseManager = function (purchaseData) {
     //make sure entitiy can be upgraded 
     //path will be a number correspoding to the value of currentPathUps      
     this.validateUpgradeEntity = function (path) {       
-        console.log(path)
-        
-        //object with reference to object containing current path upgrade
-        var currentUpsPathObj = purchaseData["path" + path][purchaseData["currentPathUps" + path]];
-        
-        //money and upgrades validation before upgrade
-        if (purchaseData["currentPathUps" + path] >= purchaseData["path" + path].length) {
-            //at max upgrades for path
-            console.log("max upgrades for path")
-        } else if (data.money < currentUpsPathObj.cost) {
+        //if the sell button was pressed
+        if (path === 0) {
+            this.sellEntity();
+        } else {        //stuff if upgrading
+            //object with reference to object containing current path upgrade
+            //only do this if the entity is being upgraded
+            var currentUpsPathObj = purchaseData["path" + path][purchaseData["currentPathUps" + path]];
+            
+            //money and upgrades validation before upgrade
+            if (purchaseData["currentPathUps" + path] >= purchaseData["path" + path].length) {
+                //at max upgrades for path
+                console.log("max upgrades for path")
+            } else if (data.money < currentUpsPathObj.cost) {
             //too poor, can't buy
-            console.log("too poor")
-        } else if (data.money >= currentUpsPathObj.cost) {
-            this.upgradeEntity(path, currentUpsPathObj);
+                console.log("too poor")
+            } else if (data.money >= currentUpsPathObj.cost) {
+                this.upgradeEntity(path, currentUpsPathObj);
+            }       
         }
         
         UI.removePurchaseInterface();
