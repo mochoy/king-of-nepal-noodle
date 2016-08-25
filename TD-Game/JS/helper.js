@@ -131,7 +131,20 @@ UI = {
         //create buttons and add them to array
         //6 buttons are created, just in case
         for (var i = 0; i < 5; i++) {
-            UI.createPurchaseInterface(parent, i);
+            //first button will be sell button
+            if (i === 0) {
+                UI.purchaseInterfaceArr.push(game.add.button(0, 0, "buttonStartSS", function () {     
+                    UI.purchaseInterfaceArr[0].visible = false;   //make this button invisible
+                    //show/create sell confim button
+                    var btn = game.add.button (UI.purchaseInterfaceArr[0].x, UI.purchaseInterfaceArr[0].y, "testBtn3SS",
+                                               function () {
+                        parent.validateUpgradeEntity(0);    //legit sell              
+                    }, parent, 2, 1, 0);
+                    UI.purchaseInterfaceArr.push(btn);
+                }, parent, 2, 1, 0) );
+            } else {
+                UI.createPurchaseInterface(parent, i);
+            }
         }
     },
     
