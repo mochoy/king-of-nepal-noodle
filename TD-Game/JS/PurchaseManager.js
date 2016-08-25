@@ -11,7 +11,11 @@ var PurchaseManager = function (purchaseData) {
         
     //make sure entitiy can be upgraded 
     //path will be a number correspoding to the value of currentPathUps      
-    this.validateUpgradeEntity = function (path) {       
+    this.validateUpgradeEntity = function (path) {   
+        //hide interface first just in case the interface needs to be shown again
+        UI.removePurchaseInterface();
+        this.isPurchaseInterfaceShowing = false;    
+        
         //if the sell button was pressed
         if (path === 0) {
             this.sellEntity();
@@ -31,10 +35,7 @@ var PurchaseManager = function (purchaseData) {
                 this.upgradeEntity(path, currentUpsPathObj);
             }       
         }
-        
-        UI.removePurchaseInterface();
-        this.isPurchaseInterfaceShowing = false;
-        
+         
     }    //method
     
     //what to do when entity is actually being upgraded: subtract money, new entity texture
