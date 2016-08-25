@@ -34,7 +34,12 @@ TowerPrototype = function (game, x, y, data) {
     //towerSprite clickable
     this.sprite.events.onInputDown.add(
         function () {
-            this.displayUpgradeInfo()
+            if (this.isPurchaseInterfaceShowing) {      //if upgrade info is alread showing
+                UI.removePurchaseInterface();
+                this.isPurchaseInterfaceShowing = false;
+            } else {
+            this.displayUpgradeInfo()                
+            }
         }, this);
     
     //periodically shoot depending on tower's fireRate
