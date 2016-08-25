@@ -63,14 +63,7 @@ var PurchaseManager = function (purchaseData) {
                 this.createRange();
             }
         }   //for
-    }       //method
-    
-    //create menu/stuff to display when buying stuff
-    this.displayBuyData = function () {
-        //temp code for now
-        //check for validation after user interacts   
-        
-    }
+    }       //method   
     
     //create new entity, subtract money
     this.buyEntity = function () {

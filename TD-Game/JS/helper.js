@@ -233,3 +233,9 @@ var Entity = function (x, y, data) {
     this.sprite.data = _.cloneDeep(data);
 }
 
+//class that buildings and towers will inherit from
+var BuildingsAndTowers = function (x, y, data) {
+    
+}
+
+
