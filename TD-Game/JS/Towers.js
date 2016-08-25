@@ -30,7 +30,7 @@ TowerPrototype = function (game, x, y, data) {
     this.sprite.bulletArray = [];
     this.sprite.target = towerStuff.moveToPoint;
     this.sprite.canShoot = data.canShoot;
-    
+        
     //towerSprite clickable
     this.sprite.events.onInputDown.add(
         function () {

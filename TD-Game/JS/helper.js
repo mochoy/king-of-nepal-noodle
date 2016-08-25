@@ -104,6 +104,7 @@ helper.bringToTop = function () {
     //make sure this stuff is at the most top 
     towerStuff.moveToPoint.bringToTop();
     
+    UI.bringPurchaseInterfaceToTop();
     UI.healthText.bringToTop();
     UI.moneyText.bringToTop();
 }
@@ -111,6 +112,7 @@ helper.bringToTop = function () {
 //UI stuff
 UI = {
     fontFamily: "Montserrat",
+    purchaseInterfaceArr: [],
     
     //create UI that's mainly visible all in game
     createUI: function () {
@@ -122,15 +124,102 @@ UI = {
         UI.healthText.text = "HEALTH: " + data.health;
         UI.moneyText.text = "MONEY: " + data.money;
     }, 
+    
+    //init buttons/interface when user buying or upgrading entity if not already created
+    //this method required b/c the value passed into callback function must be different for each button
+    initPurchaseInterface: function (parent) {
+        //create buttons and add them to array
+        //6 buttons are created, just in case
+        for (var i = 0; i < 5; i++) {
+            UI.createPurchaseInterface(parent, i);
+        }
+    },
+    
+    //create buttons/interface when user buying or upgrading entity if not already created
+    //this method required b/c the value passed into callback function must be different for each button
+    createPurchaseInterface: function (parent, val) {
+        UI.purchaseInterfaceArr.push(game.add.button(0, 0, "buttonStartSS", function () {                
+            parent.validateUpgradeEntity(val)   
+        }, parent, 2, 1, 0));
+    },
         
-    createPurchaseInterface: function () {
+    //show buttons/interface when user buying or upgrading entity. 
+    showPurchaseInterface: function (parent, data) { 
+        //if there are no button(first time creating buttons) then create some blank ones
+        if (UI.purchaseInterfaceArr.length === 0) {
+            UI.initPurchaseInterface(parent);
+        }
+            
+        //hide all buttons in case there are some extra buttons from last time
+        UI.removePurchaseInterface();
+        
+        var amtOfVisBtns = 0;       //keep track of how many buttons drawn
+        amtOfVisBtns = UI.changeInterfaceTextures(amtOfVisBtns, data);
+        
+        UI.showLoadedTextureBtns(amtOfVisBtns).fixCoordsVisBtns(amtOfVisBtns);
         
     }, 
+    
+    //change textures of buttons according to how far upgraded entity is
+    changeInterfaceTextures: function (amtOfVisBtns, data) {
+        for (var button = 0; button < UI.purchaseInterfaceArr.length; button++) {
+            //set texture of button to the one specified in data file
+            if ( amtOfVisBtns >= 1 ) {     //make sure not to overwrite the first texture set
+                if (data["path" + button]){                         
+                    amtOfVisBtns++;
+                    UI.purchaseInterfaceArr[button].loadTexture(data["path" + button][data["currentPathUps" + button]].btnSrc);
+                }
+            }
+               
+            //make 1 sell button
+            if (amtOfVisBtns === 0) {
+                amtOfVisBtns++;
+                UI.purchaseInterfaceArr[button].loadTexture("testBtn2SS");
+            }
+        }
         
+        return amtOfVisBtns;
+    },
+    
+    //make all buttons with different loaded textures visible
+    showLoadedTextureBtns: function (amtOfVisBtns) {
+        for (var button = 0; button < amtOfVisBtns; button++) {
+            UI.purchaseInterfaceArr[button].visible = true;
+        }
+        
+        return this;
+    },
+    
+    //fix coordinates of all buttons that are visible so they do not overlap
+    //change position of buttons according to how many are shown
+    fixCoordsVisBtns: function (amtOfVisBtns) {
+        for (var button = 0; button < amtOfVisBtns; button++) {
+            if (UI.purchaseInterfaceArr[button].visible) {      //make sure button is visible
+                UI.purchaseInterfaceArr[button].y = 100;
+                UI.purchaseInterfaceArr[button].x = (game.world.width/(amtOfVisBtns + 1)) * (button + 1);
+            }
+        }
+        
+        return this;
+    },
+    
     removePurchaseInterface: function () {
-        
+        //hide all buttons
+        for (var button = 0; button < UI.purchaseInterfaceArr.length; button++) {
+            UI.purchaseInterfaceArr[button].visible = false;
+        }
+    },
+    
+    //bring purchase buttons to top so it's not covered by towers or anything
+    bringPurchaseInterfaceToTop: function () {
+        for (var button = 0; button < UI.purchaseInterfaceArr.length; button++) {
+            if (UI.purchaseInterfaceArr[button].visible) {
+                UI.purchaseInterfaceArr[button].bringToTop();
+            }
+        }   
     }
-        
+    
+    
 };
 
 
@@ -143,4 +232,10 @@ var Entity = function (x, y, data) {
     this.sprite.inputEnabled = true;
     this.sprite.data = _.cloneDeep(data);
 }
+
+//class that buildings and towers will inherit from
+var BuildingsAndTowers = function (x, y, data) {
+    
+}
+
 
