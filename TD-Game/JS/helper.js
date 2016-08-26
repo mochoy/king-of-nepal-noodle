@@ -144,7 +144,7 @@ UI = {
         amtOfVisBtns = UI.changeInterfaceTextures(amtOfVisBtns, data, canShowSellBtn, btnsToShowArr);
         
         
-        UI.showLoadedTextureBtns(amtOfVisBtns, btnsToShowArr).fixCoordsVisBtns(amtOfVisBtns, canShowSellBtn);
+        UI.showLoadedTextureBtns(amtOfVisBtns, btnsToShowArr).fixCoordsVisBtns(amtOfVisBtns, btnsToShowArr);
         
     }, 
     
@@ -214,7 +214,7 @@ UI = {
     
     //fix coordinates of all buttons that are visible so they do not overlap
     //change position of buttons according to how many are shown
-    fixCoordsVisBtns: function (amtOfVisBtns, canShowSellBtn) {        
+    fixCoordsVisBtns: function (amtOfVisBtns, btnsToShowArr) {        
 //        var button = 0, loopVal = amtOfVisBtns;
 //        
 //        //don't count sell button into dividing screen if it can't be shown
@@ -226,14 +226,12 @@ UI = {
         
         for (var button = 0; button < amtOfVisBtns; button++) {
             //reposition visible buttons
-            if (UI.purchaseInterfaceArr[button].visible) {      //make sure button is visible                
-                UI.purchaseInterfaceArr[button].y = 100;
-                UI.purchaseInterfaceArr[button].x = (game.world.width/(amtOfVisBtns + 1)) * (button + 1);
+            if (btnsToShowArr[button].visible) {      //make sure button is visible                
+                btnsToShowArr[button].y = 100;
+                btnsToShowArr[button].x = (game.world.width/(amtOfVisBtns + 1)) * (button + 1);
             }
             
-            console.log("button: " + button)
         }
-            console.log("amtOfVisBtns: " + amtOfVisBtns)
         
         return this;
     },
