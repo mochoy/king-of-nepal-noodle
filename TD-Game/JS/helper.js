@@ -157,7 +157,7 @@ UI = {
     },
         
     //show buttons/interface when user buying or upgrading entity. 
-    showPurchaseInterface: function (parent, data) { 
+    showPurchaseInterface: function (parent, data, canShowSellBtn) { 
         //if there are no button(first time creating buttons) then create some blank ones
         if (UI.purchaseInterfaceArr.length === 0) {
             UI.initPurchaseInterface(parent);
@@ -169,7 +169,12 @@ UI = {
         var amtOfVisBtns = 0;       //keep track of how many buttons drawn
         amtOfVisBtns = UI.changeInterfaceTextures(amtOfVisBtns, data);
         
-        UI.showLoadedTextureBtns(amtOfVisBtns).fixCoordsVisBtns(amtOfVisBtns);
+        //if sell button can't be shown, then there will be one less button to show
+//        if (!canShowSellBtn) {
+//            amtOfVisBtns --;
+//        }
+        
+        UI.showLoadedTextureBtns(amtOfVisBtns, canShowSellBtn).fixCoordsVisBtns(amtOfVisBtns);
         
     }, 
     
@@ -195,10 +200,14 @@ UI = {
     },
     
     //make all buttons with different loaded textures visible
-    showLoadedTextureBtns: function (amtOfVisBtns) {
+    showLoadedTextureBtns: function (amtOfVisBtns, canShowSellBtn) {
         for (var button = 0; button < amtOfVisBtns; button++) {
+            //if can't show the sell button, skip it so its not displayed
+            if (!canShowSellBtn && button === 0) {  
+                button++;
+            }
             UI.purchaseInterfaceArr[button].visible = true;
-        }
+        }   
         
         return this;
     },

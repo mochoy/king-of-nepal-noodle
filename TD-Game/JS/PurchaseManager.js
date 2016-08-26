@@ -5,7 +5,7 @@ var PurchaseManager = function (purchaseData) {
         //draw upgrade menu
         //temporary code before disigning actual stuff   
         //will find a better way to do this
-        UI.showPurchaseInterface(this, purchaseData); 
+        UI.showPurchaseInterface(this, purchaseData, false); 
         this.isPurchaseInterfaceShowing = true;
     }
         
