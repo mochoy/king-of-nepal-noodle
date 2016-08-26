@@ -132,11 +132,12 @@ UI = {
         //6 buttons are created, just in case
         for (var i = 0; i < 5; i++) {
             //first button will be sell button
-            if (i === 0) {
+            if (i === 5) {
+                //create sell button
                 UI.purchaseInterfaceArr.push(game.add.button(0, 0, "buttonStartSS", function () {     
-                    UI.purchaseInterfaceArr[0].visible = false;   //make this button invisible
+                    UI.purchaseInterfaceArr[5].visible = false;   //make this button invisible
                     //show/create sell confim button
-                    var btn = game.add.button (UI.purchaseInterfaceArr[0].x, UI.purchaseInterfaceArr[0].y, "testBtn3SS",
+                    var btn = game.add.button (UI.purchaseInterfaceArr[5].x, UI.purchaseInterfaceArr[5].y, "testBtn3SS",
                                                function () {
                         parent.validateUpgradeEntity(0);    //legit sell              
                     }, parent, 2, 1, 0);
@@ -174,7 +175,7 @@ UI = {
 //            amtOfVisBtns --;
 //        }
         
-        UI.showLoadedTextureBtns(amtOfVisBtns, canShowSellBtn).fixCoordsVisBtns(amtOfVisBtns);
+        UI.showLoadedTextureBtns(amtOfVisBtns, canShowSellBtn).fixCoordsVisBtns(amtOfVisBtns, canShowSellBtn);
         
     }, 
     
@@ -182,15 +183,16 @@ UI = {
     changeInterfaceTextures: function (amtOfVisBtns, data) {
         for (var button = 0; button < UI.purchaseInterfaceArr.length; button++) {
             //set texture of button to the one specified in data file
-            if ( amtOfVisBtns >= 1 ) {     //make sure not to overwrite the first texture set
+//            if ( amtOfVisBtns >= 1 ) {     //make sure not to overwrite the first texture set
                 if (data["path" + button]){                         
                     amtOfVisBtns++;
                     UI.purchaseInterfaceArr[button].loadTexture(data["path" + button][data["currentPathUps" + button]].btnSrc);
                 }
-            }
+//            }
                
             //make 1 sell button
-            if (amtOfVisBtns === 0) {
+            if (button === (UI.purchaseInterfaceArr.length - 1) ) {
+                console.log("creating sell button")
                 amtOfVisBtns++;
                 UI.purchaseInterfaceArr[button].loadTexture("testBtn2SS");
             }
@@ -202,25 +204,36 @@ UI = {
     //make all buttons with different loaded textures visible
     showLoadedTextureBtns: function (amtOfVisBtns, canShowSellBtn) {
         for (var button = 0; button < amtOfVisBtns; button++) {
-            //if can't show the sell button, skip it so its not displayed
-            if (!canShowSellBtn && button === 0) {  
-                button++;
-            }
             UI.purchaseInterfaceArr[button].visible = true;
         }   
+        
+        
         
         return this;
     },
     
     //fix coordinates of all buttons that are visible so they do not overlap
     //change position of buttons according to how many are shown
-    fixCoordsVisBtns: function (amtOfVisBtns) {
+    fixCoordsVisBtns: function (amtOfVisBtns, canShowSellBtn) {        
+//        var button = 0, loopVal = amtOfVisBtns;
+//        
+//        //don't count sell button into dividing screen if it can't be shown
+//        if (!canShowSellBtn && button === 0) {
+//            button++;   //so the sell button is skipped when trying to display it
+//            amtOfVisBtns--;     //becasue the amount of visible buttons is decreased by one since there'xs no sell button
+//            loopVal--;
+//        }
+        
         for (var button = 0; button < amtOfVisBtns; button++) {
-            if (UI.purchaseInterfaceArr[button].visible) {      //make sure button is visible
+            //reposition visible buttons
+            if (UI.purchaseInterfaceArr[button].visible) {      //make sure button is visible                
                 UI.purchaseInterfaceArr[button].y = 100;
                 UI.purchaseInterfaceArr[button].x = (game.world.width/(amtOfVisBtns + 1)) * (button + 1);
             }
+            
+            console.log("button: " + button)
         }
+            console.log("amtOfVisBtns: " + amtOfVisBtns)
         
         return this;
     },
