@@ -132,12 +132,12 @@ UI = {
         //6 buttons are created, just in case
         for (var i = 0; i < 5; i++) {
             //first button will be sell button
-            if (i === 5) {
+            if (i === 0) {
                 //create sell button
                 UI.purchaseInterfaceArr.push(game.add.button(0, 0, "buttonStartSS", function () {     
-                    UI.purchaseInterfaceArr[5].visible = false;   //make this button invisible
+                    UI.purchaseInterfaceArr[0].visible = false;   //make this button invisible
                     //show/create sell confim button
-                    var btn = game.add.button (UI.purchaseInterfaceArr[5].x, UI.purchaseInterfaceArr[5].y, "testBtn3SS",
+                    var btn = game.add.button (UI.purchaseInterfaceArr[0].x, UI.purchaseInterfaceArr[0].y, "testBtn3SS",
                                                function () {
                         parent.validateUpgradeEntity(0);    //legit sell              
                     }, parent, 2, 1, 0);
@@ -182,20 +182,17 @@ UI = {
     //change textures of buttons according to how far upgraded entity is
     changeInterfaceTextures: function (amtOfVisBtns, data) {
         for (var button = 0; button < UI.purchaseInterfaceArr.length; button++) {
-            //set texture of button to the one specified in data file
-//            if ( amtOfVisBtns >= 1 ) {     //make sure not to overwrite the first texture set
-                if (data["path" + button]){                         
-                    amtOfVisBtns++;
-                    UI.purchaseInterfaceArr[button].loadTexture(data["path" + button][data["currentPathUps" + button]].btnSrc);
-                }
-//            }
-               
             //make 1 sell button
-            if (button === (UI.purchaseInterfaceArr.length - 1) ) {
-                console.log("creating sell button")
+            if (button === 0) {
+                UI.purchaseInterfaceArr[amtOfVisBtns].loadTexture("testBtn2SS");
                 amtOfVisBtns++;
-                UI.purchaseInterfaceArr[button].loadTexture("testBtn2SS");
             }
+            
+            //set texture of button to the one specified in data file
+            if (data["path" + button]){                         
+                amtOfVisBtns++;
+                UI.purchaseInterfaceArr[button].loadTexture(data["path" + button][data["currentPathUps" + button]].btnSrc);
+            }      
         }
         
         return amtOfVisBtns;
@@ -206,8 +203,6 @@ UI = {
         for (var button = 0; button < amtOfVisBtns; button++) {
             UI.purchaseInterfaceArr[button].visible = true;
         }   
-        
-        
         
         return this;
     },
