@@ -112,7 +112,7 @@ helper.bringToTop = function () {
 //UI stuff
 UI = {
     fontFamily: "Montserrat",
-    purchaseInterfaceArr: [],
+    purchaseInterfaceArr: [],      //this array will be saved even after the methods that use it terminate
     
     //create UI that's mainly visible all in game
     createUI: function () {
@@ -123,6 +123,29 @@ UI = {
     updateUI: function(){
         UI.healthText.text = "HEALTH: " + data.health;
         UI.moneyText.text = "MONEY: " + data.money;
+    }, 
+    
+    
+    //purchase interface stuff
+    
+    //show buttons/interface when user buying or upgrading entity. 
+    //this method called when by PurchaseManager
+    showPurchaseInterface: function (parent, data, canShowSellBtn) { 
+        //if there are no button(first time creating buttons) then create some blank ones
+        if (UI.purchaseInterfaceArr.length === 0) {
+            UI.initPurchaseInterface(parent);
+        }
+            
+        //hide all buttons in case there are some extra buttons from last time
+        UI.removePurchaseInterface();
+        
+        var amtOfVisBtns = 0;       //keep track of how many buttons drawn
+        var btnsToShowArr = [];     //keep track of WHICH buttons drawn
+        amtOfVisBtns = UI.changeInterfaceTextures(amtOfVisBtns, data, canShowSellBtn, btnsToShowArr);
+        
+        
+        UI.showLoadedTextureBtns(amtOfVisBtns, btnsToShowArr).fixCoordsVisBtns(amtOfVisBtns, canShowSellBtn);
+        
     }, 
     
     //init buttons/interface when user buying or upgrading entity if not already created
@@ -156,42 +179,24 @@ UI = {
             parent.validateUpgradeEntity(val)   
         }, parent, 2, 1, 0));
     },
-        
-    //show buttons/interface when user buying or upgrading entity. 
-    showPurchaseInterface: function (parent, data, canShowSellBtn) { 
-        //if there are no button(first time creating buttons) then create some blank ones
-        if (UI.purchaseInterfaceArr.length === 0) {
-            UI.initPurchaseInterface(parent);
-        }
-            
-        //hide all buttons in case there are some extra buttons from last time
-        UI.removePurchaseInterface();
-        
-        var amtOfVisBtns = 0;       //keep track of how many buttons drawn
-        amtOfVisBtns = UI.changeInterfaceTextures(amtOfVisBtns, data);
-        
-        //if sell button can't be shown, then there will be one less button to show
-//        if (!canShowSellBtn) {
-//            amtOfVisBtns --;
-//        }
-        
-        UI.showLoadedTextureBtns(amtOfVisBtns, canShowSellBtn).fixCoordsVisBtns(amtOfVisBtns, canShowSellBtn);
-        
-    }, 
+    
     
     //change textures of buttons according to how far upgraded entity is
-    changeInterfaceTextures: function (amtOfVisBtns, data) {
+    changeInterfaceTextures: function (amtOfVisBtns, data, canShowSellBtn, btnsToShowArr) {
         for (var button = 0; button < UI.purchaseInterfaceArr.length; button++) {
             //make 1 sell button
-            if (button === 0) {
+            if ((button === 0) && canShowSellBtn ) {
                 UI.purchaseInterfaceArr[amtOfVisBtns].loadTexture("testBtn2SS");
                 amtOfVisBtns++;
+                btnsToShowArr.push(UI.purchaseInterfaceArr[button]);
             }
             
             //set texture of button to the one specified in data file
             if (data["path" + button]){                         
                 amtOfVisBtns++;
                 UI.purchaseInterfaceArr[button].loadTexture(data["path" + button][data["currentPathUps" + button]].btnSrc);
+                //push textured button into array containing buttons that will be viewable
+                btnsToShowArr.push(UI.purchaseInterfaceArr[button]);
             }      
         }
         
@@ -199,9 +204,9 @@ UI = {
     },
     
     //make all buttons with different loaded textures visible
-    showLoadedTextureBtns: function (amtOfVisBtns, canShowSellBtn) {
-        for (var button = 0; button < amtOfVisBtns; button++) {
-            UI.purchaseInterfaceArr[button].visible = true;
+    showLoadedTextureBtns: function (amtOfVisBtns, btnsToShowArr) {
+        for (var button = 0; button < btnsToShowArr.length; button++) {
+            btnsToShowArr[button].visible = true;
         }   
         
         return this;
