@@ -55,7 +55,28 @@ var mainGameVar = {
         game.load.image("spikeFactoryIMG", "Assets/Images/Test/btd5SpikeFactory.png");
         game.load.image("superMonkeyIMG", "Assets/Images/Test/btd5SuperMonkey.png");
         game.load.image("tackShooterIMG", "Assets/Images/Test/btd5TackShooter.png");
-        game.load.image("wizardLordIMG", "Assets/Images/Test/btd5WizardLord.png");
+        game.load.image("wizardLordIMG", "Assets/Images/Test/btd5WizardLord.png");        
+        
+        //icon assets
+        game.load.image("bloonChipperIconIMG", "Assets/Images/Test/btd5BloonChipperIcon.png");
+        game.load.image("bombTowerIconIMG", "Assets/Images/Test/btd5BombTowerIcon.png");
+        game.load.image("boomerangThrowerIconIMG", "Assets/Images/Test/btd5BoomerangThrowerIcon.png");
+        game.load.image("dartlingGunIconIMG", "Assets/Images/Test/btd5DartlingGunIcon.png");
+        game.load.image("dartMonkeyIconIMG", "Assets/Images/Test/btd5DartMonkeyIcon.png");
+        game.load.image("glueGunnerIconIMG", "Assets/Images/Test/btd5GlueGunnerIcon.png");
+        game.load.image("iceTowerIconIMG", "Assets/Images/Test/btd5IceTowerIcon.png");
+        game.load.image("monkeyAceIMG", "Assets/Images/Test/btd5MonkeyAceIcon.png");
+        game.load.image("monkeyApprenticeIconIMG", "Assets/Images/Test/btd5MonkeyApprenticeIcon.png");
+        game.load.image("monkeyBuccaneerIconIMG", "Assets/Images/Test/btd5MonkeyBuccaneerIcon.png");
+        game.load.image("monkeyEngineerIconIMG", "Assets/Images/Test/btd5MonkeyEngineerIcon.png");
+        game.load.image("monkeySubIconIMG", "Assets/Images/Test/btd5MonkeySubIcon.png");
+        game.load.image("mortarTowerIconIMG", "Assets/Images/Test/btd5MortarTowerIcon.png");
+        game.load.image("ninjaMonkeyIconIMG", "Assets/Images/Test/btd5NinjaMonkeyIcon.png");
+        game.load.image("sniperMonkeyIconIMG", "Assets/Images/Test/btd5SniperMonkeyIcon.png");
+        game.load.image("spikeFactoryIconIMG", "Assets/Images/Test/btd5SpikeFactoryIcon.png");
+        game.load.image("superMonkeyIconIMG", "Assets/Images/Test/btd5SuperMonkeyIcon.png");
+        game.load.image("tackShooterIconIMG", "Assets/Images/Test/btd5TackShooterIcon.png");
+        game.load.image("wizardLordIconIMG", "Assets/Images/Test/btd5WizardLordIcon.png");
 
         
         //some test enemy assets
