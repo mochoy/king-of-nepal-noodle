@@ -259,11 +259,22 @@ UI = {
 
 
 //Entity class
-var Entity = function (x, y, data) {
-    this.sprite = game.add.sprite(x, y, data.src);
+var Entity = function (x, y, data, src) {
+    //texture sprite depending on what's passed in
+    var imgSrc; 
+    if (data) {
+        imgSrc = data.src;
+    } else if (src) {
+        imgSrc = src;
+    }
+    
+    this.sprite = game.add.sprite(x, y, imgSrc);
     helper.initSprite(this.sprite, data.srcScale, data.srcScale);
     this.sprite.inputEnabled = true;
-    this.sprite.data = _.cloneDeep(data);
+    
+    if (data) {
+        this.sprite.data = _.cloneDeep(data);
+    }
 }
 
 //class that buildings and towers will inherit from
