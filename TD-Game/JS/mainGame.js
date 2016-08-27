@@ -34,6 +34,20 @@ var mainGameVar = {
         game.load.image("gaussCannonIMG", "Assets/Images/Test/canyonDefenseGaussCannon.png");
         game.load.image("nulificatorIMG", "Assets/Images/Test/canyonDefenseNulificator.png");
         game.load.image("oilSprayIMG", "Assets/Images/Test/canyonDefenseOilSpray.png");
+        
+        //icon assets
+        game.load.image("chainGunIconIMG", "Assets/Images/Test/canyonDefenseChainGunIcon.png");    
+        game.load.image("gooGunIconIMG", "Assets/Images/Test/canyonDefenseGooCannonIcon.png");
+        game.load.image("gutlingLaserIconIMG", "Assets/Images/Test/canyonDefenseGutlingLaserIcon.png");
+        game.load.image("howitzerIconIMG", "Assets/Images/Test/canyonDefenseHowitzerIcon.png");        
+        game.load.image("missileTurretIconIMG", "Assets/Images/Test/canyonDefenseMissileTurretIcon.png");
+        game.load.image("aaGunIconIMG", "Assets/Images/Test/canyonDefenseAAGunIcon.png");
+        game.load.image("gaussCannonIconIMG", "Assets/Images/Test/canyonDefenseGaussCannonIcon.png");
+        game.load.image("nulificatorIconIMG", "Assets/Images/Test/canyonDefenseNulificatorIcon.png");
+        game.load.image("oilSprayIconIMG", "Assets/Images/Test/canyonDefenseOilSprayIcon.png");
+        
+        
+        
 
         //from btd5
         game.load.image("beeKeeperIMG", "Assets/Images/Test/btd5BeeKeeper.png");
