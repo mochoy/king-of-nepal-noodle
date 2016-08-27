@@ -275,6 +275,8 @@ var Entity = function (x, y, data, src) {
     if (data) {
         this.sprite.data = _.cloneDeep(data);
     }
+    
+    this.isPurchaseInterfaceShowing = false;
 }
 
 //class that buildings and towers will inherit from
@@ -289,8 +291,6 @@ var BuildingsAndTowers = function (x, y, data) {
     if (data.cost) {
         this.sprite.totalCost += data.cost;
     }
-    
-    this.isPurchaseInterfaceShowing = false;
 }
 
 

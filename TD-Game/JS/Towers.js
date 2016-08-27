@@ -140,12 +140,18 @@ AutoTower = function (game, x, y, data) {
 
 
 //towerSlot supercalss thingy
-towerStuff.TowerSlotPrototype = function () {
+towerStuff.TowerSlotPrototype = function (x, y) {
     this.img = "pathIMG";
     this.sprite = null;
     
+    this.inheritEntity = function (thiz, constructer) {
+        thiz.constructer = constructer;
+        constructor(x, y, null, this.img);
+    }
+    this.inheritEntity(this, Entity);
+    
     //create all the TowerSlot stuff
-    this.create = function (game, x, y) {
+    this.create = function (game, ) {
         this.sprite = game.add.sprite(x, y, this.img);
         this.sprite.inputEnabled = true;
         
