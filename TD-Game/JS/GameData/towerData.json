@@ -285,12 +285,20 @@ var slotData = {
         {
             "id": "autoTowerSlot",
 			"src": "pathIMG",
-            "srcScale": 0.1
+            "srcScale": 0.1,
+            
+            "towersOrBuildings": [
+                "mainTower"
+            ]
         }, 
         {
             "id": "manualTowerSlot",
 			"src": "pathIMG",
-            "srcScale": 0.1   
+            "srcScale": 0.1,
+            
+            "towersOrBuildings": [
+                "basicTower"
+            ]
         }
     ]
 };
