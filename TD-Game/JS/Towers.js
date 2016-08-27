@@ -154,21 +154,20 @@ SlotPrototype = function (x, y, data) {
     }
     this.inheritUpgrades(this, PurchaseManager);
         
-//    this.sprite.hasTower = false;
-        
-    this.clicked = function () {
-        console.log("buying tower")
-        this.sprite.buyTower();
-    }
-    
-    this.sprite.events.onInputDown.add(this.clicked, this);
-		
     towerStuff.towerSlotArr.push(this.sprite);
+    //flag used when buying towers/buildings
+    this.sprite.hasTower = false;
+    
+    this.sprite.events.onInputDown.add(function () {
+        console.log("buying tower");
+        this.buyTower();
+    }, this);
+		
     
     this.buyTower = function () {
         this.hasTower = true;
         towerStuff.createTower(1, this.x ,this.y);
-        this.inputEnabled = false;
+        this.sprite.inputEnabled = false;
     }
 };
 
