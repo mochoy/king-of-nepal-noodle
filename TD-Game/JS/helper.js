@@ -194,7 +194,13 @@ UI = {
             //set texture of button to the one specified in data file
             if (data["path" + button]){                         
                 amtOfVisBtns++;
-                UI.purchaseInterfaceArr[button].loadTexture(data["path" + button][data["currentPathUps" + button]].btnSrc);
+                //check if there are any more upgrades left. 
+                if (data["path" + button][data["currentPathUps" + button]]) {
+                    UI.purchaseInterfaceArr[button].loadTexture(data["path" + button][data["currentPathUps" + button]].btnSrc);
+                } else {    //if not, upgrade path is complete and display the "can't buy anymore" button
+                    //test button for now
+                    UI.purchaseInterfaceArr[button].loadTexture("testBtn4SS");
+                }
                 //push textured button into array containing buttons that will be viewable
                 btnsToShowArr.push(UI.purchaseInterfaceArr[button]);
             }      
