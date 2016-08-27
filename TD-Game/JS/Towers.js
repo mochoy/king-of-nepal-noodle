@@ -140,10 +140,7 @@ AutoTower = function (game, x, y, data) {
 
 
 //towerSlot supercalss thingy
-towerStuff.SlotPrototype = function (x, y) {
-    this.id = "towerSlot";
-    this.img = "pathIMG";
-    
+towerStuff.SlotPrototype = function (x, y, data) {
     this.inheritEntity = function (thiz, constructer) {
         thiz.constructer = constructer;
         constructer(x, y, null, this.img);
@@ -153,9 +150,7 @@ towerStuff.SlotPrototype = function (x, y) {
     this.inheritUpgrades = function () {
     
     }
-    
-    console.log(this)
-    
+        
 //    this.sprite.hasTower = false;
         
     this.clicked = function () {
@@ -182,4 +177,10 @@ towerStuff.createTower = function (towerNum, x, y) {
 	  	towerStuff.mainTower = new window[towerData.data[1].class](game, x, y, towerData.data[1]).createRange().addToArray();
     }
 };
+
+towerStuff.createSlot = function (slotNum, x, y) {
+    if (slotNum === 0) {
+        new window[slotData.data[0].class](x, y, slotData.data[0])
+    }
+}
 
