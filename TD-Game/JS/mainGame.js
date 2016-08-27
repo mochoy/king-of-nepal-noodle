@@ -102,7 +102,7 @@ var mainGameVar = {
         towerStuff.createTower(0, game.world.width/2, 500);
         towerStuff.createTower(1, 100, 100);
         
-        new towerStuff.TowerSlotPrototype(500, 500);
+        new towerStuff.SlotPrototype(500, 500);
         
         UI.createUI();
     },  //function create

@@ -1,3 +1,11 @@
+/*
+THINGS TO DO:
+- create towerslot data stuff
+- make this code work with that
+*/
+
+
+
 //this class is inherited by the entity, so this will be reference to the entity class
 var PurchaseManager = function (purchaseData) {    
     //when entity clicked, display upgrade information

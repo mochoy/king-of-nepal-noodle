@@ -140,7 +140,7 @@ AutoTower = function (game, x, y, data) {
 
 
 //towerSlot supercalss thingy
-towerStuff.TowerSlotPrototype = function (x, y) {
+towerStuff.SlotPrototype = function (x, y) {
     this.id = "towerSlot";
     this.img = "pathIMG";
     
@@ -149,6 +149,10 @@ towerStuff.TowerSlotPrototype = function (x, y) {
         constructer(x, y, null, this.img);
     }
     this.inheritEntity(this, Entity);
+    
+    this.inheritUpgrades = function () {
+    
+    }
     
     console.log(this)
     
