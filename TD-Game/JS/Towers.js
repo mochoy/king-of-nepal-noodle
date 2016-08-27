@@ -170,6 +170,14 @@ SlotPrototype = function (x, y, data) {
     }
 };
 
+AutoTowerSlot = function (x, y, data) {
+    this.inherit = function (thiz, constructer) {
+        thiz.constructer = constructer;
+        thiz.constructer(x, y, data);
+    }
+    this.inherit(this, Entity);
+}
+
 
 towerStuff.createTower = function (towerNum, x, y) {
     if (towerNum == 0){
