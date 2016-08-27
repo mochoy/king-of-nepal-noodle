@@ -284,13 +284,11 @@ var slotData = {
     "data": [
         {
             "id": "autoTowerSlot",
-			"class": "AutoTowerSlot",
 			"src": "pathIMG",
             "srcScale": 0.1
         }, 
         {
             "id": "manualTowerSlot",
-			"class": "ManualTowerSlot",
 			"src": "pathIMG",
             "srcScale": 0.1   
         }

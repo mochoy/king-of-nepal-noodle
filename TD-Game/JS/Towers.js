@@ -140,16 +140,17 @@ AutoTower = function (game, x, y, data) {
 
 
 //towerSlot supercalss thingy
+//don't need more than one type of slot (ex tower/ building) b/c towers/buildings able to buy will be specified in json file
 SlotPrototype = function (x, y, data) {
     this.inheritEntity = function (thiz, constructer) {
         thiz.constructer = constructer;
-        console.log(data)
         thiz.constructer(x, y, data, null);
     }
     this.inheritEntity(this, Entity);
     
-    this.inheritUpgrades = function () {
-    
+    this.inheritUpgrades = function (thiz, constructor) {
+        thiz.constructer = constructer;
+        thiz.constructer(data)
     }
         
 //    this.sprite.hasTower = false;
@@ -159,7 +160,7 @@ SlotPrototype = function (x, y, data) {
         this.sprite.buyTower();
     }
     
-    sprite.events.onInputDown.add(this.clicked, this);
+    this.sprite.events.onInputDown.add(this.clicked, this);
 		
     towerStuff.towerSlotArr.push(this.sprite);
     
@@ -170,13 +171,6 @@ SlotPrototype = function (x, y, data) {
     }
 };
 
-AutoTowerSlot = function (x, y, data) {
-    this.inherit = function (thiz, constructer) {
-        thiz.constructer = constructer;
-        thiz.constructer(x, y, data);
-    }
-    this.inherit(this, Entity);
-}
 
 
 towerStuff.createTower = function (towerNum, x, y) {
@@ -189,7 +183,7 @@ towerStuff.createTower = function (towerNum, x, y) {
 
 towerStuff.createSlot = function (slotNum, x, y) {
     if (slotNum === 0) {
-        new window[slotData.data[0].class](x, y, slotData.data[0])
+        new SlotPrototype(x, y, slotData.data[0])
     }
 }
 
