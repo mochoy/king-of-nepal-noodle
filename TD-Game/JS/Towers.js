@@ -148,10 +148,11 @@ SlotPrototype = function (x, y, data) {
     }
     this.inheritEntity(this, Entity);
     
-    this.inheritUpgrades = function (thiz, constructor) {
+    this.inheritUpgrades = function (thiz, constructer) {
         thiz.constructer = constructer;
         thiz.constructer(data)
     }
+    this.inheritUpgrades(this, PurchaseManager);
         
 //    this.sprite.hasTower = false;
         
