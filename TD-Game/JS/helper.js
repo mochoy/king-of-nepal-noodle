@@ -262,14 +262,17 @@ UI = {
 var Entity = function (x, y, data, src) {
     //texture sprite depending on what's passed in
     var imgSrc; 
-    if (data) {
+    var srcScale;
+    if (data !== null) {
         imgSrc = data.src;
+        srcScale = data.srcScale;
     } else if (src) {
         imgSrc = src;
+        srcScale = 0.15;
     }
     
     this.sprite = game.add.sprite(x, y, imgSrc);
-    helper.initSprite(this.sprite, data.srcScale, data.srcScale);
+    helper.initSprite(this.sprite, srcScale, srcScale);
     this.sprite.inputEnabled = true;
     
     if (data) {

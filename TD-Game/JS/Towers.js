@@ -146,12 +146,12 @@ towerStuff.TowerSlotPrototype = function (x, y) {
     
     this.inheritEntity = function (thiz, constructer) {
         thiz.constructer = constructer;
-        constructor(x, y, null, this.img);
+        constructer(x, y, null, this.img);
     }
     this.inheritEntity(this, Entity);
     
     //create all the TowerSlot stuff
-    this.create = function (game, ) {
+    this.create = function (game) {
         this.sprite = game.add.sprite(x, y, this.img);
         this.sprite.inputEnabled = true;
         
