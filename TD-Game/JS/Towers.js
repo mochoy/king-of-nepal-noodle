@@ -166,7 +166,7 @@ SlotPrototype = function (x, y, data) {
     
     this.buyTower = function () {
         this.hasTower = true;
-        towerStuff.createTower(1, this.x ,this.y);
+        towerStuff.createTower(1, this.sprite.x ,this.sprite.y);
         this.sprite.inputEnabled = false;
     }
 };

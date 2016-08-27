@@ -1,19 +1,14 @@
-/*
-THINGS TO DO:
-- create towerslot data stuff
-- make this code work with that
-*/
-
-
-
 //this class is inherited by the entity, so this will be reference to the entity class
 var PurchaseManager = function (purchaseData) {    
     //when entity clicked, display upgrade information
     this.displayUpgradeInfo = function () {
         //draw upgrade menu
-        //temporary code before disigning actual stuff   
-        //will find a better way to do this
-        UI.showPurchaseInterface(this, purchaseData, true); 
+        var toDisplaySellBtn = true;
+        //check id to see if slot
+        if (purchaseData.id) {      // .indexOf("Slot") !== -1 
+            toDisplaySellBtn = false;
+        }
+        UI.showPurchaseInterface(this, purchaseData, toDisplaySellBtn); 
         this.isPurchaseInterfaceShowing = true;
     }
         
