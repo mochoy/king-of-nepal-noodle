@@ -141,8 +141,8 @@ AutoTower = function (game, x, y, data) {
 
 //towerSlot supercalss thingy
 towerStuff.TowerSlotPrototype = function (x, y) {
+    this.id = "towerSlot";
     this.img = "pathIMG";
-    this.sprite = null;
     
     this.inheritEntity = function (thiz, constructer) {
         thiz.constructer = constructer;
@@ -150,25 +150,18 @@ towerStuff.TowerSlotPrototype = function (x, y) {
     }
     this.inheritEntity(this, Entity);
     
-    //create all the TowerSlot stuff
-    this.create = function (game) {
-        this.sprite = game.add.sprite(x, y, this.img);
-        this.sprite.inputEnabled = true;
-        
-        this.sprite.hasTower = false;
-        
-        //functions
-        this.sprite.clicked = this.clicked;
-        this.sprite.buyTower = this.buyTower;
-        
-        this.sprite.events.onInputDown.add(this.sprite.clicked, this);
-		
-		towerStuff.towerSlotArr.push(this.sprite);
-    };  //function create
+    console.log(this)
     
+//    this.sprite.hasTower = false;
+        
     this.clicked = function () {
+        console.log("buying tower")
         this.sprite.buyTower();
     }
+    
+    sprite.events.onInputDown.add(this.clicked, this);
+		
+    towerStuff.towerSlotArr.push(this.sprite);
     
     this.buyTower = function () {
         this.hasTower = true;
