@@ -182,15 +182,15 @@ UI = {
     
     
     //change textures of buttons according to how far upgraded entity is
-    changeInterfaceTextures: function (amtOfVisBtns, data, canShowSellBtn, btnsToShowArr) {
+    changeInterfaceTextures: function (amtOfVisBtns, data, canShowSellBtn, btnsToShowArr) {        
         for (var button = 0; button < UI.purchaseInterfaceArr.length; button++) {
             //make 1 sell button
-            if ((button === 0) && canShowSellBtn ) {
+            if ( (button === 0) && canShowSellBtn ) {
                 UI.purchaseInterfaceArr[amtOfVisBtns].loadTexture("testBtn2SS");
                 amtOfVisBtns++;
                 btnsToShowArr.push(UI.purchaseInterfaceArr[button]);
             }
-            
+                        
             //set texture of button to the one specified in data file
             //make sure this is compatible with buying and upgrading. Buying keys/object names diff than upgrades
             //use and modify these vars for use in texturing btns depending on whether showing upgrades or buy
@@ -200,8 +200,10 @@ UI = {
                 objInArr = data["path" + button][data["currentPathUps" + button]];
                 unpressableBtnSrc = "testBtn4SS";
                 toDrawUnpressableBtns = true;
-            } else if (data[button].towersOrBuildings) {
-                console.log(data[button].towersOrBuidlings)
+            } else if (data[button]) {      //if data obj isn't upgrades
+                if (data[button].towersOrBuidlings) {       //if buying
+                    console.log(data[button].towersOrBuidlings)
+                }
             }
             
             if (arr) {
