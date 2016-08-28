@@ -38,7 +38,7 @@ TowerPrototype = function (game, x, y, data) {
                 UI.removePurchaseInterface();
                 this.isPurchaseInterfaceShowing = false;
             } else {
-            this.displayUpgradeInfo()                
+            this.displayPurchaseInfo()                
             }
         }, this);
     
@@ -159,16 +159,12 @@ SlotPrototype = function (x, y, data) {
     this.sprite.hasTower = false;
     
     this.sprite.events.onInputDown.add(function () {
-        console.log("buying tower");
-        this.buyTower();
+        this.hasTower = true;
+//         towerStuff.createTower(1, this.sprite.x ,this.sprite.y);
+        this.displayPurchaseInfo();
+        this.sprite.inputEnabled = false;
     }, this);
 		
-    
-    this.buyTower = function () {
-        this.hasTower = true;
-        towerStuff.createTower(1, this.sprite.x ,this.sprite.y);
-        this.sprite.inputEnabled = false;
-    }
 };
 
 
