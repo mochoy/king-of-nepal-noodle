@@ -193,25 +193,35 @@ UI = {
             
             //set texture of button to the one specified in data file
             //make sure this is compatible with buying and upgrading. Buying keys/object names diff than upgrades
+            //use and modify these vars for use in texturing btns depending on whether showing upgrades or buy
+            var arr, objInArr, unpressableBtnSrc, toDrawUnpressableBtns;
+            if (data["path" + button]){     //check to see if it's upgrades by seeing if the upgrade arr is there
+                arr = data["path" + button];
+                objInArr = data["path" + button][data["currentPathUps" + button]];
+                unpressableBtnSrc = "testBtn4SS";
+                toDrawUnpressableBtns = true;
+            } else if (data[button].towersOrBuildings) {
+                console.log(data[button].towersOrBuidlings)
+            }
             
-            if (data["path" + button]){                         
+            if (arr) {
                 amtOfVisBtns++;
                 //check if there are any more upgrades left. 
-                if (data["path" + button][data["currentPathUps" + button]]) {
-                    UI.purchaseInterfaceArr[button].loadTexture(data["path" + button][data["currentPathUps" + button]].btnSrc);
-                } else {    //if not, upgrade path is complete and display the "can't buy anymore" button
+                if (objInArr) {
+                    UI.purchaseInterfaceArr[button].loadTexture(objInArr.btnSrc);
+                } else if (toDrawUnpressableBtns) {    //if not, upgrade path is complete and display the "can't buy anymore" button
                     //test/placeholder button for now
-                    UI.purchaseInterfaceArr[button].loadTexture("testBtn4SS");
-                    //make it so it can't be clicked anymore
-                    UI.purchaseInterfaceArr[button].inputEnabled = false;
+                    UI.purchaseInterfaceArr[button].loadTexture(unpressableBtnSrc);
+                    UI.purchaseInterfaceArr[button].inputEnabled = false;   //make it so it can't be clicked anymore
                 }
                 //push textured button into array containing buttons that will be viewable
                 btnsToShowArr.push(UI.purchaseInterfaceArr[button]);
-            }      
-        }
+            }   //if
+            
+        }   //for
         
         return amtOfVisBtns;
-    },
+    },  //method
     
     //make all buttons with different loaded textures visible
     showLoadedTextureBtns: function (amtOfVisBtns, btnsToShowArr) {
