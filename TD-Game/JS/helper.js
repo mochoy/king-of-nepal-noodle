@@ -206,21 +206,26 @@ UI = {
                 }
             }
             
-            if (arr) {
-                amtOfVisBtns++;
-                //check if there are any more upgrades left. 
-                if (objInArr) {
-                    UI.purchaseInterfaceArr[button].loadTexture(objInArr.btnSrc);
-                } else if (toDrawUnpressableBtns) {    //if not, upgrade path is complete and display the "can't buy anymore" button
-                    //test/placeholder button for now
-                    UI.purchaseInterfaceArr[button].loadTexture(unpressableBtnSrc);
-                    UI.purchaseInterfaceArr[button].inputEnabled = false;   //make it so it can't be clicked anymore
-                }
-                //push textured button into array containing buttons that will be viewable
-                btnsToShowArr.push(UI.purchaseInterfaceArr[button]);
-            }   //if
-            
+            amtOfVisBtns = UI.changeInterfaceTextures(arr, amtOfVisBtns, objInArr, button, unpressableBtnSrc, btnsToShowArr);
         }   //for
+        
+        return amtOfVisBtns;
+    },  //method
+    
+    changeInterfaceTextures: function (arr, amtOfVisBtns, objInArr, button, unpressableBtnSrc, btnsToShowArr) {
+        if (arr) {
+            amtOfVisBtns++;
+            //check if there are any more upgrades left. 
+            if (objInArr) {
+                UI.purchaseInterfaceArr[button].loadTexture(objInArr.btnSrc);
+            } else if (toDrawUnpressableBtns) {    //if not, upgrade path is complete and display the "can't buy anymore" button
+                //test/placeholder button for now
+                UI.purchaseInterfaceArr[button].loadTexture(unpressableBtnSrc);
+                UI.purchaseInterfaceArr[button].inputEnabled = false;   //make it so it can't be clicked anymore
+            }
+            //push textured button into array containing buttons that will be viewable
+            btnsToShowArr.push(UI.purchaseInterfaceArr[button]);
+        }   //if
         
         return amtOfVisBtns;
     },  //method
