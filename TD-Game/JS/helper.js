@@ -124,10 +124,12 @@ UI = {
         UI.healthText.text = "HEALTH: " + data.health;
         UI.moneyText.text = "MONEY: " + data.money;
     }, 
+
     
-    
+    //
+    //
     //purchase interface stuff
-    
+    //
     //show buttons/interface when user buying or upgrading entity. 
     //this method called when by PurchaseManager
     showPurchaseInterface: function (parent, data, canShowSellBtn) { 
@@ -141,7 +143,7 @@ UI = {
         
         var amtOfVisBtns = 0;       //keep track of how many buttons drawn
         var btnsToShowArr = [];     //keep track of WHICH buttons drawn
-        amtOfVisBtns = UI.validateInterfaceTextures(amtOfVisBtns, data, canShowSellBtn, btnsToShowArr);
+        amtOfVisBtns = UI.initInterfaceTextures(amtOfVisBtns, data, canShowSellBtn, btnsToShowArr);
         
         
         UI.showLoadedTextureBtns(amtOfVisBtns, btnsToShowArr).fixCoordsVisBtns(amtOfVisBtns, btnsToShowArr);
@@ -179,10 +181,9 @@ UI = {
             parent.validateUpgradeEntity(val)   
         }, parent, 2, 1, 0));
     },
-    
-    
+       
     //change textures of buttons according to how far upgraded entity is
-    validateInterfaceTextures: function (amtOfVisBtns, data, canShowSellBtn, btnsToShowArr) {        
+    initInterfaceTextures: function (amtOfVisBtns, data, canShowSellBtn, btnsToShowArr) {        
         for (var button = 0; button < UI.purchaseInterfaceArr.length; button++) {
             //make 1 sell button
             if ( (button === 0) && canShowSellBtn ) {
@@ -190,7 +191,7 @@ UI = {
                 amtOfVisBtns++;
                 btnsToShowArr.push(UI.purchaseInterfaceArr[button]);
             }
-                        
+                                    
             //set texture of button to the one specified in data file
             //make sure this is compatible with buying and upgrading. Buying keys/object names diff than upgrades
             //use and modify these vars for use in texturing btns depending on whether showing upgrades or buy
@@ -200,10 +201,9 @@ UI = {
                 objInArr = data["path" + button][data["currentPathUps" + button]];
                 unpressableBtnSrc = "testBtn4SS";
                 toDrawUnpressableBtns = true;
-            } else if (data[button]) {      //if data obj isn't upgrades
-                if (data[button].towersOrBuidlings) {       //if buying
-                    console.log(data[button].towersOrBuidlings)
-                }
+            } else if (data.towersOrBuildings) {     //check if it's buying by seeing if an arr "towersOrBuidlings" exists
+                console.log("running")
+                console.log(data.towersOrBuildings)
             }
             
             amtOfVisBtns = UI.changeInterfaceTextures(arr, amtOfVisBtns, objInArr, button, unpressableBtnSrc, btnsToShowArr);

@@ -1,7 +1,8 @@
 //this class is inherited by the entity, so this will be reference to the entity class
-var PurchaseManager = function (purchaseData) {    
+var PurchaseManager = function (purchaseData) {  
+    
     //when entity clicked, display upgrade information
-    this.displayUpgradeInfo = function () {
+    this.displayPurchaseInfo = function () {        
         //draw upgrade menu
         var toDisplaySellBtn = true;
         //check id to see if slot

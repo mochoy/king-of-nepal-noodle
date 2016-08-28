@@ -162,7 +162,7 @@ SlotPrototype = function (x, y, data) {
         this.hasTower = true;
 //         towerStuff.createTower(1, this.sprite.x ,this.sprite.y);
         this.displayPurchaseInfo();
-        this.sprite.inputEnabled = false;
+//        this.sprite.inputEnabled = false;
     }, this);
 		
 };
