@@ -141,7 +141,7 @@ UI = {
         
         var amtOfVisBtns = 0;       //keep track of how many buttons drawn
         var btnsToShowArr = [];     //keep track of WHICH buttons drawn
-        amtOfVisBtns = UI.changeInterfaceTextures(amtOfVisBtns, data, canShowSellBtn, btnsToShowArr);
+        amtOfVisBtns = UI.validateInterfaceTextures(amtOfVisBtns, data, canShowSellBtn, btnsToShowArr);
         
         
         UI.showLoadedTextureBtns(amtOfVisBtns, btnsToShowArr).fixCoordsVisBtns(amtOfVisBtns, btnsToShowArr);
@@ -182,7 +182,7 @@ UI = {
     
     
     //change textures of buttons according to how far upgraded entity is
-    changeInterfaceTextures: function (amtOfVisBtns, data, canShowSellBtn, btnsToShowArr) {        
+    validateInterfaceTextures: function (amtOfVisBtns, data, canShowSellBtn, btnsToShowArr) {        
         for (var button = 0; button < UI.purchaseInterfaceArr.length; button++) {
             //make 1 sell button
             if ( (button === 0) && canShowSellBtn ) {
