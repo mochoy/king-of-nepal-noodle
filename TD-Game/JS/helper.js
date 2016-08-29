@@ -184,58 +184,58 @@ UI = {
        
     //change textures of buttons according to how far upgraded entity is
     initInterfaceTextures: function (amtOfVisBtns, data, canShowSellBtn, btnsToShowArr) {        
-        for (var button = 0; button < UI.purchaseInterfaceArr.length; button++) {
-            amtOfVisBtns = UI.textureSellBtn(button, canShowSellBtn, amtOfVisBtns, btnsToShowArr);
+        for (var btn = 0; btn < UI.purchaseInterfaceArr.length; btn++) {            
+            amtOfVisBtns = UI.textureSellBtn(btn, canShowSellBtn, amtOfVisBtns, btnsToShowArr);
               
             //set texture of button to the one specified in data file
             //make sure this is compatible with buying and upgrading. Buying keys/object names diff than upgrades
             //use and modify these vars for use in texturing btns depending on whether showing upgrades or buy
             //reset vars so values doesn't stay
             var arr = null, objInArr = null, unpressableBtnSrc = null, toDrawUnpressableBtns = null;      
-            if (data["path" + button]){     //check to see if it's upgrades by seeing if the upgrade arr is there
-                arr = data["path" + button];
-                objInArr = data["path" + button][data["currentPathUps" + button]];
+            if (data["path" + btn]){     //check to see if it's upgrades by seeing if the upgrade arr is there
+                arr = data["path" + btn];
+                objInArr = data["path" + btn][data["currentPathUps" + btn]];
                 unpressableBtnSrc = "testBtn4SS";
                 toDrawUnpressableBtns = true;
             } else if (data.towersOrBuildings) {     //check if it's buying by seeing if an arr "towersOrBuidlings" exists
-                if (data.towersOrBuildings[button]) {
+                if ((data.towersOrBuildings[btn - 1]) && btn > 0) {  //make sure not retexturing sell btn                    
                     arr = data.towersOrBuildings;
-                    objInArr = data.towersOrBuildings[button];
+                    objInArr = data.towersOrBuildings[btn - 1];
                     toDrawUnpressableBtns = false;
                 }
             }
                 
-            amtOfVisBtns = UI.changeInterfaceTextures(arr, amtOfVisBtns, objInArr, button, toDrawUnpressableBtns, unpressableBtnSrc, btnsToShowArr);
+            amtOfVisBtns = UI.changeInterfaceTextures(arr, amtOfVisBtns, objInArr, btn, toDrawUnpressableBtns, unpressableBtnSrc, btnsToShowArr);
             
         }   //for
         
         return amtOfVisBtns;
     },  //method
     
-    textureSellBtn: function (button, canShowSellBtn, amtOfVisBtns, btnsToShowArr) {
+    textureSellBtn: function (btn, canShowSellBtn, amtOfVisBtns, btnsToShowArr) {
         //make 1 sell button
-        if ( (button === 0) && canShowSellBtn ) {                
+        if ( (btn === 0) && canShowSellBtn ) {                
             UI.purchaseInterfaceArr[amtOfVisBtns].loadTexture("testBtn2SS");
             amtOfVisBtns++;
-            btnsToShowArr.push(UI.purchaseInterfaceArr[button]);
+            btnsToShowArr.push(UI.purchaseInterfaceArr[btn]);
         }
         
         return amtOfVisBtns;
     },
     
-    changeInterfaceTextures: function (arr, amtOfVisBtns, objInArr, button, toDrawUnpressableBtns, unpressableBtnSrc, btnsToShowArr) {        
+    changeInterfaceTextures: function (arr, amtOfVisBtns, objInArr, btn, toDrawUnpressableBtns, unpressableBtnSrc, btnsToShowArr) {   
         if (arr) {
             amtOfVisBtns++;
             //check if there are any more upgrades left. 
             if (objInArr) {
-                UI.purchaseInterfaceArr[button].loadTexture(objInArr.btnSrc);
+                UI.purchaseInterfaceArr[btn].loadTexture(objInArr.btnSrc);
             } else if (toDrawUnpressableBtns) {    //if not, upgrade path is complete and display the "can't buy anymore" button
                 //test/placeholder button for now
-                UI.purchaseInterfaceArr[button].loadTexture(unpressableBtnSrc);
-                UI.purchaseInterfaceArr[button].inputEnabled = false;   //make it so it can't be clicked anymore
+                UI.purchaseInterfaceArr[btn].loadTexture(unpressableBtnSrc);
+                UI.purchaseInterfaceArr[btn].inputEnabled = false;   //make it so it can't be clicked anymore
             }
             //push textured button into array containing buttons that will be viewable
-            btnsToShowArr.push(UI.purchaseInterfaceArr[button]);
+            btnsToShowArr.push(UI.purchaseInterfaceArr[btn]);
         }   //if
         
         return amtOfVisBtns;
