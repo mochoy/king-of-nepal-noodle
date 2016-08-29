@@ -187,6 +187,8 @@ UI = {
         for (var button = 0; button < UI.purchaseInterfaceArr.length; button++) {
             //make 1 sell button
             if ( (button === 0) && canShowSellBtn ) {
+                console.log("creating sell button")
+                
                 UI.purchaseInterfaceArr[amtOfVisBtns].loadTexture("testBtn2SS");
                 amtOfVisBtns++;
                 btnsToShowArr.push(UI.purchaseInterfaceArr[button]);
@@ -196,6 +198,7 @@ UI = {
             //make sure this is compatible with buying and upgrading. Buying keys/object names diff than upgrades
             //use and modify these vars for use in texturing btns depending on whether showing upgrades or buy
             var arr, objInArr, unpressableBtnSrc, toDrawUnpressableBtns;
+                        
             if (data["path" + button]){     //check to see if it's upgrades by seeing if the upgrade arr is there
                 arr = data["path" + button];
                 objInArr = data["path" + button][data["currentPathUps" + button]];
@@ -206,14 +209,21 @@ UI = {
                 objInArr = data.towersOrBuildings[button];
                 toDrawUnpressableBtns = false;
             }
-            
+                
             amtOfVisBtns = UI.changeInterfaceTextures(arr, amtOfVisBtns, objInArr, button, toDrawUnpressableBtns, unpressableBtnSrc, btnsToShowArr);
+            
+            //reset vars
+            arr = null;
+            objInArr = null;
+            unpressableBtnSrc = null;
+            toDrawUnpressableBtns = null;
+            
         }   //for
         
         return amtOfVisBtns;
     },  //method
     
-    changeInterfaceTextures: function (arr, amtOfVisBtns, objInArr, button, toDrawUnpressableBtns, unpressableBtnSrc, btnsToShowArr) {
+    changeInterfaceTextures: function (arr, amtOfVisBtns, objInArr, button, toDrawUnpressableBtns, unpressableBtnSrc, btnsToShowArr) {        
         if (arr) {
             amtOfVisBtns++;
             //check if there are any more upgrades left. 
