@@ -186,9 +186,7 @@ UI = {
     initInterfaceTextures: function (amtOfVisBtns, data, canShowSellBtn, btnsToShowArr) {        
         for (var button = 0; button < UI.purchaseInterfaceArr.length; button++) {
             //make 1 sell button
-            if ( (button === 0) && canShowSellBtn ) {
-                console.log("creating sell button")
-                
+            if ( (button === 0) && canShowSellBtn ) {                
                 UI.purchaseInterfaceArr[amtOfVisBtns].loadTexture("testBtn2SS");
                 amtOfVisBtns++;
                 btnsToShowArr.push(UI.purchaseInterfaceArr[button]);
@@ -197,26 +195,23 @@ UI = {
             //set texture of button to the one specified in data file
             //make sure this is compatible with buying and upgrading. Buying keys/object names diff than upgrades
             //use and modify these vars for use in texturing btns depending on whether showing upgrades or buy
-            var arr, objInArr, unpressableBtnSrc, toDrawUnpressableBtns;
+            //reset vars so values doesn't stay
+            var arr = null, objInArr = null, unpressableBtnSrc = null, toDrawUnpressableBtns = null;
                         
             if (data["path" + button]){     //check to see if it's upgrades by seeing if the upgrade arr is there
                 arr = data["path" + button];
                 objInArr = data["path" + button][data["currentPathUps" + button]];
                 unpressableBtnSrc = "testBtn4SS";
                 toDrawUnpressableBtns = true;
-            } else if (data.towersOrBuildings[button]) {     //check if it's buying by seeing if an arr "towersOrBuidlings" exists
-                arr = data.towersOrBuildings;
-                objInArr = data.towersOrBuildings[button];
-                toDrawUnpressableBtns = false;
+            } else if (data.towersOrBuildings) {     //check if it's buying by seeing if an arr "towersOrBuidlings" exists
+                if (data.towersOrBuildings[button]) {
+                    arr = data.towersOrBuildings;
+                    objInArr = data.towersOrBuildings[button];
+                    toDrawUnpressableBtns = false;
+                }
             }
                 
             amtOfVisBtns = UI.changeInterfaceTextures(arr, amtOfVisBtns, objInArr, button, toDrawUnpressableBtns, unpressableBtnSrc, btnsToShowArr);
-            
-            //reset vars
-            arr = null;
-            objInArr = null;
-            unpressableBtnSrc = null;
-            toDrawUnpressableBtns = null;
             
         }   //for
         
