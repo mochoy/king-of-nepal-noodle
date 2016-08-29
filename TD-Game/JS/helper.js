@@ -201,18 +201,19 @@ UI = {
                 objInArr = data["path" + button][data["currentPathUps" + button]];
                 unpressableBtnSrc = "testBtn4SS";
                 toDrawUnpressableBtns = true;
-            } else if (data.towersOrBuildings) {     //check if it's buying by seeing if an arr "towersOrBuidlings" exists
-                console.log("running")
-                console.log(data.towersOrBuildings)
+            } else if (data.towersOrBuildings[button]) {     //check if it's buying by seeing if an arr "towersOrBuidlings" exists
+                arr = data.towersOrBuildings;
+                objInArr = data.towersOrBuildings[button];
+                toDrawUnpressableBtns = false;
             }
             
-            amtOfVisBtns = UI.changeInterfaceTextures(arr, amtOfVisBtns, objInArr, button, unpressableBtnSrc, btnsToShowArr);
+            amtOfVisBtns = UI.changeInterfaceTextures(arr, amtOfVisBtns, objInArr, button, toDrawUnpressableBtns, unpressableBtnSrc, btnsToShowArr);
         }   //for
         
         return amtOfVisBtns;
     },  //method
     
-    changeInterfaceTextures: function (arr, amtOfVisBtns, objInArr, button, unpressableBtnSrc, btnsToShowArr) {
+    changeInterfaceTextures: function (arr, amtOfVisBtns, objInArr, button, toDrawUnpressableBtns, unpressableBtnSrc, btnsToShowArr) {
         if (arr) {
             amtOfVisBtns++;
             //check if there are any more upgrades left. 
