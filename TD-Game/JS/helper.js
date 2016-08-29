@@ -185,19 +185,13 @@ UI = {
     //change textures of buttons according to how far upgraded entity is
     initInterfaceTextures: function (amtOfVisBtns, data, canShowSellBtn, btnsToShowArr) {        
         for (var button = 0; button < UI.purchaseInterfaceArr.length; button++) {
-            //make 1 sell button
-            if ( (button === 0) && canShowSellBtn ) {                
-                UI.purchaseInterfaceArr[amtOfVisBtns].loadTexture("testBtn2SS");
-                amtOfVisBtns++;
-                btnsToShowArr.push(UI.purchaseInterfaceArr[button]);
-            }
-                                    
+            amtOfVisBtns = UI.textureSellBtn(button, canShowSellBtn, amtOfVisBtns, btnsToShowArr);
+              
             //set texture of button to the one specified in data file
             //make sure this is compatible with buying and upgrading. Buying keys/object names diff than upgrades
             //use and modify these vars for use in texturing btns depending on whether showing upgrades or buy
             //reset vars so values doesn't stay
-            var arr = null, objInArr = null, unpressableBtnSrc = null, toDrawUnpressableBtns = null;
-                        
+            var arr = null, objInArr = null, unpressableBtnSrc = null, toDrawUnpressableBtns = null;      
             if (data["path" + button]){     //check to see if it's upgrades by seeing if the upgrade arr is there
                 arr = data["path" + button];
                 objInArr = data["path" + button][data["currentPathUps" + button]];
@@ -217,6 +211,17 @@ UI = {
         
         return amtOfVisBtns;
     },  //method
+    
+    textureSellBtn: function (button, canShowSellBtn, amtOfVisBtns, btnsToShowArr) {
+        //make 1 sell button
+        if ( (button === 0) && canShowSellBtn ) {                
+            UI.purchaseInterfaceArr[amtOfVisBtns].loadTexture("testBtn2SS");
+            amtOfVisBtns++;
+            btnsToShowArr.push(UI.purchaseInterfaceArr[button]);
+        }
+        
+        return amtOfVisBtns;
+    },
     
     changeInterfaceTextures: function (arr, amtOfVisBtns, objInArr, button, toDrawUnpressableBtns, unpressableBtnSrc, btnsToShowArr) {        
         if (arr) {
