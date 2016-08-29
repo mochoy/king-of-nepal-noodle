@@ -34,7 +34,7 @@ TowerPrototype = function (game, x, y, data) {
     //towerSprite clickable
     this.sprite.events.onInputDown.add(
         function () {
-            if (this.isPurchaseInterfaceShowing) {      //if upgrade info is alread showing
+            if (this.isPurchaseInterfaceShowing) {      //if upgrade info is already showing
                 UI.removePurchaseInterface();
                 this.isPurchaseInterfaceShowing = false;
             } else {
@@ -155,17 +155,26 @@ SlotPrototype = function (x, y, data) {
     this.inheritUpgrades(this, PurchaseManager);
         
     towerStuff.towerSlotArr.push(this.sprite);
-    //flag used when buying towers/buildings
+    
     this.sprite.hasTower = false;
+    this.isPurchaseInterfaceShowing = false
     
     this.sprite.events.onInputDown.add(function () {
-        this.hasTower = true;
+//        this.hasTower = true;
 //         towerStuff.createTower(1, this.sprite.x ,this.sprite.y);
-        this.displayPurchaseInfo();
 //        this.sprite.inputEnabled = false;
+        if (this.isPurchaseInterfaceShowing) {
+            UI.removePurchaseInterface();
+            this.isPurchaseInterfaceShowing = false; 
+        } else {
+            this.displayPurchaseInfo();
+        }
+        
     }, this);
-		
-};
+
+    
+};  //constructor
+
 
 
 
