@@ -137,7 +137,7 @@ var mainGameVar = {
         towerStuff.createTower(0, game.world.width/2, 500);
         towerStuff.createTower(1, 100, 100);
         
-        towerStuff.createSlot(0, 500, 500)
+        towerStuff.createSlot(1, 500, 500)
         
         UI.createUI();
     },  //function create

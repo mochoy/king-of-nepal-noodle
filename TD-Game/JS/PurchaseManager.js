@@ -39,7 +39,7 @@ var PurchaseManager = function (purchaseData) {
                 this.upgradeEntity(path, currentUpsPathObj);
             }       
         } else if (purchaseData.towersOrBuildings) {      //stuff if buying
-            console.log(path)
+            console.log(purchaseData.towersOrBuildings[path - 1])
         }
          
     }    //method
