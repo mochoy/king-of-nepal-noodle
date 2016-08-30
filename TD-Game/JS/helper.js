@@ -130,16 +130,17 @@ UI = {
     //
     //purchase interface stuff
     //
+    
     //show buttons/interface when user buying or upgrading entity. 
     //this method called when by PurchaseManager
     showPurchaseInterface: function (parent, data, canShowSellBtn) { 
+        //hide and kill all buttons in case there are some extra buttons from last time
+        UI.removePurchaseInterface().destroyPurchaseInterface();
+        
         //if there are no button(first time creating buttons) then create some blank ones
         if (UI.purchaseInterfaceArr.length === 0) {
             UI.initPurchaseInterface(parent);
         }
-            
-        //hide all buttons in case there are some extra buttons from last time
-        UI.removePurchaseInterface();
         
         var amtOfVisBtns = 0;       //keep track of how many buttons drawn
         var btnsToShowArr = [];     //keep track of WHICH buttons drawn
@@ -177,7 +178,7 @@ UI = {
     //create buttons/interface when user buying or upgrading entity if not already created
     //this method required b/c the value passed into callback function must be different for each button
     createPurchaseInterface: function (parent, val) {
-        UI.purchaseInterfaceArr.push(game.add.button(0, 0, "buttonStartSS", function () {                
+        UI.purchaseInterfaceArr.push(game.add.button(0, 0, "buttonStartSS", function () {
             parent.validatePurchaseEntity(val)   
         }, parent, 2, 1, 0));
     },
@@ -279,6 +280,17 @@ UI = {
         for (var button = 0; button < UI.purchaseInterfaceArr.length; button++) {
             UI.purchaseInterfaceArr[button].visible = false;
         }
+        
+        return this;
+    },
+    
+    //the buttons will be re-created so the callback functions will "update"
+    destroyPurchaseInterface: function () {
+        for (var button = 0; button < UI.purchaseInterfaceArr.length; button++) {
+            UI.purchaseInterfaceArr[button].destroy();
+        }
+        
+        return this;
     },
     
     //bring purchase buttons to top so it's not covered by towers or anything
