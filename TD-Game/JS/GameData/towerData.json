@@ -290,7 +290,9 @@ var slotData = {
             "towersOrBuildings": [
                 {
                     "name": "mainTower",
-                    "btnSrc": "chainGunIconIMG"
+                    "btnSrc": "chainGunIconIMG",
+                    
+                    "cost": 100
                 }
             ]
         }, 
@@ -302,7 +304,9 @@ var slotData = {
             "towersOrBuildings": [
                 {
                     "name": "basicTower",
-                    "btnSrc": "wizardLordIconIMG"
+                    "btnSrc": "wizardLordIconIMG", 
+                    
+                    "cost": 100
                 }
             ]
         }
