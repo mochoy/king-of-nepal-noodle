@@ -39,7 +39,11 @@ var PurchaseManager = function (purchaseData) {
                 this.upgradeEntity(path, currentUpsPathObj);
             }       
         } else if (purchaseData.towersOrBuildings) {      //stuff if buying
-            console.log(purchaseData.towersOrBuildings[path - 1])
+            var currentBuyingObj = purchaseData.towersOrBuildings[path - 1];
+            
+            if (currentBuyingObj.cost > data.money){
+                console.log("cant buy, too poor")
+            }
         }
          
     }    //method
