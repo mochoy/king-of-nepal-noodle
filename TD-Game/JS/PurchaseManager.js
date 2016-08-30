@@ -12,9 +12,7 @@ var PurchaseManager = function (purchaseData) {
         UI.showPurchaseInterface(this, purchaseData, toDisplaySellBtn); 
         this.isPurchaseInterfaceShowing = true;
     }
-        
-    //make sure entitiy can be upgraded 
-    //path will be a number correspoding to the value of currentPathUps      
+            
     this.validatePurchaseEntity = function (path) {   
         //hide interface first just in case the interface needs to be shown again
         UI.removePurchaseInterface();
@@ -24,31 +22,41 @@ var PurchaseManager = function (purchaseData) {
         if (path === 0) {
             this.sellEntity();
         } else if (purchaseData["path" + path]) {        //stuff if upgrading            
-            //object with reference to object containing current path upgrade
-            //only do this if the entity is being upgraded
-            var currentUpsPathObj = purchaseData["path" + path][purchaseData["currentPathUps" + path]];
-            
-            //money and upgrades validation before upgrade
-            if (purchaseData["currentPathUps" + path] >= purchaseData["path" + path].length) {
-                //at max upgrades for path
-                console.log("max upgrades for path")
-            } else if (data.money < currentUpsPathObj.cost) {
-            //too poor, can't buy
-                console.log("too poor")
-            } else if (data.money >= currentUpsPathObj.cost) {
-                this.upgradeEntity(path, currentUpsPathObj);
-            }       
+            this.validateUpgrade(path);
         } else if (purchaseData.towersOrBuildings) {      //stuff if buying
-            var currentBuyingObj = purchaseData.towersOrBuildings[path - 1];
-            
-            if (currentBuyingObj.cost > data.money){    //check if can afford
-                console.log("cant buy, too poor")
-            } else {
-                this.buyEntity();
-            }
+            this.validateBuy(path);
         }
          
     }    //method
+    
+    //make sure entitiy can be upgraded 
+    //path will be a number correspoding to the value of currentPathUps  
+    this.validateUpgrade = function (path) {        
+        //object with reference to object containing current path upgrade
+        //only do this if the entity is being upgraded
+        var currentUpsPathObj = purchaseData["path" + path][purchaseData["currentPathUps" + path]];
+             
+        //money and upgrades validation before upgrade
+        if (purchaseData["currentPathUps" + path] >= purchaseData["path" + path].length) {
+            //at max upgrades for path
+            console.log("max upgrades for path")
+        } else if (data.money < currentUpsPathObj.cost) {
+            //too poor, can't buy
+            console.log("too poor")
+        } else if (data.money >= currentUpsPathObj.cost) {
+            this.upgradeEntity(path, currentUpsPathObj);
+        }   
+    }
+    
+    this.validateBuy = function (path) {
+        var currentBuyingObj = purchaseData.towersOrBuildings[path - 1];
+              
+        if (currentBuyingObj.cost > data.money){    //check if can afford
+            console.log("cant buy, too poor")
+        } else {
+            this.buyEntity(currentBuyingObj);
+        }
+    }
     
     //what to do when entity is actually being upgraded: subtract money, new entity texture
     this.upgradeEntity = function (path, currentUpsPathObj) {        
@@ -87,7 +95,7 @@ var PurchaseManager = function (purchaseData) {
     }       //method   
     
     //create new entity, subtract money
-    this.buyEntity = function () {
+    this.buyEntity = function (currentBuyingObj) {
         console.log("buying entity")        
     }
     
