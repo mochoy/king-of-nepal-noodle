@@ -41,8 +41,10 @@ var PurchaseManager = function (purchaseData) {
         } else if (purchaseData.towersOrBuildings) {      //stuff if buying
             var currentBuyingObj = purchaseData.towersOrBuildings[path - 1];
             
-            if (currentBuyingObj.cost > data.money){
+            if (currentBuyingObj.cost > data.money){    //check if can afford
                 console.log("cant buy, too poor")
+            } else {
+                this.buyEntity();
             }
         }
          
