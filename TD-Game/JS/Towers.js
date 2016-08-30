@@ -187,8 +187,6 @@ towerStuff.createTower = function (towerNum, x, y) {
 };
 
 towerStuff.createSlot = function (slotNum, x, y) {
-    if (slotNum === 0) {
-        new SlotPrototype(x, y, slotData.data[0])
-    }
+    new SlotPrototype(x, y, slotData.data[slotNum])
 }
 
