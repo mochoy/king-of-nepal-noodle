@@ -164,7 +164,7 @@ UI = {
                     //show/create sell confim button
                     var btn = game.add.button (UI.purchaseInterfaceArr[0].x, UI.purchaseInterfaceArr[0].y, "testBtn3SS",
                                                function () {
-                        parent.validateUpgradeEntity(0);    //legit sell              
+                        parent.validatePurchaseEntity(0);    //legit sell              
                     }, parent, 2, 1, 0);
                     UI.purchaseInterfaceArr.push(btn);
                 }, parent, 2, 1, 0) );
@@ -178,7 +178,7 @@ UI = {
     //this method required b/c the value passed into callback function must be different for each button
     createPurchaseInterface: function (parent, val) {
         UI.purchaseInterfaceArr.push(game.add.button(0, 0, "buttonStartSS", function () {                
-            parent.validateUpgradeEntity(val)   
+            parent.validatePurchaseEntity(val)   
         }, parent, 2, 1, 0));
     },
        
