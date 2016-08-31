@@ -135,13 +135,7 @@ UI = {
     //this method called when by PurchaseManager
     showPurchaseInterface: function (parent, data, canShowSellBtn) { 
         //hide and kill all buttons in case there are some extra buttons from last time
-        UI.destroyPurchaseInterface();
-        
-        //if there are no button(first time creating buttons) then create some blank ones
-        if (UI.purchaseInterfaceArr.length === 0) {
-            UI.initPurchaseInterface(parent);
-        }
-        UI.removePurchaseInterface();
+        UI.destroyPurchaseInterface().initPurchaseInterface(parent).removePurchaseInterface();
         
         var amtOfVisBtns = 0;       //keep track of how many buttons drawn
         var btnsToShowArr = [];     //keep track of WHICH buttons drawn
@@ -174,6 +168,8 @@ UI = {
                 UI.createPurchaseInterface(parent, i);
             }
         }
+        
+        return this;
     },
     
     //create buttons/interface when user buying or upgrading entity if not already created

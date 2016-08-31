@@ -98,7 +98,7 @@ var PurchaseManager = function (purchaseData) {
     this.buyEntity = function (currentBuyingObj) {
         //make sure tower sprite can no longer be clicked on unless its sold
         this.sprite.inputEnabled = false;
-        console.log("buying entity")        
+        towerStuff.towerFactory(currentBuyingObj.indexInTowArr, this.sprite.x, this.sprite.y);      
     }
     
     this.sellEntity = function () {
