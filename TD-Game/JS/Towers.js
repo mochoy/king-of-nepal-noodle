@@ -178,7 +178,7 @@ SlotPrototype = function (x, y, data) {
 
 
 
-towerStuff.createTower = function (towerNum, x, y) {
+towerStuff.towerFactory = function (towerNum, x, y) {
     if (towerNum == 0){
 	  	towerStuff.mainTower = new window[towerData.data[0].class](game, x, y, towerData.data[0]).createRange().addToArray();
     } else {
@@ -186,7 +186,7 @@ towerStuff.createTower = function (towerNum, x, y) {
     }
 };
 
-towerStuff.createSlot = function (slotNum, x, y) {
+towerStuff.slotFactory = function (slotNum, x, y) {
     new SlotPrototype(x, y, slotData.data[slotNum])
 }
 

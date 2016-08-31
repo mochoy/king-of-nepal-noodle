@@ -134,10 +134,10 @@ var mainGameVar = {
         enemyStuff.moveToPoint = enemyStuff.home;
 
 
-        towerStuff.createTower(0, game.world.width/2, 500);
-        towerStuff.createTower(1, 100, 100);
+        towerStuff.towerFactory(0, game.world.width/2, 500);
+        towerStuff.towerFactory(1, 100, 100);
         
-        towerStuff.createSlot(1, 500, 500)
+        towerStuff.slotFactory(1, 500, 500)
         
         UI.createUI();
     },  //function create
