@@ -135,7 +135,7 @@ UI = {
     //this method called when by PurchaseManager
     showPurchaseInterface: function (parent, data, canShowSellBtn) { 
         //hide and kill all buttons in case there are some extra buttons from last time
-        UI.removePurchaseInterface().destroyPurchaseInterface();
+        UI.destroyPurchaseInterface();
         
         //if there are no button(first time creating buttons) then create some blank ones
         if (UI.purchaseInterfaceArr.length === 0) {
@@ -275,20 +275,13 @@ UI = {
         return this;
     },
     
-    removePurchaseInterface: function () {
-        //hide all buttons
-        for (var button = 0; button < UI.purchaseInterfaceArr.length; button++) {
-            UI.purchaseInterfaceArr[button].visible = false;
-        }
-        
-        return this;
-    },
-    
     //the buttons will be re-created so the callback functions will "update"
     destroyPurchaseInterface: function () {
         for (var button = 0; button < UI.purchaseInterfaceArr.length; button++) {
             UI.purchaseInterfaceArr[button].destroy();
         }
+        
+        UI.purchaseInterfaceArr = [];
         
         return this;
     },
