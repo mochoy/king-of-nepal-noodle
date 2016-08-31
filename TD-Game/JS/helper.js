@@ -141,6 +141,7 @@ UI = {
         if (UI.purchaseInterfaceArr.length === 0) {
             UI.initPurchaseInterface(parent);
         }
+        UI.removePurchaseInterface();
         
         var amtOfVisBtns = 0;       //keep track of how many buttons drawn
         var btnsToShowArr = [];     //keep track of WHICH buttons drawn
@@ -182,7 +183,7 @@ UI = {
             parent.validatePurchaseEntity(val)   
         }, parent, 2, 1, 0));
     },
-       
+     
     //change textures of buttons according to how far upgraded entity is
     initInterfaceTextures: function (amtOfVisBtns, data, canShowSellBtn, btnsToShowArr) {        
         for (var btn = 0; btn < UI.purchaseInterfaceArr.length; btn++) {            
@@ -274,6 +275,15 @@ UI = {
         
         return this;
     },
+    
+    removePurchaseInterface: function () {
+        for (var i = 0; i < UI.purchaseInterfaceArr.length; i++) {
+            UI.purchaseInterfaceArr[i].visible = false;
+        }
+        
+        return this;
+    },
+      
     
     //the buttons will be re-created so the callback functions will "update"
     destroyPurchaseInterface: function () {

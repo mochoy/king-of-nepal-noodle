@@ -164,7 +164,7 @@ SlotPrototype = function (x, y, data) {
 //         towerStuff.createTower(1, this.sprite.x ,this.sprite.y);
 //        this.sprite.inputEnabled = false;
         if (this.isPurchaseInterfaceShowing) {
-            UI.removePurchaseInterface();
+            UI.removePurchaseInterface().destroyPurchaseInterface();
             this.isPurchaseInterfaceShowing = false; 
         } else {
             this.displayPurchaseInfo();
