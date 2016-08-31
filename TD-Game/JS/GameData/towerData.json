@@ -5,6 +5,8 @@ var towerData = {
 			"class": "ManualTower",
 			"src": "chainGunIMG",
             "srcScale": 0.1,
+            
+            "canSell": false,
 			
 			"fireRate": 300,
 			"bulletSpeed": 1000,
@@ -145,6 +147,7 @@ var towerData = {
             "srcScale": 0.5,
             
             "cost": 100,
+            "canSell": true,
 			
 			"fireRate": 500,
 			"bulletSpeed": 1000,
