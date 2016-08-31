@@ -180,15 +180,8 @@ SlotPrototype = function (x, y, data) {
 
 
 
-towerStuff.towerFactory = function (towerNum, x, y) {
-    var createdTower;
-    
-    if (towerNum == 0){
-	  	return new window[towerData.data[0].class](game, x, y, towerData.data[0]).createRange().addToArray();
-    } else {
-	  	return new window[towerData.data[1].class](game, x, y, towerData.data[1]).createRange().addToArray();
-    }
-    
+towerStuff.towerFactory = function (towerNum, x, y) {    
+    return new window[towerData.data[towerNum].class](game, x, y, towerData.data[towerNum]).createRange().addToArray();
 };
 
 towerStuff.slotFactory = function (slotNum, x, y) {

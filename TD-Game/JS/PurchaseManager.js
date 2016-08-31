@@ -112,7 +112,11 @@ var PurchaseManager = function (purchaseData) {
     }
     
     this.sellEntity = function () {
-        console.log("selling entity")
+        data.money += this.sprite.totalCost;
+        UI.updateUI();
+        
+        this.slot.inputEnabled = true;
+        helper.removeFromArray(towerStuff.allTowerArr, towerStuff.autoTowerArr, towerStuff.manualTowerArr, this.sprite);
     }
 
 }   //constructor
