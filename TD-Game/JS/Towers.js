@@ -115,6 +115,8 @@ AutoTower = function (game, x, y, data) {
     this.addToArray = function () {
         towerStuff.allTowerArr.push(this.sprite);
         towerStuff.autoTowerArr.push(this.sprite);
+        
+        return this;
     };
     
     //this reference to sprite
@@ -179,11 +181,14 @@ SlotPrototype = function (x, y, data) {
 
 
 towerStuff.towerFactory = function (towerNum, x, y) {
+    var createdTower;
+    
     if (towerNum == 0){
-	  	towerStuff.mainTower = new window[towerData.data[0].class](game, x, y, towerData.data[0]).createRange().addToArray();
+	  	return new window[towerData.data[0].class](game, x, y, towerData.data[0]).createRange().addToArray();
     } else {
-	  	towerStuff.mainTower = new window[towerData.data[1].class](game, x, y, towerData.data[1]).createRange().addToArray();
+	  	return new window[towerData.data[1].class](game, x, y, towerData.data[1]).createRange().addToArray();
     }
+    
 };
 
 towerStuff.slotFactory = function (slotNum, x, y) {
