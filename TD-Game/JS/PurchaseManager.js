@@ -96,6 +96,8 @@ var PurchaseManager = function (purchaseData) {
     
     //create new entity, subtract money
     this.buyEntity = function (currentBuyingObj) {
+        //make sure tower sprite can no longer be clicked on unless its sold
+        this.sprite.inputEnabled = false;
         console.log("buying entity")        
     }
     
