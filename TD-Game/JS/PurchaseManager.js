@@ -5,10 +5,14 @@ var PurchaseManager = function (purchaseData) {
     this.displayPurchaseInfo = function () {        
         //draw upgrade menu
         var toDisplaySellBtn = true;
+        
         //check id to see if slot
         if (purchaseData.id) {      // .indexOf("Slot") !== -1 
             toDisplaySellBtn = false;
+        } else if (!this.sprite.data.canSell) {
+            toDisplaySellBtn = false;
         }
+        
         UI.showPurchaseInterface(this, purchaseData, toDisplaySellBtn); 
         this.isPurchaseInterfaceShowing = true;
     }
@@ -96,9 +100,15 @@ var PurchaseManager = function (purchaseData) {
     
     //create new entity, subtract money
     this.buyEntity = function (currentBuyingObj) {
-        //make sure tower sprite can no longer be clicked on unless its sold
         this.sprite.inputEnabled = false;
-        towerStuff.towerFactory(currentBuyingObj.indexInTowArr, this.sprite.x, this.sprite.y);      
+        
+        //attatch slot info to the created tower
+        var createdTower = towerStuff.towerFactory(currentBuyingObj.indexInTowArr, this.sprite.x, this.sprite.y);   
+        createdTower.hasSlot = true;
+        createdTower.slot = this.sprite;
+        
+        data.money -= currentBuyingObj.cost;
+        UI.updateUI();
     }
     
     this.sellEntity = function () {
