@@ -120,18 +120,19 @@ AutoTower = function (game, x, y, data) {
     };
     
     //this reference to sprite
-    this.sprite.findEnemy = function (enemyArray) {
+    this.sprite.findEnemy = function (enemyArray) {          
 		//find enemy
         for (var i = 0; i < enemyArray.length; i ++){
             enemySprite = enemyArray[i];
             if (this.range.contains(enemySprite.x, enemySprite.y)) {
                 this.data.canShoot = true;
                 this.target = enemySprite;
-            } else {
-				this.data.canShoot = false;
+                break;
+            } else {                
+                this.data.canShoot = false;
 			}
         }   //for
-		
+                		
 		//rotate to enemy
 		if (this.data.canShoot) {
 			this.rotation = game.physics.arcade.angleBetween(this, this.target) + 90;
