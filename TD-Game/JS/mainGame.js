@@ -135,9 +135,9 @@ var mainGameVar = {
 
 
         towerStuff.towerFactory(0, game.world.width/2, 500);
-        towerStuff.towerFactory(1, 100, 100);
+//        towerStuff.towerFactory(1, 100, 100);
         
-        towerStuff.slotFactory(1, 500, 500)
+        towerStuff.slotFactory(1, 400, 300)
         
         UI.createUI();
     },  //function create
