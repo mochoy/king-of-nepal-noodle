@@ -119,6 +119,7 @@ var mainGameVar = {
         var enemySpawnTimer = game.time.events.loop(Phaser.Timer.SECOND, enemyStuff.spawnEnemy, this);
         
         towerStuff.moveToPoint = game.add.sprite(centerX, centerY, null);
+        towerStuff.moveToPoint.visible = false
         
         enemyStuff.home = game.add.sprite(centerX, game.height - 200, "dudeIMG");
         game.physics.arcade.enable(enemyStuff.home);
@@ -138,6 +139,7 @@ var mainGameVar = {
 //        towerStuff.towerFactory(1, 100, 100);
         
         towerStuff.slotFactory(1, 400, 300)
+        towerStuff.slotFactory(1, 100, 300)
         
         UI.createUI();
     },  //function create
@@ -179,7 +181,7 @@ var mainGameVar = {
                 var towerSprite = towerStuff.allTowerArr[tower];
                 //loop through bullets
                 for (var bullet = 0; bullet < towerSprite.bulletArray.length; bullet++) {
-                    var bulletSprite = towerSprite.bulletArray[bullet];
+                    var bulletSprite = towerSprite.bulletArray[bullet];                    
                     game.physics.arcade.overlap(bulletSprite, enemySprite, enemySprite.hit, null, this);
                 }   //for iterate bulletArray
             }   //for iterate towerStuff.allTowerArray
