@@ -83,9 +83,10 @@ helper.removeFromArray = function (array1, array2, array3, sprite) {
         array3.splice(array3[array2.indexOf(sprite)], 1);   
     }
     
+//    sprite.scale.x = 10;
     sprite.destroy(true);
-    sprite = null;
-
+    
+    return null;
 };
 
 helper.imgNames = {
