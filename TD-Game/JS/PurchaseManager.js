@@ -103,9 +103,9 @@ var PurchaseManager = function (purchaseData) {
         this.sprite.inputEnabled = false;
         
         //attatch slot info to the created tower
-        var createdTower = towerStuff.towerFactory(currentBuyingObj.indexInTowArr, this.sprite.x, this.sprite.y);   
-        createdTower.hasSlot = true;
-        createdTower.slot = this.sprite;
+        var created = towerStuff.towerFactory(currentBuyingObj.indexInTowArr, this.sprite.x, this.sprite.y);   
+        created.hasSlot = true;
+        created.slot = this.sprite;
         
         data.money -= currentBuyingObj.cost;
         UI.updateUI();
@@ -116,7 +116,12 @@ var PurchaseManager = function (purchaseData) {
         UI.updateUI();
         
         this.slot.inputEnabled = true;
-        helper.removeFromArray(towerStuff.allTowerArr, towerStuff.autoTowerArr, towerStuff.manualTowerArr, this.sprite);
+        this.sprite.kill();
+        
+        //make sure to remove from correct arr
+//        var arrToRemoveFrom = (this instanceof AutoTower) ? towerStuff.autoTowerArr: towerStuff.manualTower;
+//        helper.removeFromArray(towerStuff.allTowerArr, arrToRemoveFrom, null, this.sprite);
+        
     }
 
 }   //constructor
