@@ -110,9 +110,7 @@ helper.bringToTop = function () {
         towerStuff.allTowerArr[tower].bringToTop();
     }
     
-    //make sure this stuff is at the most top 
-    towerStuff.moveToPoint.bringToTop();
-    
+    //make sure this stuff is at the most top     
     UI.bringPurchaseInterfaceToTop();
     UI.healthText.bringToTop();
     UI.moneyText.bringToTop();
