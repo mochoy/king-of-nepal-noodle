@@ -43,7 +43,7 @@ TowerPrototype = function (game, x, y, data) {
         }, this);
     
     //periodically shoot depending on tower's fireRate
-    this.sprite.fireLoopTimer = game.time.events.loop(this.sprite.data.fireRate, function () {
+    this.sprite.fireLoopTimer = game.time.events.loop(this.sprite.data.fireRate, function () {        
         if (this.sprite.data.canShoot && this.sprite.alive){
             this.sprite.shoot(this.sprite, this.sprite.target);
         }
@@ -186,6 +186,6 @@ towerStuff.towerFactory = function (towerNum, x, y) {
 };
 
 towerStuff.slotFactory = function (slotNum, x, y) {
-    new SlotPrototype(x, y, slotData.data[slotNum])
+    return new SlotPrototype(x, y, slotData.data[slotNum])
 }
 
