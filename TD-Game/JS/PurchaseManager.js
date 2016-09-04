@@ -15,6 +15,8 @@ var PurchaseManager = function (purchaseData) {
         
         UI.showPurchaseInterface(this, purchaseData, toDisplaySellBtn); 
         this.isPurchaseInterfaceShowing = true;
+        
+        return this;
     }
             
     this.validatePurchaseEntity = function (path) {   
@@ -31,6 +33,7 @@ var PurchaseManager = function (purchaseData) {
             this.validateBuy(path);
         }
          
+        return this;
     }    //method
     
     //make sure entitiy can be upgraded 
@@ -49,7 +52,9 @@ var PurchaseManager = function (purchaseData) {
             console.log("too poor")
         } else if (data.money >= currentUpsPathObj.cost) {
             this.upgradeEntity(path, currentUpsPathObj);
-        }   
+        }
+        
+        return this;
     }
     
     this.validateBuy = function (path) {
@@ -60,6 +65,8 @@ var PurchaseManager = function (purchaseData) {
         } else {
             this.buyEntity(currentBuyingObj);
         }
+        
+        return this;
     }
     
     //what to do when entity is actually being upgraded: subtract money, new entity texture
@@ -76,12 +83,14 @@ var PurchaseManager = function (purchaseData) {
         //add to total cost of tower the cost of the upgrade
         this.sprite.totalCost += currentUpsPathObj.cost;
         
-        
+        return this;
     }   //method
     
     this.drawNewEntity = function (path, currentUpsPathObj) {           
         this.sprite.loadTexture(currentUpsPathObj.src);
         helper.initSprite(this.sprite, currentUpsPathObj.srcScale, currentUpsPathObj.srcScale);
+        
+        return this;
     }
     
     //change stats from data onto the entity
@@ -96,6 +105,8 @@ var PurchaseManager = function (purchaseData) {
                 this.createRange();
             }
         }   //for
+        
+        return this;
     }       //method   
     
     //create new entity, subtract money
@@ -109,6 +120,8 @@ var PurchaseManager = function (purchaseData) {
         
         data.money -= currentBuyingObj.cost;
         UI.updateUI();
+        
+        return this;
     }
     
     this.sellEntity = function () {
@@ -122,6 +135,9 @@ var PurchaseManager = function (purchaseData) {
 //        var arrToRemoveFrom = (this instanceof AutoTower) ? towerStuff.autoTowerArr: towerStuff.manualTower;
 //        helper.removeFromArray(towerStuff.allTowerArr, arrToRemoveFrom, null, this.sprite);
         
+        
+        return this;
     }
 
+    
 }   //constructor
