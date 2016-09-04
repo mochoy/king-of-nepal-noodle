@@ -81,11 +81,20 @@ TowerPrototype = function (game, x, y, data) {
 	//create tower's range
     this.createRange = function () {
         if (this.sprite.data.rangeVal != 0) {
-            this.sprite.range = new Phaser.Circle(this.sprite.x +(this.sprite.width/2), this.sprite.y+(this.sprite.height/2), this.sprite.data.rangeVal)
+            this.sprite.range = new Phaser.Circle(this.sprite.x +(this.sprite.width/2), this.sprite.y+(this.sprite.height/2), this.sprite.data.rangeVal);
+            this.showRange();
         }   //if
         
         return this;
     };  //fucntion
+    
+    this.showRange = function () {
+        var graphics = game.add.graphics(0, 0);
+        graphics.lineStyle(2, 255, 1);
+        graphics.drawCircle(this.sprite.x, this.sprite.y, this.sprite.data.rangeVal);
+
+
+    }
     
     return this;
 };   //class MainTower
