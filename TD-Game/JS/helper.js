@@ -119,6 +119,8 @@ helper.bringToTop = function () {
 helper.setHW = function (target, h, w) {
     target.height = h;
     target.width = w;
+    
+    return target;
 }
 
 

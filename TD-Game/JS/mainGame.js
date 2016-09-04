@@ -116,18 +116,16 @@ var mainGameVar = {
         centerX = game.width/2;
         centerY = game.height/2;
         
-        var enemySpawnTimer = game.time.events.loop(Phaser.Timer.SECOND, enemyStuff.spawnEnemy, this);
+        game.time.events.loop(Phaser.Timer.SECOND, enemyStuff.spawnEnemy, this);
         
         towerStuff.moveToPoint = game.add.sprite(centerX, centerY, null);
         towerStuff.moveToPoint.visible = false
         
-        enemyStuff.home = game.add.sprite(centerX, game.height - 200, "dudeIMG");
+        enemyStuff.home = helper.setHW(game.add.sprite(centerX, game.height - 200, "dudeIMG"), 1, 1);
         game.physics.arcade.enable(enemyStuff.home);
-        helper.setHW(enemyStuff.home, 1, 1);
         
-        enemyStuff.endPoint = game.add.sprite(centerX, 0, "dudeIMG");
+        enemyStuff.endPoint = helper.setHW(game.add.sprite(centerX, 0, "dudeIMG"), 10, 10);
         game.physics.arcade.enable(enemyStuff.endPoint);
-        helper.setHW(enemyStuff.endPoint, 10, 10);
         
         enemyStuff.moveToPoint = enemyStuff.home;
 
