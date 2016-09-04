@@ -33,7 +33,7 @@ TowerPrototype = function (game, x, y, data) {
         
     //towerSprite clickable
     this.sprite.events.onInputDown.add(
-        function () {
+        function () {            
             if (this.isPurchaseInterfaceShowing) {      //if upgrade info is already showing
                 UI.removePurchaseInterface();
                 this.isPurchaseInterfaceShowing = false;
@@ -41,10 +41,10 @@ TowerPrototype = function (game, x, y, data) {
                 this.displayPurchaseInfo()                
             }
                         
-            if (this.isRangeShowing) {
-                this.hideRange();
-            } else if (!this.isRangeShowing) {
-                this.showRange();
+            if (this.sprite.isRangeShowing) {
+                this.hideAllRanges().hideRange();
+            } else if (!this.sprite.isRangeShowing) {
+                this.hideAllRanges().showRange();
             }
             
         }, this);
@@ -96,19 +96,34 @@ TowerPrototype = function (game, x, y, data) {
     };  //fucntion
     
     this.showRange = function () {
-        this.isRangeShowing = true;
+        this.sprite.isRangeShowing = true;
         
         this.sprite.graphics = game.add.graphics(0, 0);
         this.sprite.graphics.lineStyle(2, 0x000000, 1);     //just put 0x in front of color hex code thingy to get color
         this.sprite.graphics.drawCircle(this.sprite.x, this.sprite.y, this.sprite.data.rangeVal);
         
         this.sprite.graphics.visible = true;
+        
+        return this;
     };
     
     this.hideRange = function () {
-        this.isRangeShowing = false;
+        this.sprite.isRangeShowing = false;
         this.sprite.graphics.visible = false;
+        
+        return this;
     };
+    
+    this.hideAllRanges = function () {
+        for (var i = 0; i < towerStuff.allTowerArr.length; i++){
+            if (towerStuff.allTowerArr[i].graphics) {
+                towerStuff.allTowerArr[i].isRangeShowing = false;
+                towerStuff.allTowerArr[i].graphics.visible = false;
+            }
+        }
+        
+        return this;
+    }       //method
     
     return this;
 };   //class MainTower
