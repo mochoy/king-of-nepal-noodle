@@ -36,17 +36,11 @@ TowerPrototype = function (game, x, y, data) {
         function () {            
             if (this.isPurchaseInterfaceShowing) {      //if upgrade info is already showing
                 UI.removePurchaseInterface();
+                this.hideAllRanges().hideRange();
                 this.isPurchaseInterfaceShowing = false;
             } else if (!this.isPurchaseInterfaceShowing){
-                this.displayPurchaseInfo()                
-            }
-                        
-            if (this.sprite.isRangeShowing) {
-                this.hideAllRanges().hideRange();
-            } else if (!this.sprite.isRangeShowing) {
-                this.hideAllRanges().showRange();
-            }
-            
+                this.displayPurchaseInfo().hideAllRanges().showRange();
+            }  
         }, this);
     
     //periodically shoot depending on tower's fireRate
