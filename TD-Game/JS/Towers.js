@@ -40,6 +40,7 @@ TowerPrototype = function (game, x, y, data) {
             } else {
             this.displayPurchaseInfo()                
             }
+
         }, this);
     
     //periodically shoot depending on tower's fireRate
@@ -89,12 +90,22 @@ TowerPrototype = function (game, x, y, data) {
     };  //fucntion
     
     this.showRange = function () {
+        this.isShowingRange = true;
+        
         this.sprite.graphics = game.add.graphics(0, 0);
-        this.sprite.graphics.lineStyle(2, 0x000000, 1);
+        this.sprite.graphics.lineStyle(2, 0x000000, 1);     //just put 0x in front of color hex code thingy to get color
         this.sprite.graphics.drawCircle(this.sprite.x, this.sprite.y, this.sprite.data.rangeVal);
         
         this.sprite.graphics.visibile = true;
-    }
+    };
+    
+    this.hideRange = function () {
+        this.isShowingRange = false;
+        
+        if (this.sprite.graphics) {
+            this.sprite.graphics.visibile = false;
+        }
+    };
     
     return this;
 };   //class MainTower
