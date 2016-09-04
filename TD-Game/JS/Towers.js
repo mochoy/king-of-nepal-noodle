@@ -89,11 +89,11 @@ TowerPrototype = function (game, x, y, data) {
     };  //fucntion
     
     this.showRange = function () {
-        var graphics = game.add.graphics(0, 0);
-        graphics.lineStyle(2, 255, 1);
-        graphics.drawCircle(this.sprite.x, this.sprite.y, this.sprite.data.rangeVal);
-
-
+        this.sprite.graphics = game.add.graphics(0, 0);
+        this.sprite.graphics.lineStyle(2, 0x000000, 1);
+        this.sprite.graphics.drawCircle(this.sprite.x, this.sprite.y, this.sprite.data.rangeVal);
+        
+        this.sprite.graphics.visibile = true;
     }
     
     return this;
