@@ -37,10 +37,16 @@ TowerPrototype = function (game, x, y, data) {
             if (this.isPurchaseInterfaceShowing) {      //if upgrade info is already showing
                 UI.removePurchaseInterface();
                 this.isPurchaseInterfaceShowing = false;
-            } else {
-            this.displayPurchaseInfo()                
+            } else if (!this.isPurchaseInterfaceShowing){
+                this.displayPurchaseInfo()                
             }
-
+                        
+            if (this.isRangeShowing) {
+                this.hideRange();
+            } else if (!this.isRangeShowing) {
+                this.showRange();
+            }
+            
         }, this);
     
     //periodically shoot depending on tower's fireRate
@@ -83,28 +89,25 @@ TowerPrototype = function (game, x, y, data) {
     this.createRange = function () {
         if (this.sprite.data.rangeVal != 0) {
             this.sprite.range = new Phaser.Circle(this.sprite.x +(this.sprite.width/2), this.sprite.y+(this.sprite.height/2), this.sprite.data.rangeVal);
-            this.showRange();
+//            this.showRange();
         }   //if
         
         return this;
     };  //fucntion
     
     this.showRange = function () {
-        this.isShowingRange = true;
+        this.isRangeShowing = true;
         
         this.sprite.graphics = game.add.graphics(0, 0);
         this.sprite.graphics.lineStyle(2, 0x000000, 1);     //just put 0x in front of color hex code thingy to get color
         this.sprite.graphics.drawCircle(this.sprite.x, this.sprite.y, this.sprite.data.rangeVal);
         
-        this.sprite.graphics.visibile = true;
+        this.sprite.graphics.visible = true;
     };
     
     this.hideRange = function () {
-        this.isShowingRange = false;
-        
-        if (this.sprite.graphics) {
-            this.sprite.graphics.visibile = false;
-        }
+        this.isRangeShowing = false;
+        this.sprite.graphics.visible = false;
     };
     
     return this;
