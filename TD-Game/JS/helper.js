@@ -116,6 +116,15 @@ helper.bringToTop = function () {
     UI.moneyText.bringToTop();
 }
 
+helper.setHW = function (target, h, w) {
+    target.height = h;
+    target.width = w;
+}
+
+
+
+
+
 //UI stuff
 UI = {
     fontFamily: "Montserrat",
