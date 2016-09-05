@@ -52,8 +52,12 @@ TowerPrototype = function (game, x, y, data) {
     
     //add tower's sprite to specific arrays 
     this.addToArr = function (index) {
-        towerStuff.allTowerArr.push(this.sprite);
-        towerStuff.manualTowerArr.push(this.sprite);
+        if (index) {
+            towerStuff.allTowerArr.push(this.sprite);
+            towerStuff.manualTowerArr.push(this.sprite);
+        } else {
+            towerStuff.allTowerArr[index] = this.sprite;
+        }
         
         return this;
     };   //function 
@@ -145,8 +149,12 @@ AutoTower = function (game, x, y, data) {
     
     //add sprite to specific arrays
     this.addToArr = function (index) {
-        towerStuff.allTowerArr.push(this.sprite);
-        towerStuff.autoTowerArr.push(this.sprite);
+        if (index) {
+            towerStuff.allTowerArr.push(this.sprite);
+            towerStuff.autoTowerArr.push(this.sprite);
+        } else {
+            towerStuff.allTowerArr[index] = this.sprite;
+        }
         
         return this;
     };
