@@ -52,11 +52,13 @@ TowerPrototype = function (game, x, y, data) {
     
     //add tower's sprite to specific arrays 
     this.addToArr = function (index) {
-        if (index) {
+        if (!index) {
             towerStuff.allTowerArr.push(this.sprite);
             towerStuff.manualTowerArr.push(this.sprite);
-        } else {
+        } else if (index <= 0) {            
+            var indexSpecial = helper.findInArr(towerStuff.manualTowerArr, towerStuff.allTowerArr[index]);
             towerStuff.allTowerArr[index] = this.sprite;
+            towerStuff.manualTowerArr[indexSpecial] = this.sprite;
         }
         
         return this;
@@ -149,11 +151,13 @@ AutoTower = function (game, x, y, data) {
     
     //add sprite to specific arrays
     this.addToArr = function (index) {
-        if (index) {
+        if (!index) {
             towerStuff.allTowerArr.push(this.sprite);
             towerStuff.autoTowerArr.push(this.sprite);
-        } else {
+        } else if (index <= 0) {            
+            var indexSpecial = helper.findInArr(towerStuff.autoTowerArr, towerStuff.allTowerArr[index]);
             towerStuff.allTowerArr[index] = this.sprite;
+            towerStuff.autoTowerArr[indexSpecial] = this.sprite; 
         }
         
         return this;
