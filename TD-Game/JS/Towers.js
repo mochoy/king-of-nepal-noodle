@@ -51,7 +51,7 @@ TowerPrototype = function (game, x, y, data) {
     }, this);
     
     //add tower's sprite to specific arrays 
-    this.addToArray = function () {
+    this.addToArr = function (index) {
         towerStuff.allTowerArr.push(this.sprite);
         towerStuff.manualTowerArr.push(this.sprite);
         
@@ -144,7 +144,7 @@ AutoTower = function (game, x, y, data) {
     this.inherit(this, TowerPrototype);
     
     //add sprite to specific arrays
-    this.addToArray = function () {
+    this.addToArr = function (index) {
         towerStuff.allTowerArr.push(this.sprite);
         towerStuff.autoTowerArr.push(this.sprite);
         
@@ -213,9 +213,20 @@ SlotPrototype = function (x, y, data) {
 
 
 
-towerStuff.towerFactory = function (towerNum, x, y) {    
-    return new window[towerData.data[towerNum].class](game, x, y, towerData.data[towerNum]).createRange().addToArray();
-};
+towerStuff.towerFactory = function (towerNum, x, y) {
+    //reuse tower thingies so the previous tower that was in the arr gets kicked out and collected by garbage collection, hopefully
+    if (towerStuff.allTowerArr.length < 30) {
+        return new window[towerData.data[towerNum].class](game, x, y, towerData.data[towerNum]).createRange().addToArr(null); 
+    } else {
+        for (var i = 0; i < towerStuff.allTowerArr.length; i++) {
+            if (!towerStuff.allTowerArr[i].alive) {
+                return new window[towerData.data[towerNum].class](game, x, y, towerData.data[towerNum]).createRange().addToArr(i);
+                break;
+            }
+        }
+    }
+    
+};  //methos
 
 towerStuff.slotFactory = function (slotNum, x, y) {
     return new SlotPrototype(x, y, slotData.data[slotNum])
