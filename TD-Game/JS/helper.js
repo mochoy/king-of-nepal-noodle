@@ -89,6 +89,10 @@ helper.removeFromArray = function (array1, array2, array3, sprite) {
     return null;
 };
 
+helper.findInArr = function (arr, target) {
+    return _.findIndex(arr, target); 
+}
+
 helper.imgNames = {
     civilianImg: "pathPointIMG"
 };
