@@ -14,6 +14,7 @@ var towerData = {
 			"hit": 0,
 			"rangeVal": 0,
 			"canShoot": true,
+            "pierce": 1,
             
             "upgrades": {
                 currentPathUps1: 0,
@@ -155,6 +156,7 @@ var towerData = {
 			"hit": 0,
 			"rangeVal": 500,
 			"canShoot": false,
+            "pierce": 1,
             
             "upgrades": {
                 "currentPathUps1": 0,
