@@ -127,6 +127,13 @@ helper.setHW = function (target, h, w) {
     return target;
 }
 
+helper.setXY = function (target, x, y) {
+    target.x = x;
+    target.y = y;
+    
+    return target;
+}
+
 
 
 
