@@ -28,7 +28,7 @@ var PurchaseManager = function (purchaseData) {
         if (path === 0) {
             this.sellEntity();
         } else if (purchaseData["path" + path]) {        //stuff if upgrading            
-            this.validateUpgrade(path);
+            this.validateUpgrade(path).hideAllRanges().hideRange();
         } else if (purchaseData.towersOrBuildings) {      //stuff if buying
             this.validateBuy(path);
         }
