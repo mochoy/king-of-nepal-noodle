@@ -70,7 +70,7 @@ TowerPrototype = function (game, x, y, data) {
         var bullet = game.add.sprite(0, 0, "bookIMG");
         helper.setXY(bullet, towerSpritel.x, towerSpritel.y);
        	helper.initSprite(bullet, 0.1, 0.1);
-        bullet.pierce = this.sprite.data.pierce;
+        bullet.pierce = towerSpritel.data.pierce;
         
         bullet.towerSprite = this;
         towerSpritel.bulletArray.push(bullet);

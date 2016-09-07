@@ -57,11 +57,16 @@ EnemyPrototype = function () {
         if (enemySprite.data.health === 0) {
             enemySprite.killed(enemySprite);
         } else {
-            enemySprite.data.health --;
-            
-            bulletSpritec.towerSprite.hit ++;
-            helper.removeFromArray(bulletSpritec.towerSprite.bulletArray, null, null, bulletSpritec);
+            enemySprite.data.health--;
+            bulletSpritec.towerSprite.hit++;
         }   //else enemySprite health
+            
+        //if bullet can still pass enemies, dont kill it
+        if (bulletSpritec.pierce === 0) {
+            helper.removeFromArray(bulletSpritec.towerSprite.bulletArray, null, null, bulletSpritec);
+        } else {
+            bulletSpritec.pierce--;
+        }
     };   
     
     this.killed = function (enemySprite) {
