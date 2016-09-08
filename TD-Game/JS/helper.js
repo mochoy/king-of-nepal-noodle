@@ -141,7 +141,6 @@ helper.setXY = function (target, x, y) {
 //UI stuff
 UI = {
     fontFamily: "Montserrat",
-    purchaseInterfaceArr: [],      //this array will be saved even after the methods that use it terminate
     
     //create UI that's mainly visible all in game
     createUI: function () {
@@ -156,27 +155,39 @@ UI = {
         UI.moneyText.text = "MONEY: " + data.money;
     }, 
     
+    createUnPauseInputListener: function (){
+        game.input.onDown.add(function () {            
+            if (game.paused) {
+                UI.unPause();
+            }   
+        }, this);
+        
+        return this;
+    },
+    
     createPauseBtn: function () {
         var sprite = game.add.sprite(450, 0, "pauseBtnIMG");
         helper.setHW(sprite, 25, 25);
         
         sprite.inputEnabled = true;
-        sprite.events.onInputDown.add(function () {
+        sprite.events.onInputDown.add(function () {            
             UI.pause();
         });
         
         return this;  
     },
     
-    pause: function () {
+    pause: function () {        
         game.paused = true;
         canAim = false;
         
         return this;
     },
     
-    unPause: function() {
-      
+    unPause: function() {        
+        game.paused = false;
+        canAim = true;
+        
         return this;
     },
 
@@ -185,6 +196,9 @@ UI = {
     //
     //purchase interface stuff
     //
+    
+    purchaseInterfaceArr: [],      //this array will be saved even after the methods that use it terminate
+
     
     //show buttons/interface when user buying or upgrading entity. 
     //this method called when by PurchaseManager
