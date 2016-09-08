@@ -1,4 +1,4 @@
-var centerX , centerY, canAim = true, data = Object.create(gameData.data)[0];
+var centerX , centerY, canClickOnGame = true, data = Object.create(gameData.data)[0];
 
 //config font stuff
 WebFontConfig = {
@@ -140,7 +140,7 @@ var mainGameVar = {
     update: function (){
         // Aim manual towers to mouse click
         game.input.onDown.add(function () {
-            if (canAim) {
+            if (canClickOnGame) {
                 helper.setXY(towerStuff.moveToPoint, towerStuff.moveToPoint.x, towerStuff.moveToPoint.y);
                 
                 //rotate only if can

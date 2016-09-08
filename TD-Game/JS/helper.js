@@ -179,14 +179,14 @@ UI = {
     
     pause: function () {        
         game.paused = true;
-        canAim = false;
+        canClickOnGame = false;
         
         return this;
     },
     
     unPause: function() {        
         game.paused = false;
-        canAim = true;
+        canClickOnGame = true;
         
         return this;
     },
