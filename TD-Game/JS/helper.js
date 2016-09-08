@@ -160,7 +160,11 @@ UI = {
         var sprite = game.add.sprite(450, 0, "pauseBtnIMG");
         helper.setHW(sprite, 25, 25);
         
-
+        sprite.inputEnabled = true;
+        sprite.events.onInputDown.add(function () {
+            game.paused = true;
+            canAim = false;
+        });
         
         return this;  
     },

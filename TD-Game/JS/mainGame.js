@@ -1,12 +1,9 @@
-var centerX , centerY;
+var centerX , centerY, canAim = true, data = Object.create(gameData.data)[0];
 
 //config font stuff
 WebFontConfig = {
   google: { families: [ 'Montserrat' ] }
 };
-
-//init game data from gameData json file
-var data = Object.create(gameData.data)[0];
 
 var mainGameVar = {
     preload: function (){
@@ -134,8 +131,8 @@ var mainGameVar = {
         towerStuff.towerFactory(0, game.world.width/2, 500);
 //        towerStuff.towerFactory(1, 100, 100);
         
-        towerStuff.slotFactory(1, 400, 300)
-        towerStuff.slotFactory(1, 100, 300)
+        towerStuff.slotFactory(1, 400, 300);
+        towerStuff.slotFactory(1, 100, 300);
         
         UI.createUI().createPauseBtn();
     },  //function create
@@ -143,24 +140,10 @@ var mainGameVar = {
     update: function (){
         // Aim manual towers to mouse click
         game.input.onDown.add(function () {
-            var canAim = false;
-            towerStuff.moveToPoint.x = game.input.x;
-            towerStuff.moveToPoint.y = game.input.y;
-            
-            //make sure not clicked on tower before rotate
-            for (var i = 0; i < towerStuff.allTowerArr.length; i ++) {                
-                var towerSprite = towerStuff.allTowerArr[i];
-                if (!game.physics.arcade.overlap(towerStuff.moveToPoint, towerSprite)) {
-                    canAim = true;
-                    break;
-                } else {
-                    cainAim = false;
-                    break;
-                }
-            }
-            
-            //rotate only if can
             if (canAim) {
+                helper.setXY(towerStuff.moveToPoint, towerStuff.moveToPoint.x, towerStuff.moveToPoint.y);
+                
+                //rotate only if can
                 for (var i = 0; i < towerStuff.manualTowerArr.length; i ++) {
                     var towerSprite = towerStuff.manualTowerArr[i];
                     towerSprite.rotation = (game.physics.arcade.angleToPointer(towerSprite)) + 90;
