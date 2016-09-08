@@ -162,11 +162,22 @@ UI = {
         
         sprite.inputEnabled = true;
         sprite.events.onInputDown.add(function () {
-            game.paused = true;
-            canAim = false;
+            UI.pause();
         });
         
         return this;  
+    },
+    
+    pause: function () {
+        game.paused = true;
+        canAim = false;
+        
+        return this;
+    },
+    
+    unPause: function() {
+      
+        return this;
     },
 
     
