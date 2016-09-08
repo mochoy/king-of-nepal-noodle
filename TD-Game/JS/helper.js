@@ -147,12 +147,23 @@ UI = {
     createUI: function () {
         UI.healthText = game.add.text(0, 0, "HEALTH: " + data.health, { fontFamily: UI.fontFamily, fontSize: 20, fontWeight: 'bold', fill: '#000000'    });
         UI.moneyText = game.add.text(200, 0, "MONEY: " + data.money, { fontFamily: UI.fontFamily, fontSize: 20, fontWeight: 'bold', fill: '#000000' });
+        
+        return this;
     },
         
     updateUI: function(){
         UI.healthText.text = "HEALTH: " + data.health;
         UI.moneyText.text = "MONEY: " + data.money;
     }, 
+    
+    createPauseBtn: function () {
+        var sprite = game.add.sprite(450, 0, "pauseBtnIMG");
+        helper.setHW(sprite, 25, 25);
+        
+
+        
+        return this;  
+    },
 
     
     //

@@ -137,7 +137,7 @@ var mainGameVar = {
         towerStuff.slotFactory(1, 400, 300)
         towerStuff.slotFactory(1, 100, 300)
         
-        UI.createUI();
+        UI.createUI().createPauseBtn();
     },  //function create
     
     update: function (){
