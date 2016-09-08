@@ -17,11 +17,12 @@ var mainGameVar = {
         game.load.spritesheet('testBtn4SS', 'Assets/Images/Test/platform.png', 32, 40);
         game.load.spritesheet('testBtn5SS', 'Assets/Images/Test/storyOfSeeds.png', 48, 48);
         
-        game.load.image ("bookIMG", "Assets/Images/Test/book.jpg");                 
-        game.load.image ("pathIMG", "Assets/Images/Test/greyBlock.jpg");            
-        game.load.image ("pathPointIMG", "Assets/Images/Test/storyOfSeeds.png");    
-        game.load.image ("dudeIMG", "Assets/Images/Test/dude.png")                  
-        game.load.image ("tower1IMG", "Assets/Images/Test/baddie.png")             
+        game.load.image("bookIMG", "Assets/Images/Test/book.jpg");                 
+        game.load.image("pathIMG", "Assets/Images/Test/greyBlock.jpg");            
+        game.load.image("pathPointIMG", "Assets/Images/Test/storyOfSeeds.png");    
+        game.load.image("dudeIMG", "Assets/Images/Test/dude.png")                  
+        game.load.image("tower1IMG", "Assets/Images/Test/baddie.png")             
+        game.load.image("pauseBtnIMG", "Assets/Images/Test/pauseButton.jpg")             
         
         //more test tower assets
         //from canyon defense
