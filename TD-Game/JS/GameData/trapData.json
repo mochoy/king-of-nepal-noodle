@@ -1,6 +1,14 @@
 var trapData = {
     "data": [
-        
+        {
+            "name": "trap1",
+            "class": "TrapPrototype",
+            "src": "sniperMonkeyIMG",
+            "icon": "sniperMonkeyIconIMG",
+            
+            "health": "1",
+            "damage": "1"
+        }
     ]
     
 };
