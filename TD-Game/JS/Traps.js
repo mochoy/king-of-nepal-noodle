@@ -5,3 +5,10 @@ var TrapPrototype = function (game, x, y, data){
     };
     this.inheritBuildingsAndTowers(this, Entity);
 }
+
+
+
+
+var trapFactory = function (towerNum, x, y) {
+    return new TrapPrototype();
+}
