@@ -147,19 +147,13 @@ var mainGameVar = {
                 loop:
                 for (var i = 0; i < towerStuff.allTowerArr.length; i ++) {                        
                     var towerSprite = towerStuff.allTowerArr[i];
-            
-                    //find corners of tower
-                    var width = towerSprite.width, height = towerSprite.height;
-                    var x1 = towerSprite.x - (width/2), x2 = towerSprite.x + (width/2),   //x1 left, x2 right
-                        y1 = towerSprite.y - (height/2), y2 = towerSprite.y + (height/2);   //y1 upper, y2 lower
-                           
+
                     //if tower is clicked
-                    if(event.x > x1 && event.x < x2 && event.y > y1 && event.y < y2 ){ 
+                    if(helper.checkIfMouseOverlapping(towerSprite, event.x, event.y)){ 
                         canTowerRotate = false;
                         break loop;
-                    }
-                        
-                }
+                    }   //if
+                }   //for
                 
                 //rotate only if can
                 if (canTowerRotate){ 
@@ -167,11 +161,10 @@ var mainGameVar = {
                     for (var i = 0; i < towerStuff.manualTowerArr.length; i ++) {
                         var towerSprite = towerStuff.manualTowerArr[i];
                         towerSprite.rotation = (game.physics.arcade.angleToPointer(towerSprite)) + 90;
-                    } 
-                }
+                    }   //for
+                }   //if
 
             }       //if
-
         }, this);
         
         //collision for bullets and enemies
