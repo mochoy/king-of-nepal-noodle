@@ -3,8 +3,10 @@ var trapData = {
         {
             "name": "trap1",
             "class": "TrapPrototype",
+            
             "src": "sniperMonkeyIMG",
             "icon": "sniperMonkeyIconIMG",
+            "srcScale": 1,
             
             "health": "1",
             "damage": "1"
