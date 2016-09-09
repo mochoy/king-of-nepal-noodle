@@ -134,6 +134,21 @@ helper.setXY = function (target, x, y) {
     return target;
 }
 
+helper.checkIfMouseOverlapping = function (target, x, y) {
+    //find corners of target
+    var width = target.width, height = target.height;
+    var x1 = target.x - (width/2), x2 = target.x + (width/2),   //x1 left, x2 right
+        y1 = target.y - (height/2), y2 = target.y + (height/2);   //y1 upper, y2 lower
+    
+    if(x > x1 && x < x2 && y > y1 && y < y2 ){ 
+        return true;
+    } else {
+        return false;
+    }
+
+    
+}
+
 
 
 
