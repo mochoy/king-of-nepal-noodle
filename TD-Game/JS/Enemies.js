@@ -8,14 +8,20 @@ enemyStuff.allEnemyArray = [];
 
 
 //Enemy superclass thingy
-EnemyPrototype = function () {
-    this.enemySprite = null;
+EnemyPrototype = function (x, y, data) {
+    this.inheritEntity = function (thiz, constructer) {
+        thiz.constructor = constructer;
+        thiz.constructor(x, y, data, data.src);
+    };
+    this.inheritEntity(this, Entity)
+    
+//    this.enemySprite = null;
     
     //create sprite
     this.init = function (game, x, y, data) {
         //create sprite
-        this.enemySprite = game.add.sprite(x, y, data.src);
-		helper.initSprite(this.enemySprite, data.srcScale, data.srcScale);
+//        this.enemySprite = game.add.sprite(x, y, data.src);
+//		helper.initSprite(this.enemySprite, data.srcScale, data.srcScale);
         
         //stuff dealing with movement move locations
         this.enemySprite.target = enemyStuff.moveToPoint;
@@ -122,10 +128,10 @@ enemyStuff.enemyFactory = function () {
     var currentEnemyData = enemyData.data[data.currentPeriod];
     
     if (num < 0.5) {
-		return new window[currentEnemyData[0].class]().init(game, (game.width/3), 10, currentEnemyData[0]);
+		return new window[currentEnemyData[0].class]((game.width/3), 10, currentEnemyData[0]).init(game, (game.width/3), 10, currentEnemyData[0]);
 //        new enemyStuff.EnemyBasic().init(game, (game.width/3), 10);
     } else {
-		return new window[currentEnemyData[0].class]().init(game, ((game.width/3)*2), 10, currentEnemyData[0]);
+		return new window[currentEnemyData[0].class](((game.width/3)*2), 10, currentEnemyData[0]).init(game, ((game.width/3)*2), 10, currentEnemyData[0]);
 //        new enemyStuff.EnemyBasic().init(game, ((game.width/3)*2), 10);
     }
 };
