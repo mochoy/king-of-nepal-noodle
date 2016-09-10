@@ -18,7 +18,7 @@ EnemyPrototype = function (x, y, data) {
 //    this.enemySprite = null;
     
     //create sprite
-    this.init = function (game, x, y, data) {
+    this.init = function () {
         //create sprite
 //        this.enemySprite = game.add.sprite(x, y, data.src);
 //		helper.initSprite(this.enemySprite, data.srcScale, data.srcScale);
@@ -128,10 +128,10 @@ enemyStuff.enemyFactory = function () {
     var currentEnemyData = enemyData.data[data.currentPeriod];
     
     if (num < 0.5) {
-		return new window[currentEnemyData[0].class]((game.width/3), 10, currentEnemyData[0]).init(game, (game.width/3), 10, currentEnemyData[0]);
+		return new window[currentEnemyData[0].class]((game.width/3), 10, currentEnemyData[0]).init();
 //        new enemyStuff.EnemyBasic().init(game, (game.width/3), 10);
     } else {
-		return new window[currentEnemyData[0].class](((game.width/3)*2), 10, currentEnemyData[0]).init(game, ((game.width/3)*2), 10, currentEnemyData[0]);
+		return new window[currentEnemyData[0].class](((game.width/3)*2), 10, currentEnemyData[0]).init();
 //        new enemyStuff.EnemyBasic().init(game, ((game.width/3)*2), 10);
     }
 };
