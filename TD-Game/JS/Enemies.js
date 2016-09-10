@@ -27,8 +27,24 @@ EnemyPrototype = function (x, y, data) {
     //move to target
     //this == sprite
     this.sprite.moveToTarget = function () {
-        this.rotation = game.physics.arcade.angleBetween(this, this.target);
-        game.physics.arcade.moveToObject(this, this.target, this.data.moveSpeed);
+//        this.rotation = game.physics.arcade.angleBetween(this, this.target);
+//        game.physics.arcade.moveToObject(this, this.target, this.data.moveSpeed);
+        
+        var isOverlappingTowerSlot = false;
+        
+        //check if enemy overlaps towerslot
+        loop:
+            for (var i = 0; i < towerStuff.towerSlotArr.length; i ++) {
+                if (game.physics.arcade.overlap(this, towerStuff.towerSlotArr[i])) {
+                    isOverlappingTowerSlot = true;   
+                    break loop;
+                }
+            }        
+        
+        if (!isOverlappingTowerSlot) {
+            this.y += this.data.moveSpeed;
+        }
+        
     };
     
     //enemy hit
