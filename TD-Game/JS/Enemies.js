@@ -117,13 +117,15 @@ EnemyPrototype = function () {
     
 };
 
-enemyStuff.spawnEnemy = function () {
+enemyStuff.enemyFactory = function () {
     var num = Math.random();
+    var currentEnemyData = enemyData.data[data.currentPeriod];
+    
     if (num < 0.5) {
-		new window[enemyData.data[0].class]().init(game, (game.width/3), 10, enemyData.data[0]);
+		return new window[currentEnemyData[0].class]().init(game, (game.width/3), 10, currentEnemyData[0]);
 //        new enemyStuff.EnemyBasic().init(game, (game.width/3), 10);
     } else {
-		new window[enemyData.data[0].class]().init(game, ((game.width/3)*2), 10, enemyData.data[0]);
+		return new window[currentEnemyData[0].class]().init(game, ((game.width/3)*2), 10, currentEnemyData[0]);
 //        new enemyStuff.EnemyBasic().init(game, ((game.width/3)*2), 10);
     }
 };

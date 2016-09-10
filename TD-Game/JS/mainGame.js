@@ -114,7 +114,7 @@ var mainGameVar = {
         centerX = game.width/2;
         centerY = game.height/2;
         
-        game.time.events.loop(Phaser.Timer.SECOND, enemyStuff.spawnEnemy, this);
+        game.time.events.loop(Phaser.Timer.SECOND, enemyStuff.enemyFactory, this);
         
         dataHelper.initGameData();
         
