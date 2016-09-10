@@ -18,15 +18,6 @@ EnemyPrototype = function (x, y, data) {
     this.sprite.target = enemyStuff.moveToPoint;
     this.sprite.civilian = null;
     
-    //create sprite
-    this.init = function () {
-
-        
-        //functions attached to enemySprite
-                
-        return this;
-    };
-    
     //add to specific arrays
     this.addToArray = function () {
         enemyStuff.allEnemyArray.push(this.sprite);
@@ -112,10 +103,10 @@ enemyStuff.enemyFactory = function () {
     var currentEnemyData = enemyData.data[data.currentPeriod];
     
     if (num < 0.5) {
-		return new window[currentEnemyData[0].class]((game.width/3), 10, currentEnemyData[0]).init().addToArray().sprite.moveToTarget();
+		return new window[currentEnemyData[0].class]((game.width/3), 10, currentEnemyData[0]).addToArray().sprite.moveToTarget();
 //        new enemyStuff.EnemyBasic().init(game, (game.width/3), 10);
     } else {
-		return new window[currentEnemyData[0].class](((game.width/3)*2), 10, currentEnemyData[0]).init().addToArray().sprite.moveToTarget();
+		return new window[currentEnemyData[0].class](((game.width/3)*2), 10, currentEnemyData[0]).addToArray().sprite.moveToTarget();
 //        new enemyStuff.EnemyBasic().init(game, ((game.width/3)*2), 10);
     }
 };
