@@ -116,6 +116,8 @@ var mainGameVar = {
         
         game.time.events.loop(Phaser.Timer.SECOND, enemyStuff.spawnEnemy, this);
         
+        dataHelper.initGameData();
+        
         towerStuff.moveToPoint = game.add.sprite(centerX, centerY, null);
         towerStuff.moveToPoint.visible = false
         
@@ -135,7 +137,6 @@ var mainGameVar = {
         towerStuff.slotFactory(1, 100, 300);
         
         UI.createUI().createUnPauseInputListener().createPauseBtn();
-        dataHelper.initGameData();
         
     },  //function create
     
