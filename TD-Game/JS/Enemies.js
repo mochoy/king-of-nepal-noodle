@@ -15,22 +15,12 @@ EnemyPrototype = function (x, y, data) {
     };
     this.inheritEntity(this, Entity)
     
-//    this.enemySprite = null;
+    this.sprite.target = enemyStuff.moveToPoint;
+    this.sprite.civilian = null;
     
     //create sprite
     this.init = function () {
-        //create sprite
-//        this.enemySprite = game.add.sprite(x, y, data.src);
-//		helper.initSprite(this.enemySprite, data.srcScale, data.srcScale);
-        
-        //stuff dealing with movement move locations
-        this.sprite.target = enemyStuff.moveToPoint;
-        
-        //stats
-        this.sprite.data = Object.create(data);
-        
-        //civilian stuff
-        this.sprite.civilian = null;
+
         
         //functions attached to enemySprite
         this.sprite.hit = this.hit;    
@@ -41,6 +31,8 @@ EnemyPrototype = function (x, y, data) {
         this.sprite.killed = this.killed;
         
         this.addToArray().sprite.moveToTarget();
+        
+        return this;
     };
     
     //add to specific arrays
@@ -128,10 +120,10 @@ enemyStuff.enemyFactory = function () {
     var currentEnemyData = enemyData.data[data.currentPeriod];
     
     if (num < 0.5) {
-		return new window[currentEnemyData[0].class]((game.width/3), 10, currentEnemyData[0]).init();
+		return new window[currentEnemyData[0].class]((game.width/3), 10, currentEnemyData[0]).init().addToArray().sprite.moveToTarget();
 //        new enemyStuff.EnemyBasic().init(game, (game.width/3), 10);
     } else {
-		return new window[currentEnemyData[0].class](((game.width/3)*2), 10, currentEnemyData[0]).init();
+		return new window[currentEnemyData[0].class](((game.width/3)*2), 10, currentEnemyData[0]).init().addToArray().sprite.moveToTarget();
 //        new enemyStuff.EnemyBasic().init(game, ((game.width/3)*2), 10);
     }
 };
