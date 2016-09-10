@@ -150,6 +150,9 @@ helper.checkIfMouseOverlapping = function (target, x, y) {
 }
 
 
+
+
+
 var dataHelper = {};
 dataHelper.initGameData = function () {
     var temp = _.cloneDeep(gameData);
