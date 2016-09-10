@@ -41,6 +41,9 @@ EnemyPrototype = function (x, y, data) {
                 }
             }        
         
+        //check direction: going home or to endpoint?
+        var xOrY = this.y < enemyStuff.endPoint ? true : false;  //if going to endpoint
+        
         if (!isOverlappingTowerSlot) {
             this.y += moveSpeed;
             this.x < this.target.x ? this.x += random : this.x -= random;
