@@ -42,9 +42,9 @@ EnemyPrototype = function (x, y, data) {
             }        
                  
         
+        this.y > this.target.y ? this.y -= moveSpeed: this.y += moveSpeed;
         
         if (!isOverlappingTowerSlot) {
-            this.y += moveSpeed;
             this.x < this.target.x ? this.x += random : this.x -= random;
         } else if (isOverlappingTowerSlot) {
             this.x < this.target.x ? this.x += moveSpeed : this.x -= moveSpeed;
