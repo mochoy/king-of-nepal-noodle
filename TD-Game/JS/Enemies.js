@@ -41,17 +41,23 @@ EnemyPrototype = function (x, y, data) {
                 }
             }        
         
-        //check direction: going home or to endpoint?
-        var xOrY = this.y < enemyStuff.endPoint ? true : false;  //if going to endpoint
+        //check direction: going home or to endpoint? false if going home, true if going to endpoint
+        var xOrY = this.y < enemyStuff.endPoint ? false : true;  
         
-        if (!isOverlappingTowerSlot) {
-            this.y += moveSpeed;
-            this.x < this.target.x ? this.x += random : this.x -= random;
+        if (xOrY) {     //if going to endPoint
+            if (!isOverlappingTowerSlot) {
+                this.y += moveSpeed;
+                this.x < this.target.x ? this.x += random : this.x -= random;
 //            this.x += random > 0.5 ? random : random - 1;
-        } else if (isOverlappingTowerSlot) {
-            this.x < this.target.x ? this.x += moveSpeed : this.x -= moveSpeed;
+            } else if (isOverlappingTowerSlot) {
+                this.x < this.target.x ? this.x += moveSpeed : this.x -= moveSpeed;
+                      
+            }
+            
+        } else {
             
         }
+
         
     };
     
@@ -103,7 +109,6 @@ EnemyPrototype = function (x, y, data) {
         //change target
         enemySprite.end = enemyStuff.moveToPoint2;
         enemySprite.target = enemyStuff.endPoint;
-        enemySprite.moveToTarget();
     };
     
     //enemy reaches end
@@ -127,10 +132,10 @@ enemyStuff.enemyFactory = function () {
     var currentEnemyData = enemyData.data[data.currentPeriod];
     
     if (num < 0.5) {
-		return new window[currentEnemyData[0].class]((game.width/3), 10, currentEnemyData[0]).addToArray().sprite.moveToTarget();
+		return new window[currentEnemyData[0].class]((game.width/3), 10, currentEnemyData[0]).addToArray();
 //        new enemyStuff.EnemyBasic().init(game, (game.width/3), 10);
     } else {
-		return new window[currentEnemyData[0].class](((game.width/3)*2), 10, currentEnemyData[0]).addToArray().sprite.moveToTarget();
+		return new window[currentEnemyData[0].class](((game.width/3)*2), 10, currentEnemyData[0]).addToArray();
 //        new enemyStuff.EnemyBasic().init(game, ((game.width/3)*2), 10);
     }
 };
