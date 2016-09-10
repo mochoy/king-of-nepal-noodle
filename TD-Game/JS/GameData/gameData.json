@@ -1,4 +1,6 @@
 var gameData = {
+    "currentPeriod": 0,
+    
     "data": [
         {
             "health": 10,

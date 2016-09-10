@@ -1,4 +1,4 @@
-var centerX , centerY, canClickOnGame = true, data = Object.create(gameData.data)[0];
+var centerX , centerY, canClickOnGame = true, data;
 
 //config font stuff
 WebFontConfig = {
@@ -135,6 +135,8 @@ var mainGameVar = {
         towerStuff.slotFactory(1, 100, 300);
         
         UI.createUI().createUnPauseInputListener().createPauseBtn();
+        dataHelper.initGameData();
+        
     },  //function create
     
     update: function (){
