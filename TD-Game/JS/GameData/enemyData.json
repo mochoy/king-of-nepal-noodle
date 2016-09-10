@@ -9,7 +9,7 @@ var enemyData =
                 "srcScale": 2,
                 
                 "health": 3,
-                "moveSpeed": 100,
+                "moveSpeed": 2,
             
                 "rewardMoney": 50
             }
