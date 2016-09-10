@@ -41,21 +41,20 @@ EnemyPrototype = function (x, y, data) {
                 }
             }        
         
-        //check direction: going home or to endpoint? false if going home, true if going to endpoint
-        var xOrY = this.y < enemyStuff.endPoint ? false : true;  
+        //check direction: going home or to endpoint? 
+        var isGoingHome = this.y < enemyStuff.moveToPoint.y ? false : true;  
         
-        if (xOrY) {     //if going to endPoint
+        if (!isGoingHome) {     //if going to endPoint
             if (!isOverlappingTowerSlot) {
                 this.y += moveSpeed;
                 this.x < this.target.x ? this.x += random : this.x -= random;
-//            this.x += random > 0.5 ? random : random - 1;
             } else if (isOverlappingTowerSlot) {
                 this.x < this.target.x ? this.x += moveSpeed : this.x -= moveSpeed;
-                      
             }
             
-        } else {
-            
+        } else if (isGoingHome) {
+            console.log("going home!");
+ 
         }
 
         
