@@ -8,7 +8,8 @@ WebFontConfig = {
 var mainGameVar = {
     preload: function (){
         //load legit assets 
-        game.load.image("healthSymbolIMG", "Assets/Images/healthSymbol");
+        game.load.image("healthSymbolIMG", "Assets/Images/healthSymbol.png");
+        game.load.image("moneySymbolIMG", "Assets/Images/moneySymbol.png");
         
         //test button spritesheets
         game.load.spritesheet('testBtn1SS', 'Assets/Images/Test/baddie.png', 32, 32);
