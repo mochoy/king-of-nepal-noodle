@@ -188,6 +188,11 @@ var mainGameVar = {
             }   //for iterate towerStuff.allTowerArray
         }   //for iterate enemyStuff.allEnemyArray
     
+        //move enemy to target
+        for (var enemy = 0; enemy < enemyStuff.allEnemyArray.length; enemy++) {
+            enemyStuff.allEnemyArray[enemy].moveToTarget();
+        }
+        
         //tower find enemy
         for (var tower = 0; tower < towerStuff.autoTowerArr.length; tower++) {
             towerStuff.autoTowerArr[tower].findEnemy(enemyStuff.allEnemyArray);
