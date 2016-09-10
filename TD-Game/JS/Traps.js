@@ -2,6 +2,37 @@ var trapStuff = {
     allTrapArr: []
 };
 
+
+UI.trapStuff = {    
+    iconArr: [],
+    
+    createIcons: function () {
+    
+    },
+    
+    displayIcons: function () {
+        
+    },
+    
+    textureIcons: function () {
+        
+    },
+    
+    setIconCoods: function () {
+        
+    },
+    
+    removeIcons: function () {
+        
+    },
+    
+    iconClicked: function () {
+        
+    }
+    
+};
+
+
 var TrapPrototype = function (x, y, data){        
     this.inheritEntity = function (thiz, constructer) {
         thiz.constructer = constructer;
