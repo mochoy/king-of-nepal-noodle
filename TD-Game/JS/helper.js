@@ -154,7 +154,8 @@ var dataHelper = {};
 dataHelper.initGameData = function () {
     var temp = _.cloneDeep(gameData);
     data = temp.data[temp.currentPeriod];
-        
+    data.currentPeriod = temp.currentPeriod;    
+    
     return this;
 }
 
