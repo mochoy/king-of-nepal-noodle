@@ -24,28 +24,28 @@ EnemyPrototype = function (x, y, data) {
 //		helper.initSprite(this.enemySprite, data.srcScale, data.srcScale);
         
         //stuff dealing with movement move locations
-        this.enemySprite.target = enemyStuff.moveToPoint;
+        this.sprite.target = enemyStuff.moveToPoint;
         
         //stats
-        this.enemySprite.data = Object.create(data);
+        this.sprite.data = Object.create(data);
         
         //civilian stuff
-        this.enemySprite.civilian = null;
+        this.sprite.civilian = null;
         
         //functions attached to enemySprite
-        this.enemySprite.hit = this.hit;    
-        this.enemySprite.moveToTarget = this.moveToTarget;
-        this.enemySprite.moveToEnd = this.moveToEnd;
-        this.enemySprite.endReached = this.endReached;
-        this.enemySprite.destinationReached = this.destinationReached;
-        this.enemySprite.killed = this.killed;
+        this.sprite.hit = this.hit;    
+        this.sprite.moveToTarget = this.moveToTarget;
+        this.sprite.moveToEnd = this.moveToEnd;
+        this.sprite.endReached = this.endReached;
+        this.sprite.destinationReached = this.destinationReached;
+        this.sprite.killed = this.killed;
         
-        this.addToArray().enemySprite.moveToTarget();
+        this.addToArray().sprite.moveToTarget();
     };
     
     //add to specific arrays
     this.addToArray = function () {
-        enemyStuff.allEnemyArray.push(this.enemySprite);
+        enemyStuff.allEnemyArray.push(this.sprite);
         return this;
     };
     
