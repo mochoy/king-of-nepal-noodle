@@ -1,17 +1,19 @@
 var enemyData = 
 {
     "data": [
-        {
-            "name": "enemyBasic",
-            "class": "EnemyPrototype",
-			"src": "mediumGroundEnemyIMG",
-            "srcScale": 2,
+        [
+            {
+                "name": "enemyBasic",
+                "class": "EnemyPrototype",
+                "src": "mediumGroundEnemyIMG",
+                "srcScale": 2,
+                
+                "health": 3,
+                "moveSpeed": 100,
             
-            "health": 3,
-            "moveSpeed": 100,
-            
-            "rewardMoney": 50
-        }
+                "rewardMoney": 50
+            }
+        ]
     ]
 }
 

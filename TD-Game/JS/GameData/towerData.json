@@ -1,6 +1,7 @@
 var towerData = {
 	"data": [
-		{
+        [       //first time period
+            {
 			"name": "mainTower",
 			"class": "ManualTower",
 			"src": "chainGunIMG",
@@ -141,7 +142,7 @@ var towerData = {
             }
         },      //main tower upgrades
         
-		{
+            {
 			"name": "basicTower",
 			"class": "AutoTower",
 			"src": "wizardLordIMG",
@@ -281,7 +282,8 @@ var towerData = {
                     },
                 ]       //path3
             }
-        },      //tower upgrades
+        }      //tower upgrades
+        ]
 	]
 };
 
