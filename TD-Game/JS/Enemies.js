@@ -23,15 +23,7 @@ EnemyPrototype = function (x, y, data) {
 
         
         //functions attached to enemySprite
-        this.sprite.hit = this.hit;    
-        this.sprite.moveToTarget = this.moveToTarget;
-        this.sprite.moveToEnd = this.moveToEnd;
-        this.sprite.endReached = this.endReached;
-        this.sprite.destinationReached = this.destinationReached;
-        this.sprite.killed = this.killed;
-        
-        this.addToArray().sprite.moveToTarget();
-        
+                
         return this;
     };
     
@@ -43,14 +35,14 @@ EnemyPrototype = function (x, y, data) {
     
     //move to target
     //this == sprite
-    this.moveToTarget = function () {
+    this.sprite.moveToTarget = function () {
         this.rotation = game.physics.arcade.angleBetween(this, this.target);
         game.physics.arcade.moveToObject(this, this.target, this.data.moveSpeed);
     };
     
     //enemy hit
     //stateless function, dont use "this"
-    this.hit = function (bulletSpritec, enemySprite) {
+    this.sprite.hit = function (bulletSpritec, enemySprite) {
         //decrease enemy health, kill and remove bullet, add to tower's hit score
         if (enemySprite.data.health === 0) {
             enemySprite.killed(enemySprite);
@@ -67,7 +59,7 @@ EnemyPrototype = function (x, y, data) {
         }
     };   
     
-    this.killed = function (enemySprite) {
+    this.sprite.killed = function (enemySprite) {
         if (enemySprite.civilian != null) {
             enemySprite.civilian.sprite.isPickedUp = false;
             enemySprite.civilian.sprite.dropped();
@@ -81,7 +73,7 @@ EnemyPrototype = function (x, y, data) {
     
     //enemy reaches destination: home or civilian
     //stateless function
-    this.destinationReached = function (enemySprite, point) {            
+    this.sprite.destinationReached = function (enemySprite, point) {            
         //if point is a civilian
         if (point != enemyStuff.home) {
             helper.removeFromArray(allCivilianArr, null, null, point);
@@ -101,7 +93,7 @@ EnemyPrototype = function (x, y, data) {
     
     //enemy reaches end
     //intended to be used as a stateless function, don't use "this"
-    this.endReached = function (enemySprite, end){
+    this.sprite.endReached = function (enemySprite, end){
         //decrement health
         if (data.health > 0) {
             data.health --;
