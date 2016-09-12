@@ -30,7 +30,10 @@ EnemyPrototype = function (x, y, data) {
 //        this.rotation = game.physics.arcade.angleBetween(this, this.target);
 //        game.physics.arcade.moveToObject(this, this.target, this.data.moveSpeed);
         
-        var isOverlappingTowerSlot = false, random = Math.random(), moveSpeed = this.data.moveSpeed;
+        var isOverlappingTowerSlot = false, moveSpeed = this.data.moveSpeed;
+        
+        this.moving.random = Math.random();
+        this.moving.counter = 0;
         
         //check if enemy overlaps towerslot
         loop:
@@ -45,7 +48,7 @@ EnemyPrototype = function (x, y, data) {
         this.y > this.target.y ? this.y -= moveSpeed: this.y += moveSpeed;
         
         if (!isOverlappingTowerSlot) {
-            this.x < this.target.x ? this.x += random : this.x -= random;
+            this.x < this.target.x ? this.x += 1 : this.x -= 1;
         } else if (isOverlappingTowerSlot) {
             this.x < this.target.x ? this.x += moveSpeed : this.x -= moveSpeed;
         }
