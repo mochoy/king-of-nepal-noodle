@@ -106,10 +106,10 @@ EnemyPrototype = function (x, y, data) {
     
     //enemy reaches end
     //intended to be used as a stateless function, don't use "this"
-    this.sprite.endReached = function (enemySprite, end){
+    this.sprite.endReached = function (enemySprite, end){              
         //decrement health
-        if (data.health > 0) {
-            data.health --;
+        if (window["data"].health > 0) {                        
+            window["data"].health --;
             UI.updateUI();
         }
         
