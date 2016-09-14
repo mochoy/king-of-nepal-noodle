@@ -26,14 +26,20 @@ EnemyPrototype = function (x, y, data) {
     
     //move to target
     //this == sprite
+    this.sprite.m = {};    //move object to help with moving of spirte. These values have to be kept after the method terminiates
+    this.sprite.m.rand = Math.random();
+    this.sprite.m.cntr = 0;
+    
     this.sprite.moveToTarget = function () {
 //        this.rotation = game.physics.arcade.angleBetween(this, this.target);
 //        game.physics.arcade.moveToObject(this, this.target, this.data.moveSpeed);
         
         var isOverlappingTowerSlot = false, moveSpeed = this.data.moveSpeed;
         
-        this.moving.random = Math.random();
-        this.moving.counter = 0;
+        if (this.m.cntr >= 50) {      //reset values if counter reaches max
+            this.m.rand = Math.random();
+            this.m.cntr = 0;
+        }
         
         //check if enemy overlaps towerslot
         loop:
@@ -44,11 +50,12 @@ EnemyPrototype = function (x, y, data) {
                 }
             }        
                  
-        
+        //move down/up to endpoint/home
         this.y > this.target.y ? this.y -= moveSpeed: this.y += moveSpeed;
         
         if (!isOverlappingTowerSlot) {
-            this.x < this.target.x ? this.x += 1 : this.x -= 1;
+            this.x < this.target.x ? this.x += this.m.rand : this.x -= this.m.rand;
+            this.m.counter++;
         } else if (isOverlappingTowerSlot) {
             this.x < this.target.x ? this.x += moveSpeed : this.x -= moveSpeed;
         }
