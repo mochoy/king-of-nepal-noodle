@@ -59,7 +59,8 @@ EnemyPrototype = function (x, y, data) {
             this.y > this.target.y ? this.y -= moveSpeed: this.y += moveSpeed;
         } else if (ovrlpSprite) {
             //if sprite is at towerslot/tower, only go around it
-            if (this.x > (ovrlpSprite.x - ovrlpSprite.width/2) && (this.x < ovrlpSprite.x + ovrlpSprite.width/2) ) {    //if sprite is below or above tower/tower slot
+            var ovrlpSpriteVal = ovrlpSprite.width/2 + this.width;  //this value will be used to shorten the next line
+            if (this.x > (ovrlpSprite.x - ovrlpSpriteVal) && (this.x < ovrlpSprite.x + ovrlpSpriteVal) ) {    //if sprite is below or above tower/tower slot
                 this.x < this.target.x ? this.x += moveSpeed : this.x -= moveSpeed;
             }
         }
