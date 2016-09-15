@@ -34,7 +34,7 @@ EnemyPrototype = function (x, y, data) {
 //        this.rotation = game.physics.arcade.angleBetween(this, this.target);
 //        game.physics.arcade.moveToObject(this, this.target, this.data.moveSpeed);
         
-        var isOverlappingTowerSlot = false, ovrlpSprite, moveSpeed = this.data.moveSpeed;
+        var ovrlpSprite, moveSpeed = this.data.moveSpeed;
         
         if (this.m.cntr >= 100) {      //reset values if counter reaches max
             this.m.rand = Math.random();
@@ -45,25 +45,21 @@ EnemyPrototype = function (x, y, data) {
         loop:
             for (var i = 0; i < towerStuff.towerSlotArr.length; i ++) {
                 if (game.physics.arcade.overlap(this, towerStuff.towerSlotArr[i])) {
-                    isOverlappingTowerSlot = true;   
                     ovrlpSprite = towerStuff.towerSlotArr[i];
                     break loop;
                 }
             }        
         
-        if (!isOverlappingTowerSlot) {  //stuff to do if sprite not overlapping slot/tower
+        if (!ovrlpSprite) {  //stuff to do if sprite not overlapping slot/tower
             //randomize enemy movement in x axis to make it look like its snaking
             this.m.cntr < 50 ? this.x += this.m.rand : this.x -= this.m.rand;
             this.m.cntr++;
             
             //move down/up to endpoint/home
             this.y > this.target.y ? this.y -= moveSpeed: this.y += moveSpeed;
-        } else if (isOverlappingTowerSlot) {
+        } else if (ovrlpSprite) {
             //if sprite is at towerslot/tower, only go around it
-            if (this.x > (ovrlpSprite.x - ovrlpSprite.width/2) && (this.x < ovrlpSprite.x + ovrlpSprite.width/2) ) {     
-                console.log("overlapping")
-                
-                //if sprite is below or above tower/tower slot
+            if (this.x > (ovrlpSprite.x - ovrlpSprite.width/2) && (this.x < ovrlpSprite.x + ovrlpSprite.width/2) ) {    //if sprite is below or above tower/tower slot
                 this.x < this.target.x ? this.x += moveSpeed : this.x -= moveSpeed;
             }
         }
