@@ -36,7 +36,7 @@ EnemyPrototype = function (x, y, data) {
         
         var isOverlappingTowerSlot = false, moveSpeed = this.data.moveSpeed;
         
-        if (this.m.cntr >= 50) {      //reset values if counter reaches max
+        if (this.m.cntr >= 20) {      //reset values if counter reaches max
             this.m.rand = Math.random();
             this.m.cntr = 0;
         }
@@ -49,14 +49,15 @@ EnemyPrototype = function (x, y, data) {
                     break loop;
                 }
             }        
-                 
-        //move down/up to endpoint/home
-        this.y > this.target.y ? this.y -= moveSpeed: this.y += moveSpeed;
         
         if (!isOverlappingTowerSlot) {
-            this.x < this.target.x ? this.x += this.m.rand : this.x -= this.m.rand;
+            //randomize enemy movement in x axis to make it look like its snaking
+            this.m.cntr < 10 ? this.x += this.m.rand : this.x -= this.m.rand;
             this.m.counter++;
+            //move down/up to endpoint/home
+            this.y > this.target.y ? this.y -= moveSpeed: this.y += moveSpeed;
         } else if (isOverlappingTowerSlot) {
+            //if sprite is at towerslot/tower, only go around it
             this.x < this.target.x ? this.x += moveSpeed : this.x -= moveSpeed;
         }
             
