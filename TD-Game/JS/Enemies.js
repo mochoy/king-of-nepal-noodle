@@ -34,7 +34,7 @@ EnemyPrototype = function (x, y, data) {
 //        this.rotation = game.physics.arcade.angleBetween(this, this.target);
 //        game.physics.arcade.moveToObject(this, this.target, this.data.moveSpeed);
         
-        var isOverlappingTowerSlot = false, moveSpeed = this.data.moveSpeed;
+        var isOverlappingTowerSlot = false, ovrlpSprite, moveSpeed = this.data.moveSpeed;
         
         if (this.m.cntr >= 100) {      //reset values if counter reaches max
             this.m.rand = Math.random();
@@ -46,6 +46,7 @@ EnemyPrototype = function (x, y, data) {
             for (var i = 0; i < towerStuff.towerSlotArr.length; i ++) {
                 if (game.physics.arcade.overlap(this, towerStuff.towerSlotArr[i])) {
                     isOverlappingTowerSlot = true;   
+                    ovrlpSprite = towerStuff.towerSlotArr[i];
                     break loop;
                 }
             }        
@@ -59,12 +60,17 @@ EnemyPrototype = function (x, y, data) {
             this.y > this.target.y ? this.y -= moveSpeed: this.y += moveSpeed;
         } else if (isOverlappingTowerSlot) {
             //if sprite is at towerslot/tower, only go around it
-            this.x < this.target.x ? this.x += moveSpeed : this.x -= moveSpeed;
+            if (this.x > (ovrlpSprite.x - ovrlpSprite.width/2) && (this.x < ovrlpSprite.x + ovrlpSprite.width/2) ) {     
+                console.log("overlapping")
+                
+                //if sprite is below or above tower/tower slot
+                this.x < this.target.x ? this.x += moveSpeed : this.x -= moveSpeed;
+            }
         }
             
 
         
-    };
+    };  //method
     
     //enemy hit
     //stateless function, dont use "this"
