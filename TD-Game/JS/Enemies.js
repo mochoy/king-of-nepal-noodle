@@ -59,13 +59,20 @@ EnemyPrototype = function (x, y, data) {
             this.y > this.target.y ? this.y -= moveSpeed: this.y += moveSpeed;
         } else if (ovrlpSprite) {
             //if sprite is at towerslot/tower, only go around it
-            var ovrlpSpriteVal = ovrlpSprite.width/2 + this.width;  //this value will be used to shorten the next line
-            if (this.x > (ovrlpSprite.x - ovrlpSpriteVal) && (this.x < ovrlpSprite.x + ovrlpSpriteVal) ) {    //if sprite is below or above tower/tower slot
+            var ovrlpSValTop = ovrlpSprite.width/2 + (this.width/2);  //this value will be used to shorten the next line
+            var ovrlpSValSides = ovrlpSprite.height/2 + (this.height/2);  //this value will be used to shorten the next line
+            if (this.x > (ovrlpSprite.x - ovrlpSValTop) && (this.x < ovrlpSprite.x + ovrlpSValTop) 
+               && this.y < ovrlpSprite.y - ovrlpSValSides) {    //if sprite is above
                 this.x < this.target.x ? this.x += moveSpeed : this.x -= moveSpeed;
+            } else if (this.y > (ovrlpSprite.y - ovrlpSValSides) && (this.y < (ovrlpSprite.y + ovrlpSValSides)) ) {    //if sprite is next to tower/tower slot
+                console.log("overlapping side")
+                
+                //force sprite to randomly go the direction away from tower or slot
+                this.x -= 50;
+//                this.m.cntr = 25;
             }
         }
             
-
         
     };  //method
     
