@@ -58,21 +58,25 @@ EnemyPrototype = function (x, y, data) {
             //move down/up to endpoint/home
             this.y > this.target.y ? this.y -= moveSpeed: this.y += moveSpeed;
         } else if (ovrlpSprite) {
-            //if sprite is at towerslot/tower, only go around it
-            var ovrlpSValTop = ovrlpSprite.width/2 + (this.width/2);  //this value will be used to shorten the next line
-            var ovrlpSValSides = ovrlpSprite.height/2 + (this.height/2);  //this value will be used to shorten the next line
-            if (this.x > (ovrlpSprite.x - ovrlpSValTop) && (this.x < ovrlpSprite.x + ovrlpSValTop) 
-               && this.y < ovrlpSprite.y) {    //if sprite is above
+            //if sprite is at towerslot/tower, only go around it            
+            if ( (this.x > ovrlpSprite.x - (ovrlpSprite.width/2 + (this.width/2)) )
+                && (this.x < ovrlpSprite.x + (ovrlpSprite.width/2 + (this.width/2)) ) 
+                && (this.y < ovrlpSprite.y - (ovrlpSprite.height/2)) ) {    //if sprite is above
                 console.log("overlapping top")
                 
                 this.x < this.target.x ? this.x += moveSpeed : this.x -= moveSpeed;
-            } else if (this.y > (ovrlpSprite.y - ovrlpSValSides) && (this.y < (ovrlpSprite.y + ovrlpSValSides)) ) {    //if sprite is next to tower/tower slot         
-                console.log("overlapping sides")
+            } else if ( (this.y > ovrlpSprite.y - ovrlpSprite.width/2 + (this.width/2)) 
+                       && (this.y < ovrlpSprite.y + ovrlpSprite.width/2 + (this.width/2))
+                       && (this.x < ovrlpSprite.x) ) {    
+                
+                console.log("overlapping left")
                 //force sprite to randomly go the direction away from tower or slot
                 this.x -= 5
 //                this.m.cntr = 25;
             }
-        }
+            
+            
+        }      //if overlapping towerslot/tower
             
         
     };  //method
@@ -147,7 +151,7 @@ enemyStuff.enemyFactory = function () {
     var num = Math.random();
     var currentEnemyData = enemyData.data[data.currentPeriod];
     
-    if (num < 0.5) {
+    if (num === 0.5) {
 		return new window[currentEnemyData[0].class]((game.width/3), 10, currentEnemyData[0]).addToArray();
 //        new enemyStuff.EnemyBasic().init(game, (game.width/3), 10);
     } else {
