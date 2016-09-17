@@ -58,21 +58,28 @@ EnemyPrototype = function (x, y, data) {
             //move down/up to endpoint/home
             this.y > this.target.y ? this.y -= moveSpeed: this.y += moveSpeed;
         } else if (ovrlpSprite) {
-            //if sprite is at towerslot/tower, only go around it            
+            //if sprite is at towerslot/tower, only go around it    
+            //if sprite is above
             if ( (this.x > ovrlpSprite.x - (ovrlpSprite.width/2 + (this.width/2)) )
                 && (this.x < ovrlpSprite.x + (ovrlpSprite.width/2 + (this.width/2)) ) 
-                && (this.y < ovrlpSprite.y - (ovrlpSprite.height/2)) ) {    //if sprite is above
-                console.log("overlapping top")
+                && (this.y < ovrlpSprite.y - (ovrlpSprite.height/2)) ) {                  
                 
+                //move sprite around towerslot in direction that will bring it closer to its target
                 this.x < this.target.x ? this.x += moveSpeed : this.x -= moveSpeed;
-            } else if ( (this.y > ovrlpSprite.y - ovrlpSprite.width/2 + (this.width/2)) 
-                       && (this.y < ovrlpSprite.y + ovrlpSprite.width/2 + (this.width/2))
-                       && (this.x < ovrlpSprite.x) ) {    
                 
-                console.log("overlapping left")
+            //if sprite is to the left of slot/tower
+            } else if ( (this.y > ovrlpSprite.y - ovrlpSprite.height/2 ) 
+                       && (this.y < ovrlpSprite.y + ovrlpSprite.height/2 )
+                       && (this.x < ovrlpSprite.x - (ovrlpSprite.width/2)) ) {    
+                
                 //force sprite to randomly go the direction away from tower or slot
                 this.x -= 5
-//                this.m.cntr = 25;
+                this.m.cntr = 25;
+            } else {
+                console.log("sprite x: " + this.x);
+                console.log("sprite y: " + this.y);
+                console.log("slot x: " + ovrlpSprite.x);
+                console.log("slot y: " + ovrlpSprite.y);
             }
             
             
