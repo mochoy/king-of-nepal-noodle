@@ -75,8 +75,8 @@ EnemyPrototype = function (x, y, data) {
                        && (this.x < ovrlpSprite.x - (ovrlpSprite.width/2)) ) {    
                 
                 //force sprite to randomly go the direction away from tower or slot
-                this.x -= 5
-                this.m.cntr = 25;
+                this.x -= 5;
+                this.m.cntr = 52;
             } else {
                 this.y > this.target.y ? this.y -= moveSpeed: this.y += moveSpeed;
             }
