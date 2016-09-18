@@ -26,9 +26,12 @@ EnemyPrototype = function (x, y, data) {
     
     //move to target
     //this == sprite
-    this.sprite.m = {};    //move object to help with moving of spirte. These values have to be kept after the method terminiates
-    this.sprite.m.rand = Math.random();
-    this.sprite.m.cntr = 0;
+    this.sprite.m = {
+        rand: Math.random(),
+        cntr: 0,
+        
+        xValArr: []
+    };    //move object to help with moving of spirte. These values have to be kept after the method terminiates
     
     this.sprite.moveToTarget = function () {
 //        this.rotation = game.physics.arcade.angleBetween(this, this.target);
@@ -50,9 +53,14 @@ EnemyPrototype = function (x, y, data) {
                 }
             }        
         
+        //if not overlapping slot
         if (!ovrlpSprite) {
             //randomize enemy movement in x axis to make it look like its snaking
             this.m.cntr < 50 ? this.x += this.m.rand : this.x -= this.m.rand;
+            
+            this.m.xValArr.push(this.x);
+            this.m.xValArr.length > 100 ? this.m.xValArr = []: null;
+            
             this.m.cntr++;
             //move down/up to endpoint/home
             this.y > this.target.y ? this.y -= moveSpeed: this.y += moveSpeed;
