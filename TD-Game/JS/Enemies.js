@@ -50,14 +50,16 @@ EnemyPrototype = function (x, y, data) {
                 }
             }        
         
-        if (!ovrlpSprite) {  //stuff to do if sprite not overlapping slot/tower
+        if (!ovrlpSprite) {
             //randomize enemy movement in x axis to make it look like its snaking
             this.m.cntr < 50 ? this.x += this.m.rand : this.x -= this.m.rand;
             this.m.cntr++;
-            
             //move down/up to endpoint/home
             this.y > this.target.y ? this.y -= moveSpeed: this.y += moveSpeed;
-        } else if (ovrlpSprite) {
+        }
+            
+        
+        if (ovrlpSprite) {
             //if sprite is at towerslot/tower, only go around it    
             //if sprite is above
             if ( (this.x > ovrlpSprite.x - (ovrlpSprite.width/2 + (this.width/2)) )
@@ -76,10 +78,7 @@ EnemyPrototype = function (x, y, data) {
                 this.x -= 5
                 this.m.cntr = 25;
             } else {
-                console.log("sprite x: " + this.x);
-                console.log("sprite y: " + this.y);
-                console.log("slot x: " + ovrlpSprite.x);
-                console.log("slot y: " + ovrlpSprite.y);
+                this.y > this.target.y ? this.y -= moveSpeed: this.y += moveSpeed;
             }
             
             
