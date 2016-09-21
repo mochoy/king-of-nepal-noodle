@@ -56,22 +56,10 @@ EnemyPrototype = function (x, y, data) {
         //if not overlapping slot
         if (!ovrlpSprite) {
             //randomize enemy movement in x axis to make it look like its snaking
-//            console.log(this.x);
-//            console.log(this.m.xValArr)
-        
-            var lastXVal = this.m.xValArr[this.m.xValArr.length - 2]
-            var xToMove = this.m.xValArr.length > 3 ? (lastXVal - this.x): this.m.rand;
+            this.m.cntr < 50 ? this.x += this.m.rand : this.x -= this.m.rand;
             
-//            console.log(this.m.xValArr)
-            console.log(this.x)
-
-            
-            
-            
-            this.m.cntr < 50 ? this.x += xToMove : this.x -= xToMove;
-            
-            //pushing to arr returns length
-            this.m.xValArr.push(this.x) > 100 ? this.m.xValArr = []: null;
+            this.m.xValArr.push(this.x);
+            this.m.xValArr.length > 100 ? this.m.xValArr = []: null;
             
             this.m.cntr++;
             //move down/up to endpoint/home
