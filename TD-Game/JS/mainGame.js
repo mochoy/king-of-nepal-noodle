@@ -125,7 +125,7 @@ var mainGameVar = {
         towerStuff.moveToPoint = game.add.sprite(centerX, centerY, null);
         towerStuff.moveToPoint.visible = false
         
-        enemyStuff.home = helper.setHW(game.add.sprite(centerX, game.height - 200, "dudeIMG"), 1, 1);
+        enemyStuff.home = helper.setHW(game.add.sprite(0, game.height - 200, "dudeIMG"), 1, game.width);
         game.physics.arcade.enable(enemyStuff.home);
         
         enemyStuff.endPoint = helper.setHW(game.add.sprite(centerX, 0, "dudeIMG"), 10, 10);
