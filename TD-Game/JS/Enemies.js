@@ -165,7 +165,7 @@ enemyStuff.enemyFactory = function () {
     var num = Math.random();
     var currentEnemyData = enemyData.data[data.currentPeriod];
     
-    if (num === 0.5) {
+    if (num > 0.5) {
 		return new window[currentEnemyData[0].class]((game.width/3), 10, currentEnemyData[0]).addToArray();
 //        new enemyStuff.EnemyBasic().init(game, (game.width/3), 10);
     } else {
