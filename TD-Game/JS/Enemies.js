@@ -85,7 +85,13 @@ EnemyPrototype = function (x, y, data) {
                 //force sprite to randomly go the direction away from tower or slot
                 this.x -= 5;
                 this.m.cntr = 52;
-            } else {
+                
+            //if sprite to right of slot/tower
+            } else if ( (this.y > ovrlpSprite.y - ovrlpSprite.height/2)
+                       && (this.y < ovrlpSprite.y + ovrlpSprite.height/2) 
+                       && (this.x > ovrlpSprite.x - (ovrlpSprite.width/2)) ) {
+                console.log("overlapping right")
+            }else {
                 this.y > this.target.y ? this.y -= moveSpeed: this.y += moveSpeed;
             }
             
