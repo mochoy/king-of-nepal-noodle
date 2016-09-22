@@ -90,7 +90,8 @@ EnemyPrototype = function (x, y, data) {
             } else if ( (this.y > ovrlpSprite.y - ovrlpSprite.height/2)
                        && (this.y < ovrlpSprite.y + ovrlpSprite.height/2) 
                        && (this.x > ovrlpSprite.x - (ovrlpSprite.width/2)) ) {
-                console.log("overlapping right");
+                this.x += 5;
+                this.m.cntr = 2;
                 
             //if sprite below tower
             } else if ( (this.x > ovrlpSprite.x - (ovrlpSprite.width/2 + (this.width/2)) )
