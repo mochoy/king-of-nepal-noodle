@@ -82,11 +82,7 @@ EnemyPrototype = function (x, y, data) {
                 this.x += 5;
                 this.m.cntr = 2;
                 
-            //if sprite below tower
-            } else if ( (this.x > ovrlpSprite.x - (ovrlpSprite.width/2 + (this.width/2)) )
-                && (this.x < ovrlpSprite.x + (ovrlpSprite.width/2 + (this.width/2)) ) 
-                && (this.y > ovrlpSprite.y - (ovrlpSprite.height/2)) ) {
-                
+            } else if (helper.isOverlappingBelow(this, ovrlpSprite)) {
                 //move sprite around towerslot in direction that will bring it closer to its target
                 this.x < this.target.x + (this.target.width/2) ? this.x += moveSpeed : this.x -= moveSpeed;
                 
