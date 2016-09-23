@@ -37,21 +37,12 @@ EnemyPrototype = function (x, y, data) {
 //        this.rotation = game.physics.arcade.angleBetween(this, this.target);
 //        game.physics.arcade.moveToObject(this, this.target, this.data.moveSpeed);
         
-        var ovrlpSprite, moveSpeed = this.data.moveSpeed;
+        var ovrlpSprite = helper.isOverlappingArr(this, towerStuff.towerSlotArr), moveSpeed = this.data.moveSpeed;
         
         if (this.m.cntr >= 100) {      //reset values if counter reaches max
             this.m.rand = Math.random();
             this.m.cntr = 0;
-        }
-        
-        //check if enemy overlaps towerslot
-        loop:
-            for (var i = 0; i < towerStuff.towerSlotArr.length; i ++) {
-                if (game.physics.arcade.overlap(this, towerStuff.towerSlotArr[i])) {
-                    ovrlpSprite = towerStuff.towerSlotArr[i];
-                    break loop;
-                }
-            }        
+        }       
         
         //if not overlapping slot
         if (!ovrlpSprite) {
