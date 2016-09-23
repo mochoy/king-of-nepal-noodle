@@ -149,6 +149,7 @@ helper.checkIfMouseOverlapping = function (target, x, y) {
     
 }
 
+//check if sprite is overlapping another sprite above it
 helper.isOverlappingAbove = function (sprite1, sprite2) {
     if ( (sprite1.x > sprite2.x - (sprite2.width/2 + (sprite1.width/2)) )
         && (sprite1.x < sprite2.x + (sprite2.width/2 + (sprite1.width/2)) ) 
@@ -161,6 +162,7 @@ helper.isOverlappingAbove = function (sprite1, sprite2) {
     
 }
 
+//check if sprite is overlapping another sprite below it
 helper.isOverlappingBelow = function (sprite1, sprite2) {
     if ( (sprite1.x > sprite2.x - (sprite2.width/2 + (sprite1.width/2)) )
         && (sprite1.x < sprite2.x + (sprite2.width/2 + (sprite1.width/2)) ) 
@@ -174,6 +176,7 @@ helper.isOverlappingBelow = function (sprite1, sprite2) {
     
 }
 
+//check if sprite is overlapping another sprite to the left of it
 helper.isOverlappingLeft = function (sprite1, sprite2) {
     if ( (sprite1.y > sprite2.y - sprite2.height/2) 
         && (sprite1.y < sprite2.y + sprite2.height/2)
@@ -187,6 +190,7 @@ helper.isOverlappingLeft = function (sprite1, sprite2) {
     
 }
 
+//check if sprite is overlapping another sprite to the right of it
 helper.isOverlappingRight = function (sprite1, sprite2) {
     if ( (sprite1.y > sprite2.y - sprite2.height/2)
         && (sprite1.y < sprite2.y + sprite2.height/2) 
@@ -198,6 +202,17 @@ helper.isOverlappingRight = function (sprite1, sprite2) {
     return false;
     
     
+}
+
+//check if sprite is overlapping a sprite in another arr
+helper.isOverlappingArr = function(sprite, arr) {
+    for (var i = 0; i < arr.length; i ++) {
+        if (game.physics.arcade.overlap(sprite, arr[i]) ) {
+            return arr[i];
+        }
+    }  
+      
+    return null;
 }
 
 
