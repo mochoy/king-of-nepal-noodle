@@ -78,10 +78,7 @@ EnemyPrototype = function (x, y, data) {
                 this.x -= 5;
                 this.m.cntr = 52;
                 
-            //if sprite to right of slot/tower
-            } else if ( (this.y > ovrlpSprite.y - ovrlpSprite.height/2)
-                       && (this.y < ovrlpSprite.y + ovrlpSprite.height/2) 
-                       && (this.x > ovrlpSprite.x - (ovrlpSprite.width/2)) ) {
+            } else if (helper.isOverlappingRight(this, ovrlpSprite)) {
                 this.x += 5;
                 this.m.cntr = 2;
                 
