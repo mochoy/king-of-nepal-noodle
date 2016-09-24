@@ -37,7 +37,8 @@ EnemyPrototype = function (x, y, data) {
 //        this.rotation = game.physics.arcade.angleBetween(this, this.target);
 //        game.physics.arcade.moveToObject(this, this.target, this.data.moveSpeed);
         
-        var ovrlpSprite = helper.isOverlappingArr(this, towerStuff.towerSlotArr), moveSpeed = this.data.moveSpeed;
+        var ovrlpSprite = helper.isOverlappingArr(this, towerStuff.towerSlotArr)
+        var moveSpeed = this.data.moveSpeed;
         
         if (this.m.cntr >= 100) {      //reset values if counter reaches max
             this.m.rand = Math.random();
@@ -122,7 +123,7 @@ EnemyPrototype = function (x, y, data) {
     
     //enemy reaches destination: home or civilian
     //stateless function
-    this.sprite.destinationReached = function (enemySprite, point) {            
+    this.sprite.homeReached = function (enemySprite, point) {            
         //if point is a civilian
         if (point != enemyStuff.home) {
             helper.removeFromArray(allCivilianArr, null, null, point);
