@@ -201,9 +201,15 @@ var mainGameVar = {
         //when enemy reaches home or end
         for (var enemy = 0; enemy < enemyStuff.allEnemyArray.length; enemy++){
             var enemySprite = enemyStuff.allEnemyArray[enemy];
+            
             //call specific functions depending on what's reached
-            game.physics.arcade.overlap(enemySprite, enemyStuff.endPoint, enemySprite.endReached, null, this);
-            game.physics.arcade.overlap(enemySprite, enemyStuff.home, enemySprite.homeReached, null, this);
+            if (!enemySprite.hasReachedHome){
+                game.physics.arcade.overlap(enemySprite, enemyStuff.home, enemySprite.homeReached, null, this); 
+            } else if (enemySprite.hasReachedHome) {
+                game.physics.arcade.overlap(enemySprite, enemyStuff.endPoint, enemySprite.endReached, null, this);
+
+            }
+            
         }   //for 
         
         //keep max ammount of bullets at 20 per tower
