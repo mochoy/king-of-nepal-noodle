@@ -33,6 +33,7 @@ EnemyPrototype = function (x, y, data) {
         xValArr: []
     };    //move object to help with moving of spirte. These values have to be kept after the method terminiates
     
+    //commit
     this.sprite.moveToTarget = function () {
 //        this.rotation = game.physics.arcade.angleBetween(this, this.target);
 //        game.physics.arcade.moveToObject(this, this.target, this.data.moveSpeed);
