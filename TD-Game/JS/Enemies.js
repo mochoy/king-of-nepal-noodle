@@ -138,6 +138,8 @@ EnemyPrototype = function (x, y, data) {
         //change target
         enemySprite.end = enemyStuff.moveToPoint2;
         enemySprite.target = enemyStuff.endPoint;
+        
+        enemySprite.hasReachedHome = true;
     };
     
     //enemy reaches end
