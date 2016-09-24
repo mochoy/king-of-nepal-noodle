@@ -46,6 +46,10 @@ EnemyPrototype = function (x, y, data) {
         
         //if not overlapping slot
         if (!ovrlpSprite) {
+            //rotate to next point its going to move to
+            var nextX = this.m.cntr < 50 ? this.x + this.m.rand : this.x - this.m.rand;
+            var nextY = this.y > this.target.y ? this.y - moveSpeed: this.y + moveSpeed;
+            
             //randomize enemy movement in x axis to make it look like its snaking
             this.m.cntr < 50 ? this.x += this.m.rand : this.x -= this.m.rand;
             
