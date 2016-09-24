@@ -50,6 +50,9 @@ EnemyPrototype = function (x, y, data) {
             var nextX = this.m.cntr < 50 ? this.x + this.m.rand : this.x - this.m.rand;
             var nextY = this.y > this.target.y ? this.y - moveSpeed: this.y + moveSpeed;
             
+            //rotate to next point
+            this.rotation = game.physics.arcade.angleToXY(this, nextX, nextY);
+            
             //randomize enemy movement in x axis to make it look like its snaking using next coord values
             this.x = nextX;
             this.y = nextY;
