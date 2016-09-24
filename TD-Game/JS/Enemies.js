@@ -45,13 +45,12 @@ EnemyPrototype = function (x, y, data) {
         }       
         
         //if not overlapping slot
-        if (!ovrlpSprite) {
-            //get next point its going to move to
-            var nextX = this.m.cntr < 50 ? this.x + this.m.rand : this.x - this.m.rand;
-            var nextY = this.y > this.target.y ? this.y - moveSpeed: this.y + moveSpeed;
-            
-            //rotate to next point
-            this.rotation = game.physics.arcade.angleToXY(this, nextX, nextY);
+        if (!ovrlpSprite) {            
+            //get and rotate to next point its going to move to
+            var nextX, nextY;
+            this.rotation = game.physics.arcade.angleToXY(this, 
+                nextX = this.m.cntr < 50 ? this.x + this.m.rand : this.x - this.m.rand, 
+                nextY = this.y > this.target.y ? this.y - moveSpeed: this.y + moveSpeed);
             
             //randomize enemy movement in x axis to make it look like its snaking using next coord values
             this.x = nextX;
