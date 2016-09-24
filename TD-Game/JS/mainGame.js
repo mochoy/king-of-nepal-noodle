@@ -128,7 +128,7 @@ var mainGameVar = {
         enemyStuff.home = helper.setHW(game.add.sprite(0, game.height - 200, "dudeIMG"), 1, game.width);
         game.physics.arcade.enable(enemyStuff.home);
         
-        enemyStuff.endPoint = helper.setHW(game.add.sprite(centerX, 0, "dudeIMG"), 10, 10);
+        enemyStuff.endPoint = helper.setHW(game.add.sprite(0, 0, "dudeIMG"), 1, game.width);
         game.physics.arcade.enable(enemyStuff.endPoint);
         
         enemyStuff.moveToPoint = enemyStuff.home;
