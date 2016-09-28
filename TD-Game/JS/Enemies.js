@@ -115,7 +115,7 @@ EnemyPrototype = function (x, y, data) {
     this.sprite.killed = function (enemySprite) {        
         if (enemySprite.civilian) {
             enemySprite.civilian.sprite.isPickedUp = false;
-            enemySprite.civilian.sprite.dropped();
+            enemySprite.civilian.sprite.dropped(false);
         }
         
         data.money += enemySprite.data.rewardMoney;
