@@ -121,7 +121,7 @@ EnemyPrototype = function (x, y, data) {
         data.money += enemySprite.data.rewardMoney;
         UI.updateUI();
         
-        enemySprite.destroy();
+        enemySprite.kill().canMove = false;
 //        helper.removeFromArray(enemyStuff.allEnemyArray, null, null, enemySprite);
     };
     
