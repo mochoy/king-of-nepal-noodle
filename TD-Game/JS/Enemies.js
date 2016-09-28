@@ -18,6 +18,8 @@ EnemyPrototype = function (x, y, data) {
     this.sprite.target = enemyStuff.moveToPoint;
     this.sprite.civilian = null;
     
+    this.canMove = true;
+    
     //add to specific arrays
     this.addToArray = function () {
         enemyStuff.allEnemyArray.push(this.sprite);
