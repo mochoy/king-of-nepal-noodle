@@ -18,7 +18,7 @@ EnemyPrototype = function (x, y, data) {
     this.sprite.target = enemyStuff.moveToPoint;
     this.sprite.civilian = null;
     
-    this.canMove = true;
+    this.sprite.canMove = true;
     
     //add to specific arrays
     this.addToArray = function () {
@@ -37,58 +37,58 @@ EnemyPrototype = function (x, y, data) {
     
     //commit
     this.sprite.moveToTarget = function () {
-//        this.rotation = game.physics.arcade.angleBetween(this, this.target);
-//        game.physics.arcade.moveToObject(this, this.target, this.data.moveSpeed);
+        if (this.canMove) {
+            var ovrlpSprite = helper.isOverlappingArr(this, towerStuff.towerSlotArr)
+            var moveSpeed = this.data.moveSpeed;
+           
+            if (this.m.cntr >= 100) {      //reset values if counter reaches max
+                this.m.rand = Math.random();
+                this.m.cntr = 0;
+            }       
         
-        var ovrlpSprite = helper.isOverlappingArr(this, towerStuff.towerSlotArr)
-        var moveSpeed = this.data.moveSpeed;
-        
-        if (this.m.cntr >= 100) {      //reset values if counter reaches max
-            this.m.rand = Math.random();
-            this.m.cntr = 0;
-        }       
-        
-        //if not overlapping slot
-        if (!ovrlpSprite) {            
-            //get and rotate to next point its going to move to
-            var nextX, nextY;
-            this.rotation = game.physics.arcade.angleToXY(this, 
-                nextX = this.m.cntr < 50 ? this.x + this.m.rand : this.x - this.m.rand, 
-                nextY = this.y > this.target.y ? this.y - moveSpeed: this.y + moveSpeed);
+            //if not overlapping slot
+            if (!ovrlpSprite) {            
+                //get and rotate to next point its going to move to
+                var nextX, nextY;
+                this.rotation = game.physics.arcade.angleToXY(this, 
+                                                              nextX = this.m.cntr < 50 ? this.x + this.m.rand : this.x - this.m.rand, 
+                                                              nextY = this.y > this.target.y ? this.y - moveSpeed: this.y +     moveSpeed);
             
-            //randomize enemy movement in x axis to make it look like its snaking using next coord values
-            this.x = nextX;
-            this.y = nextY;
+                //randomize enemy movement in x axis to make it look like its snaking using next coord values
+                this.x = nextX;
+                this.y = nextY;
+              
+                this.m.xValArr.push(this.x);
+                this.m.xValArr.length > 100 ? this.m.xValArr = []: null;
             
-            this.m.xValArr.push(this.x);
-            this.m.xValArr.length > 100 ? this.m.xValArr = []: null;
-            
-            this.m.cntr++;
+                this.m.cntr++;
 
-        }
-            
-        
-        if (ovrlpSprite) {
-            //if sprite is at towerslot/tower, only go around it    
-            if (helper.isOverlappingAbove(this, ovrlpSprite)) {                  
-                //move sprite around towerslot in direction that will bring it closer to its target
-                this.x < this.target.x + (this.target.width/2) ? this.x += moveSpeed : this.x -= moveSpeed;
-            } else if (helper.isOverlappingLeft(this, ovrlpSprite)) {    
-                //force sprite to randomly go the direction away from tower or slot
-                this.x -= 5;
-                this.m.cntr = 52;
-            } else if (helper.isOverlappingRight(this, ovrlpSprite)) {
-                this.x += 5;
-                this.m.cntr = 2;
-            } else if (helper.isOverlappingBelow(this, ovrlpSprite)) {
-                //move sprite around towerslot in direction that will bring it closer to its target
-                this.x < this.target.x + (this.target.width/2) ? this.x += moveSpeed : this.x -= moveSpeed;
-            } else {
-                this.y > this.target.y ? this.y -= moveSpeed: this.y += moveSpeed;
             }
+        
+            if (ovrlpSprite) {
+                //if sprite is at towerslot/tower, only go around it    
+                if (helper.isOverlappingAbove(this, ovrlpSprite)) {                  
+                    //move sprite around towerslot in direction that will bring it closer to its target
+                    this.x < this.target.x + (this.target.width/2) ? this.x += moveSpeed : this.x -= moveSpeed;
+                } else if (helper.isOverlappingLeft(this, ovrlpSprite)) {    
+                    //force sprite to randomly go the direction away from tower or slot
+                    this.x -= 5;
+                    this.m.cntr = 52;
+                } else if (helper.isOverlappingRight(this, ovrlpSprite)) {
+                    this.x += 5;
+                    this.m.cntr = 2;
+                } else if (helper.isOverlappingBelow(this, ovrlpSprite)) {
+                    //move sprite around towerslot in direction that will bring it closer to its target
+                    this.x < this.target.x + (this.target.width/2) ? this.x += moveSpeed : this.x -= moveSpeed;
+                } else {
+                    this.y > this.target.y ? this.y -= moveSpeed: this.y += moveSpeed;
+                }
             
-            
-        }      //if overlapping towerslot/tower
+            }      //if overlapping towerslot/tower 
+              
+        }
+        
+        
             
         
     };  //method
