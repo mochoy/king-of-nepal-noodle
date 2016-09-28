@@ -56,9 +56,8 @@ TowerPrototype = function (game, x, y, data) {
             towerStuff.allTowerArr.push(this.sprite);
             towerStuff.manualTowerArr.push(this.sprite);
         } else if (index <= 0) {            
-            var indexSpecial = helper.findInArr(towerStuff.manualTowerArr, towerStuff.allTowerArr[index]);
-            towerStuff.allTowerArr[index] = this.sprite;
-            towerStuff.manualTowerArr[indexSpecial] = this.sprite;
+            helper.pushToSpecificIndexInArr(towerStuff.allTowerArr, this.sprite, index);
+            helper.pushToSpecificIndexInArr(towerStuff.manualTowerArr, this.sprite, helper.findInArr(towerStuff.manualTowerArr, towerStuff.allTowerArr[index]) );
         }
         
         return this;
@@ -153,10 +152,9 @@ AutoTower = function (game, x, y, data) {
         if (!index) {
             towerStuff.allTowerArr.push(this.sprite);
             towerStuff.autoTowerArr.push(this.sprite);
-        } else if (index <= 0) {            
-            var indexSpecial = helper.findInArr(towerStuff.autoTowerArr, towerStuff.allTowerArr[index]);
-            towerStuff.allTowerArr[index] = this.sprite;
-            towerStuff.autoTowerArr[indexSpecial] = this.sprite; 
+        } else if (index <= 0) { 
+            helper.pushToSpecificIndexInArr(towerStuff.allTowerArr, this.sprite, index);
+            helper.pushToSpecificIndexInArr(towerStuff.autoTowerArr, this.sprite, helper.findInArr(towerStuff.autoTowerArr, towerStuff.allTowerArr[index]) );
         }
         
         return this;

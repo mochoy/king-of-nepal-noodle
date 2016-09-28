@@ -217,7 +217,9 @@ helper.isOverlappingArr = function(sprite, arr) {
 
 //push obj to certain place in arr
 helper.pushToSpecificIndexInArr = function (arr, obj, index) {
+    array[index] = obj;
     
+    return obj;
 }
 
 
