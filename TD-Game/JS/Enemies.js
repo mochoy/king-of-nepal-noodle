@@ -59,8 +59,12 @@ EnemyPrototype = function (x, y, data) {
                 this.y = nextY;
               
                 this.m.xValArr.push(this.x);
-                this.m.xValArr.length > 100 ? this.m.xValArr = []: null;
-            
+                //reset arr
+                if (this.m.xValArr.length > 100) {
+                    this.m.xValArr = []
+                    
+                }
+                
                 this.m.cntr++;
 
             }
