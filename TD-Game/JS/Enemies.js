@@ -35,7 +35,6 @@ EnemyPrototype = function (x, y, data) {
         xValArr: []
     };    //move object to help with moving of spirte. These values have to be kept after the method terminiates
     
-    //commit
     this.sprite.moveToTarget = function () {
         if (this.canMove) {
             var ovrlpSprite = helper.isOverlappingArr(this, towerStuff.towerSlotArr)
