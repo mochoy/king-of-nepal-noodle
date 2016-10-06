@@ -131,6 +131,8 @@ var PurchaseManager = function (purchaseData) {
         this.slot.inputEnabled = true;
         this.sprite.kill();
         
+        helper.isInArr(towerStuff.allTowerArr, this.sprite) ? this.hideRange(): null;
+        
         //make sure to remove from correct arr
 //        var arrToRemoveFrom = (this instanceof AutoTower) ? towerStuff.autoTowerArr: towerStuff.manualTower;
 //        helper.removeFromArray(towerStuff.allTowerArr, arrToRemoveFrom, null, this.sprite);
