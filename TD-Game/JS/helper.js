@@ -222,6 +222,10 @@ helper.pushToSpecificIndexInArr = function (arr, obj, index) {
     return obj;
 }
 
+helper.isInArr = function (arr, target) {
+    return _.findIndex(arr, target) < 0 ? false : true;
+}
+
 
 
 
