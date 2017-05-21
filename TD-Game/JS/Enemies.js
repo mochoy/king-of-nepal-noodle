@@ -36,6 +36,7 @@ EnemyPrototype = function (x, y, data) {
     };    //move object to help with moving of spirte. These values have to be kept after the method terminiates
     
     //commit
+    this.sprite.moveToTarget = function () {
         if (this.canMove) {
             var ovrlpSprite = helper.isOverlappingArr(this, towerStuff.towerSlotArr)
             var moveSpeed = this.data.moveSpeed;
@@ -95,7 +96,7 @@ EnemyPrototype = function (x, y, data) {
         
             
         
-    };  //method
+    };  //method moveToTarget
     
     //enemy hit
     //stateless function, dont use "this"
@@ -114,7 +115,7 @@ EnemyPrototype = function (x, y, data) {
         } else {
             bulletSpritec.pierce--;
         }
-    };   
+    };   //method hit
     
     this.sprite.killed = function (enemySprite) {        
         if (enemySprite.civilian) {
@@ -130,7 +131,7 @@ EnemyPrototype = function (x, y, data) {
         
         enemySprite.kill().canMove = false;
 //        helper.removeFromArray(enemyStuff.allEnemyArray, null, null, enemySprite);
-    };
+    };  //method killed
     
     //enemy reaches destination: home or civilian
     //stateless function
@@ -153,7 +154,7 @@ EnemyPrototype = function (x, y, data) {
         // enemySprite.hasReachedHome = true;
         
         enemySprite.endReached(this, point);
-    };
+    };      //method homeReached
     
     //enemy reaches end
     //intended to be used as a stateless function, don't use "this"
@@ -167,7 +168,7 @@ EnemyPrototype = function (x, y, data) {
         enemySprite.civilian.sprite.dropped(true);
         helper.removeFromArray(enemyStuff.allEnemyArray, null, null, enemySprite);
 
-    };
+    };  //method endReached
     
 };
 
