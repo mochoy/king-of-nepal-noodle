@@ -36,7 +36,6 @@ EnemyPrototype = function (x, y, data) {
     };    //move object to help with moving of spirte. These values have to be kept after the method terminiates
     
     //commit
-    this.sprite.moveToTarget = function () {
         if (this.canMove) {
             var ovrlpSprite = helper.isOverlappingArr(this, towerStuff.towerSlotArr)
             var moveSpeed = this.data.moveSpeed;
@@ -123,8 +122,11 @@ EnemyPrototype = function (x, y, data) {
             enemySprite.civilian.sprite.dropped(false);
         }
         
+        
         data.money += enemySprite.data.rewardMoney;
         UI.updateUI();
+        
+        console.log(data.money)
         
         enemySprite.kill().canMove = false;
 //        helper.removeFromArray(enemyStuff.allEnemyArray, null, null, enemySprite);
@@ -133,22 +135,24 @@ EnemyPrototype = function (x, y, data) {
     //enemy reaches destination: home or civilian
     //stateless function
     this.sprite.homeReached = function (enemySprite, point) {            
-        //if point is a civilian
-        if (point != enemyStuff.home) {
-            helper.removeFromArray(allCivilianArr, null, null, point);
-        }
+        // //if point is a civilian
+        // if (point != enemyStuff.home) {
+        //     helper.removeFromArray(allCivilianArr, null, null, point);
+        // }
         
-        //create new civilian if point is home
-        if (point === enemyStuff.home) {
-            enemySprite.civilian = new Civilan().init(game, enemySprite.x, enemySprite.y);
-            enemySprite.civilian.isPickedUp = true;
-        }
+        // //create new civilian if point is home
+        // if (point === enemyStuff.home) {
+        //     enemySprite.civilian = new Civilan().init(game, enemySprite.x, enemySprite.y);
+        //     enemySprite.civilian.isPickedUp = true;
+        // }
         
-        //change target
-        enemySprite.end = enemyStuff.moveToPoint2;
-        enemySprite.target = enemyStuff.endPoint;
+        // //change target
+        // enemySprite.end = enemyStuff.moveToPoint2;
+        // enemySprite.target = enemyStuff.endPoint;
         
-        enemySprite.hasReachedHome = true;
+        // enemySprite.hasReachedHome = true;
+        
+        enemySprite.endReached(this, point);
     };
     
     //enemy reaches end
