@@ -16,6 +16,7 @@ var towerData = {
 			"rangeVal": 0,
 			"canShoot": true,
             "pierce": 1,
+            "rotationSpeed": 5,
             
             "upgrades": {
                 currentPathUps1: 0,

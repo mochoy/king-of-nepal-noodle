@@ -96,7 +96,7 @@ EnemyPrototype = function (x, y, data) {
         
             
         
-    };  //method
+    };  //method moveToTarget
     
     //enemy hit
     //stateless function, dont use "this"
@@ -115,7 +115,7 @@ EnemyPrototype = function (x, y, data) {
         } else {
             bulletSpritec.pierce--;
         }
-    };   
+    };   //method hit
     
     this.sprite.killed = function (enemySprite) {        
         if (enemySprite.civilian) {
@@ -123,33 +123,38 @@ EnemyPrototype = function (x, y, data) {
             enemySprite.civilian.sprite.dropped(false);
         }
         
+        
         data.money += enemySprite.data.rewardMoney;
         UI.updateUI();
         
+        console.log(data.money)
+        
         enemySprite.kill().canMove = false;
 //        helper.removeFromArray(enemyStuff.allEnemyArray, null, null, enemySprite);
-    };
+    };  //method killed
     
     //enemy reaches destination: home or civilian
     //stateless function
     this.sprite.homeReached = function (enemySprite, point) {            
-        //if point is a civilian
-        if (point != enemyStuff.home) {
-            helper.removeFromArray(allCivilianArr, null, null, point);
-        }
+        // //if point is a civilian
+        // if (point != enemyStuff.home) {
+        //     helper.removeFromArray(allCivilianArr, null, null, point);
+        // }
         
-        //create new civilian if point is home
-        if (point === enemyStuff.home) {
-            enemySprite.civilian = new Civilan().init(game, enemySprite.x, enemySprite.y);
-            enemySprite.civilian.isPickedUp = true;
-        }
+        // //create new civilian if point is home
+        // if (point === enemyStuff.home) {
+        //     enemySprite.civilian = new Civilan().init(game, enemySprite.x, enemySprite.y);
+        //     enemySprite.civilian.isPickedUp = true;
+        // }
         
-        //change target
-        enemySprite.end = enemyStuff.moveToPoint2;
-        enemySprite.target = enemyStuff.endPoint;
+        // //change target
+        // enemySprite.end = enemyStuff.moveToPoint2;
+        // enemySprite.target = enemyStuff.endPoint;
         
-        enemySprite.hasReachedHome = true;
-    };
+        // enemySprite.hasReachedHome = true;
+        
+        enemySprite.endReached(this, point);
+    };      //method homeReached
     
     //enemy reaches end
     //intended to be used as a stateless function, don't use "this"
@@ -163,7 +168,7 @@ EnemyPrototype = function (x, y, data) {
         enemySprite.civilian.sprite.dropped(true);
         helper.removeFromArray(enemyStuff.allEnemyArray, null, null, enemySprite);
 
-    };
+    };  //method endReached
     
 };
 
