@@ -8,10 +8,10 @@ enemyStuff.allEnemyArray = [];
 
 
 //Enemy superclass thingy
-EnemyPrototype = function (x, y, data) {
+EnemyPrototype = function (x, y, enemyData) {
     this.inheritEntity = function (thiz, constructer) {
         thiz.constructor = constructer;
-        thiz.constructor(x, y, data, data.src);
+        thiz.constructor(x, y, enemyData, enemyData.src);
     };
     this.inheritEntity(this, Entity)
     
@@ -39,7 +39,7 @@ EnemyPrototype = function (x, y, data) {
     this.sprite.moveToTarget = function () {
         if (this.canMove) {
             var ovrlpSprite = helper.isOverlappingArr(this, towerStuff.towerSlotArr)
-            var moveSpeed = this.data.moveSpeed;
+            var moveSpeed = enemyData.moveSpeed;
            
             if (this.m.cntr >= 100) {      //reset values if counter reaches max
                 this.m.rand = Math.random();
@@ -102,10 +102,11 @@ EnemyPrototype = function (x, y, data) {
     //stateless function, dont use "this"
     this.sprite.hit = function (bulletSpritec, enemySprite) {
         //decrease enemy health, kill and remove bullet, add to tower's hit score
-        if (enemySprite.data.health <= 0) {
+        //decrease enemy health, kill and remove bullet, add to tower's hit score
+                if (enemyData.health <= 0) {
             enemySprite.killed(enemySprite);
         } else {
-            enemySprite.data.health--;
+            enemyData.health--;
             bulletSpritec.towerSprite.hit++;
         }   //else enemySprite health
             
@@ -124,11 +125,9 @@ EnemyPrototype = function (x, y, data) {
         }
         
         
-        data.money += enemySprite.data.rewardMoney;
+        data.money += enemyData.rewardMoney;
         UI.updateUI();
-        
-        console.log(data.money)
-        
+                
         enemySprite.kill().canMove = false;
 //        helper.removeFromArray(enemyStuff.allEnemyArray, null, null, enemySprite);
     };  //method killed
@@ -153,19 +152,19 @@ EnemyPrototype = function (x, y, data) {
         
         // enemySprite.hasReachedHome = true;
         
-        enemySprite.endReached(this, point);
+        enemySprite.endReached(enemySprite, point);
     };      //method homeReached
     
     //enemy reaches end
     //intended to be used as a stateless function, don't use "this"
     this.sprite.endReached = function (enemySprite, end){              
         //decrement health
-        if (window["data"].health > 0) {                        
-            window["data"].health --;
+        if (data.health > 0) {                        
+            data.health --;
             UI.updateUI();
         }
         
-        enemySprite.civilian.sprite.dropped(true);
+//        enemySprite.civilian.sprite.dropped(true);
         helper.removeFromArray(enemyStuff.allEnemyArray, null, null, enemySprite);
 
     };  //method endReached
