@@ -171,6 +171,24 @@ EnemyPrototype = function (x, y, enemyData) {
     
 };
 
+
+//init and set all obejcts and sprites involving what/where enemies have to travel to
+enemyStuff.initVenturePoints = function () {
+    //point at buttom
+    enemyStuff.endPoint = helper.setHW(game.add.sprite(0, game.height - 200, "dudeIMG"), 1, game.width);
+    game.physics.arcade.enable(enemyStuff.endPoint);
+
+    //point at top
+//    enemyStuff.endPoint = helper.setHW(game.add.sprite(0, 0, "dudeIMG"), 1, game.width);
+//    game.physics.arcade.enable(enemyStuff.endPoint);
+
+    enemyStuff.moveToPoint = enemyStuff.endPoint;
+    
+    return enemyStuff;
+
+}
+
+
 enemyStuff.enemyFactory = function () {
     var num = Math.random();
     var currentEnemyData = enemyData.data[data.currentPeriod];
@@ -182,6 +200,8 @@ enemyStuff.enemyFactory = function () {
 		return new window[currentEnemyData[0].class](((game.width/3)*2), 10, currentEnemyData[0]).addToArray();
 //        new enemyStuff.EnemyBasic().init(game, ((game.width/3)*2), 10);
     }
+    
+    return enemyStuff;  
 };
 
 enemyStuff.changeTarget = function (target) {
@@ -189,4 +209,6 @@ enemyStuff.changeTarget = function (target) {
         enemyStuff.moveToPoint = target;
         enemyStuff.allEnemyArray[enemy].target = enemyStuff.moveToPoint;
     }  
+    
+    return enemyStuff;
 };

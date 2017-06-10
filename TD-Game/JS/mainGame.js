@@ -125,14 +125,7 @@ var mainGameVar = {
         towerStuff.moveToPoint = game.add.sprite(centerX, centerY, null);
         towerStuff.moveToPoint.visible = false
         
-        enemyStuff.home = helper.setHW(game.add.sprite(0, game.height - 200, "dudeIMG"), 1, game.width);
-        game.physics.arcade.enable(enemyStuff.home);
-        
-        enemyStuff.endPoint = helper.setHW(game.add.sprite(0, 0, "dudeIMG"), 1, game.width);
-        game.physics.arcade.enable(enemyStuff.endPoint);
-        
-        enemyStuff.moveToPoint = enemyStuff.home;
-
+        enemyStuff.initVenturePoints();
 
         towerStuff.towerFactory(0, game.world.width/2, 500);
 //        towerStuff.towerFactory(1, 100, 100);
@@ -203,12 +196,13 @@ var mainGameVar = {
             var enemySprite = enemyStuff.allEnemyArray[enemy];
             
             //call specific functions depending on what's reached
-            if (!enemySprite.hasReachedHome){
-                game.physics.arcade.overlap(enemySprite, enemyStuff.home, enemySprite.homeReached, null, this); 
-            } else if (enemySprite.hasReachedHome) {
-                game.physics.arcade.overlap(enemySprite, enemyStuff.endPoint, enemySprite.endReached, null, this);
+//            if (!enemySprite.hasReachedHome){
+//                game.physics.arcade.overlap(enemySprite, enemyStuff.home, enemySprite.homeReached, null, this); 
+//            } else 
+//            if (enemySprite.hasReachedHome) {
+            game.physics.arcade.overlap(enemySprite, enemyStuff.endPoint, enemySprite.endReached, null, this);
 
-            }
+//            }
             
         }   //for 
         
