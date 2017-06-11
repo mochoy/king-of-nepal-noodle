@@ -37,54 +37,16 @@ var mainGameVar = {
     },  //function create
     
     update: function (){
-        // Aim manual towers to mouse click
-        game.input.onDown.add(function (event) {            
-            if (canClickOnGame) {
-                var canTowerRotate = true;         
-                
-                //check if clicked on tower
-                loop:
-                for (var i = 0; i < towerStuff.allTowerArr.length; i ++) {                        
-                    var towerSprite = towerStuff.allTowerArr[i];
-
-                    //if tower is clicked
-                    if(helper.checkIfMouseOverlapping(towerSprite, event.x, event.y)){ 
-                        canTowerRotate = false;
-                        break loop;
-                    }   //if
-                }   //for
-                
-                //rotate only if can
-                if (canTowerRotate){ 
-                    helper.setXY(towerStuff.moveToPoint, event.x, event.y);
-                    for (var i = 0; i < towerStuff.manualTowerArr.length; i ++) {
-                        var towerSprite = towerStuff.manualTowerArr[i];
-                        towerSprite.rotation = (game.physics.arcade.angleToPointer(towerSprite)) + 90;
-                    }   //for
-                }   //if
-
-            }       //if
-        }, this);
+        towerStuff.aimManualTowers().autoTowerFindEnemies().limitBulletsForTowers();
         
         enemyStuff.collideEnemiesWithBullets().moveEnemiesToTarget().enemyReachEnd();
     
        
         
-        //tower find enemy
-        for (var tower = 0; tower < towerStuff.autoTowerArr.length; tower++) {
-            towerStuff.autoTowerArr[tower].findEnemy(enemyStuff.allEnemyArray);
-        }   //for tower find enemy
-        
-        //when enemy reaches home or end
+       
         
         
-        //keep max ammount of bullets at 20 per tower
-        for (var tower = 0; tower < towerStuff.allTowerArr.length; tower++) {
-            var towerSprite = towerStuff.allTowerArr[tower];
-            if (towerSprite.bulletArray.length > 20) {
-                towerSprite.bulletArray.shift().destroy();
-            }
-        }   //for
+        
         
         //civilain follow enemy
         for (var enemy = 0; enemy < enemyStuff.allEnemyArray.length; enemy++) {

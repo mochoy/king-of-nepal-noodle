@@ -243,3 +243,58 @@ towerStuff.slotFactory = function (slotNum, x, y) {
     return new SlotPrototype(x, y, slotData.data[slotNum])
 }
 
+towerStuff.aimManualTowers = function () {
+    game.input.onDown.add(function (event) {            
+        if (canClickOnGame) {
+            var canTowerRotate = true;         
+
+            //check if clicked on tower
+            loop:
+            for (var i = 0; i < towerStuff.allTowerArr.length; i ++) {                        
+                var towerSprite = towerStuff.allTowerArr[i];
+
+                //if tower is clicked
+                if(helper.checkIfMouseOverlapping(towerSprite, event.x, event.y)){ 
+                    canTowerRotate = false;
+                    break loop;
+                }   //if
+            }   //for
+
+            //rotate only if can
+            if (canTowerRotate){ 
+                helper.setXY(towerStuff.moveToPoint, event.x, event.y);
+                for (var i = 0; i < towerStuff.manualTowerArr.length; i ++) {
+                    var towerSprite = towerStuff.manualTowerArr[i];
+                    towerSprite.rotation = (game.physics.arcade.angleToPointer(towerSprite)) + 90;
+                }   //for
+            }   //if
+
+        }       //if
+    }, this);
+    
+    return towerStuff;
+}
+
+towerStuff.autoTowerFindEnemies = function () {
+    //tower find enemy
+    for (var tower = 0; tower < towerStuff.autoTowerArr.length; tower++) {
+        towerStuff.autoTowerArr[tower].findEnemy(enemyStuff.allEnemyArray);
+    }   //for tower find enemy
+      
+    return towerStuff;
+
+}
+
+towerStuff.limitBulletsForTowers = function () {
+    //keep max ammount of bullets at 20 per tower
+    for (var tower = 0; tower < towerStuff.allTowerArr.length; tower++) {
+        var towerSprite = towerStuff.allTowerArr[tower];
+        if (towerSprite.bulletArray.length > 20) {
+            towerSprite.bulletArray.shift().destroy();
+        }
+    }   //for
+    
+    return towerStuff;
+}
+
+
