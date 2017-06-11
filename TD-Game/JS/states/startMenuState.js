@@ -1,4 +1,4 @@
-var MenuVar = {
+var startMenuVar = {
     buttonStart: null,
     
     preload : function() {
@@ -11,7 +11,7 @@ var MenuVar = {
                                            
     
     startGame: function (){
-        game.state.start('MainGame');    
+        game.state.start('mainGameState');    
     }
 
 };
