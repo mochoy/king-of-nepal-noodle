@@ -1,5 +1,8 @@
 var preloadStateVar = {    
     preload : function() {
+        //loading text
+        game.add.text(game.world.centerX, game.world.centerY, "LOADING", { fontFamily: UI.fontFamily, fontSize: 20, fontWeight: 'bold', fill: '#000000'    });
+        
         //load legit assets 
         game.load.image("healthSymbolIMG", "Assets/Images/healthSymbol.png");
         game.load.image("moneySymbolIMG", "Assets/Images/moneySymbol.png");
