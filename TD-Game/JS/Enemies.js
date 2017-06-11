@@ -212,3 +212,48 @@ enemyStuff.changeTarget = function (target) {
     
     return enemyStuff;
 };
+
+enemyStuff.collideEnemiesWithBullets = function () {
+    for (var enemy = 0; enemy < enemyStuff.allEnemyArray.length; enemy++) {
+            var enemySprite = enemyStuff.allEnemyArray[enemy];
+            //loop through all towers
+            for (var tower = 0; tower < towerStuff.allTowerArr.length; tower++ ){
+                var towerSprite = towerStuff.allTowerArr[tower];
+                //loop through bullets
+                for (var bullet = 0; bullet < towerSprite.bulletArray.length; bullet++) {
+                    var bulletSprite = towerSprite.bulletArray[bullet];                    
+                    game.physics.arcade.overlap(bulletSprite, enemySprite, enemySprite.hit, null, this);
+                }   //for iterate bulletArray
+            }   //for iterate towerStuff.allTowerArray
+        }   //for iterate enemyStuff.allEnemyArray
+    
+    return enemyStuff;
+}
+
+enemyStuff.moveEnemiesToTarget = function () {
+     for (var enemy = 0; enemy < enemyStuff.allEnemyArray.length; enemy++) {
+            enemyStuff.allEnemyArray[enemy].moveToTarget();
+    }
+    
+    return enemyStuff;
+}
+
+enemyStuff.enemyReachEnd = function () {
+    for (var enemy = 0; enemy < enemyStuff.allEnemyArray.length; enemy++){
+            var enemySprite = enemyStuff.allEnemyArray[enemy];
+            
+            //call specific functions depending on what's reached
+//            if (!enemySprite.hasReachedHome){
+//                game.physics.arcade.overlap(enemySprite, enemyStuff.home, enemySprite.homeReached, null, this); 
+//            } else 
+//            if (enemySprite.hasReachedHome) {
+            game.physics.arcade.overlap(enemySprite, enemyStuff.endPoint, enemySprite.endReached, null, this);
+
+//            }
+            
+        }   //for
+    
+    return enemyStuff;
+}
+
+
