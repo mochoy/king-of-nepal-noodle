@@ -38,16 +38,11 @@ var mainGameVar = {
     
     update: function (){
         towerStuff.aimManualTowers().autoTowerFindEnemies().limitBulletsForTowers();
-        
         enemyStuff.collideEnemiesWithBullets().moveEnemiesToTarget().enemyReachEnd();
-    
-       
+        helper.bringToTop();
+
         
-       
-        
-        
-        
-        
+        /*
         //civilain follow enemy
         for (var enemy = 0; enemy < enemyStuff.allEnemyArray.length; enemy++) {
             var enemySprite = enemyStuff.allEnemyArray[enemy];
@@ -68,8 +63,8 @@ var mainGameVar = {
                 allCivilianArr[civilian].dropped(false);
             }
         }
+        */
     
-        helper.bringToTop();
     }  //method update
     
 };   //object mainGameVar
