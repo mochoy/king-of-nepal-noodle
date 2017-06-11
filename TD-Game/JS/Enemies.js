@@ -20,6 +20,8 @@ EnemyPrototype = function (x, y, enemyData) {
     
     this.sprite.canMove = true;
     
+    this.sprite.health = enemyData.health;
+    
     //add to specific arrays
     this.addToArray = function () {
         enemyStuff.allEnemyArray.push(this.sprite);
@@ -103,10 +105,11 @@ EnemyPrototype = function (x, y, enemyData) {
     this.sprite.hit = function (bulletSpritec, enemySprite) {
         //decrease enemy health, kill and remove bullet, add to tower's hit score
         //decrease enemy health, kill and remove bullet, add to tower's hit score
-                if (enemyData.health <= 0) {
+                
+        if (enemySprite.health <= 0) {
             enemySprite.killed(enemySprite);
         } else {
-            enemyData.health--;
+            enemySprite.health--;
             bulletSpritec.towerSprite.hit++;
         }   //else enemySprite health
             
